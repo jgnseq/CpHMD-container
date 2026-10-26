@@ -1,0 +1,10 @@
+/home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container/CpHMD/src/fixgro.c: In function ‘read_frame’:
+/home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container/CpHMD/src/fixgro.c:137:3: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  137 |   fgets(line, sizeof line, fp_gro) ;
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container/CpHMD/src/fixgro.c:144:5: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  144 |     fgets(line, sizeof line, fp_gro) ;
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container/CpHMD/src/fixgro.c:151:3: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  151 |   fgets(boxline, sizeof boxline, fp_gro) ;
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

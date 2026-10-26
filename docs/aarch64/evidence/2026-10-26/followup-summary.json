@@ -1,0 +1,39 @@
+{
+  "project_path": "/projects/F202500250CPCAA2",
+  "persistent_task_root": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026",
+  "project_quota_report": {
+    "used": "1.24G",
+    "limit": "2.93T",
+    "files": 413,
+    "file_limit": "none"
+  },
+  "selected_account": "f202500250cpcaa2a",
+  "runtime_recheck": "dev-arm and normal-arm immediate allocations both unavailable; no fresh fakeroot test ran",
+  "petit_correction": "PETIT 1.6.1 already executed successfully in existing ARM SVE image during the first audit; release checkout contains x86 binaries",
+  "github_repair": {
+    "checked_commit": "1c22b05",
+    "checked_author_identity": "expected identity",
+    "remote_credentials_embedded": false,
+    "stored_credential_helper_in_checked_configuration": false,
+    "plaintext_credential_file_found": false,
+    "ssh_authentication": "jgnseq",
+    "origin_transport": "SSH",
+    "push_dry_run": "PASS",
+    "actual_push_performed_by_agent": false
+  },
+  "v071_worktree": {
+    "branch": "maintenance/0.7.1-settings-rebuild",
+    "head": "ddd4942",
+    "uncommitted_settings_changes": true,
+    "source_change_date": "2026-08-04",
+    "five_repository_checks": "PASS"
+  },
+  "fixgro": {
+    "supplied_sha256": "5aabab6463f13d476a6f26afa9823dc50fd375babc9837817ffd82eef1574f71",
+    "development_sha256": "8b205abc493d19dac157bdc1dd77d94620d954df7a9aaea4cc965c1c4c98ffc4",
+    "changes": "allocate nstages+1; normalize trailing whitespace",
+    "original_file_unchanged": true,
+    "local_fixture_checks": "one and two stages; release comparison; AddressSanitizer/UBSan pass",
+    "native_arm_compile": "not yet run"
+  }
+}

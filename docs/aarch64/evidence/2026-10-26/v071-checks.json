@@ -1,0 +1,52 @@
+[
+  {
+    "test": "static_checks.sh",
+    "exit_code": 0,
+    "tail": [
+      "",
+      "Settings-profile failures: 0",
+      "",
+      "==> Static checks completed successfully."
+    ]
+  },
+  {
+    "test": "check_databases.sh",
+    "exit_code": 0,
+    "tail": [
+      "    Databases/DataBaseT_Amber14SBpH.crg: no duplicate data lines detected.",
+      "    Databases/DataBaseT_Amber14SBpH.siz: no duplicate data lines detected.",
+      "",
+      "==> Database checks completed successfully."
+    ]
+  },
+  {
+    "test": "check_reduced_titration_logic.sh",
+    "exit_code": 0,
+    "tail": [
+      "==> Testing full-refresh scheduling behavior",
+      "    PASS: full-refresh helper selects the expected cycles",
+      "",
+      "==> Reduced titration logic checks completed successfully."
+    ]
+  },
+  {
+    "test": "check_asic_settings.sh",
+    "exit_code": 0,
+    "tail": [
+      "==> Checking improved Delphi database diagnostics",
+      "    Delphi database diagnostics are present.",
+      "",
+      "==> ASIC-support checks completed successfully."
+    ]
+  },
+  {
+    "test": "check_settings_profiles.sh",
+    "exit_code": 0,
+    "tail": [
+      "    PASS: contract rejects a missing explicit pH",
+      "    PASS: contract rejects CHANGE_ME placeholders",
+      "",
+      "Settings-profile failures: 0"
+    ]
+  }
+]

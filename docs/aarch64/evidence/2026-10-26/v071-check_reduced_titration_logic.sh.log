@@ -1,0 +1,67 @@
+==> Running reduced titration logic checks from: /home/jsequeira/mini05/Projects/side/06_CpHMD-container/02_CpH-reduced-ASICs/CpHMD-container-v0.7.1-runtime-review
+
+==> Checking required files
+    PASS: CpHMD controller
+    PASS: CpHMD function library
+    PASS: explicit settings-contract helper
+    PASS: advanced settings template
+    PASS: basic settings profile CpHMD-basic.settings
+    PASS: basic settings profile CpHMD-basic-G54a7pH.settings
+    PASS: basic settings profile CpHMD-basic-CHARMM36pH.settings
+    PASS: basic settings profile CpHMD-basic-Amber14SBpH.settings
+
+==> Checking reduced titration settings
+    PASS: explicit user-settings declaration contract
+    PASS: required explicit ReduceTitration declaration
+    PASS: advanced-template ReduceTitration setting
+    PASS: required explicit RTInterval declaration
+    PASS: advanced-template RTInterval setting
+    PASS: required explicit RTThreshold declaration
+    PASS: advanced-template RTThreshold setting
+    PASS: CpHMD-basic.settings enables reduced titration
+    PASS: CpHMD-basic.settings uses RTInterval=20
+    PASS: CpHMD-basic-G54a7pH.settings enables reduced titration
+    PASS: CpHMD-basic-G54a7pH.settings uses RTInterval=20
+    PASS: CpHMD-basic-CHARMM36pH.settings enables reduced titration
+    PASS: CpHMD-basic-CHARMM36pH.settings uses RTInterval=20
+    PASS: CpHMD-basic-Amber14SBpH.settings enables reduced titration
+    PASS: CpHMD-basic-Amber14SBpH.settings uses RTInterval=20
+
+==> Checking reduced titration helper definitions
+    PASS: full-refresh scheduling helper
+    PASS: cycle-1 modulo RTInterval scheduling rule
+    PASS: persistent reduced-titration initialization and restore helper
+    PASS: PETIT output validation helper
+    PASS: full-refresh active-set selection helper
+    PASS: reduced active-set merge helper
+    PASS: zero-active-site fixed-state materialization helper
+    PASS: non-reduced all-site materialization helper
+    PASS: current-cycle fraction recording helper
+
+==> Checking PB/MC reduced-titration control flow
+    PASS: reduced-titration state initialization before cycling
+    PASS: full-refresh scheduling through cphmd_rt_full_refresh_cycle
+    PASS: explicit all-site PB/MC refresh
+    PASS: active-site selection after full refresh
+    PASS: reduced active-set PB/MC execution
+    PASS: reduced PETIT result merge
+    PASS: fixed-state reuse when the active set is empty
+    PASS: ordinary all-site fraction materialization
+    PASS: full current-cycle OCC/MOCC recording
+
+==> Checking persistent reduced-titration state
+    PASS: last-full-cycle checkpoint variable in the controller
+    PASS: active-site-count checkpoint variable in the controller
+    PASS: last-full-cycle state handling in the function library
+    PASS: active-site-count state handling in the function library
+    PASS: persistent reduced-titration history handling
+    PASS: persistent active-site file handling
+
+==> Checking threshold and termini decisions
+    PASS: RTThreshold supplied to active-site selection
+    PASS: terminal-site retention logic
+
+==> Testing full-refresh scheduling behavior
+    PASS: full-refresh helper selects the expected cycles
+
+==> Reduced titration logic checks completed successfully.

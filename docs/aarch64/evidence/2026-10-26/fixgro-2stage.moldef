@@ -1,0 +1,11 @@
+G First
+a 1 2
+G Second
+a 3 4
+G All
+g First
+g Second
+A First
+A All
+C All All All
+P 1 1 1

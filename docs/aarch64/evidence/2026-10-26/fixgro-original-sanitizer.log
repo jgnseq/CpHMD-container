@@ -1,0 +1,51 @@
+=================================================================
+==11==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x7b61a03e0014 at pc 0x5e42b4c1d917 bp 0x7ffde92f5cc0 sp 0x7ffde92f5cb0
+WRITE of size 4 at 0x7b61a03e0014 thread T0
+    #0 0x5e42b4c1d916 in read_moldef CpHMD/src/fixgro.c:243
+    #1 0x5e42b4c20b5e in main CpHMD/src/fixgro.c:94
+    #2 0x7f41a142a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59
+    #3 0x7f41a142a717 in __libc_start_main_impl ../csu/libc-start.c:360
+    #4 0x5e42b4c17524 in _start (/tmp/cphmd-fixgro-check-20261026/fixgro-asan+0x13524) (BuildId: d1bfe8e74a816e4c37cb44f889129b8871323770)
+
+0x7b61a03e0014 is located 0 bytes after 4-byte region [0x7b61a03e0010,0x7b61a03e0014)
+allocated by thread T0 here:
+    #0 0x7f41a212b40f in calloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:74
+    #1 0x5e42b4c1d031 in read_moldef CpHMD/src/fixgro.c:199
+    #2 0x5e42b4c20b5e in main CpHMD/src/fixgro.c:94
+    #3 0x7f41a142a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59
+    #4 0x7f41a142a717 in __libc_start_main_impl ../csu/libc-start.c:360
+    #5 0x5e42b4c17524 in _start (/tmp/cphmd-fixgro-check-20261026/fixgro-asan+0x13524) (BuildId: d1bfe8e74a816e4c37cb44f889129b8871323770)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow CpHMD/src/fixgro.c:243 in read_moldef
+Shadow bytes around the buggy address:
+  0x7b61a03dfd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7b61a03dfe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7b61a03dfe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7b61a03dff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7b61a03dff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x7b61a03e0000: fa fa[04]fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b61a03e0080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b61a03e0100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b61a03e0180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b61a03e0200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b61a03e0280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==11==ABORTING

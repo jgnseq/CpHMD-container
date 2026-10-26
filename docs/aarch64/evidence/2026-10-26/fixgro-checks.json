@@ -1,0 +1,16 @@
+[
+  {
+    "assembly_stages": 1,
+    "status": "PASS",
+    "source_equals_release_at_gro_precision": true,
+    "asan_ubsan_invalid_access_check": "PASS",
+    "leak_check": "disabled; legacy source does not free its allocations"
+  },
+  {
+    "assembly_stages": 2,
+    "status": "PASS",
+    "source_equals_release_at_gro_precision": true,
+    "asan_ubsan_invalid_access_check": "PASS",
+    "leak_check": "disabled; legacy source does not free its allocations"
+  }
+]
