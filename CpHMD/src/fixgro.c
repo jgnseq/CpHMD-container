@@ -1,5 +1,19 @@
 /*
 
+  Coordinate-preparation helper invoked by functions.sh for non-membrane
+  multiple_solutes/include_itp inputs before PB/MC. Read GRO frames and a
+  molecule/group definition, assemble periodic images, center selected groups,
+  and write GRO frames to stdout without changing atom ordering or velocities.
+
+  Per-frame flow: read_frame -> r_to_s -> compute_objdist -> assemble_objs ->
+  center -> apply_PBCs -> s_to_r -> write_frame. read_moldef initializes shared
+  group/stage state once. Coordinates r are Cartesian; s are fractional box
+  coordinates relative to box center. Legacy arrays are indexed from 1; nobjs
+  also uses index 0 as the boundary before the first assembly stage.
+
+  Built natively by container_build/arm64/build-inside.sh; regression fixtures
+  in tests/arm64/check_fixgro.py cover single and nested assembly stages.
+
   TO COMPILE:
     gcc fixgro.c -o fixgro -O3 -lm -Wall -W -pedantic -Wno-unused-result
     gcc fixgro.c -o fixgro -O3 -lm -Wall -W -pedantic -ansi
@@ -83,6 +97,7 @@ obj_t *obj ;
 FILE *fp_gro, *fp_moldef ;
 
 
+/* Transform each input frame using the same molecule/group assembly rules. */
 int main(int argc, char **argv)
 {
   parse_arguments(argc, argv) ;
@@ -108,7 +123,7 @@ int main(int argc, char **argv)
 }
 
 
-/*Reads arguments*/
+/* Open the required GRO and molecule-definition inputs; report fatal errors. */
 void parse_arguments(int argc, char **argv)
 {
   char *gro_file, *moldef_file ;
@@ -127,6 +142,7 @@ void parse_arguments(int argc, char **argv)
 }
 
 
+/* Read atoms/box after main reads the title; derive inverse box and box center. */
 void read_frame(void)
 {
   int a, k ;
@@ -182,6 +198,8 @@ void read_frame(void)
 
 // Consider using fseek() instead of rewind().
 
+/* Parse group membership, ordered assembly stages, centering and PBC choices.
+ * Populate the shared molecule/object tables used by all subsequent frames. */
 void read_moldef(void)
 {
   // Try to simplify/reduce the number of auxiliary variables...
@@ -353,6 +371,7 @@ void read_moldef(void)
 }
 
 
+/* Emit transformed Cartesian coordinates, preserving identity/velocity fields. */
 void write_frame(void)
 {
   int a ;
@@ -372,6 +391,7 @@ void write_frame(void)
 }
 
 
+/* Resolve a definition's group name to its 1-based index; fail if undefined. */
 int gnumb(char groupname[])
 {
   int g, gg = -1 ;
@@ -383,6 +403,7 @@ int gnumb(char groupname[])
 }
 
 
+/* Convert Cartesian positions to fractional coordinates about the box center. */
 void r_to_s(void)
 {
   int a, k, j ;
@@ -396,6 +417,7 @@ void r_to_s(void)
     }
 }
 
+/* Undo r_to_s after assembly/centering so output uses Cartesian GRO units. */
 void s_to_r(void)
 {
   int a, k, j ;
@@ -410,7 +432,8 @@ void s_to_r(void)
 }
 
 
-// Compute inter-molecular distances as the one between their closest atoms.
+// Compute closest-atom minimum-image distances and fractional displacements
+// between assembly objects; assemble_objs uses them to choose box translations.
 void compute_objdist(void)
 {
   int o1, o2, m1, m2, a1, a2, k, j ;
@@ -448,7 +471,9 @@ void compute_objdist(void)
 }
 
 
-// This algorithm scales with the cube of the number of objects, but
+// Assemble objects stage by stage using the nearest already-assembled object,
+// then translate their atoms by integer box vectors. This algorithm scales
+// with the cube of the number of objects, but
 // one scaling with the square (e.g., based on clever distance
 // sorting) can probably be devised.
 void assemble_objs(void)
@@ -510,6 +535,8 @@ void assemble_objs(void)
 }
 
 
+/* Shift all atoms so each axis's selected group extent is centered in the box.
+ * Report a group exceeding its box extent as error/warning per PBC choice. */
 void center(void)
 {
   int k, g, i, m, a ;
@@ -542,6 +569,7 @@ void center(void)
 }
 
 
+/* Wrap whole molecules by geometric centers along the enabled periodic axes. */
 void apply_PBCs(void)
 {
   int k, m, a, dN ;
@@ -566,13 +594,14 @@ void apply_PBCs(void)
 }
 
 
-// Fortran-like named. Useful property: nint(-x) = -nint(x)
+// Nearest-integer translation, with half-integer ties toward positive infinity.
 int nint(float x)
 {
   return floor(x + 0.5) ;
 }
 
 
+/* Print formatted diagnostics; warnings return, errors/usage terminate. */
 void message(char mtype, char *format, ...)
 {
   va_list args ;

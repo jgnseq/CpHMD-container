@@ -2,6 +2,49 @@
 
 This branch now combines the reviewed August explicit-settings work with the ARM build support. The legacy source worktree is unchanged. `settings-import.json` identifies the imported files and their original hashes. The released x86 0.7.0 image remains the scientific comparison baseline.
 
+The [developer guide](DEVELOPER_GUIDE.md) maps each build/validation file and
+function to its caller, outputs and place in the scientific cycle. Follow its
+commenting convention for future project-owned changes.
+
+## Recovery from the incomplete-bundle clone error
+
+The initial transfer of commit `ee74839392d385c21958c35e193e2f21965a78ed`
+failed because the workstation clone was shallow. Commit `3c63a518...` was a
+shallow boundary whose parent `6db15cc8...` was absent from the exported pack.
+The original bundle's local `git bundle verify` passed, but an independent clone
+reproduced the recipient's missing-parent failure. Verifying inside the donor
+repository was insufficient. This is a source-transfer failure before compilation
+or job submission, not evidence about PETIT or the ARM image.
+
+The repair fetches complete history without changing the current branch or
+working files. Run this in another checkout if it is still shallow (already
+completed in this desktop checkout):
+
+```bash
+git rev-parse --is-shallow-repository
+if [ "$(git rev-parse --is-shallow-repository)" = true ]; then
+    git fetch --unshallow upstream
+fi
+git fsck --connectivity-only --no-dangling
+```
+
+The submission helper now rejects shallow history before transfer and uses
+`create_source_bundle.sh` to validate the actual pack from an empty repository,
+clone it independently, check history connectivity and check out the exact tip.
+Remote clones are staged under a unique `.incoming-TIMESTAMP` name and validated
+before being published at `sources/COMMIT`. Existing source checkouts must pass
+connectivity, identity and clean-tree checks before reuse. Failed inputs and any
+remaining staging directories are retained. The failed `ee748393...` checkout was absent when inspected;
+no manual deletion is needed. Retry the normal helper after committing the repair.
+
+After the history repair, the same committed branch successfully cloned and
+passed connectivity, exact-HEAD and clean-tree checks on Deucalion at
+`validation/git-transfer.9wY0Xv/checkout` under the sprint project directory.
+This was an isolated transfer check; it submitted no build job. The regression
+and all six repository/support checks passed. Evidence is recorded in
+`evidence/2026-10-26/bundle-repair-checks.json` and
+`evidence/2026-10-26/bundle-repair-transfer.json`.
+
 ## What is ready, and what has passed
 
 - The five settings/runtime repository checks pass after import.
@@ -32,7 +75,7 @@ Deucalion's project directory requires supplementary-group access, which fakeroo
 - The ordinary host process stages inputs and copies artifacts/results back after fakeroot returns. The local-image build uses `--disable-cache`; no compiler downloads or OCI downloads occur in the fakeroot build.
 - The project ACLs and production directories are unchanged. Failed temporary build work is not destructively cleaned by the launcher.
 
-## 1. Review and commit the implemented step locally
+## 1. Review and commit the transfer repair and documentation locally
 
 Run in the local desktop terminal, not on Deucalion:
 
@@ -47,11 +90,11 @@ bash tests/check_asic_settings.sh
 bash tests/check_settings_profiles.sh
 bash tests/check_arm64_build_support.sh
 
-git add -- .gitattributes .github/workflows/ci.yml CpHMD DelphiTools/src container_build template tests review/v0.7.1-stage3 README.md docs/CPHMD_SETTINGS_REFERENCE.md docs/aarch64/BUILD_AND_VALIDATE.md docs/aarch64/evidence/2026-10-26
+git add -- CpHMD/scripts CpHMD/src/fixgro.c container_build tests/arm64 tests/check_source_bundle.sh tests/check_arm64_build_support.sh docs/aarch64
 git diff --cached --check
 git diff --cached --stat
 git diff --cached -- CpHMD/scripts/CpHMD.sh CpHMD/scripts/settings_contract.sh container_build/arm64 container_build/prepare_arm64_build.py container_build/run_arm64_build.sh container_build/submit_deucalion_arm64.sh
-git commit -m 'Integrate explicit settings and add native ARM build pipeline'
+git commit -m 'Harden ARM source transfer and document pipeline responsibilities'
 git push origin codex/arm64-deucalion-20261026
 ```
 

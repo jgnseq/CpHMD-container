@@ -1,8 +1,13 @@
 #!/bin/bash
-# Runs only inside the disposable ARM image root filesystem.
+# Singularity %post entry point; runs inside the disposable ARM rootfs.
+# Rebuild native PB/MC helpers, PETIT, PLUMED and GROMACS from the frozen
+# context. Retain the audited DelPhi solver/runtime, then install the runtime
+# controller and embedded smoke tests. No CpHMD trajectory is generated here.
 set -Eeuo pipefail
 [[ $(uname -m) == aarch64 ]] || { echo 'Native ARM build required'; exit 2; }
 src=/opt/cphmd-build
+# EXIT handler: export configure/compiler/unit-test evidence through the host
+# bind mount before the rootfs disappears; do not mask the original failure.
 preserve_build_evidence () {
     status=$?
     set +e
@@ -15,6 +20,7 @@ preserve_build_evidence () {
 }
 trap preserve_build_evidence EXIT
 readarray -t config < <(python3 - <<'PY'
+"""Read only recorded candidate choices; do not infer SIMD from the login host."""
 import json
 m=json.load(open('/etc/cphmd/build.json'))
 print(m['jobs']);print(m['simd']);print(m['sve_bits'])
@@ -28,6 +34,8 @@ export OMP_NUM_THREADS=1
 export LD_LIBRARY_PATH="/opt/nvhpc/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 mkdir -p /etc/cphmd /usr/share/cphmd/build /usr/local/libexec/cphmd
 test -x /Delphi/delphi_pgf90
+# Preserve the solver before replacing its directory. Fixed-coordinate PB/MC
+# comparison is a separate acceptance gate for this inherited native binary.
 cp /Delphi/delphi_pgf90 "$src/delphi.base"
 sha256sum "$src/delphi.base" > /usr/share/cphmd/build/delphi.sha256
 dpkg-query -W > /usr/share/cphmd/build/base-packages.tsv
@@ -48,11 +56,15 @@ cp -a "$src/template" /Templates
 cp -a "$src/tutorials" /Tutorials
 cp "$src/delphi.base" /Delphi/delphi_pgf90
 chmod 755 /Delphi/delphi_pgf90
+# These helpers run before PB/MC: fixgro assembles solutes across PBC, while
+# geom_center/calc_pkg_low support DelPhi geometry and parameter preparation.
 gcc -std=c99 -O2 /CpHMD/src/fixgro.c -lm -o /CpHMD/scripts/fixgro
 # The force-field tree historically contains a second copy of this helper.
 install -m755 /CpHMD/scripts/fixgro /FFs/Amber14SBpH.ff/scripts/fixgro
 gcc -O2 /Delphi/src/geom_center.c /Delphi/src/my_mem.c -lm -o /Delphi/geom_center
 gcc -O2 /Delphi/src/calc_pkg_low.c /Delphi/src/my_mem.c -lm -o /Delphi/calc_pkg_low
+# PETIT samples protonation states after DelPhi supplies the PB energies.
+# Avoid fast-math so this port does not silently change numerical semantics.
 rm -rf /programs/petit1.6.1
 mkdir -p /programs/petit1.6.1
 cp "$src/petit1.6.1/"{petit.c,README,LICENSE,sample.dat} /programs/petit1.6.1/
@@ -71,6 +83,8 @@ sha256sum "$src/gromacs-2026.3.tar.gz" | tee /usr/share/cphmd/build/gromacs-sour
 echo '1094b7bbc6a3960223827114626657110b40096cdf9598a727935fc84ebf8aa0  /opt/cphmd-build/gromacs-2026.3.tar.gz' | sha256sum -c -
 mkdir -p /build
 tar -xzf "$src/gromacs-2026.3.tar.gz" -C /build
+# GROMACS advances the MD portion of each CpHMD cycle. Match the x86 reference
+# release, use the native FFTW library, and keep tests enabled in the build.
 simd_args=( "-DGMX_SIMD=$simd" )
 if [[ $simd == ARM_SVE ]]; then
     simd_args+=( "-DGMX_SIMD_ARM_SVE_LENGTH=$sve_bits" )
@@ -93,6 +107,8 @@ cp /build/gmx/Testing/Temporary/LastTest.log /usr/share/cphmd/build/LastTest.log
 mkdir -p /gromacs/bin
 cat > /gromacs/bin/gmx <<'EOF'
 #!/bin/bash
+# Runtime launcher shared by the controller and smoke tests: select only this
+# installed CPU build and expose its GROMACS/PLUMED shared libraries.
 set -e
 root=/gromacs/gromacs-2026.3
 export LD_LIBRARY_PATH="$root/lib:$root/lib64:/opt/plumed/lib:/opt/plumed/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
@@ -110,4 +126,7 @@ export LD_LIBRARY_PATH="/opt/nvhpc/lib:/opt/plumed/lib:/opt/plumed/lib64"
 /gromacs/bin/gmx --version > /usr/share/cphmd/build/gromacs-version.txt
 chmod -R a+rX /usr/share/cphmd
 cd /
+# This cleanup is confined to the disposable image. Installed evidence remains
+# under /usr/share/cphmd/build for the EXIT handler to export to the host.
+# The installed image needs neither compiler trees nor source inputs.
 rm -rf /build /opt/cphmd-build

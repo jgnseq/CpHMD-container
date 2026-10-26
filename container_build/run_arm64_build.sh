@@ -1,5 +1,9 @@
 #!/bin/bash
-# Execute a frozen context on a native ARM node. No repository mutation.
+# Host-side build driver, invoked by slurm/build-arm64.slurm on an ARM node.
+# Verify the frozen candidate, stage private node-local copies for fakeroot,
+# build/test the SIF, then preserve image and diagnostics under the project.
+# build-inside.sh performs compilation; validate-arm64.sh performs image tests.
+# This driver does not run the scientific CpHMD simulation cycle.
 set -Eeuo pipefail
 out="$(realpath "${1:?Supply a prepared output directory}")"
 [[ $(uname -m) == aarch64 ]] || { echo 'Native ARM node required'; exit 2; }
@@ -32,10 +36,12 @@ df -h "$scratch" "$out"
 cd "$out"
 sha256sum --quiet -c manifest.sha256
 python3 - "$out" <<'PY'
+"""Reject changed build inputs or an undersized scheduler CPU allocation."""
 import hashlib,json,sys,os
 from pathlib import Path
 p=Path(sys.argv[1]);m=json.loads((p/'build.json').read_text())
 def digest(path):
+    """Hash large bootstrap/source files in bounded-memory blocks."""
     h=hashlib.sha256()
     with path.open('rb') as f:
         for block in iter(lambda:f.read(1048576),b''):h.update(block)
@@ -47,6 +53,8 @@ assert m['jobs']<=int(os.environ['SLURM_CPUS_PER_TASK']), 'Build jobs exceed all
 PY
 mkdir "$out/artifacts-${SLURM_JOB_ID}"
 mkdir "$scratch/artifacts"
+# EXIT handler: return compiler diagnostics and the real build exit status to
+# project storage even if compilation or %test fails. Keep scratch for diagnosis.
 preserve_exit () {
     status=$?
     set +e
@@ -64,6 +72,11 @@ mkdir "$scratch/launch/build-evidence"
 base="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["base_image"])' "$out/build.json")"
 cp "$base" "$scratch/bootstrap.sif"
 python3 - "$out/CpHMD.arm64.def" "$scratch" <<'PY'
+"""Change only the bootstrap path for fakeroot's project-access limitation.
+
+The original hashed recipe stays in the project; preserve this executed copy
+alongside it so the staging substitution is visible in the build evidence.
+"""
 from pathlib import Path
 import sys
 source=Path(sys.argv[1]).read_text();scratch=Path(sys.argv[2])

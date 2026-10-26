@@ -1,2 +1,4 @@
+# Minimal PLUMED kernel/output check used by md_smoke.sh; no bias is applied.
+# Record one intramolecular distance every five MD steps for finite-value checks.
 d: DISTANCE ATOMS=1,2
 PRINT ARG=d FILE=COLVAR STRIDE=5

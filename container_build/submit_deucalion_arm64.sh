@@ -1,6 +1,8 @@
 #!/bin/bash
-# Transfer committed source as a Git bundle; no GitHub credentials on the HPC.
+# Workstation entry point: committed source -> verified Git bundle -> project
+# checkout -> frozen context -> optional SLURM job. This script never runs MD.
 # Default: prepare only. Add --submit to queue the inspected build pipeline.
+# See docs/aarch64/DEVELOPER_GUIDE.md for the file/function and cycle map.
 set -Eeuo pipefail
 submit=0
 simd=ARM_SVE
@@ -23,6 +25,12 @@ branch=codex/arm64-deucalion-20261026
     echo 'Review, validate and commit the source before transfer.' >&2; exit 2;
 }
 revision="$(git rev-parse HEAD)"
+# Fail before downloading/uploading anything when history is incomplete. The
+# bundle helper repeats this check and independently clones the actual pack.
+if [[ $(git rev-parse --is-shallow-repository) != false ]]; then
+    echo 'Run git fetch --unshallow upstream, then retry this command.' >&2
+    exit 2
+fi
 stamp="$(date -u +%Y%m%dT%H%M%SZ)"
 task_root=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026
 source_root="$task_root/sources/$revision"
@@ -37,17 +45,24 @@ if [[ ! -e $archive ]]; then
 fi
 [[ $(sha256sum "$archive" | cut -d' ' -f1) == "$expected" ]] || { echo 'Source checksum mismatch'; exit 1; }
 bundle_dir="$(mktemp -d /tmp/cphmd-arm-bundle.XXXXXX)"
-git bundle create "$bundle_dir/source.bundle" "$branch"
-git bundle verify "$bundle_dir/source.bundle"
+bash "$repo/container_build/create_source_bundle.sh" "$repo" "$branch" "$bundle_dir/source.bundle"
 ssh_opts=(-o BatchMode=yes -o ConnectTimeout=15 -o ForwardX11=no -o ForwardAgent=no -o ControlMaster=no -o StrictHostKeyChecking=yes)
 ssh "${ssh_opts[@]}" deucalion "mkdir -p '$task_root/inputs' '$task_root/sources' '$task_root/logs'"
 # Incoming files use unique names; existing scientific/build results are retained.
 scp "${ssh_opts[@]}" "$bundle_dir/source.bundle" "deucalion:$task_root/inputs/source-$revision-$stamp.bundle"
 scp "${ssh_opts[@]}" "$archive" "deucalion:$task_root/inputs/gromacs-$revision-$stamp.tar.gz"
 ssh "${ssh_opts[@]}" deucalion "set -eu
-if [ ! -d '$source_root' ]; then
-    git clone --branch '$branch' '$task_root/inputs/source-$revision-$stamp.bundle' '$source_root'
+if [ ! -e '$source_root' ]; then
+    # Publish the checkout only after both clone and connectivity checks pass.
+    # Any staging directory left after a failure is retained for inspection;
+    # later attempts use a fresh timestamp without deleting existing data.
+    git clone --branch '$branch' '$task_root/inputs/source-$revision-$stamp.bundle' '$source_root.incoming-$stamp'
+    git -C '$source_root.incoming-$stamp' fsck --connectivity-only --no-dangling
+    test \"\$(git -C '$source_root.incoming-$stamp' rev-parse HEAD)\" = '$revision'
+    mv -T '$source_root.incoming-$stamp' '$source_root'
 fi
+# Reusing an existing checkout is allowed only if it is complete and unmodified.
+git -C '$source_root' fsck --connectivity-only --no-dangling
 test \"\$(git -C '$source_root' rev-parse HEAD)\" = '$revision'
 test -z \"\$(git -C '$source_root' status --porcelain --untracked-files=all)\"
 python3 '$source_root/container_build/prepare_arm64_build.py' \\

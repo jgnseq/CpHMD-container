@@ -1,0 +1,21 @@
+{
+  "source_commit": "ee74839392d385c21958c35e193e2f21965a78ed",
+  "original_failure": {
+    "shallow_repository": true,
+    "boundary_commit": "3c63a5184933b04b403473773d0c60a1a60e3f3a",
+    "missing_parent_in_bundle": "6db15cc8a04d78964b2f195a12327012ac17b6fa",
+    "donor_bundle_verify_exit": 0,
+    "independent_clone_exit": 128
+  },
+  "repair_command": "git fetch --unshallow upstream",
+  "is_shallow_after_repair": false,
+  "local_bundle": "/tmp/cphmd-repaired-ee74839-20261026.bundle",
+  "bundle_sha256": "5ae8e645ab03af78823b911fb5a5fe8444be81657a94fd48126dbf670f452c96",
+  "independent_local_clone_and_connectivity": "passed",
+  "deucalion_validation_root": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/git-transfer.9wY0Xv",
+  "deucalion_clone_connectivity_exact_head_clean_tree": "passed (SSH exit 0)",
+  "failed_original_source_path": "absent when inspected; no deletion performed",
+  "scheduler_jobs_submitted_by_this_repair": 0,
+  "changes_committed_by_agent": false,
+  "scope": "Transfer repair validated for committed ee74839; current commenting/transfer changes remain for user review and commit. Full native image compilation is not validated by this record."
+}

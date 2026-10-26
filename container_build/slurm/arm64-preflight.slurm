@@ -7,6 +7,10 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=24G
 #SBATCH --time=00:20:00
+# Optional infrastructure gate before the full build: inspect native PETIT,
+# compile/test fixgro and prove a minimal fakeroot SIF can be assembled with
+# node-local temporary storage. Durable logs/probe stay under the project.
+# This job does not rebuild GROMACS or run scientific CpHMD cycles.
 set -Eeuo pipefail
 
 task_root="${1:?Supply the project sprint directory}"

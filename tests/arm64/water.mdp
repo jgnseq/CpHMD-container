@@ -1,4 +1,6 @@
 ; Build smoke test only; not a CpHMD scientific benchmark.
+; md_smoke.sh uses this short seeded NVE trajectory to exercise PME, CPU MD,
+; PLUMED and output readers. No thermostat/barostat or protonation updates.
 integrator = md
 dt = 0.001
 nsteps = 20
@@ -15,6 +17,7 @@ pcoupl = no
 gen-vel = yes
 gen-temp = 300
 gen-seed = 1729
+; Emit several records so the smoke gate checks actual output data.
 nstenergy = 5
 nstlog = 5
 nstxout-compressed = 5

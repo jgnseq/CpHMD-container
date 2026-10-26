@@ -1,16 +1,24 @@
 #!/usr/bin/env python3
-"""Check a two-state PETIT system against its analytic probabilities."""
+"""Gate the MC executable used after PB energies in each CpHMD cycle.
+
+An isolated one-site/two-state model has an analytic occupancy, so this fixture
+can check the native binary independently of DelPhi and MD. Run by host support
+checks and image %test; it does not replace the fixed-coordinate PB/MC comparison.
+"""
 import argparse
 import math
 from pathlib import Path
 import subprocess
 
-parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--binary', required=True, type=Path)
-args = parser.parse_args()
-for ph in (-1, 0, 1):
+def check_ph(binary, ph):
+    """Compare sampled occupancy at one pH to 1/(1+10**pH).
+
+    Fix seed/chain length, distinguish site rows from total-protonation rows,
+    and allow 0.02 sampling error. This is a stochastic smoke-test tolerance,
+    not a cross-architecture scientific acceptance threshold.
+    """
     result = subprocess.run(
-        [str(args.binary.resolve()), '-H', f'{ph},{ph},1', '-q', '1000',
+        [str(binary.resolve()), '-H', f'{ph},{ph},1', '-q', '1000',
          '-r', '1729', '100000'], input='1\nTEST-1 2 P *\n0 0\n1 0\n',
         text=True, capture_output=True, check=True, timeout=30,
     )
@@ -28,3 +36,16 @@ for ph in (-1, 0, 1):
     if abs(p0 + p1 - 1) > 1e-6 or abs(p1 - expected) > 0.02:
         raise AssertionError(f'pH={ph}: {p1} differs from analytic {expected}')
     print(f'PASS: PETIT pH={ph}, observed={p1:.6f}, analytic={expected:.6f}')
+
+
+def main():
+    """Test both saturated limits and the half-occupied state at pH zero."""
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--binary', required=True, type=Path)
+    args = parser.parse_args()
+    for ph in (-1, 0, 1):
+        check_ph(args.binary, ph)
+
+
+if __name__ == '__main__':
+    main()

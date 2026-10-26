@@ -3,6 +3,8 @@
 #
 # This is validation/runtime-configuration code, not a settings template.
 # It is installed under /CpHMD/scripts and is never copied to /Templates.
+# CpHMD.sh sources it before functions.sh or any PB/MC/MD work: validate the
+# user's scientific choices first, then supply application paths and policies.
 
 CPHMD_REQUIRED_USER_SETTINGS=(
     GPU
@@ -48,6 +50,9 @@ CPHMD_REQUIRED_USER_SETTINGS=(
     mdpoverride
 )
 
+# cphmd_settings_declares SETTINGS_FILE NAME
+# Return success when the file explicitly exports NAME; an inherited shell
+# value alone must not satisfy the reproducible scientific-settings contract.
 cphmd_settings_declares ()
 {
     local settings_file="$1"
@@ -58,6 +63,8 @@ cphmd_settings_declares ()
         "${settings_file}"
 }
 
+# cphmd_require_settings_declarations SETTINGS_FILE NAME...
+# Report all missing declarations together before simulation initialization.
 cphmd_require_settings_declarations ()
 {
     local settings_file="$1"
@@ -78,6 +85,8 @@ cphmd_require_settings_declarations ()
     fi
 }
 
+# cphmd_require_nonempty_setting_values NAME...
+# Check already-sourced values by variable name; no files/state are changed.
 cphmd_require_nonempty_setting_values ()
 {
     local name
@@ -97,6 +106,8 @@ cphmd_require_nonempty_setting_values ()
     fi
 }
 
+# Reject unedited profile placeholders before they can become input filenames
+# or scientific parameters. Called during initial settings validation only.
 cphmd_reject_template_placeholders ()
 {
     local name
@@ -114,6 +125,8 @@ cphmd_reject_template_placeholders ()
     done
 }
 
+# cphmd_require_boolean_value NAME
+# Require exactly 0/1 for switches used by later PB/MC and MD branch decisions.
 cphmd_require_boolean_value ()
 {
     local name="$1"
@@ -128,6 +141,9 @@ cphmd_require_boolean_value ()
     esac
 }
 
+# cphmd_validate_explicit_user_settings SETTINGS_FILE
+# Controller entry point: declarations -> values/placeholders -> types ->
+# conditional PLUMED requirements. Failure stops startup before any cycle.
 cphmd_validate_explicit_user_settings ()
 {
     local settings_file="$1"
@@ -194,6 +210,9 @@ cphmd_validate_explicit_user_settings ()
     fi
 }
 
+# Assign/export image-owned paths and runtime safeguards after validation.
+# Scientific choices remain explicit user inputs; advanced path/policy overrides
+# are preserved. The controller and functions.sh consume these exported values.
 cphmd_apply_internal_runtime_configuration ()
 {
     # Container/application paths. Advanced users may override these in their

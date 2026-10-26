@@ -1,5 +1,7 @@
 #!/bin/bash
-# Architecture-independent MD/PLUMED smoke test for the two CPU images.
+# Architecture-independent MD/PLUMED fixture, invoked by image %test and x86
+# reference checks. grompp -> 20 MD steps -> XTC/EDR/PLUMED output validation.
+# This exercises the MD engine used within a cycle, without protonation updates.
 set -Eeuo pipefail
 tests="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 gmx="${1:-/gromacs/bin/gmx}"
@@ -16,6 +18,7 @@ export GMXLIB=/gromacs/gromacs-2026.3/share/gromacs/top
 test -s water.gro
 test -s COLVAR
 python3 - <<'PY'
+"""Require numeric, finite PLUMED records rather than only a nonempty file."""
 import math
 rows=[list(map(float,line.split())) for line in open('COLVAR')
       if line.strip() and not line.startswith('#')]

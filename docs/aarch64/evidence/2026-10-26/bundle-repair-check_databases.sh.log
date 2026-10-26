@@ -1,0 +1,22 @@
+==> Running database checks from: /home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container
+
+==> Checking database files exist
+    Database files exist.
+
+==> Checking database sizes
+    Database sizes look reasonable.
+
+==> Checking database headers
+    Headers look OK.
+
+==> Checking basic database formatting
+    Basic formatting looks OK.
+
+==> Checking required residue support
+    Required residue support is present.
+
+==> Checking for obvious duplicate data lines
+    Databases/DataBaseT_Amber14SBpH.crg: no duplicate data lines detected.
+    Databases/DataBaseT_Amber14SBpH.siz: no duplicate data lines detected.
+
+==> Database checks completed successfully.

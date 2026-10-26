@@ -31,6 +31,7 @@ USE_SUDO=0
 ALLOW_DIRTY=0
 RUN_VALIDATOR=1
 
+# Print the standalone x86 reference/release builder's CLI, before any build.
 usage() {
     cat <<USAGE
 Usage: $(basename "$0") [options]
@@ -191,6 +192,8 @@ chmod 0700 "${CACHE_DIR}" 2>/dev/null || true
 TMP_DIR="$(cd "${TMP_DIR}" && pwd)"
 CACHE_DIR="$(cd "${CACHE_DIR}" && pwd)"
 
+# Identify the work filesystem so the build preflight can flag unsuitable
+# temporary-rootfs locations; used before container assembly starts.
 filesystem_type() {
     local path="$1"
     if command -v findmnt >/dev/null 2>&1; then
@@ -200,11 +203,14 @@ filesystem_type() {
     fi
 }
 
+# Report available GiB for the temporary-rootfs capacity gate.
 free_gib() {
     local path="$1"
     df -Pk "${path}" | awk 'NR==2 {printf "%d\n", $4/1024/1024}'
 }
 
+# Record settings/controller/profile hashes before and after the build so a
+# changing working tree cannot silently produce a release of mixed sources.
 hash_runtime_sources() {
     (
         cd "${REPO_ROOT}"

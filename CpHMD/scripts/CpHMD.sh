@@ -1,5 +1,10 @@
 #!/bin/bash
 # CpHMD constant-pH molecular-dynamics controller.
+# Runtime entry point: validate explicit settings, prepare or restore state,
+# alternate PB/MC protonation updates with relaxation/production MD, and finalize
+# validated segments for restart. Shared scientific/file helpers live in
+# functions.sh; settings_contract.sh guards startup. See the ARM developer guide
+# for the separate build pipeline and the runtime-cycle map.
 prog=`basename $0`
 usage="Usage: $prog <MyProtein_001>.settings\n
        <MyProtein_001>.settings  : Constant-pH MD settings file"

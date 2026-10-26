@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Freeze an inspectable ARM build context; this command never submits a job."""
+"""Freeze committed source into the immutable input consumed by the ARM job.
+
+Called on the login node by submit_deucalion_arm64.sh, before any allocation.
+Copy portable sources, exclude host binaries, pin the bootstrap/source hashes,
+and render the Singularity definition. run_arm64_build.sh consumes the result;
+no compilation, simulation cycle or job submission happens in this module.
+"""
 import argparse
 from datetime import datetime, timezone
 import hashlib
@@ -13,6 +19,7 @@ GROMACS_SHA256 = '1094b7bbc6a3960223827114626657110b40096cdf9598a727935fc84ebf8a
 
 
 def digest(path):
+    """Stream a file's SHA-256 without loading a source archive/SIF into memory."""
     h = hashlib.sha256()
     with path.open('rb') as stream:
         for block in iter(lambda: stream.read(1024 * 1024), b''):
@@ -21,6 +28,11 @@ def digest(path):
 
 
 def main():
+    """Validate inputs and write a new context, recipe, manifest and provenance.
+
+    Refuse existing output directories so each candidate retains its own
+    evidence. --allow-dirty is only for explicit local development experiments.
+    """
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-dir', required=True, type=Path)
     parser.add_argument('--base-image', required=True, type=Path)
@@ -40,6 +52,7 @@ def main():
     if digest(archive) != GROMACS_SHA256:
         parser.error('GROMACS source SHA-256 mismatch')
     def git(*argv):
+        """Query source identity/status for metadata without changing the repo."""
         return subprocess.check_output(['git', '-C', str(repo)] + list(argv)).decode().strip()
     dirty = git('status', '--porcelain', '--untracked-files=all')
     if dirty and not args.allow_dirty:
@@ -52,6 +65,11 @@ def main():
     (out / 'build-evidence').mkdir()
     omissions = []
     def ignore(directory, names):
+        """Filter copytree entries and record all excluded host build products.
+
+        Follow only repository-contained symlinks. Excluding ELF by magic,
+        rather than filename, prevents an inherited x86 helper entering ARM.
+        """
         ignored = []
         for name in names:
             p = Path(directory) / name
@@ -69,6 +87,8 @@ def main():
                 omissions.append(str(p.relative_to(repo)))
                 ignored.append(name)
         return ignored
+    # Runtime trees + vendored compilers' inputs + embedded smoke tests. The
+    # manifest covers their copied bytes, including the frozen host launcher.
     for name in ('CpHMD', 'DelphiTools', 'FFs', 'STs', 'Databases', 'analysis',
                  'template', 'tutorials', 'petit1.6.1', 'plumed', 'tests/arm64',
                  'container_build/arm64'):
@@ -108,6 +128,8 @@ def main():
         'validation_status': 'prepared; build and scientific validation pending',
     }
     (out / 'build.json').write_text(json.dumps(metadata, indent=2) + '\n')
+    # Supplement the exact commit with any explicitly permitted development
+    # diff. The context manifest, rather than this patch alone, pins its bytes.
     patch = subprocess.check_output(['git', '-C', str(repo), 'diff', '--binary', 'HEAD'])
     (out / 'source.patch').write_bytes(patch)
     print('Prepared:', out)

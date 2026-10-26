@@ -1,0 +1,32 @@
+[
+  {
+    "check": "static_checks.sh",
+    "exit_code": 0,
+    "log": "bundle-repair-static_checks.sh.log"
+  },
+  {
+    "check": "check_databases.sh",
+    "exit_code": 0,
+    "log": "bundle-repair-check_databases.sh.log"
+  },
+  {
+    "check": "check_reduced_titration_logic.sh",
+    "exit_code": 0,
+    "log": "bundle-repair-check_reduced_titration_logic.sh.log"
+  },
+  {
+    "check": "check_asic_settings.sh",
+    "exit_code": 0,
+    "log": "bundle-repair-check_asic_settings.sh.log"
+  },
+  {
+    "check": "check_settings_profiles.sh",
+    "exit_code": 0,
+    "log": "bundle-repair-check_settings_profiles.sh.log"
+  },
+  {
+    "check": "check_arm64_build_support.sh",
+    "exit_code": 0,
+    "log": "bundle-repair-check_arm64_build_support.sh.log"
+  }
+]

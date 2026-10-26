@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Check fixgro PBC assembly and optionally compare a reference executable."""
+"""Gate the coordinate helper used before non-membrane PB/MC preparation.
+
+Run one/two-stage periodic assembly fixtures and optionally compare an x86
+reference. Called by host support checks and the candidate image's %test;
+this verifies geometry handling, not DelPhi/PETIT scientific equivalence.
+"""
 
 import argparse
 import os
@@ -9,6 +14,11 @@ import tempfile
 
 
 def coordinates(binary, gro, definitions):
+    """Run one assembly case and return validated, centered GRO coordinates.
+
+    Require unchanged atom indices and a compact minimum-image cluster; these
+    protect the ordering and geometry consumed by downstream PB preparation.
+    """
     env = os.environ.copy()
     # Legacy fixgro does not free all allocations; check invalid accesses here.
     env.setdefault("ASAN_OPTIONS", "detect_leaks=0")
@@ -32,6 +42,7 @@ def coordinates(binary, gro, definitions):
 
 
 def main():
+    """Create a four-atom periodic fixture and exercise flat/nested assembly."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--binary", required=True, type=Path)
     parser.add_argument("--reference", type=Path)

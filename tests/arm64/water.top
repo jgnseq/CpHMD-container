@@ -1,3 +1,5 @@
+; md_smoke.sh pairs this 216-SPC-water topology with installed spc216.gro.
+; Use standard GROMACS OPLS/SPC files to isolate the engine from CpHMD FF edits.
 #include "oplsaa.ff/forcefield.itp"
 #include "oplsaa.ff/spc.itp"
 

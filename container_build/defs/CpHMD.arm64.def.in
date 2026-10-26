@@ -1,6 +1,10 @@
 Bootstrap: localimage
 From: @BASE_IMAGE@
 
+# Rendered by prepare_arm64_build.py; tokens are pinned candidate metadata.
+# %files stages source, %post compiles, %test gates the resulting image, and
+# %runscript starts the controller only when the user later runs a settings file.
+# Canonical %apprun helper interfaces are appended from CpHMD-suite.def.
 %labels
     org.opencontainers.image.title CpHMD ARM development candidate
     architecture arm64

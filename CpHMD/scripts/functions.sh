@@ -1,7 +1,7 @@
 # CpHMD function library
 #
-# This file is sourced by CpHMD.sh after the defaults and user settings have
-# been loaded. It implements input preparation, PB/MC, molecular dynamics,
+# This file is sourced by CpHMD.sh after explicit user settings are validated
+# and internal paths/policies are assigned. It implements preparation, PB/MC, MD,
 # reduced titration, transactional output handling, restart state and cleanup.
 #
 # The functions intentionally share controller-level run state such as

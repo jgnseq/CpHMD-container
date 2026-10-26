@@ -1,0 +1,18 @@
+==> Running ASIC-support checks from: /home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container
+
+==> Checking explicit ASIC-related settings
+    ASIC-related choices are explicit.
+
+==> Checking optional offset logic
+    Offset logic is present.
+
+==> Checking optional membrane centering logic
+    Membrane-centering logic is present.
+
+==> Checking optional PB/MC debug PDB logic
+    PB/MC debug PDB logic is present.
+
+==> Checking improved Delphi database diagnostics
+    Delphi database diagnostics are present.
+
+==> ASIC-support checks completed successfully.

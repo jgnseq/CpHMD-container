@@ -1,4 +1,8 @@
 #!/bin/bash
+# Singularity %test entry point, installed inside the candidate image.
+# Check native architecture/dependencies, then isolated helper/PETIT and MD
+# fixtures. These build gates precede fixed-coordinate PB/MC and complete
+# CpHMD-cycle/restart validation; they cannot establish scientific equivalence.
 set -Eeuo pipefail
 [[ $(uname -m) == aarch64 ]] || { echo 'ARM runtime required'; exit 2; }
 export PATH="/gromacs/bin:/opt/plumed/bin:$PATH"
@@ -13,6 +17,7 @@ grep -q "SIMD instructions:.*${expected_simd}" <<< "$version"
 mdrun_help="$(gmx mdrun -h 2>&1)"
 grep -q -- '-plumed' <<< "$mdrun_help"
 python3 - <<'PY'
+"""Inspect ELF machine headers throughout the runtime payload for x86 leakage."""
 from pathlib import Path
 import struct
 count=0
@@ -34,6 +39,7 @@ for binary in /Delphi/delphi_pgf90 /Delphi/geom_center /Delphi/calc_pkg_low \
     printf '%s\n%s\n' "$binary" "$dependencies"
     if grep -q 'not found' <<< "$dependencies"; then exit 1; fi
 done
+# Parse controller sources without executing a simulation or user settings.
 bash -n /CpHMD/scripts/CpHMD.sh
 bash -n /CpHMD/scripts/settings_contract.sh
 bash -n /CpHMD/scripts/functions.sh

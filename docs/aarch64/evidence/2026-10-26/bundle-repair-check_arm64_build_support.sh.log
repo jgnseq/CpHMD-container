@@ -1,0 +1,51 @@
+/tmp/cphmd-bundle-test.7LPUNh/complete.bundle is okay
+The bundle contains this ref:
+f7c7bda6dbb1395eb76764f8a5b20e3ad5ab121e refs/heads/development
+The bundle records a complete history.
+The bundle uses this hash algorithm: sha1
+PASS: independent clone and history connectivity for f7c7bda6dbb1395eb76764f8a5b20e3ad5ab121e
+PASS: shallow export refused; complete bundle restores history and files
+CpHMD/src/fixgro.c: In function ‘read_frame’:
+CpHMD/src/fixgro.c:153:3: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  153 |   fgets(line, sizeof line, fp_gro) ;
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CpHMD/src/fixgro.c:160:5: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  160 |     fgets(line, sizeof line, fp_gro) ;
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CpHMD/src/fixgro.c:167:3: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  167 |   fgets(boxline, sizeof boxline, fp_gro) ;
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+PASS: 1 assembly stage(s), compact centered PBC group
+PASS: 2 assembly stage(s), compact centered PBC group
+petit1.6.1/petit.c: In function ‘read_data’:
+petit1.6.1/petit.c:236:3: warning: ignoring return value of ‘scanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  236 |   scanf("%d\n", &nsites) ;
+      |   ^~~~~~~~~~~~~~~~~~~~~~
+petit1.6.1/petit.c:245:5: warning: ignoring return value of ‘scanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  245 |     scanf("%s %d %c %s\n", site_name[i], &nstates[i], &site_type[i], stit) ;
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+petit1.6.1/petit.c:284:7: warning: ignoring return value of ‘scanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  284 |       scanf("%d %f\n", &stateocc[i][si], &auxfloat) ;
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+petit1.6.1/petit.c:315:7: warning: ignoring return value of ‘scanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  315 |       scanf("%*d %*d %*d %*d %f\n", &auxfloat) ;
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+PASS: PETIT pH=-1, observed=0.909840, analytic=0.909091
+PASS: PETIT pH=0, observed=0.500400, analytic=0.500000
+PASS: PETIT pH=1, observed=0.089690, analytic=0.090909
+DelphiTools/src/geom_center.c: In function ‘main’:
+DelphiTools/src/geom_center.c:192:3: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  192 |   fgets(buf, sizeof(buf), igro) ;
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DelphiTools/src/geom_center.c: In function ‘read_gro’:
+DelphiTools/src/geom_center.c:673:3: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  673 |   fgets(buf, sizeof(buf), ifile) ;
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DelphiTools/src/geom_center.c:674:3: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  674 |   fgets(buf, sizeof(buf), ifile) ;
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DelphiTools/src/calc_pkg_low.c: In function ‘lines_in_file’:
+DelphiTools/src/calc_pkg_low.c:570:18: warning: ignoring return value of ‘fscanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  570 |   while (EOF != (fscanf(ifile,"%*[^\n]"), fscanf(ifile,"%*c")))
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~
+PASS: ARM build support parses; native helper sources and PETIT fixtures pass.
