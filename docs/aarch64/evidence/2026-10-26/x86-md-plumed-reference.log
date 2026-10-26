@@ -1,0 +1,125 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /tmp/cphmd-md-check.GtnMoX
+Command line:
+  gmx grompp -f /tests/tests/arm64/water.mdp -c /gromacs/gromacs-2026.3/share/gromacs/top/spc216.gro -p /tests/tests/arm64/water.top -o water.tpr
+
+
+NOTE 1 [file /tests/tests/arm64/water.mdp]:
+  Setting nstcalcenergy (100) equal to nstenergy (5)
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group rest is 1293.00
+The integrator does not provide a ensemble temperature, there is no system ensemble temperature
+
+NOTE 2 [file /tests/tests/arm64/water.mdp]:
+  NVE simulation: will use the initial temperature of 300.000 K for
+  determining the Verlet buffer size
+
+
+There were 2 NOTEs
+
+GROMACS reminds you: "When the universe has expanded, time will contract" (Franz Ferdinand)
+
+Setting the LD random seed to -402948609
+
+Generated 330891 of the 330891 non-bonded parameter combinations
+
+Generated 330891 of the 330891 1-4 parameter combinations
+
+Excluding 2 bonded neighbours molecule type 'SOL'
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:   216      Water residues
+
+The largest distance between excluded atoms is 0.164 nm between atom 242 and 243
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 0.713 nm, buffer size 0.013 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 0.702 nm, buffer size 0.002 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 16x16x16, spacing 0.116 0.116 0.116
+
+Estimate for the relative computational load of the PME mesh part: 0.42
+
+This run will generate roughly 0 Mb of data
+                      :-) GROMACS - gmx mdrun, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /tmp/cphmd-md-check.GtnMoX
+Command line:
+  gmx mdrun -s water.tpr -deffnm water -ntmpi 1 -ntomp 1 -pin off -plumed /tests/tests/arm64/water.plumed.dat
+
+Compiled SIMD is AVX2_256, but AVX_512 might be faster (see log).
+Reading file water.tpr, VERSION 2026.3 (single precision)
+Can not increase nstlist because an NVE ensemble is used
+Using 1 MPI thread
+Using 1 OpenMP thread 
+
++++ Loading the PLUMED kernel runtime +++
++++ PLUMED_KERNEL="/opt/plumed/lib/libplumedKernel.so" +++
+starting mdrun 'SPC water build smoke test'
+20 steps,      0.0 ps.
+
+Writing final coordinates.
+
+               Core t (s)   Wall t (s)        (%)
+       Time:        0.014        0.014       99.8
+                 (ns/day)    (hour/ns)    (ms/step)  (Matom*steps/s) 
+Performance:      126.461        0.190        0.683            0.948 
+
+GROMACS reminds you: "When the universe has expanded, time will contract" (Franz Ferdinand)
+
+                      :-) GROMACS - gmx check, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /tmp/cphmd-md-check.GtnMoX
+Command line:
+  gmx check -f water.xtc
+
+Reading frame       0 time    0.000   
+# Atoms  648
+Precision 0.001 (nm)
+Reading frame       1 time    0.005   Reading frame       2 time    0.010   Reading frame       3 time    0.015   Reading frame       4 time    0.020   Last frame          4 time    0.020   
+
+
+Item        #frames Timestep (ps)
+Step             5    0.005
+Time             5    0.005
+Lambda           0
+Coords           5    0.005
+Velocities       0
+Forces           0
+Box              5    0.005
+
+GROMACS reminds you: "When the universe has expanded, time will contract" (Franz Ferdinand)
+
+Checking file water.xtc
+                      :-) GROMACS - gmx check, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /tmp/cphmd-md-check.GtnMoX
+Command line:
+  gmx check -e water.edr
+
+Checking energy file water.edr
+
+Opened water.edr as single precision energy file
+28 groups in energy fileReading energy frame      0 time    0.000         frame:      0 (index      0), t:      0.000
+Reading energy frame      1 time    0.005         Reading energy frame      2 time    0.010         Reading energy frame      3 time    0.015         Reading energy frame      4 time    0.020         Last energy frame read 4 time    0.020         
+
+Found 5 frames with a timestep of 0.005 ps.
+
+GROMACS reminds you: "When the universe has expanded, time will contract" (Franz Ferdinand)
+
+PASS: MD, readable XTC/EDR and finite PLUMED distance records

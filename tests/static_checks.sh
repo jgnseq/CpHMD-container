@@ -64,8 +64,13 @@ echo "==> Checking repository layout"
 
 require_file "CpHMD/scripts/CpHMD.sh"
 require_file "CpHMD/scripts/functions.sh"
-require_file "CpHMD/CpHMD-default.settings"
+require_file "CpHMD/scripts/settings_contract.sh"
 require_file "template/CpHMD-advanced.settings"
+require_file "template/CpHMD-basic.settings"
+require_file "template/CpHMD-basic-G54a7pH.settings"
+require_file "template/CpHMD-basic-CHARMM36pH.settings"
+require_file "template/CpHMD-basic-Amber14SBpH.settings"
+require_file "tests/check_settings_profiles.sh"
 
 require_file "CpHMD/scripts/fixgro"
 require_file "CpHMD/scripts/make_sites"
@@ -98,6 +103,9 @@ bash -n "CpHMD/scripts/CpHMD.sh"
 echo "    bash -n CpHMD/scripts/functions.sh"
 bash -n "CpHMD/scripts/functions.sh"
 
+echo "    bash -n CpHMD/scripts/settings_contract.sh"
+bash -n "CpHMD/scripts/settings_contract.sh"
+
 # Check additional *.sh scripts, excluding the two already checked above.
 for script in CpHMD/scripts/*.sh; do
     [[ -e "${script}" ]] || continue
@@ -116,6 +124,9 @@ done
 bash_syntax_check_if_shell "CpHMD/scripts/fixgro"
 bash_syntax_check_if_shell "CpHMD/scripts/make_sites"
 bash_syntax_check_if_shell "CpHMD/scripts/update-top"
+
+echo "    bash -n tests/check_settings_profiles.sh"
+bash -n "tests/check_settings_profiles.sh"
 
 echo "    Bash syntax checks passed."
 echo
@@ -151,6 +162,10 @@ if command -v shellcheck >/dev/null 2>&1; then
 else
     echo "    shellcheck not installed; skipping advisory shellcheck step."
 fi
+
+echo
+echo "==> Running settings-profile checks"
+"${repo_root}/tests/check_settings_profiles.sh"
 
 echo
 echo "==> Static checks completed successfully."

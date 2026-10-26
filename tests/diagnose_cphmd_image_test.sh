@@ -146,8 +146,11 @@ require_command 'functions.sh syntax' bash -n /CpHMD/scripts/functions.sh
 require_command 'extract_protonation.sh syntax' bash -n /analysis/extract_protonation.sh
 require_command 'prepare-pdb.sh syntax' bash -n /analysis/prepare-pdb.sh
 require_command 'add-mol-database.sh syntax' bash -n /analysis/add-mol-database.sh
-require_nonempty_file 'default CpHMD settings' /CpHMD/CpHMD-default.settings
+require_nonempty_file 'explicit settings contract' /CpHMD/scripts/settings_contract.sh
 require_nonempty_file 'basic settings template' /Templates/CpHMD-basic.settings
+require_nonempty_file 'GROMOS basic settings profile' /Templates/CpHMD-basic-G54a7pH.settings
+require_nonempty_file 'CHARMM basic settings profile' /Templates/CpHMD-basic-CHARMM36pH.settings
+require_nonempty_file 'AMBER basic settings profile' /Templates/CpHMD-basic-Amber14SBpH.settings
 require_nonempty_file 'advanced settings template' /Templates/CpHMD-advanced.settings
 require_executable 'PETIT executable' /programs/petit1.6.1/petit
 require_executable 'DelPhi executable' /Delphi/delphiT

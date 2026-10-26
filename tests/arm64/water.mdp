@@ -1,0 +1,20 @@
+; Build smoke test only; not a CpHMD scientific benchmark.
+integrator = md
+dt = 0.001
+nsteps = 20
+cutoff-scheme = Verlet
+nstlist = 10
+rlist = 0.7
+coulombtype = PME
+rcoulomb = 0.7
+vdwtype = Cut-off
+rvdw = 0.7
+pbc = xyz
+tcoupl = no
+pcoupl = no
+gen-vel = yes
+gen-temp = 300
+gen-seed = 1729
+nstenergy = 5
+nstlog = 5
+nstxout-compressed = 5

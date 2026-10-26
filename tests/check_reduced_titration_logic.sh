@@ -5,8 +5,14 @@ repo_root="$(cd "${script_dir}/.." 2>/dev/null && pwd)"
 
 main_script="${repo_root}/CpHMD/scripts/CpHMD.sh"
 functions="${repo_root}/CpHMD/scripts/functions.sh"
-defaults="${repo_root}/CpHMD/CpHMD-default.settings"
+contract="${repo_root}/CpHMD/scripts/settings_contract.sh"
 advanced="${repo_root}/template/CpHMD-advanced.settings"
+basic_profiles=(
+    "${repo_root}/template/CpHMD-basic.settings"
+    "${repo_root}/template/CpHMD-basic-G54a7pH.settings"
+    "${repo_root}/template/CpHMD-basic-CHARMM36pH.settings"
+    "${repo_root}/template/CpHMD-basic-Amber14SBpH.settings"
+)
 
 failures=0
 
@@ -53,8 +59,11 @@ section "Checking required files"
 
 require_file "${main_script}" "CpHMD controller"
 require_file "${functions}" "CpHMD function library"
-require_file "${defaults}" "default settings"
+require_file "${contract}" "explicit settings-contract helper"
 require_file "${advanced}" "advanced settings template"
+for profile in "${basic_profiles[@]}"; do
+    require_file "${profile}" "basic settings profile $(basename "${profile}")"
+done
 
 if [ "${failures}" -ne 0 ]; then
     echo
@@ -65,16 +74,18 @@ fi
 
 section "Checking reduced titration settings"
 
-for variable in ReduceTitration RTInterval RTThreshold; do
-    require_pattern \
-        "^[[:space:]]*export[[:space:]]+${variable}=" \
-        "${defaults}" \
-        "default ${variable} setting"
+require_pattern     'CPHMD_REQUIRED_USER_SETTINGS='     "${contract}"     "explicit user-settings declaration contract"
 
-    require_pattern \
-        "^[[:space:]]*export[[:space:]]+${variable}=" \
-        "${advanced}" \
-        "advanced-template ${variable} setting"
+for variable in ReduceTitration RTInterval RTThreshold; do
+    require_pattern         "^[[:space:]]+${variable}$"         "${contract}"         "required explicit ${variable} declaration"
+
+    require_pattern         "^[[:space:]]*export[[:space:]]+${variable}="         "${advanced}"         "advanced-template ${variable} setting"
+done
+
+for profile in "${basic_profiles[@]}"; do
+    require_pattern         '^[[:space:]]*export[[:space:]]+ReduceTitration=1([[:space:]]|$)'         "${profile}"         "$(basename "${profile}") enables reduced titration"
+
+    require_pattern         '^[[:space:]]*export[[:space:]]+RTInterval=20([[:space:]]|$)'         "${profile}"         "$(basename "${profile}") uses RTInterval=20"
 done
 
 section "Checking reduced titration helper definitions"

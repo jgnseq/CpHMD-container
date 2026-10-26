@@ -1,0 +1,31 @@
+{
+  "upstream_commit": "737a046d634aa862e64763161a4162722ad75a37",
+  "files": [
+    {
+      "path": "DelphiTools/src/calc_pkg_low.c",
+      "upstream_path": "container_build/compile-files/Delphi_helpers-arm64/calc_pkg_low.c",
+      "sha256": "1fb3485605cc17b6681b08766c30748f62f2cc50ff321d3fad9287022b67359a",
+      "build_source_sha256": "116f78f8ec6945adb56edccb5e9783690106381b0421792a6f9d13c72155530d"
+    },
+    {
+      "path": "DelphiTools/src/geom_center.c",
+      "upstream_path": "container_build/compile-files/Delphi_helpers-arm64/geom_center.c",
+      "sha256": "703370afd8b070dc3f6abdd55b0adb3d9acd1f84b9dc31acd5356ced45d33379",
+      "build_source_sha256": "b55d4f017e628097a6b22e13e37c63006e2241c4a6641c4171bde486230ab96c"
+    },
+    {
+      "path": "DelphiTools/src/my_mem.c",
+      "upstream_path": "container_build/compile-files/Delphi_helpers-arm64/my_mem.c",
+      "sha256": "b14f639c8eb9b0565dcd09f9f72dc7eae0e0ace88e03f0c35bf0750c6e9841d8",
+      "build_source_sha256": "c0ac916d6779babe132aed2896ab216c66bde6655e04d648ce6ef09f58925ec5"
+    },
+    {
+      "path": "DelphiTools/src/my_mem.h",
+      "upstream_path": "container_build/compile-files/Delphi_helpers-arm64/my_mem.h",
+      "sha256": "e9947b575d53f5d448389abf0a739a02e5a7cd1c724549ec86e2ea1a8be34ffc",
+      "build_source_sha256": "c6c5f4ef0451fc2ab78fffcee08780fab95bce358a1ace3b2134216915e84b84"
+    }
+  ],
+  "license_status": "Confirm source-specific redistribution terms before publication",
+  "local_adaptation": "Trailing whitespace and extra blank lines at EOF normalized; no semantic source changes."
+}

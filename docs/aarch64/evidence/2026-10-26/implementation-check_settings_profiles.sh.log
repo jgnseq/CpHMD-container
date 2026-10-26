@@ -1,0 +1,219 @@
+==> Checking explicit CpHMD settings contract
+    PASS: CpHMD controller
+    PASS: settings-contract helper
+    PASS: advanced settings template
+    PASS: fallback settings file is absent
+    PASS: controller sources no fallback settings file
+    PASS: basic profile CpHMD-basic.settings
+    PASS: CpHMD-basic.settings: GPU
+    PASS: CpHMD-basic.settings: nCPU
+    PASS: CpHMD-basic.settings: SysName
+    PASS: CpHMD-basic.settings: SimTime
+    PASS: CpHMD-basic.settings: StartTime
+    PASS: CpHMD-basic.settings: ffID
+    PASS: CpHMD-basic.settings: pH
+    PASS: CpHMD-basic.settings: sites
+    PASS: CpHMD-basic.settings: temp
+    PASS: CpHMD-basic.settings: ionicstr
+    PASS: CpHMD-basic.settings: ionicstrMD
+    PASS: CpHMD-basic.settings: RelaxSteps
+    PASS: CpHMD-basic.settings: EffectiveSteps
+    PASS: CpHMD-basic.settings: memb
+    PASS: CpHMD-basic.settings: multiple_solutes
+    PASS: CpHMD-basic.settings: include_itp
+    PASS: CpHMD-basic.settings: MembraneCenteringProtocol
+    PASS: CpHMD-basic.settings: PBMCDebugPDB
+    PASS: CpHMD-basic.settings: epsin
+    PASS: CpHMD-basic.settings: epssol
+    PASS: CpHMD-basic.settings: PBdim
+    PASS: CpHMD-basic.settings: cutoff
+    PASS: CpHMD-basic.settings: GridSize
+    PASS: CpHMD-basic.settings: scaleP
+    PASS: CpHMD-basic.settings: scaleM
+    PASS: CpHMD-basic.settings: bndcon
+    PASS: CpHMD-basic.settings: maxc
+    PASS: CpHMD-basic.settings: pot
+    PASS: CpHMD-basic.settings: offset
+    PASS: CpHMD-basic.settings: UseInputOffset
+    PASS: CpHMD-basic.settings: seed
+    PASS: CpHMD-basic.settings: ReduceTitration
+    PASS: CpHMD-basic.settings: RTThreshold
+    PASS: CpHMD-basic.settings: RTInterval
+    PASS: CpHMD-basic.settings: write_states
+    PASS: CpHMD-basic.settings: plumed
+    PASS: CpHMD-basic.settings: TOPin
+    PASS: CpHMD-basic.settings: GROin
+    PASS: CpHMD-basic.settings: NDXin
+    PASS: CpHMD-basic.settings: PosRe
+    PASS: CpHMD-basic.settings: mdpoverride
+    PASS: CpHMD-basic.settings: RT enabled
+    PASS: CpHMD-basic.settings: RTInterval
+    PASS: CpHMD-basic.settings: RT debug output
+    PASS: CpHMD-basic.settings: SysName placeholder
+    PASS: CpHMD-basic.settings: SimTime placeholder
+    PASS: CpHMD-basic.settings: pH placeholder
+    PASS: basic profile CpHMD-basic-G54a7pH.settings
+    PASS: CpHMD-basic-G54a7pH.settings: GPU
+    PASS: CpHMD-basic-G54a7pH.settings: nCPU
+    PASS: CpHMD-basic-G54a7pH.settings: SysName
+    PASS: CpHMD-basic-G54a7pH.settings: SimTime
+    PASS: CpHMD-basic-G54a7pH.settings: StartTime
+    PASS: CpHMD-basic-G54a7pH.settings: ffID
+    PASS: CpHMD-basic-G54a7pH.settings: pH
+    PASS: CpHMD-basic-G54a7pH.settings: sites
+    PASS: CpHMD-basic-G54a7pH.settings: temp
+    PASS: CpHMD-basic-G54a7pH.settings: ionicstr
+    PASS: CpHMD-basic-G54a7pH.settings: ionicstrMD
+    PASS: CpHMD-basic-G54a7pH.settings: RelaxSteps
+    PASS: CpHMD-basic-G54a7pH.settings: EffectiveSteps
+    PASS: CpHMD-basic-G54a7pH.settings: memb
+    PASS: CpHMD-basic-G54a7pH.settings: multiple_solutes
+    PASS: CpHMD-basic-G54a7pH.settings: include_itp
+    PASS: CpHMD-basic-G54a7pH.settings: MembraneCenteringProtocol
+    PASS: CpHMD-basic-G54a7pH.settings: PBMCDebugPDB
+    PASS: CpHMD-basic-G54a7pH.settings: epsin
+    PASS: CpHMD-basic-G54a7pH.settings: epssol
+    PASS: CpHMD-basic-G54a7pH.settings: PBdim
+    PASS: CpHMD-basic-G54a7pH.settings: cutoff
+    PASS: CpHMD-basic-G54a7pH.settings: GridSize
+    PASS: CpHMD-basic-G54a7pH.settings: scaleP
+    PASS: CpHMD-basic-G54a7pH.settings: scaleM
+    PASS: CpHMD-basic-G54a7pH.settings: bndcon
+    PASS: CpHMD-basic-G54a7pH.settings: maxc
+    PASS: CpHMD-basic-G54a7pH.settings: pot
+    PASS: CpHMD-basic-G54a7pH.settings: offset
+    PASS: CpHMD-basic-G54a7pH.settings: UseInputOffset
+    PASS: CpHMD-basic-G54a7pH.settings: seed
+    PASS: CpHMD-basic-G54a7pH.settings: ReduceTitration
+    PASS: CpHMD-basic-G54a7pH.settings: RTThreshold
+    PASS: CpHMD-basic-G54a7pH.settings: RTInterval
+    PASS: CpHMD-basic-G54a7pH.settings: write_states
+    PASS: CpHMD-basic-G54a7pH.settings: plumed
+    PASS: CpHMD-basic-G54a7pH.settings: TOPin
+    PASS: CpHMD-basic-G54a7pH.settings: GROin
+    PASS: CpHMD-basic-G54a7pH.settings: NDXin
+    PASS: CpHMD-basic-G54a7pH.settings: PosRe
+    PASS: CpHMD-basic-G54a7pH.settings: mdpoverride
+    PASS: CpHMD-basic-G54a7pH.settings: RT enabled
+    PASS: CpHMD-basic-G54a7pH.settings: RTInterval
+    PASS: CpHMD-basic-G54a7pH.settings: RT debug output
+    PASS: CpHMD-basic-G54a7pH.settings: SysName placeholder
+    PASS: CpHMD-basic-G54a7pH.settings: SimTime placeholder
+    PASS: CpHMD-basic-G54a7pH.settings: pH placeholder
+    PASS: basic profile CpHMD-basic-CHARMM36pH.settings
+    PASS: CpHMD-basic-CHARMM36pH.settings: GPU
+    PASS: CpHMD-basic-CHARMM36pH.settings: nCPU
+    PASS: CpHMD-basic-CHARMM36pH.settings: SysName
+    PASS: CpHMD-basic-CHARMM36pH.settings: SimTime
+    PASS: CpHMD-basic-CHARMM36pH.settings: StartTime
+    PASS: CpHMD-basic-CHARMM36pH.settings: ffID
+    PASS: CpHMD-basic-CHARMM36pH.settings: pH
+    PASS: CpHMD-basic-CHARMM36pH.settings: sites
+    PASS: CpHMD-basic-CHARMM36pH.settings: temp
+    PASS: CpHMD-basic-CHARMM36pH.settings: ionicstr
+    PASS: CpHMD-basic-CHARMM36pH.settings: ionicstrMD
+    PASS: CpHMD-basic-CHARMM36pH.settings: RelaxSteps
+    PASS: CpHMD-basic-CHARMM36pH.settings: EffectiveSteps
+    PASS: CpHMD-basic-CHARMM36pH.settings: memb
+    PASS: CpHMD-basic-CHARMM36pH.settings: multiple_solutes
+    PASS: CpHMD-basic-CHARMM36pH.settings: include_itp
+    PASS: CpHMD-basic-CHARMM36pH.settings: MembraneCenteringProtocol
+    PASS: CpHMD-basic-CHARMM36pH.settings: PBMCDebugPDB
+    PASS: CpHMD-basic-CHARMM36pH.settings: epsin
+    PASS: CpHMD-basic-CHARMM36pH.settings: epssol
+    PASS: CpHMD-basic-CHARMM36pH.settings: PBdim
+    PASS: CpHMD-basic-CHARMM36pH.settings: cutoff
+    PASS: CpHMD-basic-CHARMM36pH.settings: GridSize
+    PASS: CpHMD-basic-CHARMM36pH.settings: scaleP
+    PASS: CpHMD-basic-CHARMM36pH.settings: scaleM
+    PASS: CpHMD-basic-CHARMM36pH.settings: bndcon
+    PASS: CpHMD-basic-CHARMM36pH.settings: maxc
+    PASS: CpHMD-basic-CHARMM36pH.settings: pot
+    PASS: CpHMD-basic-CHARMM36pH.settings: offset
+    PASS: CpHMD-basic-CHARMM36pH.settings: UseInputOffset
+    PASS: CpHMD-basic-CHARMM36pH.settings: seed
+    PASS: CpHMD-basic-CHARMM36pH.settings: ReduceTitration
+    PASS: CpHMD-basic-CHARMM36pH.settings: RTThreshold
+    PASS: CpHMD-basic-CHARMM36pH.settings: RTInterval
+    PASS: CpHMD-basic-CHARMM36pH.settings: write_states
+    PASS: CpHMD-basic-CHARMM36pH.settings: plumed
+    PASS: CpHMD-basic-CHARMM36pH.settings: TOPin
+    PASS: CpHMD-basic-CHARMM36pH.settings: GROin
+    PASS: CpHMD-basic-CHARMM36pH.settings: NDXin
+    PASS: CpHMD-basic-CHARMM36pH.settings: PosRe
+    PASS: CpHMD-basic-CHARMM36pH.settings: mdpoverride
+    PASS: CpHMD-basic-CHARMM36pH.settings: RT enabled
+    PASS: CpHMD-basic-CHARMM36pH.settings: RTInterval
+    PASS: CpHMD-basic-CHARMM36pH.settings: RT debug output
+    PASS: CpHMD-basic-CHARMM36pH.settings: SysName placeholder
+    PASS: CpHMD-basic-CHARMM36pH.settings: SimTime placeholder
+    PASS: CpHMD-basic-CHARMM36pH.settings: pH placeholder
+    PASS: basic profile CpHMD-basic-Amber14SBpH.settings
+    PASS: CpHMD-basic-Amber14SBpH.settings: GPU
+    PASS: CpHMD-basic-Amber14SBpH.settings: nCPU
+    PASS: CpHMD-basic-Amber14SBpH.settings: SysName
+    PASS: CpHMD-basic-Amber14SBpH.settings: SimTime
+    PASS: CpHMD-basic-Amber14SBpH.settings: StartTime
+    PASS: CpHMD-basic-Amber14SBpH.settings: ffID
+    PASS: CpHMD-basic-Amber14SBpH.settings: pH
+    PASS: CpHMD-basic-Amber14SBpH.settings: sites
+    PASS: CpHMD-basic-Amber14SBpH.settings: temp
+    PASS: CpHMD-basic-Amber14SBpH.settings: ionicstr
+    PASS: CpHMD-basic-Amber14SBpH.settings: ionicstrMD
+    PASS: CpHMD-basic-Amber14SBpH.settings: RelaxSteps
+    PASS: CpHMD-basic-Amber14SBpH.settings: EffectiveSteps
+    PASS: CpHMD-basic-Amber14SBpH.settings: memb
+    PASS: CpHMD-basic-Amber14SBpH.settings: multiple_solutes
+    PASS: CpHMD-basic-Amber14SBpH.settings: include_itp
+    PASS: CpHMD-basic-Amber14SBpH.settings: MembraneCenteringProtocol
+    PASS: CpHMD-basic-Amber14SBpH.settings: PBMCDebugPDB
+    PASS: CpHMD-basic-Amber14SBpH.settings: epsin
+    PASS: CpHMD-basic-Amber14SBpH.settings: epssol
+    PASS: CpHMD-basic-Amber14SBpH.settings: PBdim
+    PASS: CpHMD-basic-Amber14SBpH.settings: cutoff
+    PASS: CpHMD-basic-Amber14SBpH.settings: GridSize
+    PASS: CpHMD-basic-Amber14SBpH.settings: scaleP
+    PASS: CpHMD-basic-Amber14SBpH.settings: scaleM
+    PASS: CpHMD-basic-Amber14SBpH.settings: bndcon
+    PASS: CpHMD-basic-Amber14SBpH.settings: maxc
+    PASS: CpHMD-basic-Amber14SBpH.settings: pot
+    PASS: CpHMD-basic-Amber14SBpH.settings: offset
+    PASS: CpHMD-basic-Amber14SBpH.settings: UseInputOffset
+    PASS: CpHMD-basic-Amber14SBpH.settings: seed
+    PASS: CpHMD-basic-Amber14SBpH.settings: ReduceTitration
+    PASS: CpHMD-basic-Amber14SBpH.settings: RTThreshold
+    PASS: CpHMD-basic-Amber14SBpH.settings: RTInterval
+    PASS: CpHMD-basic-Amber14SBpH.settings: write_states
+    PASS: CpHMD-basic-Amber14SBpH.settings: plumed
+    PASS: CpHMD-basic-Amber14SBpH.settings: TOPin
+    PASS: CpHMD-basic-Amber14SBpH.settings: GROin
+    PASS: CpHMD-basic-Amber14SBpH.settings: NDXin
+    PASS: CpHMD-basic-Amber14SBpH.settings: PosRe
+    PASS: CpHMD-basic-Amber14SBpH.settings: mdpoverride
+    PASS: CpHMD-basic-Amber14SBpH.settings: RT enabled
+    PASS: CpHMD-basic-Amber14SBpH.settings: RTInterval
+    PASS: CpHMD-basic-Amber14SBpH.settings: RT debug output
+    PASS: CpHMD-basic-Amber14SBpH.settings: SysName placeholder
+    PASS: CpHMD-basic-Amber14SBpH.settings: SimTime placeholder
+    PASS: CpHMD-basic-Amber14SBpH.settings: pH placeholder
+    PASS: advanced template: RT enabled
+    PASS: advanced template: RTInterval
+    PASS: advanced template: ionicstrMD
+    PASS: generic basic profile equals G54a7pH profile
+    PASS: GROMOS ffID
+    PASS: GROMOS Coulomb cutoff
+    PASS: GROMOS LJ cutoff
+    PASS: CHARMM ffID
+    PASS: CHARMM force switch
+    PASS: CHARMM switch start
+    PASS: CHARMM LJ cutoff
+    PASS: AMBER ffID
+    PASS: AMBER potential shift
+    PASS: AMBER LJ cutoff
+
+==> Exercising declaration and placeholder checks
+    PASS: edited basic profile satisfies the explicit contract
+    PASS: contract rejects a missing explicit pH
+    PASS: contract rejects CHANGE_ME placeholders
+
+Settings-profile failures: 0

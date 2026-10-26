@@ -40,46 +40,32 @@ require_pattern() {
     fi
 }
 
-settings="CpHMD/CpHMD-default.settings"
+contract="CpHMD/scripts/settings_contract.sh"
 template="template/CpHMD-advanced.settings"
+basic="template/CpHMD-basic.settings"
 functions="CpHMD/scripts/functions.sh"
 
-require_file "${settings}"
+require_file "${contract}"
 require_file "${template}"
+require_file "${basic}"
 require_file "${functions}"
 
-echo "==> Checking ASIC-related default settings"
+echo "==> Checking explicit ASIC-related settings"
 
-require_pattern 'UseInputOffset' "${settings}" \
-    "UseInputOffset default setting"
+for settings_file in "${template}" "${basic}"; do
+    require_pattern 'UseInputOffset' "${settings_file}"         "UseInputOffset setting"
+    require_pattern 'MembraneCenteringProtocol' "${settings_file}"         "MembraneCenteringProtocol setting"
+    require_pattern 'PBMCDebugPDB' "${settings_file}"         "PBMCDebugPDB setting"
+done
 
-require_pattern 'MembraneCenteringProtocol' "${settings}" \
-    "MembraneCenteringProtocol default setting"
+require_pattern 'UseInputOffset' "${contract}"     "UseInputOffset explicit-settings contract"
+require_pattern 'MembraneCenteringProtocol' "${contract}"     "MembraneCenteringProtocol explicit-settings contract"
+require_pattern 'PBMCDebugPDB' "${contract}"     "PBMCDebugPDB explicit-settings contract"
 
-require_pattern 'PBMCDebugPDB' "${settings}" \
-    "PBMCDebugPDB default setting"
+require_pattern 'central_atoms' "${template}"     "central_atoms documentation"
+require_pattern 'tails' "${template}"     "tails documentation"
 
-echo "    ASIC-related defaults are present."
-echo
-
-echo "==> Checking ASIC-related template documentation"
-
-require_pattern 'UseInputOffset' "${template}" \
-    "UseInputOffset template documentation"
-
-require_pattern 'MembraneCenteringProtocol' "${template}" \
-    "MembraneCenteringProtocol template documentation"
-
-require_pattern 'PBMCDebugPDB' "${template}" \
-    "PBMCDebugPDB template documentation"
-
-require_pattern 'central_atoms' "${template}" \
-    "central_atoms documentation"
-
-require_pattern 'tails' "${template}" \
-    "tails documentation"
-
-echo "    ASIC-related template documentation is present."
+echo "    ASIC-related choices are explicit."
 echo
 
 echo "==> Checking optional offset logic"
@@ -160,23 +146,6 @@ require_pattern 'Residue identifier .*database file' "${functions}" \
     "specific missing-residue diagnostic"
 
 echo "    Delphi database diagnostics are present."
-echo
-
-echo "==> Checking backwards-compatible defaults"
-
-# These checks are intentionally simple. They verify that the new settings
-# are present and appear to default to non-ASIC behavior unless explicitly
-# requested by the user.
-require_pattern 'UseInputOffset=.*0|UseInputOffset="?0"?' "${settings}" \
-    "UseInputOffset defaulting to disabled"
-
-require_pattern 'MembraneCenteringProtocol=.*tails|MembraneCenteringProtocol="?tails"?' "${settings}" \
-    "MembraneCenteringProtocol defaulting to tails"
-
-require_pattern 'PBMCDebugPDB=.*0|PBMCDebugPDB="?0"?' "${settings}" \
-    "PBMCDebugPDB defaulting to disabled"
-
-echo "    Backwards-compatible defaults look OK."
 echo
 
 echo "==> ASIC-support checks completed successfully."

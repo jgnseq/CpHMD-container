@@ -1,0 +1,117 @@
+{
+  "source_worktree": "/home/jsequeira/mini05/Projects/side/06_CpHMD-container/02_CpH-reduced-ASICs/CpHMD-container-v0.7.1-runtime-review",
+  "source_head": "ddd4942",
+  "includes_uncommitted_user_work": true,
+  "files": [
+    {
+      "path": "CpHMD/scripts/CpHMD.sh",
+      "previous_sha256": "3445c4ae4cf19bdc596ea709d9e8baf593e6a791e39aca1712214282b6655f67",
+      "source_sha256": "e64eb0313d8bd67a3dd12cf9c25dad1d2e161519b84ece37e82a40b8edf57205"
+    },
+    {
+      "path": "CpHMD/scripts/functions.sh",
+      "previous_sha256": "76bffafbd9e1fc984811867f8565f927741b7daad55238eba4ff156111b44de3",
+      "source_sha256": "c6300df6a029739f36dd44f4575b3dd57b6130659a5dffbd13a5d20f7be6f3f7"
+    },
+    {
+      "path": "CpHMD/scripts/settings_contract.sh",
+      "previous_sha256": null,
+      "source_sha256": "3dfe96f2f1542d3e782dafd59080b2961a4f6ab96bbefe55440023eb76e8addc"
+    },
+    {
+      "path": "README.md",
+      "previous_sha256": "01ea29e332a2af5b45c8eda109e64898c013f225a7a0c6f41d471daa5ae71e59",
+      "source_sha256": "c41a27ebcaa7e92f354e079f768ba4cd82b54897520982338f82f4547c10e242"
+    },
+    {
+      "path": "container_build/CpHMD-suite.def",
+      "previous_sha256": "c8505b1d0de5f4e7605779c5b3d213b484fc89f7a8cf916e0f973f3397c248f9",
+      "source_sha256": "ab91eb896a17789b866af6f5de15961d1673678e2acb3ce20b96280826d8142c"
+    },
+    {
+      "path": "container_build/build_x86_64_container.sh",
+      "previous_sha256": "72add790709875af607d8035a11db6ead8ca563245af52b042f07274a4ca33ed",
+      "source_sha256": "edec8776c82c9a7145b696088cd090e3166f4fcd2cce70fb5c972af1d9164317"
+    },
+    {
+      "path": "docs/CPHMD_SETTINGS_REFERENCE.md",
+      "previous_sha256": "a4de343c37bdede32c115c6bd4ee90e580efa8f810cf3c9ed7b4032db60cad55",
+      "source_sha256": "c26b8bbf3867731a3547ba4d5d466ffca3951f910b0fd72d2e4124b5d1ee35ba"
+    },
+    {
+      "path": "template/CpHMD-advanced.settings",
+      "previous_sha256": "ce5db58c38cf7c89b0b03c0a980c3830ccef56349480673f3b53893e4318e9ab",
+      "source_sha256": "6edfb92a7bb99d34a3501ef5a9c47964d617ed20816e57b7173c6cbcdaff76a5"
+    },
+    {
+      "path": "template/CpHMD-basic.settings",
+      "previous_sha256": "7758ee1a37cb0c2654a2f7274862e56f6a64e4b5e164d1e8f8702f32409aa2d8",
+      "source_sha256": "e2baef84bbd9eccc2506e5f5835e302b379b0c32a897a8e701ad2333707748a8"
+    },
+    {
+      "path": "template/CpHMD-basic-Amber14SBpH.settings",
+      "previous_sha256": null,
+      "source_sha256": "ab68fd4be48cef34e25e4a3e89f1b5cffab4d8200ee88279e0e6408feecbacc1"
+    },
+    {
+      "path": "template/CpHMD-basic-CHARMM36pH.settings",
+      "previous_sha256": null,
+      "source_sha256": "dea6e62f5b24919742fa61353ed0c6ac71b02b2a469798d8557306989f4d310d"
+    },
+    {
+      "path": "template/CpHMD-basic-G54a7pH.settings",
+      "previous_sha256": null,
+      "source_sha256": "e2baef84bbd9eccc2506e5f5835e302b379b0c32a897a8e701ad2333707748a8"
+    },
+    {
+      "path": "template/README.md",
+      "previous_sha256": null,
+      "source_sha256": "fc8955f0552b1ba2424e84a45c10dcbac440369f01ac8c22ff98bce551a07e4b"
+    },
+    {
+      "path": "tests/check_asic_settings.sh",
+      "previous_sha256": "205e1f0e27c013a6d92166d24fe5576b5e540a9712b45263cc3db94e49511db3",
+      "source_sha256": "9f85326abf77b81e5cc6dbeb3b8d18ad32b5ef2f73c55e6a591d4b052653507c"
+    },
+    {
+      "path": "tests/check_reduced_titration_logic.sh",
+      "previous_sha256": "a1da993cdcf662e689ac3cd40dee35bd4166e09b83d38c07422217b093ec5085",
+      "source_sha256": "18e8eacfc63d6b454dcb3341f7ca652615f2b9c80e39aa97c4cd428b36214c3a"
+    },
+    {
+      "path": "tests/diagnose_cphmd_image_test.sh",
+      "previous_sha256": "5188e33f5d34f8e86f1dcc114f5e6573acc6566776ea15d80dd9a931e7bdaee7",
+      "source_sha256": "e6f4fed713b463eb69f0021fe31a82339051103d246f369be896b114b78704e6"
+    },
+    {
+      "path": "tests/static_checks.sh",
+      "previous_sha256": "6e7ed62eaf017ef75ec9e64980204cb793f1f9c4a2ff3e1e37a86367091f6218",
+      "source_sha256": "ad18ee9e4a9f8893969c610ed4fb3f23eed93b8424b01ac7699460e1fd749181"
+    },
+    {
+      "path": "tests/validate_dual_gromacs_image.sh",
+      "previous_sha256": "06d59a89fa66e736dbc6fe7b7fb8c53cced560b5e475fb8b2ff4700390c28b9c",
+      "source_sha256": "61146fc5d5683f708a93aa5facd8bf9e8d4298429341b8ec7d9d42c742a7c5d7"
+    },
+    {
+      "path": "tests/check_settings_profiles.sh",
+      "previous_sha256": null,
+      "source_sha256": "705e07b60eb4a088c8df206069ca53baef2adc24b623372050539d9b6c8487c9"
+    },
+    {
+      "path": "review/v0.7.1-stage3/00_STAGE3_SCOPE.md",
+      "previous_sha256": null,
+      "source_sha256": "18a724e9fd67fa664f7fe0a4e63b033b2063f0334db200914203d2d4c388b4a2"
+    },
+    {
+      "path": "review/v0.7.1-stage3/01_SETTINGS_PROFILE_AUDIT.md",
+      "previous_sha256": null,
+      "source_sha256": "cbf786f1f2b1fc64b41cb5fd6ed0aa9858644b01dae5bc0e013cf2a3483ba478"
+    },
+    {
+      "path": "CpHMD/CpHMD-default.settings",
+      "action": "remove fallback, matching explicit-settings worktree",
+      "previous_sha256": "c30178084ce92e2d636382b170da1e15297323fad93805f8f0fafc62e476da22"
+    }
+  ]
+}

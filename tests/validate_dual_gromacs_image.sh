@@ -214,6 +214,9 @@ echo "=== App backing files ==="
     set -eu
     test -s /etc/cphmd/apps.txt
     test -s /Templates/CpHMD-basic.settings
+    test -s /Templates/CpHMD-basic-G54a7pH.settings
+    test -s /Templates/CpHMD-basic-CHARMM36pH.settings
+    test -s /Templates/CpHMD-basic-Amber14SBpH.settings
     test -s /Templates/CpHMD-advanced.settings
     test -s /analysis/extract_protonation.sh
     test -s /analysis/prepare-pdb.sh
@@ -240,12 +243,12 @@ if (( CHECK_RUNTIME_HASHES )); then
     echo "=== Embedded runtime hashes versus repository ==="
 
     host_files=(
-        CpHMD/CpHMD-default.settings
+        CpHMD/scripts/settings_contract.sh
         CpHMD/scripts/CpHMD.sh
         CpHMD/scripts/functions.sh
     )
     image_files=(
-        /CpHMD/CpHMD-default.settings
+        /CpHMD/scripts/settings_contract.sh
         /CpHMD/scripts/CpHMD.sh
         /CpHMD/scripts/functions.sh
     )
@@ -280,6 +283,9 @@ if (( RUN_APP_SMOKE )); then
         cd "${smoke_dir}"
 
         apptainer run --cleanenv --app get-settings "${IMAGE}" basic
+        apptainer run --cleanenv --app get-settings "${IMAGE}" basic G54a7pH
+        apptainer run --cleanenv --app get-settings "${IMAGE}" basic CHARMM36pH
+        apptainer run --cleanenv --app get-settings "${IMAGE}" basic Amber14SBpH
         apptainer run --cleanenv --app get-settings "${IMAGE}" advanced
         apptainer run --cleanenv --app extract-protonation-script "${IMAGE}"
         apptainer run --cleanenv --app extract-databases "${IMAGE}" GROMOS
@@ -287,6 +293,9 @@ if (( RUN_APP_SMOKE )); then
         apptainer run --cleanenv --app extract-force-fields "${IMAGE}" GROMOS
 
         test -s CpHMD-basic.settings
+        test -s CpHMD-basic-G54a7pH.settings
+        test -s CpHMD-basic-CHARMM36pH.settings
+        test -s CpHMD-basic-Amber14SBpH.settings
         test -s CpHMD-advanced.settings
         test -s extract_protonation.sh
         test -s Databases/DataBaseT_G54a7pH.crg

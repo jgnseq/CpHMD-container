@@ -209,10 +209,13 @@ hash_runtime_sources() {
     (
         cd "${REPO_ROOT}"
         sha256sum \
-            CpHMD/CpHMD-default.settings \
+            CpHMD/scripts/settings_contract.sh \
             CpHMD/scripts/CpHMD.sh \
             CpHMD/scripts/functions.sh \
             template/CpHMD-basic.settings \
+            template/CpHMD-basic-G54a7pH.settings \
+            template/CpHMD-basic-CHARMM36pH.settings \
+            template/CpHMD-basic-Amber14SBpH.settings \
             template/CpHMD-advanced.settings \
             analysis/extract_protonation.sh \
             analysis/prepare-pdb.sh \

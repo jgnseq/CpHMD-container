@@ -1,0 +1,42 @@
+Bootstrap: localimage
+From: @BASE_IMAGE@
+
+%labels
+    org.opencontainers.image.title CpHMD ARM development candidate
+    architecture arm64
+    gromacs 2026.3
+    simd @SIMD@
+    base.sha256 @BASE_SHA256@
+    source.manifest.sha256 @MANIFEST_SHA256@
+    validation.status development-candidate-not-scientifically-validated
+
+%files
+    context/ /opt/cphmd-build
+    build.json /etc/cphmd/build.json
+    manifest.sha256 /etc/cphmd/input-manifest.sha256
+    build-evidence/ /build-evidence
+
+%post
+    /bin/bash /opt/cphmd-build/container_build/arm64/build-inside.sh
+
+%environment
+    export PATH="/gromacs/bin:/opt/plumed/bin:/CpHMD/scripts:/usr/local/bin:/usr/bin:/bin:${PATH}"
+    export LD_LIBRARY_PATH="/opt/nvhpc/lib:/opt/plumed/lib:/opt/plumed/lib64"
+    export PLUMED_KERNEL="/opt/plumed/lib/libplumedKernel.so"
+    export GMXLIB="/FFs"
+    export GMX_MAXBACKUP=-1
+    export GMX_CPU_BIN="/gromacs/bin/gmx"
+
+%runscript
+    test "$#" -eq 1 || { echo 'Usage: singularity run IMAGE.sif CpHMD.settings' >&2; exit 2; }
+    exec /CpHMD/scripts/CpHMD.sh "$1"
+
+%test
+    /bin/bash /usr/local/libexec/cphmd/validate-arm64.sh
+
+%help
+    Native ARM GROMACS 2026.3 CPU development candidate. The exact pre-existing
+    ARM base image supplies the legacy DelPhi solver and its NVHPC libraries.
+    CpHMD, PLUMED, PETIT, fixgro and the PB helpers use the frozen source context.
+    Build/dependency checks are distinct from scientific PB/MC validation.
+    GPU=0 is required. GROMACS uses OpenMP and thread-MPI, not external MPI.

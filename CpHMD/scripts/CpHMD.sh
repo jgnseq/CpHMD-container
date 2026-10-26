@@ -1,13 +1,13 @@
-#!/bin/bash  
-#
-prog=`basename $0` 
+#!/bin/bash
+# CpHMD constant-pH molecular-dynamics controller.
+prog=`basename $0`
 usage="Usage: $prog <MyProtein_001>.settings\n
        <MyProtein_001>.settings  : Constant-pH MD settings file"
 #
-# This allows to use extended pattern matching features
-# E.g.: $PDBin == *(" ")
-shopt -s extglob 
+# Extended pattern matching is enabled for compatibility with sourced helpers.
 #
+shopt -s extglob
+# message TYPE TEXT...: E=error, U=usage error, W=warning.
 message ()
 {
     case "$1" in
@@ -18,29 +18,47 @@ message ()
     esac
 }
 #
-# Parse arguments
+# Require exactly one user settings file.
 if [ $# != 1 ]; then message U "Wrong number of arguments."; fi
 
 #
-## Defining the default locations for programs/paths inside container
-## These might be overwritten if they are defined in the CpHMD.settings
-## which is sourced below.
+###############################################################################
+# 1. Load and validate the explicit user settings
+###############################################################################
+settings_file="$1"
 
-source /CpHMD/CpHMD-default.settings
+if [[ ! -r "${settings_file}" ]]; then
+    message E "The user settings file is missing or unreadable: ${settings_file}"
+fi
 
-# Read Simulation Parameters
-source $1
+controller_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd -P)"
+settings_contract="${controller_dir}/settings_contract.sh"
 
-# ------------------------------------------------------------
-# Select the requested GROMACS installation.
+if [[ ! -r "${settings_contract}" ]]; then
+    message E "The settings-contract helper is missing or unreadable: ${settings_contract}"
+fi
+
+source "${settings_contract}"
+
+# Scientific and system choices must be exported explicitly by the user file.
+# Only application-owned paths, safeguards and output-retention behavior are
+# assigned internally by cphmd_apply_internal_runtime_configuration.
+source "${settings_file}"     || message E "Could not source the user settings file: ${settings_file}"
+
+cphmd_validate_explicit_user_settings "${settings_file}"     || message E "The user settings file did not satisfy the explicit settings contract."
+
+cphmd_apply_internal_runtime_configuration
+
+###############################################################################
+# 2. Select the requested GROMACS implementation
+###############################################################################
+# The dual-build image provides independent CPU-only and CUDA executables:
+#   GPU=0 -> GroDIRCPU
+#   GPU=1 -> GroDIRGPU
 #
-# The dual-build container provides two independent executables:
-#   GPU=0 -> GroDIRCPU (CPU-only GROMACS)
-#   GPU=1 -> GroDIRGPU (CUDA-enabled GROMACS)
-#
-# Mode-specific variables take precedence over GroDIR. GroDIR remains an
-# expert fallback for custom containers that provide only one executable path.
-# ------------------------------------------------------------
+# GroDIRCPU or GroDIRGPU selects the released image's corresponding build.
+# GroDIR is retained only as a fallback when that mode-specific value is unset.
+###############################################################################
 case "${GPU:-0}" in
     0)
         selected_gromacs="${GroDIRCPU:-${GroDIR:-/gromacs/bin/gmx}}"
@@ -55,9 +73,9 @@ case "${GPU:-0}" in
         ;;
 esac
 
-# This inexpensive path check catches a missing or mistyped installation
-# immediately. Compile-mode and GPU-device checks run later, after functions.sh
-# has been loaded, but still before scratch setup and PB/MC.
+# Fail immediately when the selected launcher is missing or not executable.
+# Compile-mode and GPU-visibility checks run later, after functions.sh is
+# loaded, but still before any PB/MC work.
 if [[ ! -x "${selected_gromacs}" ]]; then
     message E "Selected ${selected_mode} GROMACS executable is missing or not executable: ${selected_gromacs}"
 fi
@@ -65,15 +83,15 @@ fi
 export GroDIR="${selected_gromacs}"
 message W "Selected ${selected_mode} GROMACS executable: ${GroDIR}"
 #
-# Name of your simulation segment (the output files will
-# be generated with this name)
-#export blockname=${1%.*}
+###############################################################################
+# 3. Define simulation, segment and scientific-state names
+###############################################################################
 export runname=${SysName}
 export blockname="${SysName}_CpHrun"
 
-
-# Explicit site/state names. The external make_sites helper still creates a
-# temporary ${runname}.sites internally, but CpHMD immediately renames it.
+#
+# Explicit site/state names avoid ambiguous reuse of the temporary legacy
+# ${runname}.sites file created internally by make_sites.
 export CPHMD_ALL_SITES_FILE="${runname}-all.sites"
 export CPHMD_RT_ACTIVE_SITES_FILE="${runname}-RT-active.sites"
 export CPHMD_RT_HISTORY_FILE="${runname}-RT-history.sites"
@@ -82,23 +100,23 @@ export CPHMD_RT_TEMPLATE_MOCC_FILE="TMP_RT_template.mocc"
 export CPHMD_RT_CURRENT_OCC_FILE="TMP_RT_current.occ"
 export CPHMD_RT_CURRENT_MOCC_FILE="TMP_RT_current.mocc"
 
-# Fixed short basename used only for disposable legacy Delphi/PETIT files.
-# Keeping this independent of SysName avoids silent Fortran filename failures.
+# Use a short PB/MC basename for disposable legacy Delphi/PETIT files.
+# Keeping it independent of SysName avoids silent Fortran filename failures.
 export CPHMD_PBMC_BASENAME="PBMC"
 
-# ------------------------------------------------------------
-# Application-owned output layout.
+###############################################################################
+# 4. Create the application-owned output layout
+###############################################################################
+# Under the scheduler wrapper, node-local scratch is mounted as /out and this
+# script starts there. These directories are therefore created in scratch.
+# The wrapper synchronizes only validated finalized content to persistent
+# project storage.
 #
-# When the SLURM wrapper is used, the host's node-local scratch directory is
-# mounted as /out and CpHMD.sh starts in /out. These folders are therefore
-# created on local scratch, not in the shared project directory. The wrapper
-# later synchronizes only finalized contents back to persistent storage.
+# Directory names are a fixed contract shared by CpHMD.sh and the scheduler
+# wrapper. CpHMD owns scientific directories and checkpoint.state; the wrapper
+# owns slurm_files/, RUNNING/DONE/FAILED and the resubmission counter.
 #
-# These names are a fixed output contract shared by CpHMD.sh and the scheduler
-# wrappers. Keeping them fixed avoids a settings/wrapper mismatch. CpHMD owns
-# the scientific directories and checkpoint file. The wrapper owns
-# slurm_files/, RUNNING/DONE/FAILED and resub_count.
-# ------------------------------------------------------------
+# Relative-path validation prevents absolute paths and parent traversal.
 export CPHMD_SEGMENT_DIR="segments"
 export CPHMD_RESTART_DIR="restart"
 export CPHMD_LOG_DIR="log-files"
@@ -120,23 +138,23 @@ done
 
 message W "CpHMD output layout: ${CPHMD_SEGMENT_DIR}/, ${CPHMD_RESTART_DIR}/, ${CPHMD_LOG_DIR}/ and ${CPHMD_RESUB_DIR}/."
 
-# ------------------------------------------------------------
-# Cycle-level checkpoint/restart support.
+###############################################################################
+# 5. Initialize checkpoint, walltime and exit-code state
+###############################################################################
+# CPHMD_MAX_SECONDS=0 disables the cycle-boundary walltime guard.
+# When enabled, the run stops only after a complete CpHMD cycle, finalizes the
+# current scheduler segment and returns exit code 10 for clean resubmission.
 #
-# Default behaviour is unchanged when CPHMD_MAX_SECONDS=0 and no
-# checkpoint file is present. When enabled by a wrapper, the script
-# writes compact restart files after complete CpHMD cycles and exits
-# cleanly with code 10 at a cycle boundary once the walltime guard is
-# reached. This is useful for long systems that must be split across
-# several scheduler jobs.
-# ------------------------------------------------------------
+# Cycle checkpoints are complete local restart snapshots but remain
+# non-finalized until segment-level validation succeeds.
+###############################################################################
 export CPHMD_CHECKPOINT_FILE="${CPHMD_CHECKPOINT_FILE:-${CPHMD_RESUB_DIR}/checkpoint.state}"
 export CPHMD_WALL_START_EPOCH="${CPHMD_WALL_START_EPOCH:-$(date +%s)}"
 export CPHMD_MAX_SECONDS="${CPHMD_MAX_SECONDS:-0}"
 
-# Named application exit codes. 10 is reserved for a validated clean scheduler
-# boundary; 42 denotes an MD/output contract failure and 43 a PB/MC failure.
-# Neither failure code is eligible for scheduler resubmission.
+# Exit code 10 marks a validated scheduler boundary.
+# Exit code 42 marks an MD/output-contract failure; 43 marks a PB/MC failure.
+# Failure codes are never eligible for automatic scheduler resubmission.
 readonly CPHMD_EXIT_CLEAN_RESUBMIT=10
 readonly CPHMD_EXIT_OUTPUT_FAILURE=42
 readonly CPHMD_EXIT_PBMC_FAILURE=43
@@ -151,8 +169,8 @@ export CPHMD_RT_LAST_FULL_CYCLE=0
 export CPHMD_RT_ACTIVE_COUNT=0
 
 if [[ -f "${CPHMD_CHECKPOINT_FILE}" ]]; then
-    # This file is generated by cphmd_write_checkpoint in functions.sh.
-    # It contains simple shell assignments only.
+    # The state file is written atomically by functions.sh and contains only
+    # simple shell assignments.
     source "${CPHMD_CHECKPOINT_FILE}"
 fi
 
@@ -160,14 +178,14 @@ if [[ -z "${CPHMD_DONE_CYCLES:-}" ]]; then
     export CPHMD_DONE_CYCLES=0
 fi
 
-# If restarting from a previous clean cycle-boundary checkpoint, use the
-# compact restart state rather than the original input coordinates/topology.
+# Restore compact restart inputs only when checkpoint.state reports completed
+# cycles from a finalized scheduler segment.
 if (( CPHMD_DONE_CYCLES > 0 )); then
     message W "Restart checkpoint found: ${CPHMD_DONE_CYCLES} completed cycles."
 
-    # A new job may continue only from a scheduler segment that was completely
-    # validated and finalized. A cycle-level scratch checkpoint is deliberately
-    # insufficient because its XTC/EDR may not have been committed.
+    # A new job may continue only from a fully validated scheduler segment.
+    # A cycle-level scratch checkpoint is deliberately insufficient because
+    # its accumulated XTC/EDR may not have been committed.
     if (( ${CPHMD_SEGMENT_FINALIZED:-0} != 1 )); then
         message E "Checkpoint ${CPHMD_CHECKPOINT_FILE} is not marked as a finalized segment. Refusing automatic continuation."
     fi
@@ -188,12 +206,12 @@ if (( CPHMD_DONE_CYCLES > 0 )); then
     fi
 fi
 #
-# Check some parameters
+###############################################################################
 if [[ $ffID != G54a7pH && $ffID != CHARMM36pH && $ffID != Amber14SBpH ]]; then
     message W "\n***** WARNING *****\n**** You are using a force-field which is not standard.\n**** The use of  $ffID implies that the paths for the Delphi databases, tautomer St files, and force field is given to the program."
 fi
 
-### Insert here definition of the ST default folder
+# Select a user-supplied tautomer-state directory or the container default.
 
 if [[ -d $StDIR ]] ; then
     message W "StDIR inputed by the user at $StDIR"
@@ -202,22 +220,21 @@ else
     message W "StDIR not found, using base container ST directory."
 fi
 
-# Call all functions stored in the "functions" file:
+# Load the shared CpHMD function library.
 functions=$CpHDIR/scripts/functions.sh
 if [[ -f $functions ]]; then
-    source $functions            
+    source $functions
 else
     message E "File $functions is missing. Check CpHDIR parameter in $1."
 fi
 
-############################################################
-# Build optional input files embedded in the settings file. #
-############################################################
-# The template may always contain #fixgro# and #plumed# sections. They are
-# extracted only when their corresponding workflow is active; otherwise they
-# remain inert comments in the settings file and no extra working file is made.
+###############################################################################
+# 6. Extract and validate blocks embedded in the settings file
+###############################################################################
+# The #mdp# block is always required. #fixgro# and #plumed# blocks are
+# materialized only when their workflows are active; otherwise they remain
+# inert comments in the settings file.
 
-settings_file="$1"
 mdp_file="${SysName}.mdp"
 fixgro_file="${SysName}.fixgro"
 plumed_file="${SysName}_plumed.dat"
@@ -228,7 +245,7 @@ if ! grep -Eq '^[[:space:]]*[^;#[:space:]]' "${mdp_file}"; then
     message E "The settings file contains no usable #mdp# block."
 fi
 
-# Validate the simple feature flags before deciding which optional blocks to use.
+# Validate simple feature flags before selecting optional input blocks.
 for flag_name in memb multiple_solutes include_itp plumed; do
     flag_value="${!flag_name:-0}"
     case "${flag_value}" in
@@ -259,8 +276,8 @@ if (( plumed == 1 )); then
     awk '/#plumed#[[:space:]]/ {sub(/^.*#plumed#[[:space:]]*/, ""); print}' \
         "${settings_file}" > "${plumed_file}"
 
-    # Replace the documented template tokens. The corresponding variables are
-    # required only while PLUMED is active.
+    # Replace documented PLUMED template tokens only while PLUMED is active.
+    # Missing required values stop the run before simulation work begins.
     : "${colvar_stride:?Set colvar_stride when plumed=1}"
     : "${colvar_name:?Set colvar_name when plumed=1}"
     : "${hills:?Set hills when plumed=1}"
@@ -278,8 +295,8 @@ if (( plumed == 1 )); then
 
     cphmd_validate_plumed_file "${plumed_file}"
 
-    # PLUMED restart behavior is required for continuation. For the first cycle
-    # of a segment, run_dynamics writes a temporary copy without this directive.
+    # Continuation requires a PLUMED RESTART directive. run_dynamics creates a
+    # temporary first-cycle copy when that directive must be suppressed.
     if ! grep -Eq '^[[:space:]]*RESTART([[:space:]]|$)' "${plumed_file}"; then
         plumed_tmp="${plumed_file}.tmp.$$"
         {
@@ -294,9 +311,9 @@ else
     message W "The #plumed# settings block is inactive because plumed=0."
 fi
 
-#############################################################
-# add the correct cycles depending on the size of block asked
-#############################################################
+###############################################################################
+# 7. Calculate the requested CpHMD cycle range
+###############################################################################
 dt=`awk '/dt/ {print $3}' ${SysName}.mdp`
 if [ -z "$dt" ] ;
 then
@@ -320,40 +337,40 @@ if (( CPHMD_MAX_SECONDS > 0 )); then
     message W "CpHMD cycle-boundary walltime guard: ${CPHMD_MAX_SECONDS} seconds."
 fi
 
-#################################################
-## PLUMED Detection rebasing ##
-## Both CPU and CUDA GROMACS builds use the   ##
-## same native PLUMED integration.             ##
-#################################################
-#if [[ $plumed == 1 ]] ;then
-#    ## change /gromacs file if it is the standard one ##
-#    if [ $GroDIR == "/gromacs/bin/gmx" ] ; then
-#	export GroDIR="/gromacs-plumed/bin/gmx"
-#	message W "PLUMED support requested, changing the gromacs compilation to PLUMED $GroDIR"
-#    fi
-#fi
-
-#############################################################
-## Build mdrun command and perform fail-fast runtime checks ##
-#############################################################
-# This block runs before the node-local scratch directory is created and before
-# any PB/MC work. It validates:
-#   * GPU/nCPU and safety-flag values;
-#   * the selected GROMACS executable and compile mode;
-#   * for GPU=1, actual NVIDIA device/driver visibility inside the container.
+###############################################################################
+# Native PLUMED integration
+###############################################################################
+# Both CPU and CUDA GROMACS builds use the same native PLUMED integration.
+# The previous executable-rebasing approach is retained only as historical
+# context and is intentionally inactive.
 #
-# With the default CPHMD_GPU_PREFLIGHT=1, a CUDA build launched on a CPU-only
-# host or without Apptainer/Singularity --nv terminates here. A second,
-# zero-step mdrun probe is performed after the initial TPR is generated, still
-# before any PB/MC work.
+# Known follow-up item:
+#   The status message below states a fixed 20 ps cycle length although the
+#   calculation uses EffectiveSteps multiplied by dt.
+#   The historical wording and dt fallbacks remain unchanged in Stage 2.
+###############################################################################
+
+###############################################################################
+# 8. Build mdrun command and perform fail-fast runtime checks
+###############################################################################
+# This block runs before the private working directory and before PB/MC.
+# It validates:
+#   * GPU, nCPU and runtime-safety settings;
+#   * the selected GROMACS executable and compile mode;
+#   * NVIDIA device and driver visibility when GPU=1.
+#
+# A CUDA build launched without container GPU passthrough terminates here.
+# A second zero-step mdrun probe runs after the initial TPR is generated,
+# still before site generation or PB/MC.
+###############################################################################
 cphmd_build_mdrun_command
 cphmd_preflight_gromacs_runtime
 
-## Creating a running folder to prevent clutter ##
+# Create one process-specific directory for all mutable inner-run files.
 mkdir -p ./CpHMD-run_$$
 
-### Checking if the specific files exist and copying them to the running directory
-for f in ${SysName}.mdp $GROin $TOPin $NDXin 
+# Validate and stage the generated MDP plus external GRO, TOP and NDX inputs.
+for f in ${SysName}.mdp $GROin $TOPin $NDXin
 do
     if [ ! -f $f ]; then
         message E  "File $f is missing!!!... Program will crash"
@@ -370,68 +387,68 @@ cp $GROin ./CpHMD-run_$$/${SysName}.gro ; GROin="./${SysName}.gro"
 cp $TOPin ./CpHMD-run_$$/${SysName}.top ; TOPin="./${SysName}.top"
 cp $NDXin ./CpHMD-run_$$/${SysName}.ndx ; NDXin="./${SysName}.ndx"
 
-## Passing the Plumed settings if they exist to the folder ##
+# Copy PLUMED input only when the PLUMED workflow is active.
 if (( plumed == 1 )); then
     cp "${plumed_file}" "./CpHMD-run_$$/"
 fi
 
 cd ./CpHMD-run_$$
 
-#
+###############################################################################
 correct_variables #SC 17/3/2010
-#
-# Let's keep track of the simulation place and time:
+# 9. Initialize the private CpHMD working state
+# Record run provenance and the initial wall-clock timestamp.
 echo -e "Simulation run by $USER  @  $HOSTNAME\nInitial time: `date`" \
     > ${blockname}.info
 #
-# Do some housekeeping
+# Remove stale temporary inner-run files without touching organized output.
 clean_up
 #
-# Build ff links needed for simulations
+# Prepare the selected force-field data.
 build_forcefield
 #
-# Check if all files are present:
+# Validate inputs, paths, MDP compatibility and optional workflow files.
 check_files
 #
-# Make auxiliary files, including the initial TPR used by the execution probe.
+# Generate auxiliary files, including the initial TPR used by the execution
 make_auxiliary_files || exit $?
-#
-# Run the actual configured mdrun command for zero integration steps. This is
-# deliberately before site generation and PB/MC so invalid CPU/GPU execution
-# settings fail without spending time in electrostatics/Monte Carlo work.
+# preflight.
+# Run the configured mdrun command for zero integration steps before PB/MC.
+# Invalid CPU/GPU execution therefore fails before electrostatics or Monte
+# Carlo work is attempted.
 cphmd_preflight_mdrun_execution || exit $?
 #
-# Make the immutable all-site definition on the fly. The temporary legacy
-# ${runname}.sites name is removed inside make_sites.
+# Build the immutable all-site definition. make_sites removes its temporary
+# legacy ${runname}.sites file after the explicit all-site file is ready.
 make_sites "$1"
-# Restore the active RT subset/templates on checkpoint continuation, or prepare
-# a clean first-run state. This occurs before any PB/MC cycle.
+# Restore reduced-titration state from a finalized checkpoint or initialize a
+# clean first-run state before the first PB/MC cycle.
 cphmd_initialize_or_restore_rt_state || exit $?
 #
-# State templates are prepared for the immutable all-site definition. Reduced
-# cycles use a subset of these same site definitions.
+# Prepare state templates for the immutable all-site definition. Reduced
+# cycles use subsets of these same site definitions.
 "$DelphiDir"/getst "${CPHMD_ALL_SITES_FILE}" "$StDIR" ||     message E "getst failed for ${CPHMD_ALL_SITES_FILE}."
 #
-# Make the delphi database to use
+# Build the run-specific Delphi database.
 make_delphi_DB
 #
-#### Starts the constant-pH MD cycle ####
-#
+###############################################################################
+# 10. Execute the constant-pH MD cycle
 TimeStep=`awk '/dt *=/{print $3}' ${runname}.mdp`
-#
+# Historical TimeStep fallback behavior is preserved in this comment-only pass.
 if [[ $TimeStep == "" ]]; then TimeStep=0.001; fi #SC 25-11-2011
 WriteStep=`awk '/nstxout-compressed *=/{print $3}' ${runname}.mdp`
 WriteTime=`echo "$WriteStep*$TimeStep" | bc -l`
 #
 for (( Cycle=FirstCycle ; Cycle <=$EndCycle ; Cycle++ )); do
-    #
-    # This section is to keep track of the simulation
+    # Record simulation time and wall-clock time for the current cycle.
+    # The existing debug message and timing expressions remain unchanged.
     sim_time=`echo "$EffectiveSteps*$TimeStep*($Cycle-1)+$WriteTime+($StartTime*1000)" | bc -l`
     message W "debug time  $sim_time $EffectiveSteps $TimeStep $Cycle $WriteTime $StartTime "
     echo -e "\nCycle = $Cycle; time = $sim_time ps; Date: `date "+%D %T"`" \
          >> ${blockname}.info
     #
-    ################### PB/MC PART #####################
+    ######################## PB/MC and protonation state ########################
     all_site_count="$(cphmd_count_nonblank "${CPHMD_ALL_SITES_FILE}")" || {
         cphmd_preserve_failure_diagnostics "${Cycle}"
         exit "${CPHMD_EXIT_OUTPUT_FAILURE}"
@@ -528,10 +545,10 @@ for (( Cycle=FirstCycle ; Cycle <=$EndCycle ; Cycle++ )); do
         mv TMP_processed.top TMP_CpHMD.top
     fi
 
-    #### MD PART ####
-    # Each stage now propagates command failures and missing-output errors.
-    # Continuing after one of these failures could reuse stale coordinates and
-    # would invalidate both the structural and protonation-state trajectory.
+    ############################ Molecular dynamics ############################
+    # Propagate command failures and missing-output errors immediately.
+    # Continuing with stale coordinates would invalidate both the structural
+    # and protonation-state trajectories.
     if [ $RelaxSteps != 0 ]; then
         echo -n "MD relax     - Cycle = $Cycle; Date: `date "+%D %T"` - " \
             >> ${blockname}.info
@@ -563,8 +580,8 @@ for (( Cycle=FirstCycle ; Cycle <=$EndCycle ; Cycle++ )); do
         exit "${rc}"
     fi
 
-    # This performs cheap file/size checks and atomic copies only. The state is
-    # marked non-finalized until segment-level binary validation succeeds.
+    # Write one complete atomic cycle checkpoint. It remains non-finalized
+    # until segment-level binary validation and finalization succeed.
     cphmd_write_checkpoint "${Cycle}"
     rc=$?
     if (( rc != 0 )); then
@@ -588,16 +605,16 @@ for (( Cycle=FirstCycle ; Cycle <=$EndCycle ; Cycle++ )); do
         fi
     fi
 done
-#### Ends the constant-pH MD cycle ####
-#
-# Add the normal-completion timestamp before the final segment is committed.
+###############################################################################
+# 11. Finalize normal completion
+###############################################################################
 echo -e "\nEnd time:     `date`" >> ${blockname}.info
 final_log_base="../${CPHMD_LOG_DIR}/${blockname}_cycles${CPHMD_SEGMENT_START_CYCLE}-${EndCycle}"
 cphmd_copy_atomic "${blockname}.info" "${final_log_base}.info"
 
-# The last cycle was checkpointed inside the loop. Validate and finalize the
-# final scheduler segment once, including optional compression. No duplicate
-# *.final.* files are created; restart/ contains the authoritative endpoint.
+# The final cycle was checkpointed inside the loop. Validate and finalize the
+# last scheduler segment once, including optional compression. restart/
+# remains the authoritative endpoint and no duplicate *.final.* files are made.
 cphmd_finalize_segment "${EndCycle}"
 rc=$?
 if (( rc != 0 )); then
@@ -605,25 +622,25 @@ if (( rc != 0 )); then
     exit "${rc}"
 fi
 
-# Correct final timestamps of hills and colvar, preserving the historical
-# PLUMED post-processing behaviour when metadynamics is active.
+# Preserve historical PLUMED timestamp post-processing when the selected
+# COLVAR file exists.
 if [[ -n ${colvar_name:-} && -f ${colvar_name} ]]; then
     sed -i '/^ 20.0/d' ${colvar_name}
 fi
 
 #
-# Clean up data function
+# Clean temporary inner-run files after scientific output has been committed.
 
 clean_up
 
-## Transfer production files back to original folder for run cleaning
-## With the checkpoint-aware workflow, files have already been copied to the
-## parent scratch directory by cphmd_write_checkpoint/finalization above.
-## The scheduler wrapper can then rsync selected files from scratch to /home.
+# Checkpoint/finalization helpers have already copied scientific output to the
+# organized parent scratch directories.
+# The scheduler wrapper may now synchronize finalized content to persistent
+# storage.
 
 cd ../
 sleep 3
 rm -rf ./CpHMD-run_$$
 
-#
+# Normal completion.
 exit 0

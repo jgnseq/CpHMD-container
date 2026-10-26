@@ -1,0 +1,152 @@
+###############################################################################
+# CpHMD v0.7.1 basic settings — CHARMM36 CpHMD profile
+###############################################################################
+#
+# Soluble-protein starting profile using CHARMM36pH and TIP3P water.
+# CpHMD does not load a fallback scientific-settings file. Every ordinary
+# simulation choice below is explicit and checked before GROMACS or PB/MC.
+#
+# The 1.0–1.2 nm force-switch profile is the CHARMM36 starting point.
+# Membrane/lipid simulations require system-specific review.
+#
+# Required edits are marked CHANGE_ME. Review every section even when a
+# suggested value is retained.
+#
+
+###############################################################################
+# 1. Execution and simulation identity
+###############################################################################
+export GPU=0
+export nCPU=8
+export SysName="CHANGE_ME"
+export SimTime="CHANGE_ME"
+export StartTime=0
+export ffID="CHARMM36pH"
+export pH="CHANGE_ME"
+export sites="all"
+export temp=310.0
+export ionicstr=0.1
+export ionicstrMD=""         # Empty=use ionicstr for the MD MDP.
+export RelaxSteps=100
+export EffectiveSteps=10000
+
+###############################################################################
+# 2. System and periodic-boundary treatment
+###############################################################################
+export memb=0
+export multiple_solutes=0
+export include_itp=0
+export MembraneCenteringProtocol="tails"  # Used only when memb=1.
+export PBMCDebugPDB=0
+
+###############################################################################
+# 3. PB/MC electrostatics and Monte Carlo
+###############################################################################
+export epsin=2.0
+export epssol=80.0
+export PBdim=0
+export cutoff=-1
+export GridSize=81
+export scaleP=1.0
+export scaleM=4.0
+export bndcon=4
+export maxc=0.01
+export pot=0.0
+export offset=2000
+export UseInputOffset=0
+export seed=-1
+
+###############################################################################
+# 4. Reduced titration
+###############################################################################
+# Set ReduceTitration=0 to evaluate all configured sites every cycle.
+export ReduceTitration=1
+export RTThreshold=0.01
+export RTInterval=20
+export write_states="n"
+
+###############################################################################
+# 5. Optional PLUMED integration
+###############################################################################
+export plumed=0
+# These values are read only when plumed=1.
+export plumedtype="grid"
+export colvar_name="COLVAR"
+export colvar_stride=1000
+export grid_name="GRIDS"
+export hills="HILLS"
+
+###############################################################################
+# 6. Required and optional input files
+###############################################################################
+export TOPin="CHANGE_ME.top"
+export GROin="CHANGE_ME.gro"
+export NDXin="CHANGE_ME.ndx"
+export PosRe=""              # Empty=no production position-restraint file.
+
+###############################################################################
+# 7. MDP force-field safety
+###############################################################################
+export mdpoverride=0
+
+###############################################################################
+# 8. CpHMD effective-MD block
+###############################################################################
+# CpHMD overrides tinit, nsteps, ionic strength and ref_t at runtime.
+#mdp# define                  =
+#mdp# integrator              = md
+#mdp# tinit                   = 0.0
+#mdp# dt                      = 0.002
+#mdp# nsteps                  = 10000
+#mdp# nstcalcenergy           = 5
+#mdp# nstcomm                 = 5
+#mdp# nstxout-compressed      = 5000
+#mdp# compressed-x-precision  = 1000
+#mdp# nstenergy               = 5000
+#mdp# nstxout                 = 0
+#mdp# nstvout                 = 0
+#mdp# nstfout                 = 0
+#mdp# nstlog                  = 0
+#mdp#
+#mdp# cutoff-scheme           = Verlet
+#mdp# coulombtype             = PME
+#mdp# nstlist                 = 20
+#mdp# vdwtype                 = Cut-off
+#mdp# vdw-modifier           = Force-switch
+#mdp# rlist                  = 1.2
+#mdp# rcoulomb               = 1.2
+#mdp# rvdw-switch            = 1.0
+#mdp# rvdw                   = 1.2
+#mdp# DispCorr               = no
+#mdp# fourierspacing          = 0.12
+#mdp# pme-order               = 4
+#mdp#
+#mdp# energygrps              = System
+#mdp#
+#mdp# tcoupl                  = v-rescale
+#mdp# tc-grps                 = Protein SOL
+#mdp# tau_t                   = 1 1
+#mdp# ref_t                   = 310.0 310.0
+#mdp#
+#mdp# pcoupl                  = Parrinello-Rahman
+#mdp# pcoupltype              = isotropic
+#mdp# tau_p                   = 5.0
+#mdp# compressibility         = 4.5e-5
+#mdp# ref_p                   = 1.0
+#mdp#
+#mdp# constraint_algorithm    = lincs
+#mdp# lincs_order             = 8
+#mdp# constraints             = h-bonds
+#mdp# lincs-warnangle         = 90
+
+###############################################################################
+# 9. Optional non-membrane fixgro block
+###############################################################################
+# Ignored unless multiple_solutes=1 or include_itp=1. Replace TOTALATOM and
+# adapt every group before activating either feature.
+#fixgro# G Protein
+#fixgro# a 1 TOTALATOM
+#fixgro#
+#fixgro# A Protein
+#fixgro# C Protein Protein Protein W W W
+#fixgro# P Protein Protein Protein

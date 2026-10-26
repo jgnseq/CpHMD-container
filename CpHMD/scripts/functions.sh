@@ -1,36 +1,36 @@
 # CpHMD function library
 #
-# This file is sourced by CpHMD.sh after the user settings have been read.
-# It contains the complete implementation of the CpHMD workflow:
+# This file is sourced by CpHMD.sh after the defaults and user settings have
+# been loaded. It implements input preparation, PB/MC, molecular dynamics,
+# reduced titration, transactional output handling, restart state and cleanup.
 #
-#   1. runtime and GROMACS/GPU preflight checks;
-#   2. input, topology and force-field validation;
-#   3. auxiliary coordinate/site preparation;
-#   4. Delphi PB and Monte Carlo titration;
-#   5. topology/protonation-state updates;
-#   6. relaxation and effective molecular dynamics;
-#   7. transactional trajectory/energy accumulation;
-#   8. checkpoint, validation, compression and cleanup.
+# The functions intentionally share controller-level run state such as
+# runname, blockname, Cycle, GroDIR and the CPHMD_* path variables. Explicit
+# positional arguments are documented at each function, but global inputs and
+# side effects remain part of the established CpHMD runtime contract.
 #
-# The functions rely on variables exported by CpHMD.sh and the settings file.
-# Functions that form the persistent-output contract return exit code 42 on
-# missing, incomplete or invalid MD/output files. PB/MC validation failures
-# return exit code 43. The scheduler wrapper resubmits neither failure code.
+# Persistent failure-code contract:
+#   42  missing, incomplete or invalid MD/output state
+#   43  Delphi, conversion, PETIT or PB/MC failure
+#
+# The scheduler wrapper resubmits neither failure code. Continuation is valid
+# only after cphmd_finalize_segment writes checkpoint.state with FINALIZED=1.
 #
 # Do not execute this file directly; source it from CpHMD.sh.
 
 # -----------------------------------------------------------------------------
-# CpHMD runtime/output safety helpers
+# 1. Output-contract and atomic-file helpers
 # -----------------------------------------------------------------------------
-# These helpers deliberately use inexpensive file-size and command-status checks
-# during each CpHMD cycle. Full binary scans with `gmx check` are reserved for a
-# scheduler-segment boundary, where their cost is negligible compared with the
-# MD/PB-MC work completed in the segment.
+# Per-cycle checks use inexpensive command-status and file-size validation.
+# Full GROMACS binary checks are reserved for scheduler-segment finalization.
 
 # cphmd_output_error MESSAGE...
-#   Print an output-contract error and return CPHMD_EXIT_OUTPUT_FAILURE (42).
-#   Unlike `message E`, this function returns to its caller so the failure code
-#   can propagate through functions.sh, CpHMD.sh and the scheduler wrapper.
+#   Print an output-contract diagnostic without terminating the shell.
+#   Side effect: writes one message to standard error.
+#   Returns CPHMD_EXIT_OUTPUT_FAILURE, normally 42.
+#   Unlike message E, the code returns through callers to the scheduler wrapper.
+#
+#   This function does not modify persistent state.
 cphmd_output_error ()
 {
     # Return a distinctive application error without calling message E, because
@@ -194,11 +194,11 @@ cphmd_gzip_atomic ()
     rm -f -- "${source}"
 }
 
+# -----------------------------------------------------------------------------
+# 2. Failure-diagnostic preservation
+# -----------------------------------------------------------------------------
 # cphmd_preserve_failure_diagnostics [CYCLE]
-#   Write one flat text diagnostic under log-files/. The persistent log
-#   directory must contain files only, never recursive copies of the scratch
-#   layout. The node-local scratch tree is preserved separately by the scheduler
-#   wrapper and remains the authoritative source for deeper debugging.
+#   Best-effort flat MD/output diagnostic that never hides the original error.
 cphmd_preserve_failure_diagnostics ()
 {
     # This function is best-effort and must never hide the original simulation
@@ -301,9 +301,9 @@ cphmd_pbmc_error ()
     echo "${prog:-CpHMD.sh}: Error: PB/MC diagnostic: ${diagnostic}" >&2
     return "${CPHMD_EXIT_PBMC_FAILURE:-43}"
 }
-
+# --- 3. Reduced-titration state and PETIT validation -------------------------
 # cphmd_count_nonblank FILE
-#   Print the number of nonblank lines in FILE. Missing files are errors.
+#   Print the number of nonblank lines; return failure when FILE is absent.
 cphmd_count_nonblank ()
 {
     local file="$1"
@@ -795,18 +795,18 @@ cphmd_initialize_or_restore_rt_state ()
 }
 
 # -----------------------------------------------------------------------------
-# Optional settings-block preparation and validation
+# 4. Optional fixgro and PLUMED input validation
 # -----------------------------------------------------------------------------
-# The settings template may always contain #fixgro# and #plumed# example blocks.
-# They are inert text until the corresponding feature is enabled. These helpers
-# decide whether a block is needed and reject missing or untouched template
-# placeholders before PB/MC begins.
+# Settings templates may contain inactive #fixgro# and #plumed# examples.
+# These helpers determine whether a block is active and reject missing, blank
+# or placeholder-filled input before expensive simulation work begins.
 
 # cphmd_fixgro_required
-#   Return success when the historical fixgro PBC path is selected. The current
-#   workflow uses fixgro only for non-membrane systems that either contain
-#   multiple interacting solutes or include the solute through an external ITP.
-#   Membrane systems instead use MembraneCenteringProtocol.
+#   Predicate for the historical non-membrane fixgro PBC path.
+#   Active only when memb=0 and either multiple_solutes=1 or include_itp=1.
+#   Membrane systems use MembraneCenteringProtocol instead.
+#   Returns success when fixgro input is required and failure otherwise.
+
 cphmd_fixgro_required ()
 {
     (( ${memb:-0} == 0 \
@@ -861,22 +861,22 @@ cphmd_validate_plumed_file ()
 }
 
 # -----------------------------------------------------------------------------
-# Runtime configuration and fail-fast GROMACS/GPU preflight
+# 5. Runtime settings and fail-fast GROMACS/GPU preflight
 # -----------------------------------------------------------------------------
-# These checks run before any PB/MC work. Their purpose is to stop immediately
-# when the requested GROMACS mode cannot possibly run on the current host.
+# These checks complete before PB/MC and distinguish three separate facts:
 #
-# Important distinction:
-#   * `gmx --version` proves how GROMACS was compiled.
-#   * `nvidia-smi` proves that an NVIDIA device and host driver are visible
-#     inside the running container.
+#   * GPU selects the requested execution mode.
+#   * gmx --version reports whether the binary was compiled with CUDA.
+#   * nvidia-smi confirms that a usable device and driver are visible inside
+#     the running container.
 #
-# A CUDA-enabled binary can print `GPU support: CUDA` even on a CPU-only host.
-# Therefore, GPU=1 requires both checks unless CPHMD_GPU_PREFLIGHT=0 is set
-# explicitly for troubleshooting.
+# A CUDA-enabled binary can report CUDA support even when no GPU is exposed.
+# GPU mode therefore requires compile-mode and device-visibility checks unless
+# the corresponding troubleshooting preflight is explicitly disabled.
 
 # cphmd_require_boolean_setting NAME VALUE
-#   Enforce the common 0/1 convention used by safety and output flags.
+#   Require VALUE to be exactly 0 or 1; invalid input terminates via message E.
+
 cphmd_require_boolean_setting ()
 {
     local name="$1"
@@ -1246,11 +1246,11 @@ cphmd_preflight_mdrun_execution ()
     rm -rf -- "${preflight_dir}"
     message W "Zero-step mdrun preflight passed before PB/MC."
 }
-
+# --- 6. Setting normalization, force-field staging and input validation -------
 # correct_variables
-#   Normalize selected numeric settings after the settings file has been
-#   sourced. Historically this prevents empty/zero values from being handled
-#   inconsistently by later AWK expressions.
+#   Normalize GridSize and RTThreshold after settings are sourced.
+#   This preserves the historical AWK-based handling used downstream.
+
 correct_variables ()
 {                   
     #removed offset value since CpHMD sources this value
@@ -1482,12 +1482,12 @@ check_files ()
 	
 }
 
-
+# -----------------------------------------------------------------------------
+# 7. Auxiliary coordinate, topology, MDP and TPR preparation
+# -----------------------------------------------------------------------------
 # make_auxiliary_files
-#   Build the initial temporary CpHMD working set (TMP_CpHMD.*): processed
-#   coordinates, topology, index, TPR, empty accumulation files and auxiliary
-#   coordinate representations required by PB/MC. Existing stale temporary
-#   outputs are removed before generation.
+#   Create a clean TMP_CpHMD working set, initial TPR and PB coordinate inputs.
+#   Stale temporary outputs are removed before any new file is accepted.
 make_auxiliary_files ()
 {
     # Rename original files
@@ -1588,11 +1588,11 @@ make_auxiliary_files ()
     fi
     
 }
-
+# --- 8. Titratable-site and Delphi-database preparation -----------------------
 # make_sites SETTINGS_FILE
-#   Identify titratable residues and generate the .sites definitions used by
-#   Delphi/PETIT. It also prepares reduced-titration site files when that mode
-#   is enabled. These site definitions persist across scheduler resubmissions.
+#   Identify configured titratable residues, prepare terminal/topology changes
+#   and write the immutable all-site definition used by PB/MC and RT logic.
+#   Site definitions persist across scheduler resubmissions.
 make_sites ()
 {
     echo "Protein" | "$GroDIR" editconf -f $GROin \
@@ -1925,14 +1925,14 @@ make_delphi_DB ()
 
 }
 
+# -----------------------------------------------------------------------------
+# 9. Poisson-Boltzmann and Monte Carlo titration
+# -----------------------------------------------------------------------------
 # run_PBMC SITES_FILE PHASE_LABEL
-#   Prepare PB coordinates, run Delphi through a fixed short internal basename,
-#   convert the electrostatic result and run PETIT. Every command and expected
-#   file is validated before protonation-state or RT logic can continue.
-#
-#   The short basename is essential: legacy Delphi/Fortran filename handling can
-#   fail silently for long user-facing SysName values. User output names remain
-#   unchanged; only disposable PB/MC files use CPHMD_PBMC_BASENAME (PBMC).
+#   Prepare PB coordinates, run Delphi, convert its output, run PETIT and
+#   validate the complete result before any protonation state is applied.
+#   Disposable files use a short internal basename to avoid legacy
+#   Delphi/Fortran filename-length failures; user-facing names are unchanged.
 run_PBMC ()
 {
     local sites_file="$1"
@@ -2150,11 +2150,11 @@ run_PBMC ()
 
     message W "Validated ${phase_label} PB/MC result for ${expected_sites} site(s)."
 }
-
+# --- 10. Protonation-state application to the topology ------------------------
 # update_topology
-#   Apply the full state vector prepared for this cycle to every all-site entry.
-#   In RT mode the vector already merges fixed and active sites, so topology
-#   updates are complete and consistent even when the active subset is empty.
+#   Validate the full current state vector and apply it to every all-site row.
+#   RT vectors already merge active and fixed sites, including zero-active-site
+#   cycles. Returns the output-failure code on mapping or update failure.
 update_topology ()
 {
     local all_count
@@ -2185,11 +2185,11 @@ update_topology ()
         }
     cphmd_require_nonempty_files "update-top produced no topology" TMP_CpHMD.top || return $?
 }
-
-# run_dynamics PREFIX
-#   Run one effective MD phase using PREFIX.mdp/.top/.gro. It removes stale
-#   outputs, runs grompp and the prebuilt CPHMD_MDRUN_CMD, and requires fresh
-#   non-empty GRO/EDR/XTC/LOG/TPR outputs before returning success.
+# --- 11. Relaxation and effective molecular dynamics --------------------------
+# run_dynamics STAGE INPUT_STAGE
+#   Run grompp and the prebuilt CPHMD_MDRUN_CMD for one named MD stage.
+#   Expected outputs are removed first; fresh TPR/GRO/EDR/XTC/LOG files are
+#   required before success is returned.
 run_dynamics ()
 {
     local stage="$1"
@@ -2315,12 +2315,12 @@ run_relaxation ()
 
     cphmd_require_nonempty_files "failed to prepare relaxed coordinates" TMP_relax.gro
 }
-
+# --- 12. Transactional scheduler-segment data accumulation --------------------
 # data_append
-#   Merge the current cycle into the scheduler-segment accumulators. EDR and XTC
-#   concatenation is transactional and retains the required final extensions so
-#   GROMACS writes the expected filenames. It also appends logs, occupation and
-#   optional pulling/PLUMED outputs, then verifies the complete cycle contract.
+#   Merge the current effective-MD result into cumulative EDR/XTC and text data.
+#   Temporary outputs protect the last valid segment if a GROMACS tool fails.
+#   Optional pulling and PLUMED data are appended when present.
+#   Returns 42 unless the complete per-cycle output contract is satisfied.
 data_append ()
 {
     # Build the accumulated EDR/XTC transactionally. The previous accumulated
@@ -2416,11 +2416,11 @@ data_append ()
 
     rm -f TMP_aux* \#* TMP_effective*.log pull?.xvg
 }
-
+# --- 13. Complete-cycle checkpoint creation ----------------------------------
 # cphmd_write_checkpoint FINISHED_CYCLE
-#   Snapshot the latest complete cycle into segments/, restart/ and log-files/.
-#   In RT mode the active subset and fixed-state templates are part of the
-#   authoritative restart package and are copied atomically on every cycle.
+#   Atomically snapshot the complete cycle into restart/, segments/ and
+#   log-files/. RT active sites and fixed templates are authoritative restart
+#   state. checkpoint.state remains non-finalized at this stage.
 cphmd_write_checkpoint ()
 {
     local finished_cycle="$1"
@@ -2517,12 +2517,12 @@ cphmd_write_checkpoint ()
 
     cphmd_write_state_atomic "${finished_cycle}" 0 validated_cycle_checkpoint
 }
-
+# --- 14. Scheduler-segment validation and finalization ------------------------
 # cphmd_finalize_segment FINISHED_CYCLE
-#   Commit a scheduler segment: verify required files, run `gmx check` on XTC and
-#   EDR, compress configured immutable outputs, remove optional logs when asked,
-#   and finally write checkpoint.state with FINALIZED=1. A later job may resume
-#   only after this function succeeds.
+#   Require the complete checkpoint package, optionally run gmx check, compress
+#   configured immutable files and apply log-retention policy.
+#   FINALIZED=1 is written only after every operation succeeds, making the
+#   segment eligible for continuation and persistent synchronization.
 cphmd_finalize_segment ()
 {
     local finished_cycle="$1"
@@ -2610,11 +2610,11 @@ cphmd_finalize_segment ()
 
     message W "Finalized validated CpHMD segment ${segment_start}-${finished_cycle}."
 }
-
+# --- 15. Private working-directory cleanup -----------------------------------
 # clean_up
-#   Remove temporary PB/MC, GROMACS and force-field working files from the inner
-#   CpHMD-run_<pid> directory. Persistent segment/restart/log outputs live one
-#   directory above and are intentionally not matched by this cleanup.
+#   Remove temporary PB/MC, GROMACS, state and local force-field files from the
+#   inner CpHMD-run_<pid> directory. Organized persistent outputs live in the
+#   parent directory and are intentionally outside the cleanup patterns.
 clean_up ()
 {    
     rm -rf ${runname}.{summ,g,pkint,pkcrg,dat,pqr,out} state*\

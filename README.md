@@ -146,10 +146,18 @@ A production directory normally contains the prepared molecular system,
 CpHMD settings, molecular-dynamics inputs, and any optional PLUMED or
 system-specific files.
 
-The settings templates are available at:
+CpHMD requires explicit user settings and does not source a fallback
+scientific-settings file. User-facing templates are available at:
 
-- [`CpHMD/CpHMD-default.settings`](CpHMD/CpHMD-default.settings)
+- [`template/CpHMD-basic.settings`](template/CpHMD-basic.settings)
+- [`template/CpHMD-basic-G54a7pH.settings`](template/CpHMD-basic-G54a7pH.settings)
+- [`template/CpHMD-basic-CHARMM36pH.settings`](template/CpHMD-basic-CHARMM36pH.settings)
+- [`template/CpHMD-basic-Amber14SBpH.settings`](template/CpHMD-basic-Amber14SBpH.settings)
 - [`template/CpHMD-advanced.settings`](template/CpHMD-advanced.settings)
+
+The basic profiles explicitly expose ordinary settings, use `CHANGE_ME`
+markers for required edits, enable reduced titration with `RTInterval=20`,
+and allow the all-site protocol through `ReduceTitration=0`.
 
 Detailed settings documentation is available in the
 [CpHMD settings reference](docs/CPHMD_SETTINGS_REFERENCE.md).

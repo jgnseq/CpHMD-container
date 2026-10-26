@@ -413,10 +413,16 @@ EOF_APPS
     require_command 'add-mol-database.sh syntax' \
         bash -n /analysis/add-mol-database.sh
 
-    require_nonempty_file 'default CpHMD settings' \
-        /CpHMD/CpHMD-default.settings
+    require_nonempty_file 'explicit settings contract' \
+        /CpHMD/scripts/settings_contract.sh
     require_nonempty_file 'basic settings template' \
         /Templates/CpHMD-basic.settings
+    require_nonempty_file 'GROMOS basic settings profile' \
+        /Templates/CpHMD-basic-G54a7pH.settings
+    require_nonempty_file 'CHARMM basic settings profile' \
+        /Templates/CpHMD-basic-CHARMM36pH.settings
+    require_nonempty_file 'AMBER basic settings profile' \
+        /Templates/CpHMD-basic-Amber14SBpH.settings
     require_nonempty_file 'advanced settings template' \
         /Templates/CpHMD-advanced.settings
     require_executable 'PETIT executable' \
@@ -636,22 +642,41 @@ EOF_APPS
 
 
 %apprun get-settings
-    if [ "$#" -ne 1 ]; then
-        echo "Usage: apptainer run --app get-settings IMAGE.sif basic|advanced" >&2
+    if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+        echo "Usage: apptainer run --app get-settings IMAGE.sif basic|advanced [G54a7pH|CHARMM36pH|Amber14SBpH]" >&2
         exit 2
     fi
 
-    case "$1" in
-        basic|advanced)
-            source="/Templates/CpHMD-$1.settings"
-            destination="./CpHMD-$1.settings"
-            ;;
+    settings_type="$1"
+    profile="${2:-}"
+
+    case "${settings_type}" in
+        basic|advanced) ;;
         *)
             echo "Invalid settings type. Choose basic or advanced." >&2
             exit 2
             ;;
     esac
 
+    if [ -n "${profile}" ]; then
+        case "${profile}" in
+            G54a7pH|CHARMM36pH|Amber14SBpH) ;;
+            *)
+                echo "Invalid force-field profile: ${profile}" >&2
+                exit 2
+                ;;
+        esac
+        source="/Templates/CpHMD-${settings_type}-${profile}.settings"
+        destination="./CpHMD-${settings_type}-${profile}.settings"
+    else
+        source="/Templates/CpHMD-${settings_type}.settings"
+        destination="./CpHMD-${settings_type}.settings"
+    fi
+
+    if [ ! -s "${source}" ]; then
+        echo "The requested settings profile is not bundled: ${source}" >&2
+        exit 2
+    fi
     if [ -e "${destination}" ]; then
         echo "Refusing to overwrite ${destination}" >&2
         exit 1
@@ -659,11 +684,17 @@ EOF_APPS
     cp -a "${source}" "${destination}"
 
 %apphelp get-settings
-    Copy the current basic or advanced CpHMD settings template into the current
-    directory without overwriting an existing file.
+    Copy a CpHMD settings template into the current directory without
+    overwriting an existing file.
 
-    Usage:
-      apptainer run --app get-settings IMAGE.sif basic|advanced
+    The one-argument interface remains backward compatible:
+      apptainer run --app get-settings IMAGE.sif basic
+      apptainer run --app get-settings IMAGE.sif advanced
+
+    A bundled force-field profile can be selected with:
+      apptainer run --app get-settings IMAGE.sif basic G54a7pH
+      apptainer run --app get-settings IMAGE.sif basic CHARMM36pH
+      apptainer run --app get-settings IMAGE.sif basic Amber14SBpH
 
 
 %apprun pdb2cphmd

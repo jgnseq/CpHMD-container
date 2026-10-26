@@ -1,80 +1,84 @@
 # CpHMD settings and scheduler reference
 
-This document contains the detailed explanations intentionally omitted from the
-concise `CpHMD-default.settings` template.
+## Explicit user settings
 
-## Optional embedded blocks
+CpHMD v0.7.1 does not source a fallback scientific-settings file. It sources one
+user settings file and checks that ordinary execution, simulation, system,
+PB/MC, reduced-titration and input choices are explicitly exported there.
 
-The settings template may always contain `#fixgro#`, `#plumed#`, and `#mdp#`
-lines. They are comments to the shell and are extracted by `CpHMD.sh` only when
-needed.
+Missing declarations and unedited `CHANGE_ME` placeholders fail before GROMACS
+or PB/MC work begins.
 
-### `#fixgro#`
+The validation code is:
 
-The fixgro block is active only when all of the following are true:
-
-- `memb=0`; and
-- `multiple_solutes=1` or `include_itp=1`.
-
-Membrane workflows (`memb=1`) use `MembraneCenteringProtocol` instead. Keeping a
-fixgro block in a membrane settings file is harmless because it is ignored.
-When active, the block must contain system-specific molecule/group definitions;
-blank blocks and placeholders such as `TOTALATOM` are rejected before PB/MC.
-
-### `#plumed#`
-
-The PLUMED block is active only when `plumed=1`. With `plumed=0`, it is ignored
-and no PLUMED input file is created. When active, `plumedtype` must be `grid`,
-`hill`, or `static`. Template tokens are replaced from `colvar_stride`,
-`colvar_name`, `hills`, and (for grid mode) `grid_name`. Obvious placeholder
-paths or atom selections are rejected before PB/MC; final PLUMED/GROMACS syntax
-is exercised by the zero-step `mdrun` preflight.
-
-## GROMACS safety flags
-
-- `CPHMD_STRICT_GROMACS_MODE=1`: CPU mode requires the CPU build and GPU mode
-  requires the CUDA build.
-- `CPHMD_GPU_PREFLIGHT=1`: GPU mode requires a visible NVIDIA device and valid
-  logical GPU ID before PB/MC.
-- `CPHMD_MDRUN_PREFLIGHT=1`: initialize the configured TPR with `-nsteps 0`
-  before PB/MC.
-
-## Organized output contract
-
-- `segments/`: immutable scientific segment files.
-- `restart/`: latest uncompressed restart GRO/TOP/TPR.
-- `log-files/`: GROMACS, driver, validation and failure logs.
-- `resub_maint/`: checkpoint state and scheduler status markers.
-- `slurm_files/`: generated SLURM scripts and scheduler output.
-
-## Scratch policy (scheduler environment)
-
-`CPHMD_SCRATCH_ROOT` selects the host scratch root before the container starts.
-It defaults to `$TMPDIR`, then `/tmp`.
-
-`CPHMD_SCRATCH_POLICY` accepts exactly:
-
-- `require-local`: reject detected network filesystems and unknown filesystem
-  type. Suitable for clusters that require node-local scratch.
-- `prefer-local`: default. Warn for network-backed or unknown scratch, but
-  continue. This keeps cloud and shared-filesystem deployments usable.
-- `allow-network`: deliberately accept network-backed scratch without warning.
-
-Examples:
-
-```bash
-# Local cluster production
-export CPHMD_SCRATCH_ROOT=/tmp
-export CPHMD_SCRATCH_POLICY=require-local
-
-# Portable/default behavior
-export CPHMD_SCRATCH_POLICY=prefer-local
-
-# AWS EFS or FSx for Lustre
-export CPHMD_SCRATCH_ROOT=/fsx/cphmd
-export CPHMD_SCRATCH_POLICY=allow-network
+```text
+/CpHMD/scripts/settings_contract.sh
 ```
 
-AWS instance store and EBS formatted as `ext4`/`xfs` are accepted as block
-filesystems. EFS (`nfs4`) and FSx for Lustre (`lustre`) warn under
-`prefer-local`, fail under `require-local`, and run under `allow-network`.
+It is not a template and is never present under `/Templates`.
+
+## Application-owned runtime configuration
+
+Container executable/data paths, CPU/CUDA preflight policy, automatic `mdrun`
+construction, and validated-segment retention are application behavior rather
+than hidden scientific choices. They have internal values in
+`settings_contract.sh`; advanced users may override them deliberately.
+
+## Basic profiles
+
+The soluble-protein starting profiles are:
+
+- `CpHMD-basic-G54a7pH.settings`;
+- `CpHMD-basic-CHARMM36pH.settings`;
+- `CpHMD-basic-Amber14SBpH.settings`.
+
+`CpHMD-basic.settings` is a byte-for-byte G54a7pH profile.
+
+Required edits use `CHANGE_ME` for `SysName`, `SimTime`, `pH`, `TOPin`,
+`GROin`, and `NDXin`. Every other ordinary choice remains visible for review.
+
+## Reduced titration
+
+The basic profiles explicitly contain:
+
+```bash
+export ReduceTitration=1
+export RTThreshold=0.01
+export RTInterval=20
+export write_states="n"
+```
+
+Users can select the all-site protocol explicitly:
+
+```bash
+export ReduceTitration=0
+```
+
+There is no hidden reduced-titration fallback.
+
+## Force-field-dependent MDP choices
+
+| Profile | LJ/Coulomb cutoff | LJ treatment | Constraints |
+|---|---:|---|---|
+| G54a7pH | 1.4 nm | plain cut-off | all bonds |
+| CHARMM36pH | 1.2 nm | force switch from 1.0 nm | H bonds |
+| Amber14SBpH | 1.0 nm | potential shift plus `EnerPres` | H bonds |
+
+These are reviewed starting points, not universal protocols. Membrane pressure
+coupling, temperature groups, restraints and enhanced sampling remain
+system-dependent.
+
+## Custom ST definitions
+
+`StDIR` is an advanced override. When unset, CpHMD uses
+`/STs/St-${ffID}`. A custom value can select state/tautomer files prepared for
+alternative Lennard-Jones radii, provided the ST set remains consistent with the
+force field and Delphi databases.
+
+## Explicit empty/disabled choices
+
+`ionicstrMD=""` means the MD MDP inherits `ionicstr`.
+
+`PosRe=""` means no production position-restraint file.
+
+`plumed=0` disables PLUMED. When `plumed=1`, the PLUMED settings are required.

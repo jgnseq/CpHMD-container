@@ -1,0 +1,29 @@
+{
+  "development_base": "1500f292d782002547c8e4bf25bcd55f0a57ae47",
+  "settings_import": "reviewed August worktree imported; five checks pass",
+  "native_preflight": {
+    "job_id": "2147469",
+    "node": "cna0002",
+    "exit_code": "0:0",
+    "elapsed": "00:00:27",
+    "fixgro": "native compile and one/two-stage fixtures pass",
+    "petit": "AArch64 ELF, version 1.6.1",
+    "fakeroot": "node-local staged minimal SIF build passes; result copied to project"
+  },
+  "failed_preflights": {
+    "2147161": "project-backed rootfs cleanup loses project access",
+    "2147455": "rootfs moved locally but recipe remained in group-protected project"
+  },
+  "x86_reference": {
+    "image": "v0.7.0-rc3 GROMACS 2026.3 CPU",
+    "md_plumed": "20-step water MD, finite COLVAR, readable XTC and EDR pass",
+    "petit": "analytic pH -1,0,1 checks pass"
+  },
+  "context_test": {
+    "manifest": "verified",
+    "host_elf_files_remaining": 0,
+    "excluded_host_products": 53
+  },
+  "full_arm_build": "not yet submitted; requires committing reviewed source before transfer",
+  "scientific_arm_validation": "pending"
+}

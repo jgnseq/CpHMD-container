@@ -1,0 +1,59 @@
+cna0002.deucalion.macc.fccn.pt
+2026-10-26T21:04:41+00:00
+Architecture:        aarch64
+Byte Order:          Little Endian
+CPU(s):              48
+On-line CPU(s) list: 0-47
+Thread(s) per core:  1
+Core(s) per cluster: 12
+Socket(s):           -
+Cluster(s):          4
+NUMA node(s):        4
+Vendor ID:           FUJITSU
+Model:               0
+Model name:          A64FX
+Stepping:            0x1
+BogoMIPS:            200.00
+NUMA node0 CPU(s):   0-11
+NUMA node1 CPU(s):   12-23
+NUMA node2 CPU(s):   24-35
+NUMA node3 CPU(s):   36-47
+Flags:               fp asimd evtstrm sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm fcma dcpop sve
+              total        used        free      shared  buff/cache   available
+Mem:           31Gi       2.5Gi        28Gi        40Mi       689Mi        28Gi
+Swap:          15Gi       420Mi        15Gi
+6d1ddca5ce97f686cff36990a9696a2d311a73dc3581d97f30bc9fe1b73d08d6  /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/images/CpHMD-aarch64-phase6-sve512.sif
+/programs/petit1.6.1/petit: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=f230eb2d5572e97c1765b8e96bf64353f112259e, for GNU/Linux 3.7.0, not stripped
+Version: 1.6.1
+/source/CpHMD/src/fixgro.c: In function 'read_frame':
+/source/CpHMD/src/fixgro.c:137:3: warning: ignoring return value of 'fgets' declared with attribute 'warn_unused_result' [-Wunused-result]
+  137 |   fgets(line, sizeof line, fp_gro) ;
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/source/CpHMD/src/fixgro.c:144:5: warning: ignoring return value of 'fgets' declared with attribute 'warn_unused_result' [-Wunused-result]
+  144 |     fgets(line, sizeof line, fp_gro) ;
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/source/CpHMD/src/fixgro.c:151:3: warning: ignoring return value of 'fgets' declared with attribute 'warn_unused_result' [-Wunused-result]
+  151 |   fgets(boxline, sizeof boxline, fp_gro) ;
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+PASS: 1 assembly stage(s), compact centered PBC group
+PASS: 2 assembly stage(s), compact centered PBC group
+INFO:    Mounting image with FUSE.
+fusermount3: option allow_other only allowed if 'user_allow_other' is set in /etc/fuse.conf
+WARNING: squashfuse mount failed, falling back to extraction: encountered error while trying to mount image "/tmp/jsequeira-cphmd-preflight-2147469.IJyS0L/bootstrap.sif" with FUSE at /tmp/jsequeira-cphmd-preflight-2147469.IJyS0L/rootfs/rootfs-2703627921/root: exit status 1
+INFO:    Converting SIF file to temporary sandbox...
+uid=0(root) gid=0(root) groups=0(root)
+INFO:    Cleaning up image...
+WARNING: Unable to get key server client configuration: error making request to server: Get "https://cloud.sylabs.io/assets/config/config.prod.json": dial tcp: lookup cloud.sylabs.io on 10.1.0.20:53: no such host
+INFO:    Starting build...
+INFO:    Verifying bootstrap image /tmp/jsequeira-cphmd-preflight-2147469.IJyS0L/bootstrap.sif
+WARNING: integrity: signature not found for object group 1
+WARNING: Bootstrap image could not be verified, but build will continue.
+INFO:    Extracting local image...
+INFO:    Inserting Singularity configuration...
+INFO:    Running post scriptlet
++ id -u
++ test 0 -eq 0
+INFO:    Creating SIF file...
+INFO:    Build complete: /tmp/jsequeira-cphmd-preflight-2147469.IJyS0L/fakeroot-probe.sif
+60e22f5f99e195bbb24f060994dc627d980f32d9d07c6c07b5f229e44b24ae62  /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/preflight-2147469/fakeroot-probe.sif
+PASS: native fixgro, existing ARM PETIT, and project-backed fakeroot build

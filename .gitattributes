@@ -1,0 +1,2 @@
+# Preserve raw scientific/build evidence, including fixed-width output and CRs.
+docs/aarch64/evidence/** -whitespace
