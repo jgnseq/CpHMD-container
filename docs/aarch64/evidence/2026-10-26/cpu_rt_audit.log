@@ -1,0 +1,94 @@
+Reduced-titration audit
+=======================
+Run directory          : /home/jsequeira/mini05/Projects/side/06_CpHMD-container/02_CpH-reduced-ASICs/CpHMD-container/tests/gpu-output-contract/runs/pH7.4-R1-CPU-RT-v6-20260724_120116
+System name            : ASIC1a-Membrane-CPU-RT-v6-test
+RT debug file          : log-files/ASIC1a-Membrane-CPU-RT-v6-test_RT-debug.pocc_RT
+RT history file        : ASIC1a-Membrane-CPU-RT-v6-test_RT-sites.dat
+All-site file          : ASIC1a-Membrane-CPU-RT-v6-test-all.sites
+Persistent active file : restart/ASIC1a-Membrane-CPU-RT-v6-test_CpHrun.RT-active.sites
+Checkpoint file        : resub_maint/checkpoint.state
+RTThreshold            : 0.01
+Fixed-state cutoff     : 0.99
+Audit scope            : all available debug cycles
+Decision rule          : retain if max_state_probability <= 1 - RTThreshold
+                         fix if max_state_probability  > 1 - RTThreshold
+Termini rule           : NTR/CTR sites are always retained
+History interpretation : snapshots absent from debug are context, not failures
+Note                   : mocc is reported but not used for the decision
+
+Available state
+---------------
+All-site count              : 93
+Full-refresh snapshots      : 2
+Debug cycles in file        : 7
+Debug cycles in audit scope : 7
+Persistent active count     : 39
+Checkpoint active count     : 39
+Checkpoint last full cycle  : 6
+
+RT-history structural consistency
+---------------------------------
+Cycle 1: 44 active sites; outside all-site definition: 0
+Cycle 6: 39 active sites; outside all-site definition: 0
+
+Persistent active-state consistency
+-----------------------------------
+Latest recorded full refresh : cycle 6
+Recorded active sites        : 39
+Persistent active sites      : 39
+Missing from persistent file : 0
+Unexpected persistent sites  : 0
+
+Debug section sizes
+-------------------
+Cycle    1:   93 residues (full refresh)
+Cycle    2:   44 residues (reduced)
+Cycle    3:   44 residues (reduced)
+Cycle    4:   44 residues (reduced)
+Cycle    5:   44 residues (reduced)
+Cycle    6:   93 residues (full refresh)
+Cycle    7:   39 residues (reduced)
+
+Full-refresh decision audit
+---------------------------
+Cycle 1
+  All-site definitions     : 93
+  Debug residues analysed  : 93
+  Missing from debug       : 0
+  Unexpected in debug      : 0
+  Predicted retained       : 44
+  Predicted fixed          : 49
+  Recorded retained        : 44
+  Missing from RT history  : 0
+  Unexpected in RT history : 0
+
+Cycle 6
+  All-site definitions     : 93
+  Debug residues analysed  : 93
+  Missing from debug       : 0
+  Unexpected in debug      : 0
+  Predicted retained       : 39
+  Predicted fixed          : 54
+  Recorded retained        : 39
+  Missing from RT history  : 0
+  Unexpected in RT history : 0
+
+Reduced-cycle active-set continuity
+-----------------------------------
+Cycle 2: expected 44 sites from full refresh cycle 1; observed 44
+  Missing active sites    : 0
+  Unexpected active sites : 0
+Cycle 3: expected 44 sites from full refresh cycle 1; observed 44
+  Missing active sites    : 0
+  Unexpected active sites : 0
+Cycle 4: expected 44 sites from full refresh cycle 1; observed 44
+  Missing active sites    : 0
+  Unexpected active sites : 0
+Cycle 5: expected 44 sites from full refresh cycle 1; observed 44
+  Missing active sites    : 0
+  Unexpected active sites : 0
+Cycle 7: expected 39 sites from full refresh cycle 6; observed 39
+  Missing active sites    : 0
+  Unexpected active sites : 0
+
+PASS: available full-refresh decisions, reduced-cycle active sets, and persistent RT restart state are mutually consistent.

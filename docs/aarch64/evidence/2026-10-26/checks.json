@@ -1,0 +1,96 @@
+[
+  {
+    "name": "static",
+    "command": [
+      "bash",
+      "tests/static_checks.sh"
+    ],
+    "exit_code": 0,
+    "tail": [
+      "==> Running shellcheck, if available",
+      "    shellcheck not installed; skipping advisory shellcheck step.",
+      "",
+      "==> Static checks completed successfully."
+    ]
+  },
+  {
+    "name": "databases",
+    "command": [
+      "bash",
+      "tests/check_databases.sh"
+    ],
+    "exit_code": 0,
+    "tail": [
+      "    Databases/DataBaseT_Amber14SBpH.crg: no duplicate data lines detected.",
+      "    Databases/DataBaseT_Amber14SBpH.siz: no duplicate data lines detected.",
+      "",
+      "==> Database checks completed successfully."
+    ]
+  },
+  {
+    "name": "reduced_titration",
+    "command": [
+      "bash",
+      "tests/check_reduced_titration_logic.sh"
+    ],
+    "exit_code": 0,
+    "tail": [
+      "==> Testing full-refresh scheduling behavior",
+      "    PASS: full-refresh helper selects the expected cycles",
+      "",
+      "==> Reduced titration logic checks completed successfully."
+    ]
+  },
+  {
+    "name": "asic",
+    "command": [
+      "bash",
+      "tests/check_asic_settings.sh"
+    ],
+    "exit_code": 0,
+    "tail": [
+      "==> Checking backwards-compatible defaults",
+      "    Backwards-compatible defaults look OK.",
+      "",
+      "==> ASIC-support checks completed successfully."
+    ]
+  },
+  {
+    "name": "cpu_rt_audit",
+    "command": [
+      "python3",
+      "tests/gpu-output-contract/tools/07.2_audit_reduced_titration.py",
+      "--run-dir",
+      "/home/jsequeira/mini05/Projects/side/06_CpHMD-container/02_CpH-reduced-ASICs/CpHMD-container/tests/gpu-output-contract/runs/pH7.4-R1-CPU-RT-v6-20260724_120116",
+      "--sys-name",
+      "ASIC1a-Membrane-CPU-RT-v6-test"
+    ],
+    "exit_code": 0,
+    "tail": [
+      "  Missing active sites    : 0",
+      "  Unexpected active sites : 0",
+      "",
+      "PASS: available full-refresh decisions, reduced-cycle active sets, and persistent RT restart state are mutually consistent."
+    ]
+  },
+  {
+    "name": "gpu_restart_rt_audit",
+    "command": [
+      "python3",
+      "tests/gpu-output-contract/tools/07.2_audit_reduced_titration.py",
+      "--run-dir",
+      "/home/jsequeira/mini05/Projects/side/06_CpHMD-container/02_CpH-reduced-ASICs/CpHMD-container/tests/gpu-output-contract/runs/pH7.4-R1-GPUH-RT-v6-restart-20260724_115545",
+      "--sys-name",
+      "ASIC1a-Membrane-GPUH-RT-v6-test",
+      "--from-cycle",
+      "13"
+    ],
+    "exit_code": 0,
+    "tail": [
+      "  Missing active sites    : 0",
+      "  Unexpected active sites : 0",
+      "",
+      "PASS: available full-refresh decisions, reduced-cycle active sets, and persistent RT restart state are mutually consistent."
+    ]
+  }
+]

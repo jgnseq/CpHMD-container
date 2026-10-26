@@ -1,0 +1,20 @@
+==> Running static checks from: /home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container
+
+==> Checking repository layout
+    Repository layout looks OK.
+
+==> Checking executable permissions
+    Executable permissions look OK.
+
+==> Running bash syntax checks
+    bash -n CpHMD/scripts/CpHMD.sh
+    bash -n CpHMD/scripts/functions.sh
+    skipping bash -n for non-shell executable: CpHMD/scripts/fixgro
+    bash -n CpHMD/scripts/make_sites
+    skipping bash -n for non-shell executable: CpHMD/scripts/update-top
+    Bash syntax checks passed.
+
+==> Running shellcheck, if available
+    shellcheck not installed; skipping advisory shellcheck step.
+
+==> Static checks completed successfully.
