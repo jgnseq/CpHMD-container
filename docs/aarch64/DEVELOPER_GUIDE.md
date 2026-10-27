@@ -102,6 +102,16 @@ Complete image smoke checks still do not establish fixed-coordinate PB/MC
 agreement, RT reconstruction, restart continuity or end-to-end throughput.
 Those are the subsequent gates in the build/validation guide.
 
+The agreed HEWL scientific test campaign is described in
+[HEWL_4LZT_VALIDATION.md](HEWL_4LZT_VALIDATION.md). Its first-stage script,
+`tests/arm64/prepare_hewl_structure.py`, pins and cleans the deposited structure
+before CpHMD residue mapping/topology generation: `residue_key` preserves chain
+and insertion identity, `atom_signature` compares coordinates to old inputs,
+`clean_protein` resolves residue alternates and checks completeness, and `main`
+writes a new PDB plus provenance audit. `tests/check_hewl_structure.sh` exercises
+the real pinned fixture, alternate selection, S–S geometry and failure guards.
+This preprocessing happens before any PB/MC/MD cycle or scheduler submission.
+
 ## Commenting and maintenance convention
 
 For each new or changed project-owned file, keep a short header explaining its

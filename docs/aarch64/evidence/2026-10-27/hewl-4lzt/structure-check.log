@@ -1,0 +1,7 @@
+Prepared 1001 heavy atoms in 129 residues; four disulfides preserved
+Topology generation and scientific validation have not run.
+PASS: deposited CYS 6–127 S–S distance 2.042 Å
+PASS: deposited CYS 30–115 S–S distance 2.028 Å
+PASS: deposited CYS 64–80 S–S distance 2.024 Å
+PASS: deposited CYS 76–94 S–S distance 2.024 Å
+PASS: HEWL fixture geometry, provenance and overwrite safeguards

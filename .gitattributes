@@ -1,2 +1,4 @@
 # Preserve raw scientific/build evidence, including fixed-width output and CRs.
 docs/aarch64/evidence/** -whitespace
+# Keep the downloaded fixed-column PDB byte-for-byte for provenance hashing.
+tests/fixtures/hewl-4lzt/source/*.pdb -whitespace

@@ -36,3 +36,6 @@ jobs:
 
       - name: Check GROMACS test build gate
         run: bash tests/check_gromacs_test_gate.sh
+
+      - name: Check HEWL structural preparation
+        run: bash tests/check_hewl_structure.sh
