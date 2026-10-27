@@ -1,0 +1,613 @@
+{
+  "status": "TOPOLOGY_AND_SITE_IDENTITY_PASSED",
+  "atom_count": 2004,
+  "residue_count": 129,
+  "residue_name_counts": {
+    "LY3": 6,
+    "VAL": 6,
+    "PHE": 3,
+    "GLY": 12,
+    "ARG": 11,
+    "CYS": 8,
+    "GL4": 2,
+    "LEU": 8,
+    "ALA": 12,
+    "MET": 2,
+    "HI2": 1,
+    "AS4": 7,
+    "ASN": 14,
+    "TY0": 3,
+    "SER": 10,
+    "TRP": 6,
+    "THR": 7,
+    "GLN": 3,
+    "ILE": 6,
+    "PRO": 2
+  },
+  "disulfide_pairs": [
+    [
+      6,
+      127
+    ],
+    [
+      30,
+      115
+    ],
+    [
+      64,
+      80
+    ],
+    [
+      76,
+      94
+    ]
+  ],
+  "peptide_bonds_verified": 128,
+  "disulfide_residue_label": "CYS",
+  "disulfide_rtp_block": "CYX",
+  "initial_charge_e": 9.0,
+  "site_count": 21,
+  "sites": [
+    {
+      "residue_number": 1,
+      "family": "LYS",
+      "tautomers": [
+        "LYStau1",
+        "LYStau2",
+        "LYStau3"
+      ],
+      "atom_names": [
+        "CB",
+        "CD",
+        "CE",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD1",
+        "HD2",
+        "HE1",
+        "HE2",
+        "HG1",
+        "HG2",
+        "HZ1",
+        "HZ2",
+        "HZ3",
+        "NZ"
+      ],
+      "initial_state": "protonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 1,
+      "family": "NTR",
+      "tautomers": [
+        "NTRtau1",
+        "NTRtau2",
+        "NTRtau3"
+      ],
+      "atom_names": [
+        "C",
+        "CA",
+        "H1",
+        "H2",
+        "H3",
+        "HA",
+        "N",
+        "O"
+      ],
+      "initial_state": "protonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 7,
+      "family": "GLU",
+      "tautomers": [
+        "GLUtau1",
+        "GLUtau2",
+        "GLUtau3",
+        "GLUtau4"
+      ],
+      "atom_names": [
+        "CB",
+        "CD",
+        "CG",
+        "HB1",
+        "HB2",
+        "HE11",
+        "HE12",
+        "HE21",
+        "HE22",
+        "HG1",
+        "HG2",
+        "OE1",
+        "OE2"
+      ],
+      "initial_state": "deprotonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 13,
+      "family": "LYS",
+      "tautomers": [
+        "LYStau1",
+        "LYStau2",
+        "LYStau3"
+      ],
+      "atom_names": [
+        "CB",
+        "CD",
+        "CE",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD1",
+        "HD2",
+        "HE1",
+        "HE2",
+        "HG1",
+        "HG2",
+        "HZ1",
+        "HZ2",
+        "HZ3",
+        "NZ"
+      ],
+      "initial_state": "protonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 15,
+      "family": "HIS",
+      "tautomers": [
+        "HIStau1",
+        "HIStau2"
+      ],
+      "atom_names": [
+        "CB",
+        "CD2",
+        "CE1",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD1",
+        "HD2",
+        "HE1",
+        "HE2",
+        "ND1",
+        "NE2"
+      ],
+      "initial_state": "protonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 18,
+      "family": "ASP",
+      "tautomers": [
+        "ASPtau1",
+        "ASPtau2",
+        "ASPtau3",
+        "ASPtau4"
+      ],
+      "atom_names": [
+        "CB",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD11",
+        "HD12",
+        "HD21",
+        "HD22",
+        "OD1",
+        "OD2"
+      ],
+      "initial_state": "deprotonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 20,
+      "family": "TYR",
+      "tautomers": [
+        "TYRtau1",
+        "TYRtau2"
+      ],
+      "atom_names": [
+        "CB",
+        "CD1",
+        "CD2",
+        "CE1",
+        "CE2",
+        "CG",
+        "CZ",
+        "HB1",
+        "HB2",
+        "HD1",
+        "HD2",
+        "HE1",
+        "HE2",
+        "HH1",
+        "HH2",
+        "OH"
+      ],
+      "initial_state": "protonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 23,
+      "family": "TYR",
+      "tautomers": [
+        "TYRtau1",
+        "TYRtau2"
+      ],
+      "atom_names": [
+        "CB",
+        "CD1",
+        "CD2",
+        "CE1",
+        "CE2",
+        "CG",
+        "CZ",
+        "HB1",
+        "HB2",
+        "HD1",
+        "HD2",
+        "HE1",
+        "HE2",
+        "HH1",
+        "HH2",
+        "OH"
+      ],
+      "initial_state": "protonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 33,
+      "family": "LYS",
+      "tautomers": [
+        "LYStau1",
+        "LYStau2",
+        "LYStau3"
+      ],
+      "atom_names": [
+        "CB",
+        "CD",
+        "CE",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD1",
+        "HD2",
+        "HE1",
+        "HE2",
+        "HG1",
+        "HG2",
+        "HZ1",
+        "HZ2",
+        "HZ3",
+        "NZ"
+      ],
+      "initial_state": "protonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 35,
+      "family": "GLU",
+      "tautomers": [
+        "GLUtau1",
+        "GLUtau2",
+        "GLUtau3",
+        "GLUtau4"
+      ],
+      "atom_names": [
+        "CB",
+        "CD",
+        "CG",
+        "HB1",
+        "HB2",
+        "HE11",
+        "HE12",
+        "HE21",
+        "HE22",
+        "HG1",
+        "HG2",
+        "OE1",
+        "OE2"
+      ],
+      "initial_state": "deprotonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 48,
+      "family": "ASP",
+      "tautomers": [
+        "ASPtau1",
+        "ASPtau2",
+        "ASPtau3",
+        "ASPtau4"
+      ],
+      "atom_names": [
+        "CB",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD11",
+        "HD12",
+        "HD21",
+        "HD22",
+        "OD1",
+        "OD2"
+      ],
+      "initial_state": "deprotonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 52,
+      "family": "ASP",
+      "tautomers": [
+        "ASPtau1",
+        "ASPtau2",
+        "ASPtau3",
+        "ASPtau4"
+      ],
+      "atom_names": [
+        "CB",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD11",
+        "HD12",
+        "HD21",
+        "HD22",
+        "OD1",
+        "OD2"
+      ],
+      "initial_state": "deprotonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 53,
+      "family": "TYR",
+      "tautomers": [
+        "TYRtau1",
+        "TYRtau2"
+      ],
+      "atom_names": [
+        "CB",
+        "CD1",
+        "CD2",
+        "CE1",
+        "CE2",
+        "CG",
+        "CZ",
+        "HB1",
+        "HB2",
+        "HD1",
+        "HD2",
+        "HE1",
+        "HE2",
+        "HH1",
+        "HH2",
+        "OH"
+      ],
+      "initial_state": "protonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 66,
+      "family": "ASP",
+      "tautomers": [
+        "ASPtau1",
+        "ASPtau2",
+        "ASPtau3",
+        "ASPtau4"
+      ],
+      "atom_names": [
+        "CB",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD11",
+        "HD12",
+        "HD21",
+        "HD22",
+        "OD1",
+        "OD2"
+      ],
+      "initial_state": "deprotonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 87,
+      "family": "ASP",
+      "tautomers": [
+        "ASPtau1",
+        "ASPtau2",
+        "ASPtau3",
+        "ASPtau4"
+      ],
+      "atom_names": [
+        "CB",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD11",
+        "HD12",
+        "HD21",
+        "HD22",
+        "OD1",
+        "OD2"
+      ],
+      "initial_state": "deprotonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 96,
+      "family": "LYS",
+      "tautomers": [
+        "LYStau1",
+        "LYStau2",
+        "LYStau3"
+      ],
+      "atom_names": [
+        "CB",
+        "CD",
+        "CE",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD1",
+        "HD2",
+        "HE1",
+        "HE2",
+        "HG1",
+        "HG2",
+        "HZ1",
+        "HZ2",
+        "HZ3",
+        "NZ"
+      ],
+      "initial_state": "protonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 97,
+      "family": "LYS",
+      "tautomers": [
+        "LYStau1",
+        "LYStau2",
+        "LYStau3"
+      ],
+      "atom_names": [
+        "CB",
+        "CD",
+        "CE",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD1",
+        "HD2",
+        "HE1",
+        "HE2",
+        "HG1",
+        "HG2",
+        "HZ1",
+        "HZ2",
+        "HZ3",
+        "NZ"
+      ],
+      "initial_state": "protonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 101,
+      "family": "ASP",
+      "tautomers": [
+        "ASPtau1",
+        "ASPtau2",
+        "ASPtau3",
+        "ASPtau4"
+      ],
+      "atom_names": [
+        "CB",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD11",
+        "HD12",
+        "HD21",
+        "HD22",
+        "OD1",
+        "OD2"
+      ],
+      "initial_state": "deprotonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 116,
+      "family": "LYS",
+      "tautomers": [
+        "LYStau1",
+        "LYStau2",
+        "LYStau3"
+      ],
+      "atom_names": [
+        "CB",
+        "CD",
+        "CE",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD1",
+        "HD2",
+        "HE1",
+        "HE2",
+        "HG1",
+        "HG2",
+        "HZ1",
+        "HZ2",
+        "HZ3",
+        "NZ"
+      ],
+      "initial_state": "protonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 119,
+      "family": "ASP",
+      "tautomers": [
+        "ASPtau1",
+        "ASPtau2",
+        "ASPtau3",
+        "ASPtau4"
+      ],
+      "atom_names": [
+        "CB",
+        "CG",
+        "HB1",
+        "HB2",
+        "HD11",
+        "HD12",
+        "HD21",
+        "HD22",
+        "OD1",
+        "OD2"
+      ],
+      "initial_state": "deprotonated",
+      "best_st_charge_error": 0.0
+    },
+    {
+      "residue_number": 129,
+      "family": "CTR",
+      "tautomers": [
+        "CTRtau1",
+        "CTRtau2",
+        "CTRtau3",
+        "CTRtau4"
+      ],
+      "atom_names": [
+        "C",
+        "CA",
+        "H",
+        "HA",
+        "HC11",
+        "HC12",
+        "HC21",
+        "HC22",
+        "N",
+        "OC1",
+        "OC2"
+      ],
+      "initial_state": "deprotonated",
+      "best_st_charge_error": 0.0
+    }
+  ],
+  "source_file_sha256": {
+    "HEWL.top": "6ec1a9768fd9e4923e440b70253110305175468a159b8b129a8d17a750de18f4",
+    "HEWL.gro": "eb844772c136db8769d0d04ede8bf346124bcd7f7f8a26f9a57f929f1f1f3b23",
+    "HEWL-all.sites": "078de7e42b45452a74d121b9b495f09d1c94ba41d90b951adf7439a28b61c08a",
+    "TMP_CpHMD_charge.top": "f6482982428cd5c29d9d686064b6e0e15a2537b0ee186d07d7d3a5d71ff05e9f"
+  },
+  "pending": [
+    "solvation/ions and equilibration",
+    "fixed-coordinate PB/MC comparison",
+    "CpHMD/RT/batch restart validation"
+  ]
+}

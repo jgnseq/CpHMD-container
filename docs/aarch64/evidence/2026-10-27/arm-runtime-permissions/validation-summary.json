@@ -1,0 +1,15 @@
+{
+  "job": 2148618,
+  "state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed": "00:00:27",
+  "parent_image_sha256": "7393d585ad790e1d53089d9199cf11bdbb6b9cbea1016d16b979b3999fb24343",
+  "derived_image_sha256": "d153f31722e76f167080485942074633ce9e3d7abc51dfa97827f790947880ba",
+  "runtime_file_contents_verified_unchanged": 1764,
+  "ordinary_user_uid": 30597,
+  "ordinary_user_runtime_smoke": "passed",
+  "off_cluster_copy_verified": "/home/jsequeira/Documents/ChatGPT/CpHMD Container \u2014 ARM64 & Publication/artifacts/arm64/CpHMD-arm64-readable-2148618.sif",
+  "new_source_commit": "5c2c4c7e87d854e432f59417971bb0991a080f19",
+  "source_changes_uncommitted": true,
+  "scope": "ARM delivery permission fix only; no canonical terminal/force-field fixes"
+}

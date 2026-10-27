@@ -1,0 +1,56 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/topology
+Command line:
+  gmx grompp -f topology-check.mdp -c HEWL-check-box.gro -p HEWL.top -o HEWL-check.tpr -pp HEWL-processed.top -po topology-check-out.mdp -maxwarn 0
+
+
+NOTE 1 [file topology-check.mdp]:
+  For a correct single-point energy evaluation with nsteps = 0, use
+  continuation = yes to avoid constraining the input coordinates.
+
+Generating 1-4 interactions: fudge = 0.5
+
+NOTE 2 [file HEWL.top, line 18768]:
+  System has non-zero total charge: 9.000000
+  Total charge should normally be an integer. See
+  https://manual.gromacs.org/current/user-guide/floating-point.html
+  for discussion on how close it should be to an integer.
+
+
+
+
+NOTE 3 [file HEWL.top, line 18768]:
+  Zero-step energy minimization will alter the coordinates before
+  calculating the energy. If you just want the energy of a single point,
+  try zero-step MD (with unconstrained_start = yes). To do multiple
+  single-point energy evaluations of different configurations of the same
+  topology, use mdrun -rerun.
+
+Number of degrees of freedom in T-Coupling group rest is 6009.00
+The integrator does not provide a ensemble temperature, there is no system ensemble temperature
+
+NOTE 4 [file topology-check.mdp]:
+  You are using a plain Coulomb cut-off, which might produce artifacts.
+  You might want to consider using PME electrostatics.
+
+
+
+There were 4 NOTEs
+
+GROMACS reminds you: "Enthusiasm is the mother of effort, and without it nothing great was ever achieved." (Ralph Waldo Emerson)
+
+Setting the LD random seed to -553746564
+
+Generated 4278 of the 4278 non-bonded parameter combinations
+
+Generated 4278 of the 4278 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'Protein_chain_A'
+Analysing residue names:
+There are:   129    Protein residues
+Analysing Protein...
+
+This run will generate roughly 0 Mb of data

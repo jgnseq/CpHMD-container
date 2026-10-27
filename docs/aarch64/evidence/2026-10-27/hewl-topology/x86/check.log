@@ -1,0 +1,6 @@
+Prepared 1001 heavy atoms in 129 residues; four disulfides preserved
+Topology generation and scientific validation have not run.
+Prepared CLEU hydrogen construction; existing RTP/force parameters unchanged
+PASS: selected CpH_NH3+ and None (existing CLEU) by live menu names
+PASS: 2004 atoms, four disulfides, 21 independent sites and matching ST charges; initial charge +9 e
+TOPOLOGY_AND_SITE_CHECKS_PASSED

@@ -1,0 +1,6 @@
+cna0002.deucalion.macc.fccn.pt
+2026-10-27T02:04:44+00:00
+PASS: frozen preparation source hashes
+/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/builds/31ca50688bc0158e44263a78c2b6d9c4ae438d0d-ARM_SVE-20261027T004036Z/CpHMD-arm64.sif: OK
+Prepared 1001 heavy atoms in 129 residues; four disulfides preserved
+Topology generation and scientific validation have not run.

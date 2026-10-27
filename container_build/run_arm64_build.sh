@@ -89,8 +89,13 @@ cd "$scratch/launch"
 sha256sum --quiet -c manifest.sha256
 "$runtime" build --disable-cache --fakeroot --bind "$scratch/artifacts:/build-evidence" \
     "$scratch/CpHMD-arm64.partial.sif" "$scratch/launch/executed.def"
-# Embedded %test already ran dependency/PETIT/helper/MD checks. Preserve output
-# as a candidate only after all build/tests return success.
+# %test ran as fakeroot. Repeat runtime acceptance as the ordinary account,
+# with project-backed temporary simulation files, before publishing the image.
+mkdir "$out/runtime-tmp"
+"$runtime" exec --cleanenv --bind "$out:/validation" --pwd /validation \
+    --env TMPDIR=/validation/runtime-tmp "$scratch/CpHMD-arm64.partial.sif" \
+    bash /validation/context/container_build/arm64/check-unprivileged-runtime.sh \
+    2>&1 | tee "$out/unprivileged-runtime.log"
 cp "$scratch/CpHMD-arm64.partial.sif" "$out/CpHMD-arm64.partial.sif"
 mv "$out/CpHMD-arm64.partial.sif" "$out/CpHMD-arm64.sif"
 "$runtime" inspect --json "$out/CpHMD-arm64.sif" > "$out/image-inspect.json"

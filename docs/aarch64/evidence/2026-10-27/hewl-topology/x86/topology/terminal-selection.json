@@ -1,0 +1,36 @@
+{
+  "command": [
+    "/gromacs/bin/gmx",
+    "pdb2gmx",
+    "-f",
+    "protein_CpHMD.pdb",
+    "-o",
+    "HEWL.gro",
+    "-p",
+    "HEWL.top",
+    "-i",
+    "posre.itp",
+    "-ff",
+    "Amber14SBpH",
+    "-water",
+    "tip3p",
+    "-ter",
+    "-ignh",
+    "-merge",
+    "all"
+  ],
+  "selections": [
+    {
+      "end": "start",
+      "residue": "LY3-1",
+      "patch": "CpH_NH3+",
+      "menu_index": 3
+    },
+    {
+      "end": "end",
+      "residue": "LEU-129",
+      "patch": "None",
+      "menu_index": 5
+    }
+  ]
+}

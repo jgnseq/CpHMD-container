@@ -6,7 +6,38 @@ The [developer guide](DEVELOPER_GUIDE.md) maps each build/validation file and
 function to its caller, outputs and place in the scientific cycle. Follow its
 commenting convention for future project-owned changes.
 
-## Current step: scientific validation after successful job 2147983
+## Current ARM image: ordinary-user acceptance after permission repair
+
+Native preparation job 2148556 showed that the original SIF's `/analysis` and
+other copied source trees retained project-only access modes. Embedded `%test`
+had run as fakeroot, so build success did not prove ordinary-user usability.
+
+Job **2148618** derived a permission-normalized SIF without recompiling. It
+verified **1,764 runtime files byte-identical** before/after and passed native
+ordinary-user dependency/PETIT/fixgro/MD/PLUMED checks as UID 30597 (not root).
+The original SIF remains preserved. The current usable candidate is:
+
+```text
+/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/runtime-permissions/repair.G02c6n/CpHMD-arm64-readable.sif
+SHA-256: d153f31722e76f167080485942074633ce9e3d7abc51dfa97827f790947880ba
+```
+
+A matching off-cluster copy is saved outside the Git checkout at
+`../artifacts/arm64/CpHMD-arm64-readable-2148618.sif`. Its checksum was verified.
+Runtime permission normalization and a mandatory ordinary-user post-build check
+are now in the full-build path as well. Logs are in
+`evidence/2026-10-27/arm-runtime-permissions/`.
+
+HEWL topology/site verification subsequently passed on native ARM in job
+**2148669**, with matching parsed x86/ARM topology data and 21 sites; see
+[HEWL_TOPOLOGY_2026-10-27.md](HEWL_TOPOLOGY_2026-10-27.md). Scientific PB/MC,
+complete CpHMD/RT and restart validation remain pending.
+
+ARM access ends **31 October 2026**. General terminal/preparation issues are
+documented in [DEFERRED_ISSUES.md](DEFERRED_ISSUES.md) and deferred at the user's
+request. The immediate priorities are ARM scientific gates and verified exports.
+
+## Original native compilation and embedded tests: job 2147983
 
 The native build and embedded smoke gates passed on 27 October 2026. Job
 `2147983` finished `COMPLETED`, exit `0:0`, in `00:41:35`, from source commit
@@ -35,7 +66,8 @@ Its SHA-256 was independently checked against the saved checksum file:
 
 Logs, test output, recipe, manifest and provenance are copied into
 `evidence/2026-10-27/build-2147983/`; the image remains in project storage.
-Retain this exact SIF for the next scientific gates rather than rebuilding it.
+Retain the original for provenance; use the permission-normalized derivative
+above for ordinary-user scientific execution.
 
 The next step is to freeze a small input system and compare fixed-coordinate
 PB/MC results with the x86 reference, with units/tolerances established before
@@ -153,7 +185,7 @@ Deucalion's project directory requires supplementary-group access, which fakeroo
 - The ordinary host process stages inputs and copies artifacts/results back after fakeroot returns. The local-image build uses `--disable-cache`; no compiler downloads or OCI downloads occur in the fakeroot build.
 - The project ACLs and production directories are unchanged. Failed temporary build work is not destructively cleaned by the launcher.
 
-## 1. Record the successful build milestone locally
+## 1. Record ARM runtime access and HEWL topology validation locally
 
 Run in the local desktop terminal, not on Deucalion:
 
@@ -162,11 +194,11 @@ cd '/home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/Cp
 git status --short --branch
 git diff --check
 
-git add -- docs/aarch64/BUILD_AND_VALIDATE.md docs/aarch64/evidence/2026-10-27/build-2147983
+git add -- container_build/arm64 container_build/run_arm64_build.sh container_build/slurm/repair-arm64-permissions.slurm container_build/slurm/hewl-topology.slurm tests/arm64 tests/check_hewl_topology.py docs/aarch64
 git diff --cached --check
 git diff --cached --stat
-git diff --cached -- docs/aarch64/BUILD_AND_VALIDATE.md docs/aarch64/evidence/2026-10-27/build-2147983/validation-summary.json
-git commit -m 'Record successful native ARM build and smoke validation'
+git diff --cached -- container_build tests/arm64 tests/check_hewl_topology.py docs/aarch64/DEFERRED_ISSUES.md docs/aarch64/HEWL_TOPOLOGY_2026-10-27.md
+git commit -m 'Validate ordinary-user ARM runtime and HEWL topology; record deferred issues'
 git push origin codex/arm64-deucalion-20261026
 ```
 

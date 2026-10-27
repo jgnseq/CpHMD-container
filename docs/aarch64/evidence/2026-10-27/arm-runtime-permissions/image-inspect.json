@@ -1,0 +1,27 @@
+{
+	"data": {
+		"attributes": {
+			"labels": {
+				"architecture": "arm64",
+				"base.sha256": "6d1ddca5ce97f686cff36990a9696a2d311a73dc3581d97f30bc9fe1b73d08d6",
+				"cphmd.permission-repair-of": "7393d585ad790e1d53089d9199cf11bdbb6b9cbea1016d16b979b3999fb24343",
+				"gromacs": "2026.3",
+				"org.label-schema.build-arch": "arm64",
+				"org.label-schema.build-date": "Tuesday_27_October_2026_2:13:54_WET",
+				"org.label-schema.schema-version": "1.0",
+				"org.label-schema.usage": "/.singularity.d/runscript.help",
+				"org.label-schema.usage.singularity.deffile.bootstrap": "localimage",
+				"org.label-schema.usage.singularity.deffile.from": "/tmp/jsequeira-cphmd-access-2148618.90aOXH/bootstrap.sif",
+				"org.label-schema.usage.singularity.deffile.stage": "Base-build",
+				"org.label-schema.usage.singularity.runscript.help": "/.singularity.d/runscript.help",
+				"org.label-schema.usage.singularity.version": "4.3.2-1.el8",
+				"org.opencontainers.image.title": "CpHMD ARM development candidate",
+				"org.opencontainers.image.version": "24.04",
+				"simd": "ARM_SVE",
+				"source.manifest.sha256": "3ad6398344519e58048247e912401664aad86a20f107fcbeb01d66b5ed1890a0",
+				"validation.status": "development-candidate-not-scientifically-validated"
+			}
+		}
+	},
+	"type": "container"
+}

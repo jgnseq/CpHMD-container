@@ -1,0 +1,14 @@
+Bootstrap: localimage
+From: /tmp/jsequeira-cphmd-access-2148618.90aOXH/bootstrap.sif
+
+%labels
+    cphmd.permission-repair-of 7393d585ad790e1d53089d9199cf11bdbb6b9cbea1016d16b979b3999fb24343
+    validation.status ordinary-user-runtime-validation-pending
+
+%files
+    /tmp/jsequeira-cphmd-access-2148618.90aOXH/normalize.py /opt/cphmd-normalize-runtime-permissions.py
+
+%post
+    python3 /opt/cphmd-normalize-runtime-permissions.py
+    cp /usr/share/cphmd/build/runtime-permissions.json /build-evidence/
+    rm /opt/cphmd-normalize-runtime-permissions.py

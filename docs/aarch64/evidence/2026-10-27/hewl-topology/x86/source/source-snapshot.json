@@ -1,0 +1,13 @@
+{
+  "source_commit": "5c2c4c7e87d854e432f59417971bb0991a080f19",
+  "source_dirty": true,
+  "note": "Uncommitted topology tools frozen explicitly for validation before user review/commit",
+  "files": {
+    "tests/arm64/prepare_hewl_structure.py": "213da973809c3878aa215e7b0a5bf8070c304b4b03d83e1e9e068261f13bb873",
+    "tests/arm64/prepare_hewl_topology.sh": "873327a4c8fdb91d864991cbf121bc9b1710958d634041af289384e4635661a5",
+    "tests/arm64/pdb2gmx_termini.py": "c42d86e625c590954226de566646abd4291ab22ff32697437c97ae46c8a5b117",
+    "tests/arm64/check_hewl_topology.py": "7fa05b08877370c1a15359e53a1c325e5246665737d181a753b28078b7bdb7df",
+    "tests/arm64/complete_amber_cleu_hdb.py": "cfcd7856f5f63d331125136cce67ecebc3879d03e03cf86273eb0b25241e7dba",
+    "tests/fixtures/hewl-4lzt/source/4LZT.pdb": "eec47d81860d9da162f3f8151126af361aba4d4c8055f686dd4cae9d29991941"
+  }
+}

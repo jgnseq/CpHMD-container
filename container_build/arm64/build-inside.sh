@@ -127,7 +127,9 @@ export PATH="/gromacs/bin:/opt/plumed/bin:$PATH"
 export PLUMED_KERNEL=/opt/plumed/lib/libplumedKernel.so
 export LD_LIBRARY_PATH="/opt/nvhpc/lib:/opt/plumed/lib:/opt/plumed/lib64"
 /gromacs/bin/gmx --version > /usr/share/cphmd/build/gromacs-version.txt
-chmod -R a+rX /usr/share/cphmd
+# Imported project modes/ACLs must not make the resulting SIF root-only.
+# Ordinary-user smoke tests run separately after fakeroot image assembly.
+python3 "$src/container_build/arm64/normalize-runtime-permissions.py"
 cd /
 # This cleanup is confined to the disposable image. Installed evidence remains
 # under /usr/share/cphmd/build for the EXIT handler to export to the host.

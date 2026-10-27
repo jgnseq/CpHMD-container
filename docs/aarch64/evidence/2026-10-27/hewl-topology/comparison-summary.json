@@ -1,0 +1,59 @@
+{
+  "native_job": 2148669,
+  "state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed": "00:00:09",
+  "arm_project_directory": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/topology.zfP6K8",
+  "runtime_permission_repair_job": 2148618,
+  "arm_image_sha256": "d153f31722e76f167080485942074633ce9e3d7abc51dfa97827f790947880ba",
+  "arm_and_x86_parsed_topology_identical": true,
+  "arm_and_x86_pb_label_topology_identical": true,
+  "site_files_byte_identical": true,
+  "force_field_parameter_and_st_files_matched": 153,
+  "maximum_gro_coordinate_delta_nm": 0.0,
+  "atom_count": 2004,
+  "site_count": 21,
+  "initial_charge_e": 9.0,
+  "peptide_bonds": 128,
+  "disulfides": [
+    [
+      6,
+      127
+    ],
+    [
+      30,
+      115
+    ],
+    [
+      64,
+      80
+    ],
+    [
+      76,
+      94
+    ]
+  ],
+  "grompp_maxwarn": 0,
+  "scope": "Topology/preprocessing and naming only; no DelPhi/PETIT comparison or CpHMD MD has run",
+  "canonical_preparation_and_force_field_fixes": "deferred at user request; fixture-only HDB construction supplement recorded",
+  "runtime_script_or_binary_hash_differences": {
+    "/CpHMD/scripts/functions.sh": {
+      "x86": "76bffafbd9e1fc984811867f8565f927741b7daad55238eba4ff156111b44de3",
+      "ARM": "3715c887a686e927d9d34c16ed687058dd992399b6b5a48b0bee2e9491788f17"
+    },
+    "Amber14SBpH.ff/scripts/calc_charges.sh": {
+      "x86": "df3cefccf5d0c9f1e005c5ddb640b4893650967402571d418e437ec3d3c2367f",
+      "ARM": "1eb54c9099d68bc9cb9826e40f9d4647f4dfef9c1d20ae0ea65dea4c98223f70"
+    },
+    "Amber14SBpH.ff/scripts/fixgro": {
+      "x86": "0c8d9e0f69e76ec95c005e879e2862cdb1efabaf8fc905018a0cb485ad13e0c8",
+      "ARM": "6fa1c0518dcfb01c0804d182dd14b1952baffb1c3c7f25f8a668dcba24954bf5"
+    },
+    "Amber14SBpH.ff/scripts/functions.sh": {
+      "x86": "8a26e1483af5e63505a67e67d37e0e7c34d06ed31143900c6d4e9ccae13c9e75",
+      "ARM": "ed0b769c5802d864d9a5a205c418dcf519403c9ff34ab4e81ad8208c3f4ea8b1"
+    }
+  },
+  "comparison_limit": "Embedded controller functions differ in provenance and unused FF legacy scripts/binary hashes differ; current topology outputs match. Match science-driving scripts explicitly before PB/MC comparisons.",
+  "off_cluster_image": "artifacts/arm64/CpHMD-arm64-readable-2148618.sif outside the Git checkout"
+}

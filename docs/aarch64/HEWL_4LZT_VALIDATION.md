@@ -47,7 +47,13 @@ from the agreed solution protocol.
 The full audit and regression log are in `evidence/2026-10-27/hewl-4lzt/`.
 No topology, minimization, PB/MC or scientific MD has run in this stage.
 
-## 2. CpHMD topology and solution preparation — next execution stage
+## 2. CpHMD topology verified; solution preparation next
+
+Native job 2148669 and the x86 reference passed the topology/site/charge gates
+below. See [HEWL_TOPOLOGY_2026-10-27.md](HEWL_TOPOLOGY_2026-10-27.md) for the
+actual names, construction supplement, limitations and evidence. Canonical
+terminal/preparation fixes are deferred at the user's request. Solvation/ions
+and minimization/equilibration remain the next execution stage.
 
 1. Freeze the cleaned structure, preparation scripts, image hashes and protocol
    choices in a new test directory. On Deucalion keep persistent and temporary
@@ -98,15 +104,8 @@ same prepared snapshot. Their MD trajectories need not coincide after different
 protonation updates. Cross-architecture PB/MC tolerances also must not be inferred
 from the small stochastic PETIT smoke fixture's 0.02 sampling allowance.
 
-## Record this preparation checkpoint
+## Git checkpoints
 
-```bash
-git diff --check
-bash tests/check_hewl_structure.sh
-git add -- .gitattributes .github/workflows/ci.yml tests/arm64/prepare_hewl_structure.py tests/check_hewl_structure.sh tests/fixtures/hewl-4lzt docs/aarch64/HEWL_4LZT_VALIDATION.md docs/aarch64/DEVELOPER_GUIDE.md docs/aarch64/evidence/2026-10-27/hewl-4lzt
-git diff --cached --check
-git diff --cached --stat
-git diff --cached -- tests/arm64/prepare_hewl_structure.py tests/check_hewl_structure.sh docs/aarch64/HEWL_4LZT_VALIDATION.md
-git commit -m 'Pin 4LZT and document staged HEWL CpHMD validation'
-git push origin codex/arm64-deucalion-20261026
-```
+The initial structural preparation checkpoint is committed as `5c2c4c7`.
+Current review/commit commands for ARM runtime access, topology evidence and
+deferred issues are in section 1 of [BUILD_AND_VALIDATE.md](BUILD_AND_VALIDATE.md).

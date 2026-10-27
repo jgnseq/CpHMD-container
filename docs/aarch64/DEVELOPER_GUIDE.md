@@ -31,6 +31,9 @@ flowchart TD
 | `container_build/arm64/build-inside.sh` | `%post` compilation inside the disposable rootfs. Rebuilds helpers/PETIT/PLUMED/GROMACS; retains audited native DelPhi/runtime. `preserve_build_evidence` exports configure/compiler/test records through the host bind mount on exit. | Installed runtime payload and build evidence. |
 | `container_build/arm64/check-gromacs-build.sh` | Called after main GROMACS compilation. Explicitly builds the selected test executables (excluded from the normal default target), requires the exact five CTest registrations, and runs those suites. | Test compiler log, selected-suite JSON and fatal-on-failure CTest log. Runs before installation or image smoke checks. |
 | `container_build/arm64/validate-arm64.sh` | `%test` native-architecture, shared-library, controller parsing and fixture checks. | Build acceptance only; scientific acceptance remains pending. |
+| `container_build/arm64/normalize-runtime-permissions.py` | Image `%post` only. `digest` streams SHA-256; `normalize` clears inherited ACLs/adds public read/traversal within known runtime trees; `main` checks byte identity and records modes/hashes. | Ordinary-user-accessible runtime with unchanged scientific payload bytes. |
+| `container_build/arm64/check-unprivileged-runtime.sh` | Host launcher invokes this inside the completed image without fakeroot; requires non-root UID, accessible application/data files, then the native validator. | Separate ordinary-user acceptance log, required before publishing the candidate. |
+| `container_build/slurm/repair-arm64-permissions.slurm` | One-off native derivation of the already compiled SIF, followed by ordinary-user runtime tests; no recompilation. | Permission-normalized SIF, parent checksum, byte-identity and runtime evidence. |
 | `container_build/slurm/arm64-preflight.slurm` | Optional short infrastructure probe before compilation: inspect native PETIT, build/test fixgro, exercise a minimal fakeroot SIF. | Project-backed probe image/log, without full engine compilation. |
 | `container_build/build_x86_64_container.sh` | Separate x86 reference/release builder. `usage` documents CLI; `filesystem_type` and `free_gib` check temporary storage; `hash_runtime_sources` records runtime source consistency around assembly. | x86 reference image/evidence, independent of the ARM launcher. |
 
@@ -111,6 +114,12 @@ and insertion identity, `atom_signature` compares coordinates to old inputs,
 writes a new PDB plus provenance audit. `tests/check_hewl_structure.sh` exercises
 the real pinned fixture, alternate selection, S–S geometry and failure guards.
 This preprocessing happens before any PB/MC/MD cycle or scheduler submission.
+
+The actual topology results are in
+[HEWL_TOPOLOGY_2026-10-27.md](HEWL_TOPOLOGY_2026-10-27.md). HEWL menu/terminal
+construction helpers remain provisional fixture tooling; general fixes and CI
+adoption are deferred in [DEFERRED_ISSUES.md](DEFERRED_ISSUES.md). The ARM image
+permission fix is an immediate delivery gate, separate from that deferred work.
 
 ## Commenting and maintenance convention
 

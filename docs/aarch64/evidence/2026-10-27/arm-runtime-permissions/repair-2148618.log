@@ -1,0 +1,229 @@
+cna0002.deucalion.macc.fccn.pt
+2026-10-27T02:13:45+00:00
+/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/builds/31ca50688bc0158e44263a78c2b6d9c4ae438d0d-ARM_SVE-20261027T004036Z/CpHMD-arm64.sif: OK
+799de857597e57ba5ea402308bcd47f27a34f0d09637486fe18834b7a798295f  /tmp/jsequeira-cphmd-access-2148618.90aOXH/normalize.py
+WARNING: Unable to get key server client configuration: error making request to server: Get "https://cloud.sylabs.io/assets/config/config.prod.json": dial tcp: lookup cloud.sylabs.io on 10.1.0.20:53: no such host
+INFO:    Starting build...
+INFO:    Verifying bootstrap image /tmp/jsequeira-cphmd-access-2148618.90aOXH/bootstrap.sif
+WARNING: integrity: signature not found for object group 1
+WARNING: Bootstrap image could not be verified, but build will continue.
+INFO:    Extracting local image...
+INFO:    Inserting Singularity configuration...
+INFO:    Copying /tmp/jsequeira-cphmd-access-2148618.90aOXH/normalize.py to /opt/cphmd-normalize-runtime-permissions.py
+INFO:    Running post scriptlet
++ python3 /opt/cphmd-normalize-runtime-permissions.py
+PASS: runtime permissions normalized; 1764 payload files byte-identical
++ cp /usr/share/cphmd/build/runtime-permissions.json /build-evidence/
++ rm /opt/cphmd-normalize-runtime-permissions.py
+INFO:    Adding labels
+WARNING: Label: validation.status already exists and force option is false, not overwriting
+INFO:    Creating SIF file...
+INFO:    Build complete: /tmp/jsequeira-cphmd-access-2148618.90aOXH/CpHMD-arm64-readable.sif
+uid=30597(jsequeira) gid=40597(jsequeira) groups=40597(jsequeira),60231(F202500250CPCAA2),60243(F202418419CPCAA1)
+                         :-) GROMACS - gmx, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /validation
+Command line:
+  gmx --version
+
+GROMACS version:     2026.3
+Precision:           mixed
+Memory model:        64 bit
+MPI library:         thread_mpi
+MPI version:         built in
+OpenMP support:      enabled (GMX_OPENMP_MAX_THREADS = 128)
+GPU support:         disabled
+SIMD instructions:   ARM_SVE
+CPU FFT library:     fftw-3.3.10-neon
+GPU FFT library:     none
+Multi-GPU FFT:       none
+TNG support:         enabled
+Hwloc support:       disabled
+Tracing support:     disabled
+Colvars support:     enabled (version 2025-10-13)
+CP2K support:        disabled
+Torch support:       disabled
+Plumed support:      enabled
+C compiler:          /usr/bin/cc GNU 13.3.0
+C compiler flags:    -fexcess-precision=fast -funroll-all-loops -march=armv8.2-a+sve -msve-vector-bits=512 -Wno-missing-field-initializers -O3 -DNDEBUG
+C++ compiler:        /usr/bin/c++ GNU 13.3.0
+C++ compiler flags:  -fexcess-precision=fast -funroll-all-loops -march=armv8.2-a+sve -msve-vector-bits=512 -Wno-missing-field-initializers -Wno-stringop-truncation -Wno-cast-function-type-strict SHELL:-fopenmp -O3 -DNDEBUG
+BLAS library:        Internal
+LAPACK library:      Internal
+PASS: 21 ELF files are AArch64
+/Delphi/delphi_pgf90
+	linux-vdso.so.1 (0x0000ffffbe7b0000)
+	libnvmalloc.so => /opt/nvhpc/lib/libnvmalloc.so (0x0000ffffbe620000)
+	libnvf.so => /opt/nvhpc/lib/libnvf.so (0x0000ffffbe030000)
+	libnvomp.so => /opt/nvhpc/lib/libnvomp.so (0x0000ffffbde10000)
+	libnvhpcatm.so => /opt/nvhpc/lib/libnvhpcatm.so (0x0000ffffbdde0000)
+	libnvcpumath.so => /opt/nvhpc/lib/libnvcpumath.so (0x0000ffffbdc30000)
+	libnvc.so => /opt/nvhpc/lib/libnvc.so (0x0000ffffbdbd0000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffbda00000)
+	libm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffffbd950000)
+	libdl.so.2 => /lib/aarch64-linux-gnu/libdl.so.2 (0x0000ffffbd920000)
+	libgcc_s.so.1 => /lib/aarch64-linux-gnu/libgcc_s.so.1 (0x0000ffffbd8e0000)
+	libpthread.so.0 => /lib/aarch64-linux-gnu/libpthread.so.0 (0x0000ffffbd8b0000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffbe7c0000)
+	libstdc++.so.6 => /lib/aarch64-linux-gnu/libstdc++.so.6 (0x0000ffffbd620000)
+/Delphi/geom_center
+	linux-vdso.so.1 (0x0000ffffbe7b0000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffbe590000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffbe7c0000)
+/Delphi/calc_pkg_low
+	linux-vdso.so.1 (0x0000ffffbe7b0000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffbe590000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffbe7c0000)
+/CpHMD/scripts/fixgro
+	linux-vdso.so.1 (0x0000ffffbe7b0000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffbe590000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffbe7c0000)
+/programs/petit1.6.1/petit
+	linux-vdso.so.1 (0x0000ffffbe7b0000)
+	libm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffffbe6a0000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffbe4e0000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffbe7c0000)
+/opt/plumed/lib/libplumedKernel.so
+	linux-vdso.so.1 (0x0000ffffbe7b0000)
+	libstdc++.so.6 => /lib/aarch64-linux-gnu/libstdc++.so.6 (0x0000ffffbd980000)
+	libz.so.1 => /lib/aarch64-linux-gnu/libz.so.1 (0x0000ffffbd940000)
+	libm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffffbd890000)
+	libgomp.so.1 => /lib/aarch64-linux-gnu/libgomp.so.1 (0x0000ffffbd810000)
+	libgcc_s.so.1 => /lib/aarch64-linux-gnu/libgcc_s.so.1 (0x0000ffffbd7d0000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffbd610000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffbe7c0000)
+PASS: 1 assembly stage(s), compact centered PBC group
+PASS: 2 assembly stage(s), compact centered PBC group
+PASS: PETIT pH=-1, observed=0.909840, analytic=0.909091
+PASS: PETIT pH=0, observed=0.500400, analytic=0.500000
+PASS: PETIT pH=1, observed=0.089690, analytic=0.090909
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /validation/runtime-tmp/cphmd-md-check.ejlTXh
+Command line:
+  gmx grompp -f /usr/share/cphmd/tests/water.mdp -c /gromacs/gromacs-2026.3/share/gromacs/top/spc216.gro -p /usr/share/cphmd/tests/water.top -o water.tpr
+
+
+NOTE 1 [file /usr/share/cphmd/tests/water.mdp]:
+  Setting nstcalcenergy (100) equal to nstenergy (5)
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group rest is 1293.00
+The integrator does not provide a ensemble temperature, there is no system ensemble temperature
+
+NOTE 2 [file /usr/share/cphmd/tests/water.mdp]:
+  NVE simulation: will use the initial temperature of 300.000 K for
+  determining the Verlet buffer size
+
+
+There were 2 NOTEs
+
+GROMACS reminds you: "I never thought about breaking barriers, I was just interested in what I was doing and kept going." (Barbara Liskov)
+
+Setting the LD random seed to -1084769037
+
+Generated 330891 of the 330891 non-bonded parameter combinations
+
+Generated 330891 of the 330891 1-4 parameter combinations
+
+Excluding 2 bonded neighbours molecule type 'SOL'
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:   216      Water residues
+
+The largest distance between excluded atoms is 0.164 nm between atom 242 and 243
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 0.713 nm, buffer size 0.013 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 0.702 nm, buffer size 0.002 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 16x16x16, spacing 0.116 0.116 0.116
+
+Estimate for the relative computational load of the PME mesh part: 0.50
+
+This run will generate roughly 0 Mb of data
+                      :-) GROMACS - gmx mdrun, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /validation/runtime-tmp/cphmd-md-check.ejlTXh
+Command line:
+  gmx mdrun -s water.tpr -deffnm water -ntmpi 1 -ntomp 1 -pin off -plumed /usr/share/cphmd/tests/water.plumed.dat
+
+Reading file water.tpr, VERSION 2026.3 (single precision)
+Can not increase nstlist because an NVE ensemble is used
+Using 1 MPI thread
+Using 1 OpenMP thread 
+
++++ Loading the PLUMED kernel runtime +++
++++ PLUMED_KERNEL="/opt/plumed/lib/libplumedKernel.so" +++
+starting mdrun 'SPC water build smoke test'
+20 steps,      0.0 ps.
+
+Writing final coordinates.
+
+               Core t (s)   Wall t (s)        (%)
+       Time:        0.050        0.051       98.9
+                 (ns/day)    (hour/ns)    (ms/step)  (Matom*steps/s) 
+Performance:       35.674        0.673        2.422            0.268 
+
+GROMACS reminds you: "Here's Another Useful Quote" (S. Boot)
+
+                      :-) GROMACS - gmx check, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /validation/runtime-tmp/cphmd-md-check.ejlTXh
+Command line:
+  gmx check -f water.xtc
+
+Reading frame       0 time    0.000   
+# Atoms  648
+Precision 0.001 (nm)
+Reading frame       1 time    0.005   Reading frame       2 time    0.010   Reading frame       3 time    0.015   Reading frame       4 time    0.020   Last frame          4 time    0.020   
+
+
+Item        #frames Timestep (ps)
+Step             5    0.005
+Time             5    0.005
+Lambda           0
+Coords           5    0.005
+Velocities       0
+Forces           0
+Box              5    0.005
+
+GROMACS reminds you: "If You Don't Like Cool Quotes Check Your GMXRC File" (Your Sysadmin)
+
+Checking file water.xtc
+                      :-) GROMACS - gmx check, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /validation/runtime-tmp/cphmd-md-check.ejlTXh
+Command line:
+  gmx check -e water.edr
+
+Checking energy file water.edr
+
+Opened water.edr as single precision energy file
+28 groups in energy fileReading energy frame      0 time    0.000         frame:      0 (index      0), t:      0.000
+Reading energy frame      1 time    0.005         Reading energy frame      2 time    0.010         Reading energy frame      3 time    0.015         Reading energy frame      4 time    0.020         Last energy frame read 4 time    0.020         
+
+Found 5 frames with a timestep of 0.005 ps.
+
+GROMACS reminds you: "If You Don't Like Cool Quotes Check Your GMXRC File" (Your Sysadmin)
+
+PASS: MD, readable XTC/EDR and finite PLUMED distance records
+PASS: ARM dependency, helper, PETIT and 20-step water MD smoke checks
+Scientific PB/MC and CpHMD restart validation are still required.
+UNPRIVILEGED_RUNTIME_SMOKE_TESTS_PASSED
+PERMISSION_REPAIR_AND_UNPRIVILEGED_SMOKE_PASSED

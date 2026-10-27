@@ -1,0 +1,17 @@
+test_accidental_cysteine_titration_name (__main__.TopologyAuditTests.test_accidental_cysteine_titration_name)
+Oxidized cysteines must not be converted to CY0 thiol sites. ... ok
+test_missing_disulfide (__main__.TopologyAuditTests.test_missing_disulfide)
+Cysteine names alone do not establish an S–S bond. ... ok
+test_missing_n_terminal_site (__main__.TopologyAuditTests.test_missing_n_terminal_site)
+Residue 1's side chain must not hide a missing N-terminal site. ... ok
+test_real_baseline (__main__.TopologyAuditTests.test_real_baseline)
+The actual generated input retains 21 sites and all disulfides. ... ok
+test_state_charge_disagreement (__main__.TopologyAuditTests.test_state_charge_disagreement)
+Reject mismatched ST charges even when each state still changes by +1. ... ok
+test_wrong_carboxyl_dummy_bond (__main__.TopologyAuditTests.test_wrong_carboxyl_dummy_bond)
+Reject the class of miswiring caused by applying CLEU and a TDB twice. ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.932s
+
+OK
