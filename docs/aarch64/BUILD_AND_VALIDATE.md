@@ -6,6 +6,49 @@ The [developer guide](DEVELOPER_GUIDE.md) maps each build/validation file and
 function to its caller, outputs and place in the scientific cycle. Follow its
 commenting convention for future project-owned changes.
 
+## Current step: repair the compiled-test gate after job 2147644
+
+The first complete build attempt reached the end of the native PLUMED/GROMACS
+compilation on A64FX with SVE-512. SLURM job `2147644` ran for `00:36:18` and
+finished `FAILED`, with accounting exit `127:0`. Its CTest phase reported
+`commandline-test`, `hardware-test` and `math-test` as missing executables;
+all three selected suites were **Not Run**. No completed SIF or build-success
+marker was produced, and image smoke/scientific tests have not run.
+
+The build script enabled/registers tests through CMake, but normal GROMACS
+release builds exclude test executables from the default build target. The
+script did not explicitly build them before CTest. Its approximate test-name
+filter also omitted two intended suites, whose exact names are `FileIOTests`
+and `MdtypesUnitTest`. This is a build orchestration error; these results do not
+show a numerical test failure or a PETIT architecture problem.
+
+The corrected gate, `container_build/arm64/check-gromacs-build.sh`, explicitly
+builds all five selected test executables, verifies that all five CTest names
+are registered and then executes them. Failure remains fatal and the test-build
+log, selected-test inventory and CTest output are preserved. The EXIT handler
+now also preserves `LastTest.log` after a failing test run.
+
+The isolated regression `tests/check_gromacs_test_gate.sh` passed on mini05:
+the default build leaves its fixture test binaries unbuilt; the gate builds/runs
+all five, rejects a deliberately failing test and rejects a missing registration.
+This regression checks orchestration, not the actual ARM engine's tests. CI runs
+it with CMake installed. The desktop lacks CMake, so its existing support checks
+parse this regression while the executable regression was run on mini05.
+
+Original Deucalion evidence is retained under:
+
+```text
+/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/builds/c1bb78bc515136573002bd0dacea0ee97944ec72-ARM_SVE-20261026T233843Z/
+```
+
+Copies of the build log and compiler/test artifacts, plus the repair regression
+record, are under `evidence/2026-10-27/`. Keep the failed candidate unchanged.
+Commit the correction and submit a new candidate using sections 1–2 below.
+The next pass criterion is successful compilation **and execution** of the five
+suites, followed by installation and embedded architecture/helper/PETIT/MD tests.
+Only after a complete SIF passes those checks should fixed-coordinate PB/MC and
+full-cycle/RT/restart validation begin.
+
 ## Recovery from the incomplete-bundle clone error
 
 The initial transfer of commit `ee74839392d385c21958c35e193e2f21965a78ed`
@@ -52,7 +95,7 @@ and all six repository/support checks passed. Evidence is recorded in
 - Native A64FX job `2147469` passed PETIT architecture/version inspection, native fixgro compilation and both PBC fixtures, fakeroot execution and a minimal SIF build. Its exit was `0:0`; elapsed 27 seconds. The probe image and full log are preserved in the project.
 - The 20-step water MD smoke fixture passed on the existing x86 GROMACS 2026.3 CPU image, including PLUMED distance output and XTC/EDR readability. The PETIT fixture passed at pH -1, 0 and 1 against analytic two-state probabilities.
 - The source-context preparation tool was exercised locally: manifest verification passed, explicit settings/profiles were preserved, and all host ELF products were excluded (53 omitted host products in the tested snapshot).
-- Full GROMACS/PLUMED ARM compilation, native image smoke checks and scientific CpHMD validation have **not** yet passed. No full compilation job has been submitted by the agent in this step.
+- Job `2147644` completed main native PLUMED/GROMACS compilation, then failed because the test executables were not built. Native unit/image smoke checks and scientific CpHMD validation have **not** passed; see the current-step diagnosis above.
 
 ## Build decisions
 
@@ -75,7 +118,7 @@ Deucalion's project directory requires supplementary-group access, which fakeroo
 - The ordinary host process stages inputs and copies artifacts/results back after fakeroot returns. The local-image build uses `--disable-cache`; no compiler downloads or OCI downloads occur in the fakeroot build.
 - The project ACLs and production directories are unchanged. Failed temporary build work is not destructively cleaned by the launcher.
 
-## 1. Review and commit the transfer repair and documentation locally
+## 1. Review and commit the GROMACS test-gate correction locally
 
 Run in the local desktop terminal, not on Deucalion:
 
@@ -90,11 +133,14 @@ bash tests/check_asic_settings.sh
 bash tests/check_settings_profiles.sh
 bash tests/check_arm64_build_support.sh
 
-git add -- CpHMD/scripts CpHMD/src/fixgro.c container_build tests/arm64 tests/check_source_bundle.sh tests/check_arm64_build_support.sh docs/aarch64
+# Also run this on a host with CMake/CTest (the repair was tested on mini05):
+# bash tests/check_gromacs_test_gate.sh
+
+git add -- .github/workflows/ci.yml container_build/arm64 tests/check_arm64_build_support.sh tests/check_gromacs_test_gate.sh docs/aarch64
 git diff --cached --check
 git diff --cached --stat
-git diff --cached -- CpHMD/scripts/CpHMD.sh CpHMD/scripts/settings_contract.sh container_build/arm64 container_build/prepare_arm64_build.py container_build/run_arm64_build.sh container_build/submit_deucalion_arm64.sh
-git commit -m 'Harden ARM source transfer and document pipeline responsibilities'
+git diff --cached -- container_build/arm64 .github/workflows/ci.yml tests/check_arm64_build_support.sh tests/check_gromacs_test_gate.sh docs/aarch64/BUILD_AND_VALIDATE.md docs/aarch64/DEVELOPER_GUIDE.md
+git commit -m 'Build selected GROMACS test binaries before ARM validation'
 git push origin codex/arm64-deucalion-20261026
 ```
 
@@ -145,6 +191,11 @@ A successful build has all of:
 - `CpHMD-arm64.sif` and its SHA-256 file;
 - `image-inspect.json`, the rendered/executed definitions, source manifest, build metadata and logs;
 - `artifacts-JOBID/` with compiler/package information, CMake configuration and targeted GROMACS unit-test output.
+
+The targeted suites are `CommandLineUnitTests`, `FileIOTests`,
+`HardwareUnitTests`, `MathUnitTests` and `MdtypesUnitTest`.
+`gromacs-selected-tests.json` must list all five; `gromacs-ctest.log` must show
+them executed and passed. `gromacs-test-build.log` records their compilation.
 
 The embedded test verifies AArch64 ELF payloads and dependencies, GROMACS version/SIMD, native fixgro, analytic PETIT probabilities, and a short MD/PLUMED run with readable trajectory/energy output. Scientific PB/MC validation is not included in that success marker.
 

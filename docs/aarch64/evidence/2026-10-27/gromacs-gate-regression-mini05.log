@@ -1,0 +1,33 @@
+[ 50%] Building C object CMakeFiles/commandline-test.dir/probe.c.o
+[100%] Linking C executable commandline-test
+[100%] Built target commandline-test
+[ 50%] Building C object CMakeFiles/fileio-test.dir/probe.c.o
+[100%] Linking C executable fileio-test
+[100%] Built target fileio-test
+[ 50%] Building C object CMakeFiles/hardware-test.dir/probe.c.o
+[100%] Linking C executable hardware-test
+[100%] Built target hardware-test
+[ 50%] Building C object CMakeFiles/math-test.dir/probe.c.o
+[100%] Linking C executable math-test
+[100%] Built target math-test
+[ 50%] Building C object CMakeFiles/mdtypes-test.dir/probe.c.o
+[100%] Linking C executable mdtypes-test
+[100%] Built target mdtypes-test
+PASS: all five requested GROMACS suites are registered
+Internal ctest changing into directory: /tmp/cphmd-gmx-gate.RIQyjs/build
+Test project /tmp/cphmd-gmx-gate.RIQyjs/build
+    Start 1: CommandLineUnitTests
+1/5 Test #1: CommandLineUnitTests .............   Passed    0.00 sec
+    Start 2: FileIOTests
+2/5 Test #2: FileIOTests ......................   Passed    0.00 sec
+    Start 3: HardwareUnitTests
+3/5 Test #3: HardwareUnitTests ................   Passed    0.00 sec
+    Start 4: MathUnitTests
+4/5 Test #4: MathUnitTests ....................   Passed    0.00 sec
+    Start 5: MdtypesUnitTest
+5/5 Test #5: MdtypesUnitTest ..................   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =   0.01 sec
+PASS: excluded test binaries built; failed tests and missing registrations rejected

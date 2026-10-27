@@ -1,0 +1,47 @@
+{
+  "failed_job": 2147644,
+  "source_commit": "c1bb78bc515136573002bd0dacea0ee97944ec72",
+  "project_build": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/builds/c1bb78bc515136573002bd0dacea0ee97944ec72-ARM_SVE-20261026T233843Z",
+  "slurm_observation": {
+    "state": "FAILED",
+    "exit_code": "127:0",
+    "elapsed": "00:36:18",
+    "start": "2026-10-26T23:39:19",
+    "end": "2026-10-27T00:15:37"
+  },
+  "inner_post_exit_code": 8,
+  "host_exit_marker": 255,
+  "failure": "CTest could not find unbuilt commandline-test, hardware-test and math-test; tests were Not Run",
+  "main_native_plumed_and_gromacs_compilation": "completed; not equivalent to passing tests or image validation",
+  "selected_suites_verified_against_pinned_2026_3_source": {
+    "CommandLineUnitTests": "commandline-test",
+    "FileIOTests": "fileio-test",
+    "HardwareUnitTests": "hardware-test",
+    "MathUnitTests": "math-test",
+    "MdtypesUnitTest": "mdtypes-test"
+  },
+  "repair_regression": {
+    "host": "mini05",
+    "exit_code": 0,
+    "log": "gromacs-gate-regression-mini05.log",
+    "cases": [
+      "builds test executables excluded from default all target",
+      "runs all five registered suites",
+      "rejects a deliberately failing test",
+      "rejects missing registration"
+    ]
+  },
+  "host_support_check": {
+    "exit_code": 0,
+    "log": "arm64-support-after-test-gate-fix.log"
+  },
+  "desktop_cmake": "unavailable; actual CMake regression executed on mini05",
+  "repair_file_sha256": {
+    "container_build/arm64/check-gromacs-build.sh": "2a26e1f1dab87c596057fe6b29118c3ecb623b6ce5cd3a32d1f21549a7c6bdc1",
+    "container_build/arm64/build-inside.sh": "d6f62481c6e33c586b4ac13ed8d02cc4633f1dab2051e6b37d5731e41ea644b7",
+    "tests/check_gromacs_test_gate.sh": "87425ec1a62f110af99cd9dc6c4a1aa976652d51149a39af6d9fe672ab0edf96"
+  },
+  "original_build_log_sha256": "ad820a2e105d516931dc3273d4166321740615f1bf22fa803bf1ca11a2b32460",
+  "native_rebuild_submitted_during_repair": false,
+  "scientific_validation": "pending; no completed candidate SIF from failed job"
+}

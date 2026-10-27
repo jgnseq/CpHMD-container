@@ -14,6 +14,7 @@ preserve_build_evidence () {
     cp -a /usr/share/cphmd/build/. /build-evidence/ 2>/dev/null
     cp /build/gmx/CMakeCache.txt /build-evidence/ 2>/dev/null
     cp /build/gmx/CMakeFiles/CMakeConfigureLog.yaml /build-evidence/ 2>/dev/null
+    cp /build/gmx/Testing/Temporary/LastTest.log /build-evidence/ 2>/dev/null
     cp "$src/plumed/config.log" /build-evidence/plumed-config.log 2>/dev/null
     printf '%s\n' "$status" > /build-evidence/post-exit-code.txt
     exit "$status"
@@ -98,9 +99,11 @@ cmake -S /build/gromacs-2026.3 -B /build/gmx \
     -DBUILD_TESTING=ON -DGMX_BUILD_UNITTESTS=ON -DREGRESSIONTEST_DOWNLOAD=OFF \
     "${simd_args[@]}"
 cmake --build /build/gmx --parallel "$jobs"
-ctest --test-dir /build/gmx --output-on-failure --no-tests=error \
-    -R '(Hardware|Math|FileIO|Mdtypes|CommandLine)UnitTests' \
-    | tee /usr/share/cphmd/build/gromacs-ctest.log
+# Enabling tests in CMake registers them but does not build their executables
+# in a normal release build. Compile the selected suites, verify their exact
+# registration names and run them before installation/image acceptance.
+bash "$src/container_build/arm64/check-gromacs-build.sh" \
+    /build/gmx "$jobs" /usr/share/cphmd/build
 cmake --install /build/gmx
 cp /build/gmx/CMakeCache.txt /usr/share/cphmd/build/CMakeCache.txt
 cp /build/gmx/Testing/Temporary/LastTest.log /usr/share/cphmd/build/LastTest.log

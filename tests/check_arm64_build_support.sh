@@ -10,6 +10,7 @@ trap 'rm -rf "$work"' EXIT
 for script in container_build/arm64/*.sh container_build/slurm/*.slurm \
     container_build/run_arm64_build.sh container_build/submit_deucalion_arm64.sh \
     container_build/create_source_bundle.sh tests/check_source_bundle.sh \
+    tests/check_gromacs_test_gate.sh \
     tests/arm64/md_smoke.sh; do
     bash -n "$script"
 done

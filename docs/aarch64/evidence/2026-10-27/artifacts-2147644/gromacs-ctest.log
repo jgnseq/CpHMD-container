@@ -1,0 +1,111 @@
+Internal ctest changing into directory: /build/gmx
+Test project /build/gmx
+    Start 35: CommandLineUnitTests
+Could not find executable /build/gmx/bin/commandline-test
+Looked in the following places:
+/build/gmx/bin/commandline-test
+/build/gmx/bin/commandline-test
+/build/gmx/bin/Release/commandline-test
+/build/gmx/bin/Release/commandline-test
+/build/gmx/bin/Debug/commandline-test
+/build/gmx/bin/Debug/commandline-test
+/build/gmx/bin/MinSizeRel/commandline-test
+/build/gmx/bin/MinSizeRel/commandline-test
+/build/gmx/bin/RelWithDebInfo/commandline-test
+/build/gmx/bin/RelWithDebInfo/commandline-test
+/build/gmx/bin/Deployment/commandline-test
+/build/gmx/bin/Deployment/commandline-test
+/build/gmx/bin/Development/commandline-test
+/build/gmx/bin/Development/commandline-test
+build/gmx/bin/commandline-test
+build/gmx/bin/commandline-test
+build/gmx/bin/Release/commandline-test
+build/gmx/bin/Release/commandline-test
+build/gmx/bin/Debug/commandline-test
+build/gmx/bin/Debug/commandline-test
+build/gmx/bin/MinSizeRel/commandline-test
+build/gmx/bin/MinSizeRel/commandline-test
+build/gmx/bin/RelWithDebInfo/commandline-test
+build/gmx/bin/RelWithDebInfo/commandline-test
+build/gmx/bin/Deployment/commandline-test
+build/gmx/bin/Deployment/commandline-test
+build/gmx/bin/Development/commandline-test
+build/gmx/bin/Development/commandline-test
+1/3 Test #35: CommandLineUnitTests .............***Not Run   0.00 sec
+    Start 43: HardwareUnitTests
+Could not find executable /build/gmx/bin/hardware-test
+Looked in the following places:
+/build/gmx/bin/hardware-test
+/build/gmx/bin/hardware-test
+/build/gmx/bin/Release/hardware-test
+/build/gmx/bin/Release/hardware-test
+/build/gmx/bin/Debug/hardware-test
+/build/gmx/bin/Debug/hardware-test
+/build/gmx/bin/MinSizeRel/hardware-test
+/build/gmx/bin/MinSizeRel/hardware-test
+/build/gmx/bin/RelWithDebInfo/hardware-test
+/build/gmx/bin/RelWithDebInfo/hardware-test
+/build/gmx/bin/Deployment/hardware-test
+/build/gmx/bin/Deployment/hardware-test
+/build/gmx/bin/Development/hardware-test
+/build/gmx/bin/Development/hardware-test
+build/gmx/bin/hardware-test
+build/gmx/bin/hardware-test
+build/gmx/bin/Release/hardware-test
+build/gmx/bin/Release/hardware-test
+build/gmx/bin/Debug/hardware-test
+build/gmx/bin/Debug/hardware-test
+build/gmx/bin/MinSizeRel/hardware-test
+build/gmx/bin/MinSizeRel/hardware-test
+build/gmx/bin/RelWithDebInfo/hardware-test
+build/gmx/bin/RelWithDebInfo/hardware-test
+build/gmx/bin/Deployment/hardware-test
+build/gmx/bin/Deployment/hardware-test
+build/gmx/bin/Development/hardware-test
+build/gmx/bin/Development/hardware-test
+2/3 Test #43: HardwareUnitTests ................***Not Run   0.00 sec
+    Start 44: MathUnitTests
+Could not find executable /build/gmx/bin/math-test
+Looked in the following places:
+/build/gmx/bin/math-test
+/build/gmx/bin/math-test
+/build/gmx/bin/Release/math-test
+/build/gmx/bin/Release/math-test
+/build/gmx/bin/Debug/math-test
+/build/gmx/bin/Debug/math-test
+/build/gmx/bin/MinSizeRel/math-test
+/build/gmx/bin/MinSizeRel/math-test
+/build/gmx/bin/RelWithDebInfo/math-test
+/build/gmx/bin/RelWithDebInfo/math-test
+/build/gmx/bin/Deployment/math-test
+/build/gmx/bin/Deployment/math-test
+/build/gmx/bin/Development/math-test
+/build/gmx/bin/Development/math-test
+build/gmx/bin/math-test
+build/gmx/bin/math-test
+build/gmx/bin/Release/math-test
+build/gmx/bin/Release/math-test
+build/gmx/bin/Debug/math-test
+build/gmx/bin/Debug/math-test
+build/gmx/bin/MinSizeRel/math-test
+build/gmx/bin/MinSizeRel/math-test
+build/gmx/bin/RelWithDebInfo/math-test
+build/gmx/bin/RelWithDebInfo/math-test
+build/gmx/bin/Deployment/math-test
+build/gmx/bin/Deployment/math-test
+build/gmx/bin/Development/math-test
+build/gmx/bin/Development/math-test
+3/3 Test #44: MathUnitTests ....................***Not Run   0.00 sec
+
+0% tests passed, 3 tests failed out of 3
+
+Label Time Summary:
+GTest       =   0.00 sec*proc (3 tests)
+UnitTest    =   0.00 sec*proc (3 tests)
+
+Total Test time (real) =   0.04 sec
+
+The following tests FAILED:
+	 35 - CommandLineUnitTests (Not Run)
+	 43 - HardwareUnitTests (Not Run)
+	 44 - MathUnitTests (Not Run)
