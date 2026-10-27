@@ -34,6 +34,16 @@ coupled CpHMD/RT/restart acceptance. See
 [HEWL_PBMC_2026-10-27.md](HEWL_PBMC_2026-10-27.md) for the iteration-cap limitation,
 effective-parameter audit, actual source/compiler flags and preserved failures.
 
+The following coupled stage has now passed two all-site cycles (**2151193**)
+and seven RT cycles with a real cycle-1 stop/restart (**2151577**). Separate job
+**2151670** then passed continuation from reduced cycle 7 through 8. The actual
+controller's states are checked independently against the force-field dictionary.
+See [HEWL_CYCLE_2026-10-27.md](HEWL_CYCLE_2026-10-27.md) for native evidence,
+the separate reduced-cycle continuation, scope/limits and reproduction commands.
+Run the local credential/artifact guard before staging and against the actual
+index before committing; its scope is documented in
+[REPOSITORY_SECURITY_2026-10-27.md](REPOSITORY_SECURITY_2026-10-27.md).
+
 ## Earlier ordinary-user permission repair
 
 Native preparation job 2148556 showed that the original SIF's `/analysis` and
@@ -226,37 +236,30 @@ Deucalion's project directory requires supplementary-group access, which fakeroo
 - The ordinary host process stages inputs and copies artifacts/results back after fakeroot returns. The local-image build uses `--disable-cache`; no compiler downloads or OCI downloads occur in the fakeroot build.
 - The project ACLs and production directories are unchanged. Failed temporary build work is not destructively cleaned by the launcher.
 
-## 1. Record HEWL visualization and native ARM PB/MC locally
+## 1. Record native coupled cycles, RT/restart and repository safeguards
 
-The solution-preparation milestone is already committed as a9ec0f1. The agent
-has not staged, committed or pushed the new work. Run in the local desktop
-terminal:
+The preceding PB/MC milestone is already committed as `5e20356`. The agent has
+not staged, committed or pushed this stage. Run in the local desktop terminal:
 
 ```bash
 cd '/home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container'
 git status --short --branch
+python3 tests/check_repository_safety.py
 git diff --check
 git add -- \
-  container_build/prepare_arm64_build.py \
-  container_build/submit_deucalion_arm64.sh \
-  container_build/arm64/install-delphi-a64fx.py \
-  container_build/slurm/hewl-pbmc.slurm \
-  container_build/slurm/rebuild-delphi-a64fx.slurm \
-  container_build/slurm/repair-delphi-a64fx.slurm \
-  tests/arm64/export_hewl_pymol.sh \
-  tests/arm64/finish_hewl_pymol.py \
-  tests/arm64/run_hewl_pbmc.sh \
-  tests/arm64/compare_hewl_pbmc.py \
-  tests/arm64/hash_hewl_pb_inputs.py \
-  tests/arm64/summarize_hewl_pbmc_controls.py \
-  tests/arm64/hewl-pbmc-contract.json \
-  tests/arm64/hewl-pbmc-tight-contract.json \
-  tests/check_hewl_pbmc_helpers.py \
+  .gitignore \
+  container_build/prepare_hewl_cycle.py \
+  container_build/slurm/hewl-cycle.slurm \
+  tests/arm64/run_hewl_cycle.sh \
+  tests/arm64/hewl_cycle.py \
+  tests/check_hewl_cycle_helpers.py \
+  tests/check_repository_safety.py \
   docs/aarch64
+python3 tests/check_repository_safety.py --staged
 git diff --cached --check
 git diff --cached --stat
-git diff --cached -- container_build tests/arm64 tests/check_hewl_pbmc_helpers.py docs/aarch64/HEWL_PBMC_2026-10-27.md
-git commit -m 'Validate native HEWL PBMC and package A64FX solver candidate'
+git diff --cached -- .gitignore container_build/prepare_hewl_cycle.py container_build/slurm/hewl-cycle.slurm tests/arm64/hewl_cycle.py tests/arm64/run_hewl_cycle.sh
+git commit -m 'Validate native HEWL cycles, RT continuation and repository safeguards'
 git push origin codex/arm64-deucalion-20261026
 ```
 
@@ -341,9 +344,10 @@ The embedded test verifies AArch64 ELF payloads and dependencies, GROMACS versio
 
 After the build succeeds, work from a new test directory and immutable input snapshot. Do not point this candidate at a production run directory.
 
-1. Fixed-coordinate PB/MC comparison against x86: compare helper centers, intrinsic pK values and the interaction matrix, then PETIT probabilities with recorded seeds. Establish file units and freeze tolerances before evaluating ARM results.
-2. Short all-site CpHMD run, followed by RT interval 5 through cycle 7; exercise full refreshes 1 and 6, active/fixed-template reconstruction and topology updates.
-3. Finalize after a reduced cycle and continue from its checkpoint. Audit the restored active set, segment time continuity, final GRO/TOP/TPR and XTC/EDR.
-4. Only after these pass, compare thread counts/affinity and SVE versus NEON on the same inputs, recording MD-only and complete CpHMD throughput.
+1. Passed: fixed-coordinate PB/MC comparison and convergence/sampling controls; physical convergence remains separate.
+2. Passed: two all-site cycles and RT interval 5 through cycle 7, full refreshes 1/6, independent active/fixed-template reconstruction and topology application.
+3. Passed: continuation after finalized reduced cycle 7 through 8, including segment time/frame/state continuity. See the coupled report for its GRO/TOP/RT scope; this is not full GROMACS CPT continuation.
+4. Next: generated scheduler-wrapper synchronization and batch continuation, then controlled output/MD exit 42 and PB/MC exit 43 without resubmission or false DONE.
+5. After functional gates, compare thread counts/affinity and SVE versus NEON on the same inputs, recording MD-only and complete CpHMD throughput.
 
 The explicit-settings profiles require adapting every `CHANGE_ME` field. Historical settings that relied on hidden defaults must be upgraded in the copied test directory; do not bypass the contract to make an old input run.

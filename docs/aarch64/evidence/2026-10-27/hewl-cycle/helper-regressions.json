@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "native_positive_fixtures": [
+    "coupled-2151193",
+    "rt-2151577"
+  ],
+  "rejected_cycle_corruptions": [
+    "wrong atom charge",
+    "wrong atom type",
+    "changed atom mass",
+    "swapped terminal/side-chain state rows",
+    "nonfinite coordinates",
+    "changed atom count",
+    "fixed RT state changed between refreshes",
+    "incorrect active-site mean merge"
+  ],
+  "source_privacy_checks": [
+    "ignored and untracked files excluded",
+    "symlinked gate source rejected"
+  ],
+  "repository_guard_checks": [
+    "private key",
+    "GitHub token",
+    "HTTP username-only URL",
+    "new generated XTC",
+    "modified ELF",
+    "escaping symlink",
+    "unchanged legacy ELF allowed",
+    "internal symlink allowed"
+  ]
+}

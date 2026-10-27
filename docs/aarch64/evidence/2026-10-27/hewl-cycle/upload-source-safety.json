@@ -1,0 +1,23 @@
+[
+  {
+    "archive": "HEWL-cycle-source-ae4c45becb3b.tar.gz",
+    "sha256": "ae4c45becb3b859346b1f192757f12383d2cc713611cadcf7732379c4ced718c",
+    "checked_regular_files": 154,
+    "passed": true,
+    "scope": "tracked runtime/data plus explicit gate files; credential/artifact patterns"
+  },
+  {
+    "archive": "HEWL-cycle-rt-source-e4aad48b9c2c.tar.gz",
+    "sha256": "e4aad48b9c2c855eebb316d1a0a86b619b24b0ef6a1fa0e97addd01e47123faf",
+    "checked_regular_files": 154,
+    "passed": true,
+    "scope": "tracked runtime/data plus explicit gate files; credential/artifact patterns"
+  },
+  {
+    "archive": "HEWL-cycle-continuation-source-ead4b96f3db7.tar.gz",
+    "sha256": "ead4b96f3db7ba32303a64a922ad930a3d071c8d5c709b1e5f392b6ef085e617",
+    "checked_regular_files": 154,
+    "passed": true,
+    "scope": "maintained source-only preparer; credential/artifact patterns"
+  }
+]

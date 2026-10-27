@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "archive_sha256": "ead4b96f3db7ba32303a64a922ad930a3d071c8d5c709b1e5f392b6ef085e617",
+  "files_verified": 153,
+  "preparer_sha256": "de6185005c3de883a24a36d07e633c5cbe782c0a83346644287206138985b458",
+  "current_runtime_sources_match_frozen": true,
+  "ignored_untracked_privacy_test_passed": true,
+  "symlink_gate_rejection_test_passed": true
+}

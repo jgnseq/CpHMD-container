@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "mode": "all",
+  "cycles": [
+    {
+      "cycle": 1,
+      "PB_sites": 21,
+      "PB_pseudostates": 69,
+      "topology_mapping": {
+        "applied_sites": 21,
+        "dictionary_atom_parameters_checked": 354,
+        "atoms_with_changed_type_or_charge": 19,
+        "protein_charge_e": 9.000000000000007
+      },
+      "disulfide_nm": {
+        "6-127": 0.20397548872352317,
+        "30-115": 0.2079158483617834,
+        "64-80": 0.1992009036124087,
+        "76-94": 0.20874386218521535
+      }
+    },
+    {
+      "cycle": 2,
+      "PB_sites": 21,
+      "PB_pseudostates": 69,
+      "topology_mapping": {
+        "applied_sites": 21,
+        "dictionary_atom_parameters_checked": 354,
+        "atoms_with_changed_type_or_charge": 16,
+        "protein_charge_e": 9.000000000000007
+      },
+      "disulfide_nm": {
+        "6-127": 0.20125854019146636,
+        "30-115": 0.2081489851044199,
+        "64-80": 0.20008498194517194,
+        "76-94": 0.19992748685461004
+      }
+    }
+  ],
+  "checkpoint": {
+    "CPHMD_DONE_CYCLES": "2",
+    "CPHMD_LAST_SEGMENT_START": "1",
+    "CPHMD_LAST_SEGMENT_END": "2",
+    "CPHMD_SEGMENT_FINALIZED": "1",
+    "CPHMD_STATE_SOURCE": "validated_finalized_segment",
+    "CPHMD_REDUCED_TITRATION": "0",
+    "CPHMD_RT_LAST_FULL_CYCLE": "0",
+    "CPHMD_RT_ACTIVE_COUNT": "0"
+  },
+  "limits": "Short integration gate; restart is controller GRO/TOP/RT state, not bitwise GROMACS CPT continuation."
+}

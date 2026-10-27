@@ -1,0 +1,32 @@
+Generating 1-4 interactions: fudge = 0.5
+
+NOTE 1 [file TMP_CpHMD.top, line 18771]:
+  System has non-zero total charge: -1.000000
+  Total charge should normally be an integer. See
+  https://manual.gromacs.org/current/user-guide/floating-point.html
+  for discussion on how close it should be to an integer.
+
+
+
+
+WARNING 1 [file TMP_CpHMD.top, line 18771]:
+  You are using Ewald electrostatics in a system with net charge. This can
+  lead to severe artifacts, such as ions moving into regions with low
+  dielectric, due to the uniform background charge. We suggest to
+  neutralize your system with counter ions, possibly in combination with a
+  physiological salt concentration.
+
+Generated 4278 of the 4278 non-bonded parameter combinations
+
+Generated 4278 of the 4278 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'Protein_chain_A'
+
+turning H bonds into constraints...
+
+Excluding 2 bonded neighbours molecule type 'SOL'
+
+turning H bonds into constraints...
+
+Excluding 1 bonded neighbours molecule type 'NA'
+

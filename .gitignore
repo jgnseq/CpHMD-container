@@ -37,3 +37,19 @@ tests/gpu-output-contract/results/*
 
 # Generated third-party configuration logs
 plumed/config.log
+
+# Local authentication material. Never force-add these files.
+.env
+.env.*
+!.env.example
+.netrc
+.git-credentials
+id_rsa
+id_ed25519
+id_ecdsa
+*.key
+*.pem
+
+# New validation payloads belong outside the source checkout.
+/artifacts/
+/validation-runs/

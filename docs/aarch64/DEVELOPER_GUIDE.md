@@ -151,6 +151,23 @@ payload bytes unchanged. Numerical regression, convergence diagnostics and MC
 sampling uncertainty are separate acceptance questions. The 500-iteration
 focus/model cap and direct USER.pbp behavior remain documented backlog items.
 
+The coupled native gate is documented in
+[HEWL_CYCLE_2026-10-27.md](HEWL_CYCLE_2026-10-27.md). `prepare_hewl_cycle.py`
+freezes audited source-only inputs; `hewl-cycle.slurm` runs the ordinary-user
+project-backed job; `run_hewl_cycle.sh` controls the all-site or RT/continuation
+experiment; `hewl_cycle.py` stages transparent capture wrappers and independently
+checks dictionary application, energies, atom/site identity, RT merging and
+finalized restart state. `check_hewl_cycle_helpers.py` corrupts real native
+outputs to verify rejection. No canonical controller or force-field fix is
+included. GRO/TOP/RT continuation is distinct from full GROMACS CPT continuation.
+
+Before staging and again before committing, run
+`python3 tests/check_repository_safety.py` and its `--staged` variant. It reads
+working/index data without printing credential values, rejects new generated
+payloads and permits only unchanged inherited binaries from the recorded
+baseline. Scope and limits are in
+[REPOSITORY_SECURITY_2026-10-27.md](REPOSITORY_SECURITY_2026-10-27.md).
+
 ## Commenting and maintenance convention
 
 For each new or changed project-owned file, keep a short header explaining its

@@ -1,0 +1,25 @@
+{
+  "protein_charge_e_by_cycle": [
+    9.0,
+    10.0,
+    7.0,
+    8.0,
+    8.0,
+    8.0,
+    8.0,
+    8.0
+  ],
+  "fixed_ion_charge_e": -9,
+  "system_charge_e_by_cycle": [
+    0.0,
+    1.0,
+    -2.0,
+    -1.0,
+    -1.0,
+    -1.0,
+    -1.0,
+    -1.0
+  ],
+  "warning_observed": "Charged-system Ewald/PME preprocessing warning; accepted by existing maxwarn 1000 policy",
+  "scope": "Preserve for expert method review; no scientific-method change or physical-accuracy acceptance."
+}

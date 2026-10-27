@@ -1,0 +1,10 @@
+{
+  "mode": "rt",
+  "cycles": 7,
+  "effective_ps_per_cycle": 1.0,
+  "relaxation_ps_per_cycle": 0.1,
+  "dt_ps": 0.001,
+  "source_commit": "recorded in source/source-snapshot.json",
+  "RTInterval": 5,
+  "physical_claim": "Bounded native integration test; no equilibration or pKa accuracy claim."
+}

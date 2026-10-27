@@ -1,0 +1,32 @@
+{
+  "image_sha256": "1ee92b674c8808dd6e63d3f487fde5e2ea659c706eafefb43cede9b89070407d",
+  "squashfs_offset": 49152,
+  "passed": true,
+  "files": [
+    {
+      "file": "CpHMD/scripts/CpHMD.sh",
+      "sha256": "108c6eb70468df747aec7b74a39ce433363b8b7f077a9a49511d2c067152fb5f",
+      "matches_source": true
+    },
+    {
+      "file": "CpHMD/scripts/functions.sh",
+      "sha256": "3715c887a686e927d9d34c16ed687058dd992399b6b5a48b0bee2e9491788f17",
+      "matches_source": true
+    },
+    {
+      "file": "CpHMD/scripts/settings_contract.sh",
+      "sha256": "4bee4624b726d6e57d47a7d9a43d637b6e87938b5f95daf6a32ecca1480e3fd6",
+      "matches_source": true
+    },
+    {
+      "file": "CpHMD/scripts/make_sites",
+      "sha256": "78314807bed912cd3e56e5595db4bd517fef5140de45bf13130f1ca4540c87b3",
+      "matches_source": true
+    },
+    {
+      "file": "CpHMD/scripts/update-top",
+      "sha256": "173e35b0d57e2e824cd4cc74d41e5279e4a17e82b458a96ef1c60cf2c5e74a42",
+      "matches_source": true
+    }
+  ]
+}

@@ -102,6 +102,63 @@ the controller's warning policy separately: distinguish explicitly reviewed
 benign warnings from scientific/configuration problems, preserve diagnostics,
 and add a failure regression before changing existing workflows. This issue is
 recorded for later review; the canonical controller is unchanged in this step.
+The native coupled-cycle audit also confirms that `run_dynamics` uses the same
+`-maxwarn 1000` allowance for relaxation/effective preprocessing. Include all
+preprocessing stages when designing the later reviewed warning policy.
+
+## Deferred: distinguish controller restart from full MD checkpoint continuation
+
+**Suggested title:** Define and validate the complete GROMACS state retained across CpHMD scheduler boundaries
+
+**Suggested issue body:** The native HEWL integration test validates finalized
+GRO/TOP/RT continuation. The controller checkpoints coordinates/topology and RT
+templates, then builds new TPRs on continuation. It does not preserve/restore a
+GROMACS CPT through the restart contract, so complete integrator/thermostat/
+barostat state and exact binary coordinate/velocity precision are not restored.
+This is not evidence that the intended CpHMD algorithm is invalid; define which
+state transitions are intentional at PB/MC/relaxation boundaries and which should
+be continuous across scheduler boundaries. Document that distinction, then test
+an uninterrupted run against a split run with the intended statistical/state
+invariants. Do not promise bitwise MD continuation from a GRO/TOP restart.
+This general policy question remains deferred during the ARM sprint.
+
+## Deferred: remove inherited compiled payloads from source version control
+
+**Suggested title:** Separate legacy executable/library build artifacts from versioned scientific source
+
+**Suggested issue body:** The 27 October 2026 repository review found 50 existing
+ELF files (scientific utilities and PLUMED objects/libraries), plus a historical
+tutorial archive and large shared library. None was added by the PB/MC milestone
+commit `5e20356`. They are not classified as malware, but complicate platform
+portability, provenance and review. Plan a source/build/download policy with
+license/provenance records and appropriate release artifacts; remove generated
+payloads in a separate reviewed change without silently rewriting shared history.
+The new local repository guard rejects new/modified payloads while allowing only
+byte-identical inherited files from the recorded baseline. SIFs, native result
+archives and trajectories remain outside Git.
+
+## Deferred: changing net charge in the CpHMD PME protocol
+
+**Suggested title:** Document and validate the electrostatic treatment of net-charge changes during CpHMD
+
+**Suggested issue body:** The native HEWL pH-6 integration gate samples protein
+charges +9/+10/+7/+8 e while the original explicit ions contribute -9 e. The
+resulting MD systems include total charges 0/+1/-2/-1 e. GROMACS correctly emits
+charged-system Ewald/PME warnings; the existing controller's `-maxwarn 1000`
+allows the calculation. The ARM port's dictionary/state/MD/restart checks pass,
+but do not establish physical accuracy of this charge-changing protocol.
+
+Document the intended treatment of the PME neutralizing background, finite-size
+and electrostatic free-energy effects and any accepted charge-compensation
+strategy. Review this against the chosen stochastic-titration method before
+changing ions or charges: automatically adding counterions per cycle would be
+a scientific-method change, not a routine warning fix. Define appropriate
+validation/controls for pKa/ensemble claims and a reviewed preprocessing-warning
+policy. Preserve the observed warnings and distinguish native execution success
+from physical-method acceptance. Evidence is under
+`docs/aarch64/evidence/2026-10-27/hewl-cycle/charge-policy-observation.json` and
+`observed-charge-warnings.txt`. No method/force-field change is included in the
+ARM sprint.
 
 ## Deferred: direct USER.pbp solver-parameter overrides
 
