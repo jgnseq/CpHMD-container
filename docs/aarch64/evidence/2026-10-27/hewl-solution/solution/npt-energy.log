@@ -1,0 +1,43 @@
+                      :-) GROMACS - gmx energy, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/solution
+Command line:
+  gmx energy -f npt.edr -o npt-energy.xvg
+
+Opened npt.edr as single precision energy file
+
+Select the terms you want from the following list by
+selecting either (part of) the name or the number or a combination.
+End your selection with an empty line or a zero.
+-------------------------------------------------------------------
+  1  Bond             2  Angle            3  Proper-Dih.      4  Per.-Imp.-Dih.
+  5  LJ-14            6  Coulomb-14       7  LJ-(SR)          8  Disper.-corr. 
+  9  Coulomb-(SR)    10  Coul.-recip.    11  Position-Rest.  12  Potential     
+ 13  Kinetic-En.     14  Total-Energy    15  Conserved-En.   16  Temperature   
+ 17  Pres.-DC        18  Pressure        19  Constr.-rmsd    20  Box-X         
+ 21  Box-Y           22  Box-Z           23  Volume          24  Density       
+ 25  pV              26  Enthalpy        27  Vir-XX          28  Vir-XY        
+ 29  Vir-XZ          30  Vir-YX          31  Vir-YY          32  Vir-YZ        
+ 33  Vir-ZX          34  Vir-ZY          35  Vir-ZZ          36  Pres-XX       
+ 37  Pres-XY         38  Pres-XZ         39  Pres-YX         40  Pres-YY       
+ 41  Pres-YZ         42  Pres-ZX         43  Pres-ZY         44  Pres-ZZ       
+ 45  #Surf*SurfTen   46  T-Protein       47  T-SOL           48  Lamb-Protein  
+ 49  Lamb-SOL      
+
+Reading energy frame      0 time    0.000         Reading energy frame      1 time    0.100         Reading energy frame      2 time    0.200         Reading energy frame      3 time    0.300         Reading energy frame      4 time    0.400         Reading energy frame      5 time    0.500         Reading energy frame      6 time    0.600         Reading energy frame      7 time    0.700         Reading energy frame      8 time    0.800         Reading energy frame      9 time    0.900         Reading energy frame     10 time    1.000         Reading energy frame     11 time    1.100         Reading energy frame     12 time    1.200         Reading energy frame     13 time    1.300         Reading energy frame     14 time    1.400         Reading energy frame     15 time    1.500         Reading energy frame     16 time    1.600         Reading energy frame     17 time    1.700         Reading energy frame     18 time    1.800         Reading energy frame     19 time    1.900         Reading energy frame     20 time    2.000         Reading energy frame     30 time    3.000         Reading energy frame     40 time    4.000         Reading energy frame     50 time    5.000         Reading energy frame     60 time    6.000         Reading energy frame     70 time    7.000         Reading energy frame     80 time    8.000         Reading energy frame     90 time    9.000         Reading energy frame    100 time   10.000         Reading energy frame    110 time   11.000         Reading energy frame    120 time   12.000         Reading energy frame    130 time   13.000         Reading energy frame    140 time   14.000         Reading energy frame    150 time   15.000         Reading energy frame    160 time   16.000         Reading energy frame    170 time   17.000         Reading energy frame    180 time   18.000         Reading energy frame    190 time   19.000         Reading energy frame    200 time   20.000         Last energy frame read 200 time   20.000         
+
+GROMACS reminds you: "It may be worthwhile to reflect on whether the predictive power of the force fields used is sufficient to justify the enormous usage of computer power and energy." (Anonymous reviewer, upon reading a draft of 10.1002/jcc.70059)
+
+
+Statistics over 20001 steps [ 0.0000 through 20.0000 ps ], 5 data sets
+All statistics are over 201 points (frames)
+
+Energy                      Average   Err.Est.       RMSD  Tot-Drift
+-------------------------------------------------------------------------------
+Potential                   -373182        230    668.995   -1515.16  (kJ/mol)
+Temperature                 309.418       0.32    1.87253  -0.220511  (K)
+Pressure                   -108.204         42    170.146    234.428  (bar)
+Volume                      283.861       0.73    1.58126   -4.48664  (nm^3)
+Density                     1001.96        2.6    5.55571    15.7609  (kg/m^3)

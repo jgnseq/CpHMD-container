@@ -1,0 +1,26 @@
+                     :-) GROMACS - gmx editconf, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/solution
+Command line:
+  gmx editconf -f protein.gro -o box.gro -bt dodecahedron -d 1.2
+
+
+GROMACS reminds you: "A tidy laboratory means a lazy chemist." (J.J. Berzelius)
+
+Note that major changes are planned in future for editconf, to improve usability and utility.
+Read 2004 atoms
+Volume: 54.4409 nm^3, corresponds to roughly 24400 electrons
+No velocities found
+    system size :  3.061  3.829  4.645 (nm)
+    diameter    :  5.007               (nm)
+    center      : -0.112  1.441  2.384 (nm)
+    box vectors :  3.061  3.829  4.645 (nm)
+    box angles  :  90.00  90.00  90.00 (degrees)
+    box volume  :  54.44               (nm^3)
+    shift       :  5.667  4.114  0.235 (nm)
+new center      :  5.555  5.555  2.619 (nm)
+new box vectors :  7.407  7.407  7.407 (nm)
+new box angles  :  60.00  60.00  90.00 (degrees)
+new box volume  : 287.39               (nm^3)

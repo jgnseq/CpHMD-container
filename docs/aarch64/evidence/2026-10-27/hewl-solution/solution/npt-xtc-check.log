@@ -1,0 +1,26 @@
+                      :-) GROMACS - gmx check, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/solution
+Command line:
+  gmx check -f npt.xtc
+
+Reading frame       0 time    0.000   
+# Atoms  27989
+Precision 0.001 (nm)
+Reading frame       1 time    1.000   Reading frame       2 time    2.000   Reading frame       3 time    3.000   Reading frame       4 time    4.000   Reading frame       5 time    5.000   Reading frame       6 time    6.000   Reading frame       7 time    7.000   Reading frame       8 time    8.000   Reading frame       9 time    9.000   Reading frame      10 time   10.000   Reading frame      11 time   11.000   Reading frame      12 time   12.000   Reading frame      13 time   13.000   Reading frame      14 time   14.000   Reading frame      15 time   15.000   Reading frame      16 time   16.000   Reading frame      17 time   17.000   Reading frame      18 time   18.000   Reading frame      19 time   19.000   Reading frame      20 time   20.000   Last frame         20 time   20.000   
+
+
+Item        #frames Timestep (ps)
+Step            21    1
+Time            21    1
+Lambda           0
+Coords          21    1
+Velocities       0
+Forces           0
+Box             21    1
+
+GROMACS reminds you: "It may be worthwhile to reflect on whether the predictive power of the force fields used is sufficient to justify the enormous usage of computer power and energy." (Anonymous reviewer, upon reading a draft of 10.1002/jcc.70059)
+
+Checking file npt.xtc

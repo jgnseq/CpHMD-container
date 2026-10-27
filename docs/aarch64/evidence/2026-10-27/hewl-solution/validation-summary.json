@@ -1,0 +1,94 @@
+{
+  "job": 2149846,
+  "state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed": "00:07:54",
+  "native_node": "cna0001",
+  "source_commit": "ada4739003e34c694d7c785dd1f870c88cdd3715",
+  "submitted_source_dirty": true,
+  "project_directory": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solution.P4IU4M",
+  "image_sha256": "d153f31722e76f167080485942074633ce9e3d7abc51dfa97827f790947880ba",
+  "snapshot_archive_sha256": "bd322b839e71c9bc8f7df3c22596b341e66c5b94dc6579f052bba69c3a1683b9",
+  "preparation_archive_sha256": "8a25d4b613b7f8458fc76ed865e0ca9d4ae2b72779a2f06aca0f4532d1e76241",
+  "off_cluster_snapshot": "/home/jsequeira/Documents/ChatGPT/CpHMD Container \u2014 ARM64 & Publication/artifacts/hewl-4lzt/snapshot-2149846/snapshot",
+  "off_cluster_archives_verified": true,
+  "snapshot_internal_manifest_verified": true,
+  "protein_topology_and_site_list_preserved": true,
+  "solution_audit": {
+    "status": "BOUNDED_SOLUTION_PREPARATION_PASSED",
+    "minimization_Fmax_kJ_mol_nm": 874.25946,
+    "ion_plan": {
+      "target_ionic_strength_M": 0.1,
+      "box_volume_nm3": 287.38668026434715,
+      "protein_charge_e": 9,
+      "positive_ions": 13,
+      "negative_ions": 22,
+      "actual_initial_ionic_strength_M": 0.10111614654100375,
+      "integer_rounding_half_step_M": 0.0028890327583143928,
+      "ion_placement_seed": 1729,
+      "convention": "Total mobile monovalent ions, including neutralizing counterions; box volume",
+      "solvated_atoms_before_ions": 28059,
+      "total_atoms": 27989,
+      "water_molecules": 8650,
+      "thermostat_SOL_includes_ions": true,
+      "initial_total_charge_e": 0
+    },
+    "stages": {
+      "nvt": {
+        "duration_ps": 10,
+        "tail_temperature_K": 306.28342988235295,
+        "energy_records": 101,
+        "all_selected_energy_records_finite": true
+      },
+      "npt": {
+        "duration_ps": 20,
+        "tail_temperature_K": 309.4381728712871,
+        "energy_records": 201,
+        "all_selected_energy_records_finite": true,
+        "tail_density_kg_m3": 1005.7297103366336,
+        "tail_volume_nm3": 282.78878598019804,
+        "tail_pressure_bar": -47.91361772277228
+      }
+    },
+    "disulfide_distances": [
+      {
+        "pair": [
+          6,
+          127
+        ],
+        "distance_nm": 0.20162837101955686
+      },
+      {
+        "pair": [
+          30,
+          115
+        ],
+        "distance_nm": 0.21140955512937443
+      },
+      {
+        "pair": [
+          64,
+          80
+        ],
+        "distance_nm": 0.1977523704029866
+      },
+      {
+        "pair": [
+          76,
+          94
+        ],
+        "distance_nm": 0.2013976166691152
+      }
+    ],
+    "final_box_volume_nm3": 282.88723098253774,
+    "final_mobile_ionic_strength_M": 0.10272444455909753,
+    "warning_policy": "Every grompp uses maxwarn 0",
+    "scope": "Restrained 10+20 ps validation preparation, not production/equilibration convergence",
+    "pending": [
+      "matched-source fixed-coordinate PB/MC",
+      "CpHMD all-site/RT and batch restart validation"
+    ]
+  },
+  "scope": "Native restrained solution preparation only; PB/MC and CpHMD/RT/restart remain pending",
+  "current_source_matches_submitted_snapshot": true
+}

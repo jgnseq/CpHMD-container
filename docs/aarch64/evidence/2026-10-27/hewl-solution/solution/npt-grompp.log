@@ -1,0 +1,71 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/solution
+Command line:
+  gmx grompp -f npt.mdp -c nvt.gro -t nvt.cpt -r ionized.gro -n index.ndx -p HEWL.top -o npt.tpr -pp npt-processed.top -po npt-out.mdp -maxwarn 0
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group Protein is 5008.74
+Number of degrees of freedom in T-Coupling group SOL is 52002.26
+
+NOTE 1 [file npt.mdp]:
+  Removing center of mass motion in the presence of position restraints
+  might cause artifacts. When you are using position restraints to
+  equilibrate a macro-molecule, the artifacts are usually negligible.
+
+Last frame         -1 time   10.000   
+
+There was 1 NOTE
+
+GROMACS reminds you: "I can't relate to you" (Bad Religion)
+
+Generated 4278 of the 4278 non-bonded parameter combinations
+
+Generated 4278 of the 4278 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'Protein_chain_A'
+
+turning H bonds into constraints...
+
+Excluding 2 bonded neighbours molecule type 'SOL'
+
+turning H bonds into constraints...
+
+Excluding 1 bonded neighbours molecule type 'NA'
+
+turning H bonds into constraints...
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+turning H bonds into constraints...
+
+Taking velocities from 'nvt.gro'
+
+The largest distance between excluded atoms is 0.451 nm between atom 1184 and 1437
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 310 K
+
+Calculated rlist for 1x1 atom pair-list as 1.039 nm, buffer size 0.039 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+
+  rest:       	 5.563  5.551  2.642
+  rest:       	 5.563  5.551  2.642
+
+Reading Coordinates, Velocities and Box size from old trajectory
+
+Will read whole trajectory
+
+Using frame at t = 10 ps
+
+Starting time for run is 0 ps
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 64x64x64, spacing 0.116 0.116 0.116
+
+Estimate for the relative computational load of the PME mesh part: 0.36
+
+This run will generate roughly 6 Mb of data

@@ -37,6 +37,13 @@ ARM access ends **31 October 2026**. General terminal/preparation issues are
 documented in [DEFERRED_ISSUES.md](DEFERRED_ISSUES.md) and deferred at the user's
 request. The immediate priorities are ARM scientific gates and verified exports.
 
+Native solution job **2149846** passed `COMPLETED 0:0` in 7 minutes 54 seconds:
+solvation/ions, restrained contact minimization, 10 ps NVT and 20 ps NPT. Its
+frozen protocol, health checks and checksum-verified off-cluster snapshot are in
+[HEWL_SOLUTION_2026-10-27.md](HEWL_SOLUTION_2026-10-27.md). Fixed-coordinate
+matched-source PB/MC is now the next scientific gate. Do not rerun preparation
+just to record the milestone.
+
 ## Original native compilation and embedded tests: job 2147983
 
 The native build and embedded smoke gates passed on 27 October 2026. Job
@@ -185,7 +192,7 @@ Deucalion's project directory requires supplementary-group access, which fakeroo
 - The ordinary host process stages inputs and copies artifacts/results back after fakeroot returns. The local-image build uses `--disable-cache`; no compiler downloads or OCI downloads occur in the fakeroot build.
 - The project ACLs and production directories are unchanged. Failed temporary build work is not destructively cleaned by the launcher.
 
-## 1. Record ARM runtime access and HEWL topology validation locally
+## 1. Record the native HEWL solution-preparation milestone locally
 
 Run in the local desktop terminal, not on Deucalion:
 
@@ -194,11 +201,11 @@ cd '/home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/Cp
 git status --short --branch
 git diff --check
 
-git add -- container_build/arm64 container_build/run_arm64_build.sh container_build/slurm/repair-arm64-permissions.slurm container_build/slurm/hewl-topology.slurm tests/arm64 tests/check_hewl_topology.py docs/aarch64
+git add -- container_build/slurm/hewl-solution.slurm tests/arm64/prepare_hewl_solution.sh tests/arm64/plan_hewl_ions.py tests/arm64/check_hewl_solution.py tests/arm64/hewl-solution tests/check_hewl_solution_helpers.py docs/aarch64
 git diff --cached --check
 git diff --cached --stat
-git diff --cached -- container_build tests/arm64 tests/check_hewl_topology.py docs/aarch64/DEFERRED_ISSUES.md docs/aarch64/HEWL_TOPOLOGY_2026-10-27.md
-git commit -m 'Validate ordinary-user ARM runtime and HEWL topology; record deferred issues'
+git diff --cached -- container_build/slurm/hewl-solution.slurm tests/arm64 tests/check_hewl_solution_helpers.py docs/aarch64/HEWL_SOLUTION_2026-10-27.md
+git commit -m 'Prepare and validate solvated HEWL snapshot on native ARM'
 git push origin codex/arm64-deucalion-20261026
 ```
 

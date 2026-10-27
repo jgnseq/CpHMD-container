@@ -1,0 +1,36 @@
+{
+  "source_commit": "ada4739003e34c694d7c785dd1f870c88cdd3715",
+  "source_dirty": true,
+  "note": "Frozen solution validation prototype before user review/commit; canonical CpHMD/FF unchanged",
+  "protocol": {
+    "pdb": "4LZT",
+    "force_field": "Amber14SBpH",
+    "water": "TIP3P",
+    "temperature_K": 310,
+    "target_mobile_ionic_strength_M": 0.1,
+    "padding_nm": 1.2,
+    "box": "dodecahedron",
+    "NVT_ps": 10,
+    "NPT_ps": 20,
+    "dt_ps": 0.001,
+    "min_Fmax_kJ_mol_nm": 1000,
+    "position_restraints": "existing protein-heavy POSRES; 1000 kJ/mol/nm^2",
+    "ion_seed": 1729,
+    "velocity_seed": 314159,
+    "thermostat_seeds": [
+      271828,
+      161803
+    ]
+  },
+  "files": {
+    "tests/arm64/prepare_hewl_solution.sh": "f1dc1e44e1a3e8559fd72f4fdde9798cb430555e93f1afebff3c1802070655e8",
+    "tests/arm64/plan_hewl_ions.py": "e7a44d2e530f116a020780fdd7145a63b4a2e6173a27110a9abf185becbb0816",
+    "tests/arm64/check_hewl_solution.py": "1023140f426d980275b9cc9545b38e6aa13e5c79870c3ce4db273122d0fa2fbd",
+    "tests/arm64/check_hewl_topology.py": "530dfb69d754ecf9f62b773f32929038a0f31e3a2555a8ad8a397e556db56627",
+    "container_build/slurm/hewl-solution.slurm": "42c1c18c5b18070d207b0ab14b714b808c9809559065c832088eb59bf99353f4",
+    "tests/arm64/hewl-solution/ions.mdp": "fd322b47b1802553cbed08321b6c20452092cdb734eb94f6461de4c3604567ec",
+    "tests/arm64/hewl-solution/minimize.mdp": "0a3ac16a417338cd46b8d6e319cb5343da407de35d57428fd3854461b25bc3fb",
+    "tests/arm64/hewl-solution/npt.mdp": "ef6730880b6d6fdbd2e1ced046fa5b772aa9087c8354346d21ed677289ff8d2d",
+    "tests/arm64/hewl-solution/nvt.mdp": "1ef7e0cd551f3305a676f3c57f64bc5675ed6906348cdfd29cc41c38750e1853"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "status": "BOUNDED_SOLUTION_PREPARATION_PASSED",
+  "minimization_Fmax_kJ_mol_nm": 874.25946,
+  "ion_plan": {
+    "target_ionic_strength_M": 0.1,
+    "box_volume_nm3": 287.38668026434715,
+    "protein_charge_e": 9,
+    "positive_ions": 13,
+    "negative_ions": 22,
+    "actual_initial_ionic_strength_M": 0.10111614654100375,
+    "integer_rounding_half_step_M": 0.0028890327583143928,
+    "ion_placement_seed": 1729,
+    "convention": "Total mobile monovalent ions, including neutralizing counterions; box volume",
+    "solvated_atoms_before_ions": 28059,
+    "total_atoms": 27989,
+    "water_molecules": 8650,
+    "thermostat_SOL_includes_ions": true,
+    "initial_total_charge_e": 0
+  },
+  "stages": {
+    "nvt": {
+      "duration_ps": 10,
+      "tail_temperature_K": 306.28342988235295,
+      "energy_records": 101,
+      "all_selected_energy_records_finite": true
+    },
+    "npt": {
+      "duration_ps": 20,
+      "tail_temperature_K": 309.4381728712871,
+      "energy_records": 201,
+      "all_selected_energy_records_finite": true,
+      "tail_density_kg_m3": 1005.7297103366336,
+      "tail_volume_nm3": 282.78878598019804,
+      "tail_pressure_bar": -47.91361772277228
+    }
+  },
+  "disulfide_distances": [
+    {
+      "pair": [
+        6,
+        127
+      ],
+      "distance_nm": 0.20162837101955686
+    },
+    {
+      "pair": [
+        30,
+        115
+      ],
+      "distance_nm": 0.21140955512937443
+    },
+    {
+      "pair": [
+        64,
+        80
+      ],
+      "distance_nm": 0.1977523704029866
+    },
+    {
+      "pair": [
+        76,
+        94
+      ],
+      "distance_nm": 0.2013976166691152
+    }
+  ],
+  "final_box_volume_nm3": 282.88723098253774,
+  "final_mobile_ionic_strength_M": 0.10272444455909753,
+  "warning_policy": "Every grompp uses maxwarn 0",
+  "scope": "Restrained 10+20 ps validation preparation, not production/equilibration convergence",
+  "pending": [
+    "matched-source fixed-coordinate PB/MC",
+    "CpHMD all-site/RT and batch restart validation"
+  ]
+}

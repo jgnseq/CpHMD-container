@@ -1,0 +1,72 @@
+                      :-) GROMACS - gmx genion, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/solution
+Command line:
+  gmx genion -s ions.tpr -o ionized.gro -p HEWL.top -np 13 -nn 22 -pname NA -nname CL -seed 1729
+
+Reading file ions.tpr, VERSION 2026.3 (single precision)
+Reading file ions.tpr, VERSION 2026.3 (single precision)
+Group     0 (         System) has 28059 elements
+Group     1 (        Protein) has  2004 elements
+Group     2 (      Protein-H) has  1001 elements
+Group     3 (        C-alpha) has   129 elements
+Group     4 (       Backbone) has   387 elements
+Group     5 (      MainChain) has   517 elements
+Group     6 (   MainChain+Cb) has   634 elements
+Group     7 (    MainChain+H) has   646 elements
+Group     8 (      SideChain) has  1358 elements
+Group     9 (    SideChain-H) has   484 elements
+Group    10 (    Prot-Masses) has  2004 elements
+Group    11 (    non-Protein) has 26055 elements
+Group    12 (          Water) has 26055 elements
+Group    13 (            SOL) has 26055 elements
+Group    14 (      non-Water) has  2004 elements
+Select a group: Number of (3-atomic) solvent molecules: 8685
+Using random seed 1729.
+Replacing solvent molecule 5972 (atom 19920) with NA
+Replacing solvent molecule 86 (atom 2262) with NA
+Replacing solvent molecule 4055 (atom 14169) with NA
+Replacing solvent molecule 7472 (atom 24420) with NA
+Replacing solvent molecule 4849 (atom 16551) with NA
+Replacing solvent molecule 1488 (atom 6468) with NA
+Replacing solvent molecule 1078 (atom 5238) with NA
+Replacing solvent molecule 688 (atom 4068) with NA
+Replacing solvent molecule 5567 (atom 18705) with NA
+Replacing solvent molecule 5449 (atom 18351) with NA
+Replacing solvent molecule 8245 (atom 26739) with NA
+Replacing solvent molecule 82 (atom 2250) with NA
+Replacing solvent molecule 7234 (atom 23706) with NA
+Replacing solvent molecule 7871 (atom 25617) with CL
+Replacing solvent molecule 4576 (atom 15732) with CL
+Replacing solvent molecule 2967 (atom 10905) with CL
+Replacing solvent molecule 3088 (atom 11268) with CL
+Replacing solvent molecule 6389 (atom 21171) with CL
+Replacing solvent molecule 6184 (atom 20556) with CL
+Replacing solvent molecule 2980 (atom 10944) with CL
+Replacing solvent molecule 3276 (atom 11832) with CL
+Replacing solvent molecule 8472 (atom 27420) with CL
+Replacing solvent molecule 8660 (atom 27984) with CL
+Replacing solvent molecule 1284 (atom 5856) with CL
+Replacing solvent molecule 2981 (atom 10947) with CL
+Replacing solvent molecule 917 (atom 4755) with CL
+Replacing solvent molecule 4918 (atom 16758) with CL
+Replacing solvent molecule 4935 (atom 16809) with CL
+Replacing solvent molecule 334 (atom 3006) with CL
+Replacing solvent molecule 3119 (atom 11361) with CL
+Replacing solvent molecule 7548 (atom 24648) with CL
+Replacing solvent molecule 551 (atom 3657) with CL
+Replacing solvent molecule 1955 (atom 7869) with CL
+Replacing solvent molecule 2602 (atom 9810) with CL
+Replacing solvent molecule 4830 (atom 16494) with CL
+
+
+GROMACS reminds you: "Look at these, my work-strong arms" (P.J. Harvey)
+
+Will try to add 13 NA ions and 22 CL ions.
+Select a continuous group of solvent molecules
+Selected 13: 'SOL'
+
+Processing topology
+Replacing 35 solute molecules in topology file (HEWL.top)  by 13 NA and 22 CL ions.

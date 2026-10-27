@@ -1,0 +1,10 @@
+cna0001.deucalion.macc.fccn.pt
+2026-10-27T09:13:43+00:00
+/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/runtime-permissions/repair.G02c6n/CpHMD-arm64-readable.sif: OK
+PASS: frozen source and input-topology hashes
+Ion plan: 13 NA / 22 CL, I=0.101116 M
+Verified neutral ion inventory and Protein / SOL (water+ions) groups
+PASS: minimization Fmax=874.259 kJ/mol/nm
+PASS: minimization Fmax=874.259 kJ/mol/nm
+PASS: restrained solution preparation; portable snapshot frozen
+SOLUTION_PREPARATION_AND_SNAPSHOT_PASSED

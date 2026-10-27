@@ -1,0 +1,16 @@
+{
+  "target_ionic_strength_M": 0.1,
+  "box_volume_nm3": 287.38668026434715,
+  "protein_charge_e": 9,
+  "positive_ions": 13,
+  "negative_ions": 22,
+  "actual_initial_ionic_strength_M": 0.10111614654100375,
+  "integer_rounding_half_step_M": 0.0028890327583143928,
+  "ion_placement_seed": 1729,
+  "convention": "Total mobile monovalent ions, including neutralizing counterions; box volume",
+  "solvated_atoms_before_ions": 28059,
+  "total_atoms": 27989,
+  "water_molecules": 8650,
+  "thermostat_SOL_includes_ions": true,
+  "initial_total_charge_e": 0
+}

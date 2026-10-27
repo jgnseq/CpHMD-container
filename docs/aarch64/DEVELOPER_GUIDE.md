@@ -121,6 +121,12 @@ construction helpers remain provisional fixture tooling; general fixes and CI
 adoption are deferred in [DEFERRED_ISSUES.md](DEFERRED_ISSUES.md). The ARM image
 permission fix is an immediate delivery gate, separate from that deferred work.
 
+The next solution stage is documented in
+[HEWL_SOLUTION_2026-10-27.md](HEWL_SOLUTION_2026-10-27.md). It maps the new
+`prepare_hewl_solution.sh`, ion planner, health/snapshot checker, explicit MDPs
+and native SLURM wrapper to their callers and pass criteria. These scripts
+prepare a frozen input for PB/MC; they do not invoke the CpHMD controller.
+
 ## Commenting and maintenance convention
 
 For each new or changed project-owned file, keep a short header explaining its

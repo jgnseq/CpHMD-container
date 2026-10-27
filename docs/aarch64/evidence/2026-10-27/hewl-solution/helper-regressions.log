@@ -1,0 +1,19 @@
+test_duplicate_energy_times_rejected (__main__.SolutionBookkeepingTests.test_duplicate_energy_times_rejected)
+Reject repeated/non-increasing records rather than averaging them. ... ok
+test_energy_columns_by_name (__main__.SolutionBookkeepingTests.test_energy_columns_by_name)
+Temperature must not depend on the order requested from gmx energy. ... ok
+test_impossible_neutralization_strength (__main__.SolutionBookkeepingTests.test_impossible_neutralization_strength)
+Do not silently claim 0.1 M when counterions alone already exceed it. ... ok
+test_negative_protein_charge (__main__.SolutionBookkeepingTests.test_negative_protein_charge)
+The bookkeeping also handles excess positive counterions correctly. ... ok
+test_neutrality_and_nearest_integer_strength (__main__.SolutionBookkeepingTests.test_neutrality_and_nearest_integer_strength)
+Counterions count toward I; compare the chosen counts to adjacent pairs. ... ok
+test_nonfinite_energy_rejected (__main__.SolutionBookkeepingTests.test_nonfinite_energy_rejected)
+A nonempty energy file with NaN is not valid output. ... ok
+test_triclinic_volume (__main__.SolutionBookkeepingTests.test_triclinic_volume)
+Use the determinant, preserving the off-diagonal GRO component order. ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.005s
+
+OK

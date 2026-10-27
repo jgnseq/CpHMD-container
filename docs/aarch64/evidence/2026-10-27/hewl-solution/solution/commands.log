@@ -1,0 +1,17 @@
+/gromacs/bin/gmx --version 
+/gromacs/bin/gmx editconf -f protein.gro -o box.gro -bt dodecahedron -d 1.2 
+/gromacs/bin/gmx solvate -cp box.gro -cs /gromacs/gromacs-2026.3/share/gromacs/top/spc216.gro -o solvated.gro -p HEWL.top 
+/gromacs/bin/gmx grompp -f ions.mdp -c solvated.gro -p HEWL.top -o ions.tpr -maxwarn 0 
+/gromacs/bin/gmx genion -s ions.tpr -o ionized.gro -p HEWL.top -np 13 -nn 22 -pname NA -nname CL -seed 1729 
+/gromacs/bin/gmx grompp -f minimize.mdp -c ionized.gro -r ionized.gro -n index.ndx -p HEWL.top -o em.tpr -pp em-processed.top -po em-out.mdp -maxwarn 0 
+/gromacs/bin/gmx mdrun -deffnm em -ntmpi 1 -ntomp 8 -pin on 
+/gromacs/bin/gmx grompp -f nvt.mdp -c em.gro -r ionized.gro -n index.ndx -p HEWL.top -o nvt.tpr -pp nvt-processed.top -po nvt-out.mdp -maxwarn 0 
+/gromacs/bin/gmx mdrun -deffnm nvt -ntmpi 1 -ntomp 8 -pin on 
+/gromacs/bin/gmx grompp -f npt.mdp -c nvt.gro -t nvt.cpt -r ionized.gro -n index.ndx -p HEWL.top -o npt.tpr -pp npt-processed.top -po npt-out.mdp -maxwarn 0 
+/gromacs/bin/gmx mdrun -deffnm npt -ntmpi 1 -ntomp 8 -pin on 
+/gromacs/bin/gmx check -f nvt.xtc 
+/gromacs/bin/gmx check -e nvt.edr 
+/gromacs/bin/gmx check -f npt.xtc 
+/gromacs/bin/gmx check -e npt.edr 
+/gromacs/bin/gmx energy -f nvt.edr -o nvt-energy.xvg 
+/gromacs/bin/gmx energy -f npt.edr -o npt-energy.xvg 

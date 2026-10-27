@@ -1,0 +1,41 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/solution
+Command line:
+  gmx grompp -f minimize.mdp -c ionized.gro -r ionized.gro -n index.ndx -p HEWL.top -o em.tpr -pp em-processed.top -po em-out.mdp -maxwarn 0
+
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group rest is 58014.00
+The integrator does not provide a ensemble temperature, there is no system ensemble temperature
+
+NOTE 1 [file minimize.mdp]:
+  Removing center of mass motion in the presence of position restraints
+  might cause artifacts. When you are using position restraints to
+  equilibrate a macro-molecule, the artifacts are usually negligible.
+
+
+There was 1 NOTE
+
+GROMACS reminds you: "Art For Arts Sake, Money For Gods Sake" (10 CC)
+
+Generated 4278 of the 4278 non-bonded parameter combinations
+
+Generated 4278 of the 4278 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'Protein_chain_A'
+
+Excluding 2 bonded neighbours molecule type 'SOL'
+
+Excluding 1 bonded neighbours molecule type 'NA'
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+The largest distance between excluded atoms is 0.440 nm between atom 1184 and 1437
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 64x64x64, spacing 0.116 0.116 0.116
+
+Estimate for the relative computational load of the PME mesh part: 0.33
+
+This run will generate roughly 3 Mb of data
