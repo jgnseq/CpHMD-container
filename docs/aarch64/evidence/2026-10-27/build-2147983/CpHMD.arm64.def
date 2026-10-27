@@ -1,0 +1,306 @@
+Bootstrap: localimage
+From: /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/images/CpHMD-aarch64-phase6-sve512.sif
+
+# Rendered by prepare_arm64_build.py; tokens are pinned candidate metadata.
+# %files stages source, %post compiles, %test gates the resulting image, and
+# %runscript starts the controller only when the user later runs a settings file.
+# Canonical %apprun helper interfaces are appended from CpHMD-suite.def.
+%labels
+    org.opencontainers.image.title CpHMD ARM development candidate
+    architecture arm64
+    gromacs 2026.3
+    simd ARM_SVE
+    base.sha256 6d1ddca5ce97f686cff36990a9696a2d311a73dc3581d97f30bc9fe1b73d08d6
+    source.manifest.sha256 3ad6398344519e58048247e912401664aad86a20f107fcbeb01d66b5ed1890a0
+    validation.status development-candidate-not-scientifically-validated
+
+%files
+    context/ /opt/cphmd-build
+    build.json /etc/cphmd/build.json
+    manifest.sha256 /etc/cphmd/input-manifest.sha256
+    build-evidence/ /build-evidence
+
+%post
+    /bin/bash /opt/cphmd-build/container_build/arm64/build-inside.sh
+
+%environment
+    export PATH="/gromacs/bin:/opt/plumed/bin:/CpHMD/scripts:/usr/local/bin:/usr/bin:/bin:${PATH}"
+    export LD_LIBRARY_PATH="/opt/nvhpc/lib:/opt/plumed/lib:/opt/plumed/lib64"
+    export PLUMED_KERNEL="/opt/plumed/lib/libplumedKernel.so"
+    export GMXLIB="/FFs"
+    export GMX_MAXBACKUP=-1
+    export GMX_CPU_BIN="/gromacs/bin/gmx"
+
+%runscript
+    test "$#" -eq 1 || { echo 'Usage: singularity run IMAGE.sif CpHMD.settings' >&2; exit 2; }
+    exec /CpHMD/scripts/CpHMD.sh "$1"
+
+%test
+    /bin/bash /usr/local/libexec/cphmd/validate-arm64.sh
+
+%help
+    Native ARM GROMACS 2026.3 CPU development candidate. The exact pre-existing
+    ARM base image supplies the legacy DelPhi solver and its NVHPC libraries.
+    CpHMD, PLUMED, PETIT, fixgro and the PB helpers use the frozen source context.
+    Build/dependency checks are distinct from scientific PB/MC validation.
+    GPU=0 is required. GROMACS uses OpenMP and thread-MPI, not external MPI.
+
+%apprun protonation
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: apptainer run --app protonation IMAGE.sif FILE.occ FILE.sites" >&2
+        exit 2
+    fi
+    exec /bin/bash /analysis/extract_protonation.sh "$1" "$2"
+
+%apphelp protonation
+    Convert a CpHMD tautomer-state OCC file into per-residue protonation-state
+    time series.
+
+    Usage:
+      apptainer run --app protonation IMAGE.sif FILE.occ FILE.sites
+
+
+%apprun extract-protonation-script
+    destination="./extract_protonation.sh"
+    if [ -e "${destination}" ]; then
+        echo "Refusing to overwrite ${destination}" >&2
+        exit 1
+    fi
+    cp -a /analysis/extract_protonation.sh "${destination}"
+
+%apphelp extract-protonation-script
+    Copy the bundled protonation-analysis shell script into the current
+    directory without overwriting an existing file.
+
+
+%apprun extract-force-fields
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: apptainer run --app extract-force-fields IMAGE.sif GROMOS|CHARMM|AMBER" >&2
+        exit 2
+    fi
+
+    case "$1" in
+        G54a7pH|G54a7|GROMOS|Gromos|gromos)
+            source=/FFs/G54a7pH.ff
+            destination=./G54a7pH.ff
+            ;;
+        CHARMM36|CHARMM36pH|CHARMM|Charmm|charmm)
+            source=/FFs/CHARMM36pH.ff
+            destination=./CHARMM36pH.ff
+            ;;
+        Amber14SBpH|Amber14SB|AMBER|Amber|amber)
+            source=/FFs/Amber14SBpH.ff
+            destination=./Amber14SBpH.ff
+            ;;
+        *)
+            echo "Invalid force field. Choose GROMOS, CHARMM or AMBER." >&2
+            exit 2
+            ;;
+    esac
+
+    if [ -e "${destination}" ]; then
+        echo "Refusing to overwrite ${destination}" >&2
+        exit 1
+    fi
+    cp -a "${source}" "${destination}"
+
+%apphelp extract-force-fields
+    Copy one complete CpHMD-compatible force-field directory into the current
+    directory without overwriting existing data.
+
+    Usage:
+      apptainer run --app extract-force-fields IMAGE.sif GROMOS|CHARMM|AMBER
+
+
+%apprun extract-tautomers
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: apptainer run --app extract-tautomers IMAGE.sif GROMOS|CHARMM|AMBER" >&2
+        exit 2
+    fi
+
+    case "$1" in
+        G54a7pH|G54a7|GROMOS|Gromos|gromos)
+            source=/STs/St-G54a7pH
+            destination=./St-G54a7pH
+            ;;
+        CHARMM36|CHARMM36pH|CHARMM|Charmm|charmm)
+            source=/STs/St-CHARMM36pH
+            destination=./St-CHARMM36pH
+            ;;
+        Amber14SBpH|Amber14SB|AMBER|Amber|amber)
+            source=/STs/St-Amber14SBpH
+            destination=./St-Amber14SBpH
+            ;;
+        *)
+            echo "Invalid force field. Choose GROMOS, CHARMM or AMBER." >&2
+            exit 2
+            ;;
+    esac
+
+    if [ -e "${destination}" ]; then
+        echo "Refusing to overwrite ${destination}" >&2
+        exit 1
+    fi
+    cp -a "${source}" "${destination}"
+
+%apphelp extract-tautomers
+    Copy the tautomer-state directory for one supported force field into the
+    current directory without overwriting existing data.
+
+    Usage:
+      apptainer run --app extract-tautomers IMAGE.sif GROMOS|CHARMM|AMBER
+
+
+%apprun extract-databases
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: apptainer run --app extract-databases IMAGE.sif GROMOS|CHARMM|AMBER" >&2
+        exit 2
+    fi
+
+    case "$1" in
+        G54a7pH|G54a7|GROMOS|Gromos|gromos)
+            basename=DataBaseT_G54a7pH
+            ;;
+        CHARMM36|CHARMM36pH|CHARMM|Charmm|charmm)
+            basename=DataBaseT_CHARMM36pH
+            ;;
+        Amber14SBpH|Amber14SB|AMBER|Amber|amber)
+            basename=DataBaseT_Amber14SBpH
+            ;;
+        *)
+            echo "Invalid force field. Choose GROMOS, CHARMM or AMBER." >&2
+            exit 2
+            ;;
+    esac
+
+    mkdir -p ./Databases
+    for extension in crg siz; do
+        source="/Databases/${basename}.${extension}"
+        destination="./Databases/${basename}.${extension}"
+        if [ -e "${destination}" ]; then
+            echo "Refusing to overwrite ${destination}" >&2
+            exit 1
+        fi
+        cp -a "${source}" "${destination}"
+    done
+
+%apphelp extract-databases
+    Copy the DelPhi charge and size databases for one supported force field
+    into ./Databases without overwriting existing files.
+
+    Usage:
+      apptainer run --app extract-databases IMAGE.sif GROMOS|CHARMM|AMBER
+
+
+%apprun get-tutorials
+    destination=./tutorials
+    if [ -e "${destination}" ]; then
+        echo "Refusing to overwrite ${destination}" >&2
+        exit 1
+    fi
+    cp -a /Tutorials "${destination}"
+
+%apphelp get-tutorials
+    Copy the bundled tutorial directory into ./tutorials without overwriting an
+    existing directory.
+
+
+%apprun get-settings
+    if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+        echo "Usage: apptainer run --app get-settings IMAGE.sif basic|advanced [G54a7pH|CHARMM36pH|Amber14SBpH]" >&2
+        exit 2
+    fi
+
+    settings_type="$1"
+    profile="${2:-}"
+
+    case "${settings_type}" in
+        basic|advanced) ;;
+        *)
+            echo "Invalid settings type. Choose basic or advanced." >&2
+            exit 2
+            ;;
+    esac
+
+    if [ -n "${profile}" ]; then
+        case "${profile}" in
+            G54a7pH|CHARMM36pH|Amber14SBpH) ;;
+            *)
+                echo "Invalid force-field profile: ${profile}" >&2
+                exit 2
+                ;;
+        esac
+        source="/Templates/CpHMD-${settings_type}-${profile}.settings"
+        destination="./CpHMD-${settings_type}-${profile}.settings"
+    else
+        source="/Templates/CpHMD-${settings_type}.settings"
+        destination="./CpHMD-${settings_type}.settings"
+    fi
+
+    if [ ! -s "${source}" ]; then
+        echo "The requested settings profile is not bundled: ${source}" >&2
+        exit 2
+    fi
+    if [ -e "${destination}" ]; then
+        echo "Refusing to overwrite ${destination}" >&2
+        exit 1
+    fi
+    cp -a "${source}" "${destination}"
+
+%apphelp get-settings
+    Copy a CpHMD settings template into the current directory without
+    overwriting an existing file.
+
+    The one-argument interface remains backward compatible:
+      apptainer run --app get-settings IMAGE.sif basic
+      apptainer run --app get-settings IMAGE.sif advanced
+
+    A bundled force-field profile can be selected with:
+      apptainer run --app get-settings IMAGE.sif basic G54a7pH
+      apptainer run --app get-settings IMAGE.sif basic CHARMM36pH
+      apptainer run --app get-settings IMAGE.sif basic Amber14SBpH
+
+
+%apprun pdb2cphmd
+    exec /bin/bash /analysis/prepare-pdb.sh "$@"
+
+%apphelp pdb2cphmd
+    Convert conventional titratable-residue names in a PDB file to the CpHMD
+    naming scheme and copy the selected force-field support files.
+
+    Usage:
+      apptainer run --app pdb2cphmd IMAGE.sif -p INPUT.pdb -f FORCE_FIELD -r RESIDUES...
+
+    Use -h for the script's complete option help.
+
+
+%apprun make-sites
+    exec /bin/bash /CpHMD/scripts/make_sites "$@"
+
+%apphelp make-sites
+    Generate and inspect a CpHMD sites definition from a settings file and a
+    compatible structure file.
+
+    Usage:
+      apptainer run --app make-sites IMAGE.sif CpHMD.settings STRUCTURE.pdb
+
+
+%apprun add-mol-db
+    /bin/bash /analysis/add-mol-database.sh "$@"
+    rc=$?
+    if [ "${rc}" -ne 0 ]; then
+        exit "${rc}"
+    fi
+
+    echo
+    echo "The generated charge and radius records must be reviewed and added to"
+    echo "copies of the complete DelPhi databases before production use."
+
+%apphelp add-mol-db
+    Generate DelPhi charge and radius records for custom molecule types from an
+    ITP file and a supported or custom force-field nonbonded parameter file.
+
+    Usage:
+      apptainer run --app add-mol-db IMAGE.sif -f FORCE_FIELD -i MOLECULE.itp -r MOLECULE_NAMES...
+
+    Use -h for the script's complete option help.

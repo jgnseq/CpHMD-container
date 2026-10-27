@@ -1,0 +1,277 @@
+{
+  "backtraceGraph" : 
+  {
+    "commands" : 
+    [
+      "add_test",
+      "gmx_register_gtest_test",
+      "gmx_add_unit_test"
+    ],
+    "files" : 
+    [
+      "/build/gromacs-2026.3/src/testutils/TestMacros.cmake",
+      "/build/gromacs-2026.3/src/gromacs/commandline/tests/CMakeLists.txt",
+      "/build/gromacs-2026.3/src/gromacs/hardware/tests/CMakeLists.txt",
+      "/build/gromacs-2026.3/src/gromacs/math/tests/CMakeLists.txt",
+      "/build/gromacs-2026.3/src/gromacs/mdtypes/tests/CMakeLists.txt",
+      "/build/gromacs-2026.3/src/gromacs/fileio/tests/CMakeLists.txt"
+    ],
+    "nodes" : 
+    [
+      {
+        "file" : 1
+      },
+      {
+        "command" : 2,
+        "file" : 1,
+        "line" : 53,
+        "parent" : 0
+      },
+      {
+        "command" : 1,
+        "file" : 0,
+        "line" : 393,
+        "parent" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 375,
+        "parent" : 2
+      },
+      {
+        "file" : 2
+      },
+      {
+        "command" : 2,
+        "file" : 2,
+        "line" : 34,
+        "parent" : 4
+      },
+      {
+        "command" : 1,
+        "file" : 0,
+        "line" : 393,
+        "parent" : 5
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 375,
+        "parent" : 6
+      },
+      {
+        "file" : 3
+      },
+      {
+        "command" : 2,
+        "file" : 3,
+        "line" : 34,
+        "parent" : 8
+      },
+      {
+        "command" : 1,
+        "file" : 0,
+        "line" : 393,
+        "parent" : 9
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 375,
+        "parent" : 10
+      },
+      {
+        "file" : 4
+      },
+      {
+        "command" : 2,
+        "file" : 4,
+        "line" : 34,
+        "parent" : 12
+      },
+      {
+        "command" : 1,
+        "file" : 0,
+        "line" : 393,
+        "parent" : 13
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 375,
+        "parent" : 14
+      },
+      {
+        "file" : 5
+      },
+      {
+        "command" : 2,
+        "file" : 5,
+        "line" : 37,
+        "parent" : 16
+      },
+      {
+        "command" : 1,
+        "file" : 0,
+        "line" : 393,
+        "parent" : 17
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 375,
+        "parent" : 18
+      }
+    ]
+  },
+  "kind" : "ctestInfo",
+  "tests" : 
+  [
+    {
+      "backtrace" : 3,
+      "command" : 
+      [
+        "/build/gmx/bin/commandline-test",
+        "--gtest_output=xml:/build/gmx/Testing/Temporary/CommandLineUnitTests.xml"
+      ],
+      "name" : "CommandLineUnitTests",
+      "properties" : 
+      [
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "GTest",
+            "UnitTest"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "/build/gmx/src/gromacs/commandline/tests"
+        }
+      ]
+    },
+    {
+      "backtrace" : 7,
+      "command" : 
+      [
+        "/build/gmx/bin/hardware-test",
+        "--gtest_output=xml:/build/gmx/Testing/Temporary/HardwareUnitTests.xml"
+      ],
+      "name" : "HardwareUnitTests",
+      "properties" : 
+      [
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "GTest",
+            "UnitTest"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "/build/gmx/src/gromacs/hardware/tests"
+        }
+      ]
+    },
+    {
+      "backtrace" : 11,
+      "command" : 
+      [
+        "/build/gmx/bin/math-test",
+        "--gtest_output=xml:/build/gmx/Testing/Temporary/MathUnitTests.xml"
+      ],
+      "name" : "MathUnitTests",
+      "properties" : 
+      [
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "GTest",
+            "UnitTest"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "/build/gmx/src/gromacs/math/tests"
+        }
+      ]
+    },
+    {
+      "backtrace" : 15,
+      "command" : 
+      [
+        "/build/gmx/bin/mdtypes-test",
+        "--gtest_output=xml:/build/gmx/Testing/Temporary/MdtypesUnitTest.xml"
+      ],
+      "name" : "MdtypesUnitTest",
+      "properties" : 
+      [
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "GTest",
+            "UnitTest"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "/build/gmx/src/gromacs/mdtypes/tests"
+        }
+      ]
+    },
+    {
+      "backtrace" : 19,
+      "command" : 
+      [
+        "/build/gmx/bin/fileio-test",
+        "--gtest_output=xml:/build/gmx/Testing/Temporary/FileIOTests.xml"
+      ],
+      "name" : "FileIOTests",
+      "properties" : 
+      [
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "GTest",
+            "UnitTest"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "/build/gmx/src/gromacs/fileio/tests"
+        }
+      ]
+    }
+  ],
+  "version" : 
+  {
+    "major" : 1,
+    "minor" : 0
+  }
+}

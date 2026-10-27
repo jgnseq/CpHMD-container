@@ -6,7 +6,44 @@ The [developer guide](DEVELOPER_GUIDE.md) maps each build/validation file and
 function to its caller, outputs and place in the scientific cycle. Follow its
 commenting convention for future project-owned changes.
 
-## Current step: repair the compiled-test gate after job 2147644
+## Current step: scientific validation after successful job 2147983
+
+The native build and embedded smoke gates passed on 27 October 2026. Job
+`2147983` finished `COMPLETED`, exit `0:0`, in `00:41:35`, from source commit
+`31ca50688bc0158e44263a78c2b6d9c4ae438d0d`. All five selected GROMACS suites
+executed and passed: CommandLine, Hardware, Math, Mdtypes and FileIO. The
+runtime reports GROMACS 2026.3, mixed precision, ARM_SVE with 512-bit compiler
+flags, thread-MPI/OpenMP, CPU-only and PLUMED enabled.
+
+Embedded checks passed for the 21 ELF payload files inspected as AArch64,
+runtime dependencies, both fixgro assembly fixtures, PETIT analytic occupancy
+at pH -1/0/1, and a 20-step water MD/PLUMED run with readable XTC/EDR and finite
+COLVAR output. This fixture is not a throughput benchmark or a complete CpHMD
+validation.
+
+The candidate image is:
+
+```text
+/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/builds/31ca50688bc0158e44263a78c2b6d9c4ae438d0d-ARM_SVE-20261027T004036Z/CpHMD-arm64.sif
+```
+
+Its SHA-256 was independently checked against the saved checksum file:
+
+```text
+7393d585ad790e1d53089d9199cf11bdbb6b9cbea1016d16b979b3999fb24343
+```
+
+Logs, test output, recipe, manifest and provenance are copied into
+`evidence/2026-10-27/build-2147983/`; the image remains in project storage.
+Retain this exact SIF for the next scientific gates rather than rebuilding it.
+
+The next step is to freeze a small input system and compare fixed-coordinate
+PB/MC results with the x86 reference, with units/tolerances established before
+examining differences. Then exercise complete CpHMD cycles, RT refreshes and
+checkpoint continuation. Those tests remain pending; section 4 defines them.
+No additional build job is needed to record or use this successful candidate.
+
+## Previous build: compiled-test gate failure in job 2147644
 
 The first complete build attempt reached the end of the native PLUMED/GROMACS
 compilation on A64FX with SVE-512. SLURM job `2147644` ran for `00:36:18` and
@@ -43,11 +80,9 @@ Original Deucalion evidence is retained under:
 
 Copies of the build log and compiler/test artifacts, plus the repair regression
 record, are under `evidence/2026-10-27/`. Keep the failed candidate unchanged.
-Commit the correction and submit a new candidate using sections 1–2 below.
-The next pass criterion is successful compilation **and execution** of the five
-suites, followed by installation and embedded architecture/helper/PETIT/MD tests.
-Only after a complete SIF passes those checks should fixed-coordinate PB/MC and
-full-cycle/RT/restart validation begin.
+The correction was committed in `31ca506` and those gates subsequently passed
+in job `2147983`, as recorded above. Keep this failure evidence to explain the
+orchestration correction without confusing it with a numerical test failure.
 
 ## Recovery from the incomplete-bundle clone error
 
@@ -95,7 +130,7 @@ and all six repository/support checks passed. Evidence is recorded in
 - Native A64FX job `2147469` passed PETIT architecture/version inspection, native fixgro compilation and both PBC fixtures, fakeroot execution and a minimal SIF build. Its exit was `0:0`; elapsed 27 seconds. The probe image and full log are preserved in the project.
 - The 20-step water MD smoke fixture passed on the existing x86 GROMACS 2026.3 CPU image, including PLUMED distance output and XTC/EDR readability. The PETIT fixture passed at pH -1, 0 and 1 against analytic two-state probabilities.
 - The source-context preparation tool was exercised locally: manifest verification passed, explicit settings/profiles were preserved, and all host ELF products were excluded (53 omitted host products in the tested snapshot).
-- Job `2147644` completed main native PLUMED/GROMACS compilation, then failed because the test executables were not built. Native unit/image smoke checks and scientific CpHMD validation have **not** passed; see the current-step diagnosis above.
+- Job `2147983` passed native compilation, all five selected unit suites and embedded image smoke checks, and produced the checksum-verified SIF. Fixed-coordinate PB/MC, full CpHMD/RT and restart scientific validation remain pending.
 
 ## Build decisions
 
@@ -118,7 +153,7 @@ Deucalion's project directory requires supplementary-group access, which fakeroo
 - The ordinary host process stages inputs and copies artifacts/results back after fakeroot returns. The local-image build uses `--disable-cache`; no compiler downloads or OCI downloads occur in the fakeroot build.
 - The project ACLs and production directories are unchanged. Failed temporary build work is not destructively cleaned by the launcher.
 
-## 1. Review and commit the GROMACS test-gate correction locally
+## 1. Record the successful build milestone locally
 
 Run in the local desktop terminal, not on Deucalion:
 
@@ -126,27 +161,22 @@ Run in the local desktop terminal, not on Deucalion:
 cd '/home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container'
 git status --short --branch
 git diff --check
-bash tests/static_checks.sh
-bash tests/check_databases.sh
-bash tests/check_reduced_titration_logic.sh
-bash tests/check_asic_settings.sh
-bash tests/check_settings_profiles.sh
-bash tests/check_arm64_build_support.sh
 
-# Also run this on a host with CMake/CTest (the repair was tested on mini05):
-# bash tests/check_gromacs_test_gate.sh
-
-git add -- .github/workflows/ci.yml container_build/arm64 tests/check_arm64_build_support.sh tests/check_gromacs_test_gate.sh docs/aarch64
+git add -- docs/aarch64/BUILD_AND_VALIDATE.md docs/aarch64/evidence/2026-10-27/build-2147983
 git diff --cached --check
 git diff --cached --stat
-git diff --cached -- container_build/arm64 .github/workflows/ci.yml tests/check_arm64_build_support.sh tests/check_gromacs_test_gate.sh docs/aarch64/BUILD_AND_VALIDATE.md docs/aarch64/DEVELOPER_GUIDE.md
-git commit -m 'Build selected GROMACS test binaries before ARM validation'
+git diff --cached -- docs/aarch64/BUILD_AND_VALIDATE.md docs/aarch64/evidence/2026-10-27/build-2147983/validation-summary.json
+git commit -m 'Record successful native ARM build and smoke validation'
 git push origin codex/arm64-deucalion-20261026
 ```
 
 The agent has not staged, committed or pushed these changes. Raw build/scientific evidence has whitespace checking disabled through the narrow `.gitattributes` rule; source-code whitespace checking remains enabled.
 
-## 2. Prepare an immutable candidate and submit its build
+## 2. Prepare and submit a future candidate when code changes
+
+Job `2147983` already produced the candidate for scientific validation. The
+commands below document the build workflow for a later implementation change;
+do not submit another build just to record the successful milestone.
 
 From the same local terminal:
 

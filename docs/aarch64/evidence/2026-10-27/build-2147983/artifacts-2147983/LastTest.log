@@ -1,0 +1,2196 @@
+Start testing: Oct 27 01:22 UTC
+----------------------------------------------------------
+35/104 Testing: CommandLineUnitTests
+35/104 Test: CommandLineUnitTests
+Command: "/build/gmx/bin/commandline-test" "--gtest_output=xml:/build/gmx/Testing/Temporary/CommandLineUnitTests.xml"
+Directory: /build/gmx/src/gromacs/commandline/tests
+"CommandLineUnitTests" start time: Oct 27 01:22 UTC
+Output:
+----------------------------------------------------------
+[==========] Running 60 tests from 7 test suites.
+[----------] Global test environment set-up.
+[----------] 3 tests from CommandLineHelpModuleTest
+[ RUN      ] CommandLineHelpModuleTest.PrintsGeneralHelp
+[       OK ] CommandLineHelpModuleTest.PrintsGeneralHelp (0 ms)
+[ RUN      ] CommandLineHelpModuleTest.PrintsHelpOnTopic
+[       OK ] CommandLineHelpModuleTest.PrintsHelpOnTopic (0 ms)
+[ RUN      ] CommandLineHelpModuleTest.ExportsHelp
+[       OK ] CommandLineHelpModuleTest.ExportsHelp (1 ms)
+[----------] 3 tests from CommandLineHelpModuleTest (3 ms total)
+
+[----------] 7 tests from CommandLineHelpWriterTest
+[ RUN      ] CommandLineHelpWriterTest.HandlesOptionTypes
+[       OK ] CommandLineHelpWriterTest.HandlesOptionTypes (0 ms)
+[ RUN      ] CommandLineHelpWriterTest.HandlesDefaultValuesFromVariables
+[       OK ] CommandLineHelpWriterTest.HandlesDefaultValuesFromVariables (0 ms)
+[ RUN      ] CommandLineHelpWriterTest.HandlesLongFileOptions
+[       OK ] CommandLineHelpWriterTest.HandlesLongFileOptions (0 ms)
+[ RUN      ] CommandLineHelpWriterTest.HandlesLongOptions
+[       OK ] CommandLineHelpWriterTest.HandlesLongOptions (0 ms)
+[ RUN      ] CommandLineHelpWriterTest.HandlesOptionGroups
+[       OK ] CommandLineHelpWriterTest.HandlesOptionGroups (0 ms)
+[ RUN      ] CommandLineHelpWriterTest.HandlesHelpText
+[       OK ] CommandLineHelpWriterTest.HandlesHelpText (0 ms)
+[ RUN      ] CommandLineHelpWriterTest.HandlesKnownIssues
+[       OK ] CommandLineHelpWriterTest.HandlesKnownIssues (0 ms)
+[----------] 7 tests from CommandLineHelpWriterTest (2 ms total)
+
+[----------] 6 tests from CommandLineModuleManagerTest
+[ RUN      ] CommandLineModuleManagerTest.RunsModule
+[       OK ] CommandLineModuleManagerTest.RunsModule (0 ms)
+[ RUN      ] CommandLineModuleManagerTest.RunsModuleHelp
+[       OK ] CommandLineModuleManagerTest.RunsModuleHelp (0 ms)
+[ RUN      ] CommandLineModuleManagerTest.RunsModuleHelpAfterQuiet
+[       OK ] CommandLineModuleManagerTest.RunsModuleHelpAfterQuiet (0 ms)
+[ RUN      ] CommandLineModuleManagerTest.RunsModuleHelpWithDashH
+[       OK ] CommandLineModuleManagerTest.RunsModuleHelpWithDashH (0 ms)
+[ RUN      ] CommandLineModuleManagerTest.RunsModuleHelpWithDashHWithSingleModule
+[       OK ] CommandLineModuleManagerTest.RunsModuleHelpWithDashHWithSingleModule (0 ms)
+[ RUN      ] CommandLineModuleManagerTest.HandlesConflictingBinaryAndModuleNames
+[       OK ] CommandLineModuleManagerTest.HandlesConflictingBinaryAndModuleNames (0 ms)
+[----------] 6 tests from CommandLineModuleManagerTest (1 ms total)
+
+[----------] 13 tests from CommandLineParserTest
+[ RUN      ] CommandLineParserTest.HandlesSingleValues
+[       OK ] CommandLineParserTest.HandlesSingleValues (0 ms)
+[ RUN      ] CommandLineParserTest.HandlesBooleanWithoutArgument
+[       OK ] CommandLineParserTest.HandlesBooleanWithoutArgument (0 ms)
+[ RUN      ] CommandLineParserTest.HandlesBooleanAsNoWithoutArgument
+[       OK ] CommandLineParserTest.HandlesBooleanAsNoWithoutArgument (0 ms)
+[ RUN      ] CommandLineParserTest.ThrowsWithBooleanAsNoWithArgument
+[       OK ] CommandLineParserTest.ThrowsWithBooleanAsNoWithArgument (0 ms)
+[ RUN      ] CommandLineParserTest.HandlesNegativeNumbers
+[       OK ] CommandLineParserTest.HandlesNegativeNumbers (0 ms)
+[ RUN      ] CommandLineParserTest.HandlesString
+[       OK ] CommandLineParserTest.HandlesString (0 ms)
+[ RUN      ] CommandLineParserTest.RejectsStringWithMultipleValues
+[       OK ] CommandLineParserTest.RejectsStringWithMultipleValues (0 ms)
+[ RUN      ] CommandLineParserTest.HandlesDoubleDashOptionPrefix
+[       OK ] CommandLineParserTest.HandlesDoubleDashOptionPrefix (0 ms)
+[ RUN      ] CommandLineParserTest.HandlesOptionsStartingWithNumbers
+[       OK ] CommandLineParserTest.HandlesOptionsStartingWithNumbers (0 ms)
+[ RUN      ] CommandLineParserTest.HandlesSkipUnknown
+[       OK ] CommandLineParserTest.HandlesSkipUnknown (0 ms)
+[ RUN      ] CommandLineParserTest.RejectsPositionalArgumentsByDefault
+[       OK ] CommandLineParserTest.RejectsPositionalArgumentsByDefault (0 ms)
+[ RUN      ] CommandLineParserTest.CanAllowPositionalArguments
+[       OK ] CommandLineParserTest.CanAllowPositionalArguments (0 ms)
+[ RUN      ] CommandLineParserTest.CannotHavePositionalArgumentsAfterOptions
+[       OK ] CommandLineParserTest.CannotHavePositionalArgumentsAfterOptions (0 ms)
+[----------] 13 tests from CommandLineParserTest (1 ms total)
+
+[----------] 6 tests from CommandLineProgramContextTest
+[ RUN      ] CommandLineProgramContextTest.FindsBinaryWithAbsolutePath
+[       OK ] CommandLineProgramContextTest.FindsBinaryWithAbsolutePath (0 ms)
+[ RUN      ] CommandLineProgramContextTest.FindsBinaryWithRelativePath
+[       OK ] CommandLineProgramContextTest.FindsBinaryWithRelativePath (0 ms)
+[ RUN      ] CommandLineProgramContextTest.FindsBinaryFromPath
+[       OK ] CommandLineProgramContextTest.FindsBinaryFromPath (0 ms)
+[ RUN      ] CommandLineProgramContextTest.FindsBinaryFromCurrentDirectory
+[       OK ] CommandLineProgramContextTest.FindsBinaryFromCurrentDirectory (0 ms)
+[ RUN      ] CommandLineProgramContextTest.FindsBinaryFromAbsoluteSymLink
+[       OK ] CommandLineProgramContextTest.FindsBinaryFromAbsoluteSymLink (0 ms)
+[ RUN      ] CommandLineProgramContextTest.FindsBinaryFromRelativeSymLink
+[       OK ] CommandLineProgramContextTest.FindsBinaryFromRelativeSymLink (0 ms)
+[----------] 6 tests from CommandLineProgramContextTest (0 ms total)
+
+[----------] 3 tests from OutputNamesTest
+[ RUN      ] OutputNamesTest.CanBeSuffixed
+[       OK ] OutputNamesTest.CanBeSuffixed (0 ms)
+[ RUN      ] OutputNamesTest.HasSuffixFromNoAppend
+[       OK ] OutputNamesTest.HasSuffixFromNoAppend (0 ms)
+[ RUN      ] OutputNamesTest.CanHavePartNumberAdded
+[       OK ] OutputNamesTest.CanHavePartNumberAdded (0 ms)
+[----------] 3 tests from OutputNamesTest (0 ms total)
+
+[----------] 22 tests from ParseCommonArgsTest
+[ RUN      ] ParseCommonArgsTest.ParsesIntegerArgs
+[       OK ] ParseCommonArgsTest.ParsesIntegerArgs (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParsesInt64Args
+[       OK ] ParseCommonArgsTest.ParsesInt64Args (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParsesRealArgs
+[       OK ] ParseCommonArgsTest.ParsesRealArgs (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParsesStringArgs
+[       OK ] ParseCommonArgsTest.ParsesStringArgs (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParsesBooleanArgs
+[       OK ] ParseCommonArgsTest.ParsesBooleanArgs (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParsesBooleanArgsToValuesOfSuitableEnum
+[       OK ] ParseCommonArgsTest.ParsesBooleanArgsToValuesOfSuitableEnum (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParsesVectorArgs
+[       OK ] ParseCommonArgsTest.ParsesVectorArgs (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParsesTimeArgs
+[       OK ] ParseCommonArgsTest.ParsesTimeArgs (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParsesTimeArgsWithTimeUnit
+[       OK ] ParseCommonArgsTest.ParsesTimeArgsWithTimeUnit (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParsesEnumArgs
+[       OK ] ParseCommonArgsTest.ParsesEnumArgs (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParsesFileArgs
+[       OK ] ParseCommonArgsTest.ParsesFileArgs (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParsesFileArgsWithDefaults
+[       OK ] ParseCommonArgsTest.ParsesFileArgsWithDefaults (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParsesFileArgsWithDefaultFileName
+[       OK ] ParseCommonArgsTest.ParsesFileArgsWithDefaultFileName (0 ms)
+[ RUN      ] ParseCommonArgsTest.ParseFileArgsWithCustomDefaultExtension
+[       OK ] ParseCommonArgsTest.ParseFileArgsWithCustomDefaultExtension (0 ms)
+[ RUN      ] ParseCommonArgsTest.HandlesNonExistentInputFiles
+[       OK ] ParseCommonArgsTest.HandlesNonExistentInputFiles (0 ms)
+[ RUN      ] ParseCommonArgsTest.HandlesNonExistentOptionalInputFiles
+[       OK ] ParseCommonArgsTest.HandlesNonExistentOptionalInputFiles (0 ms)
+[ RUN      ] ParseCommonArgsTest.AcceptsNonExistentInputFilesIfSpecified
+[       OK ] ParseCommonArgsTest.AcceptsNonExistentInputFilesIfSpecified (0 ms)
+[ RUN      ] ParseCommonArgsTest.HandlesCompressedFiles
+[       OK ] ParseCommonArgsTest.HandlesCompressedFiles (0 ms)
+[ RUN      ] ParseCommonArgsTest.AcceptsUnknownTrajectoryExtension
+Value is /build/gmx/src/gromacs/commandline/tests/Testing/Temporary/ParseCommonArgsTest_AcceptsUnknownTrajectoryExtension.foo
+[       OK ] ParseCommonArgsTest.AcceptsUnknownTrajectoryExtension (0 ms)
+[ RUN      ] ParseCommonArgsTest.CompletesExtensionFromExistingFile
+[       OK ] ParseCommonArgsTest.CompletesExtensionFromExistingFile (1 ms)
+[ RUN      ] ParseCommonArgsTest.CompletesExtensionFromExistingFileWithDefaultFileName
+[       OK ] ParseCommonArgsTest.CompletesExtensionFromExistingFileWithDefaultFileName (1 ms)
+[ RUN      ] ParseCommonArgsTest.CanKeepUnknownArgs
+[       OK ] ParseCommonArgsTest.CanKeepUnknownArgs (0 ms)
+[----------] 22 tests from ParseCommonArgsTest (5 ms total)
+
+[----------] Global test environment tear-down
+[==========] 60 tests from 7 test suites ran. (15 ms total)
+[  PASSED  ] 60 tests.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"CommandLineUnitTests" end time: Oct 27 01:22 UTC
+"CommandLineUnitTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+43/104 Testing: HardwareUnitTests
+43/104 Test: HardwareUnitTests
+Command: "/build/gmx/bin/hardware-test" "--gtest_output=xml:/build/gmx/Testing/Temporary/HardwareUnitTests.xml"
+Directory: /build/gmx/src/gromacs/hardware/tests
+"HardwareUnitTests" start time: Oct 27 01:22 UTC
+Output:
+----------------------------------------------------------
+[==========] Running 21 tests from 10 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from CpuInfoTest
+[ RUN      ] CpuInfoTest.SupportLevel
+[       OK ] CpuInfoTest.SupportLevel (1 ms)
+[----------] 1 test from CpuInfoTest (1 ms total)
+
+[----------] 3 tests from HardwareTopologyTest
+[ RUN      ] HardwareTopologyTest.Execute
+[       OK ] HardwareTopologyTest.Execute (8 ms)
+[ RUN      ] HardwareTopologyTest.ProcessorSelfconsistency
+[       OK ] HardwareTopologyTest.ProcessorSelfconsistency (11 ms)
+[ RUN      ] HardwareTopologyTest.NumaCacheSelfconsistency
+[       OK ] HardwareTopologyTest.NumaCacheSelfconsistency (7 ms)
+[----------] 3 tests from HardwareTopologyTest (27 ms total)
+
+[----------] 1 test from DevicesManagerTest
+[ RUN      ] DevicesManagerTest.Serialization
+[       OK ] DevicesManagerTest.Serialization (0 ms)
+[ DISABLED ] DevicesManagerTest.DISABLED_DetectsUuid
+[----------] 1 test from DevicesManagerTest (0 ms total)
+
+[----------] 1 test from UuidStringTest
+[ RUN      ] UuidStringTest.Works
+[       OK ] UuidStringTest.Works (0 ms)
+[----------] 1 test from UuidStringTest (0 ms total)
+
+[----------] 5 tests from XeonE52620/MockHardwareTopologyTest
+[ RUN      ] XeonE52620/MockHardwareTopologyTest.DetectsHardware/0
+[       OK ] XeonE52620/MockHardwareTopologyTest.DetectsHardware/0 (2 ms)
+[ RUN      ] XeonE52620/MockHardwareTopologyTest.DetectsHardware/1
+[       OK ] XeonE52620/MockHardwareTopologyTest.DetectsHardware/1 (1 ms)
+[ RUN      ] XeonE52620/MockHardwareTopologyTest.DetectsHardware/2
+[       OK ] XeonE52620/MockHardwareTopologyTest.DetectsHardware/2 (1 ms)
+[ RUN      ] XeonE52620/MockHardwareTopologyTest.DetectsHardware/3
+[       OK ] XeonE52620/MockHardwareTopologyTest.DetectsHardware/3 (1 ms)
+[ RUN      ] XeonE52620/MockHardwareTopologyTest.DetectsHardware/4
+[       OK ] XeonE52620/MockHardwareTopologyTest.DetectsHardware/4 (1 ms)
+[----------] 5 tests from XeonE52620/MockHardwareTopologyTest (10 ms total)
+
+[----------] 5 tests from Xeon4116/MockHardwareTopologyTest
+[ RUN      ] Xeon4116/MockHardwareTopologyTest.DetectsHardware/0
+[       OK ] Xeon4116/MockHardwareTopologyTest.DetectsHardware/0 (3 ms)
+[ RUN      ] Xeon4116/MockHardwareTopologyTest.DetectsHardware/1
+[       OK ] Xeon4116/MockHardwareTopologyTest.DetectsHardware/1 (1 ms)
+[ RUN      ] Xeon4116/MockHardwareTopologyTest.DetectsHardware/2
+[       OK ] Xeon4116/MockHardwareTopologyTest.DetectsHardware/2 (1 ms)
+[ RUN      ] Xeon4116/MockHardwareTopologyTest.DetectsHardware/3
+[       OK ] Xeon4116/MockHardwareTopologyTest.DetectsHardware/3 (1 ms)
+[ RUN      ] Xeon4116/MockHardwareTopologyTest.DetectsHardware/4
+[       OK ] Xeon4116/MockHardwareTopologyTest.DetectsHardware/4 (1 ms)
+[----------] 5 tests from Xeon4116/MockHardwareTopologyTest (10 ms total)
+
+[----------] 2 tests from Core12900K/MockHardwareTopologyTest
+[ RUN      ] Core12900K/MockHardwareTopologyTest.DetectsHardware/0
+[       OK ] Core12900K/MockHardwareTopologyTest.DetectsHardware/0 (1 ms)
+[ RUN      ] Core12900K/MockHardwareTopologyTest.DetectsHardware/1
+[       OK ] Core12900K/MockHardwareTopologyTest.DetectsHardware/1 (1 ms)
+[----------] 2 tests from Core12900K/MockHardwareTopologyTest (4 ms total)
+
+[----------] 1 test from Core12900K/MockHardwareTopologySpecialSystemTest
+[ RUN      ] Core12900K/MockHardwareTopologySpecialSystemTest.DetectsHardware/0
+[       OK ] Core12900K/MockHardwareTopologySpecialSystemTest.DetectsHardware/0 (3 ms)
+[----------] 1 test from Core12900K/MockHardwareTopologySpecialSystemTest (3 ms total)
+
+[----------] 1 test from Power9/MockHardwareTopologySpecialSystemTest
+[ RUN      ] Power9/MockHardwareTopologySpecialSystemTest.DetectsHardware/0
+[       OK ] Power9/MockHardwareTopologySpecialSystemTest.DetectsHardware/0 (4 ms)
+[----------] 1 test from Power9/MockHardwareTopologySpecialSystemTest (5 ms total)
+
+[----------] 1 test from A64fx/MockHardwareTopologySpecialSystemTest
+[ RUN      ] A64fx/MockHardwareTopologySpecialSystemTest.DetectsHardware/0
+[       OK ] A64fx/MockHardwareTopologySpecialSystemTest.DetectsHardware/0 (7 ms)
+[----------] 1 test from A64fx/MockHardwareTopologySpecialSystemTest (8 ms total)
+
+[----------] Global test environment tear-down
+[==========] 21 tests from 10 test suites ran. (71 ms total)
+[  PASSED  ] 21 tests.
+
+  YOU HAVE 1 DISABLED TEST
+
+<end of output>
+Test time =   0.09 sec
+----------------------------------------------------------
+Test Passed.
+"HardwareUnitTests" end time: Oct 27 01:22 UTC
+"HardwareUnitTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+44/104 Testing: MathUnitTests
+44/104 Test: MathUnitTests
+Command: "/build/gmx/bin/math-test" "--gtest_output=xml:/build/gmx/Testing/Temporary/MathUnitTests.xml"
+Directory: /build/gmx/src/gromacs/math/tests
+"MathUnitTests" start time: Oct 27 01:22 UTC
+Output:
+----------------------------------------------------------
+[==========] Running 293 tests from 40 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from EmptyArrayRefWithPaddingTest
+[ RUN      ] EmptyArrayRefWithPaddingTest.IsEmpty
+[       OK ] EmptyArrayRefWithPaddingTest.IsEmpty (0 ms)
+[----------] 1 test from EmptyArrayRefWithPaddingTest (0 ms total)
+
+[----------] 1 test from EmptyConstArrayRefWithPaddingTest
+[ RUN      ] EmptyConstArrayRefWithPaddingTest.IsEmpty
+[       OK ] EmptyConstArrayRefWithPaddingTest.IsEmpty (0 ms)
+[----------] 1 test from EmptyConstArrayRefWithPaddingTest (0 ms total)
+
+[----------] 2 tests from ArrayRefWithPaddingTest/0, where TypeParam = gmx::ArrayRefWithPadding<int>
+[ RUN      ] ArrayRefWithPaddingTest/0.AssignFromPaddedVectorWorks
+[       OK ] ArrayRefWithPaddingTest/0.AssignFromPaddedVectorWorks (0 ms)
+[ RUN      ] ArrayRefWithPaddingTest/0.ConstructFromPointersWorks
+[       OK ] ArrayRefWithPaddingTest/0.ConstructFromPointersWorks (0 ms)
+[----------] 2 tests from ArrayRefWithPaddingTest/0 (0 ms total)
+
+[----------] 2 tests from ArrayRefWithPaddingTest/1, where TypeParam = gmx::ArrayRefWithPadding<float>
+[ RUN      ] ArrayRefWithPaddingTest/1.AssignFromPaddedVectorWorks
+[       OK ] ArrayRefWithPaddingTest/1.AssignFromPaddedVectorWorks (0 ms)
+[ RUN      ] ArrayRefWithPaddingTest/1.ConstructFromPointersWorks
+[       OK ] ArrayRefWithPaddingTest/1.ConstructFromPointersWorks (0 ms)
+[----------] 2 tests from ArrayRefWithPaddingTest/1 (0 ms total)
+
+[----------] 2 tests from ArrayRefWithPaddingTest/2, where TypeParam = gmx::ArrayRefWithPadding<double>
+[ RUN      ] ArrayRefWithPaddingTest/2.AssignFromPaddedVectorWorks
+[       OK ] ArrayRefWithPaddingTest/2.AssignFromPaddedVectorWorks (0 ms)
+[ RUN      ] ArrayRefWithPaddingTest/2.ConstructFromPointersWorks
+[       OK ] ArrayRefWithPaddingTest/2.ConstructFromPointersWorks (0 ms)
+[----------] 2 tests from ArrayRefWithPaddingTest/2 (0 ms total)
+
+[----------] 2 tests from InvertBoxMatrixTest
+[ RUN      ] InvertBoxMatrixTest.IdentityIsImpotent
+[       OK ] InvertBoxMatrixTest.IdentityIsImpotent (0 ms)
+[ RUN      ] InvertBoxMatrixTest.ComputesInverseInPlace
+[       OK ] InvertBoxMatrixTest.ComputesInverseInPlace (0 ms)
+[----------] 2 tests from InvertBoxMatrixTest (0 ms total)
+
+[----------] 8 tests from ComplexNumberTest
+[ RUN      ] ComplexNumberTest.RealComplexMultiply
+[       OK ] ComplexNumberTest.RealComplexMultiply (0 ms)
+[ RUN      ] ComplexNumberTest.RealComplexExp
+[       OK ] ComplexNumberTest.RealComplexExp (0 ms)
+[ RUN      ] ComplexNumberTest.ComplexAdd
+[       OK ] ComplexNumberTest.ComplexAdd (0 ms)
+[ RUN      ] ComplexNumberTest.ComplexSubtract
+[       OK ] ComplexNumberTest.ComplexSubtract (0 ms)
+[ RUN      ] ComplexNumberTest.ComplexMultiply
+[       OK ] ComplexNumberTest.ComplexMultiply (0 ms)
+[ RUN      ] ComplexNumberTest.ComplexDivision
+[       OK ] ComplexNumberTest.ComplexDivision (0 ms)
+[ RUN      ] ComplexNumberTest.ComplexConjugate
+[       OK ] ComplexNumberTest.ComplexConjugate (0 ms)
+[ RUN      ] ComplexNumberTest.ComplexAbs2
+[       OK ] ComplexNumberTest.ComplexAbs2 (0 ms)
+[----------] 8 tests from ComplexNumberTest (1 ms total)
+
+[----------] 11 tests from TranslateAndScaleTest
+[ RUN      ] TranslateAndScaleTest.identityTransformation
+[       OK ] TranslateAndScaleTest.identityTransformation (0 ms)
+[ RUN      ] TranslateAndScaleTest.translationWithIdentityScaling
+[       OK ] TranslateAndScaleTest.translationWithIdentityScaling (0 ms)
+[ RUN      ] TranslateAndScaleTest.scalingWithZeroTranslation
+[       OK ] TranslateAndScaleTest.scalingWithZeroTranslation (0 ms)
+[ RUN      ] TranslateAndScaleTest.translationAndScalingNonTrivial
+[       OK ] TranslateAndScaleTest.translationAndScalingNonTrivial (0 ms)
+[ RUN      ] TranslateAndScaleTest.translationAndScalingNonTrivialSingeVector
+[       OK ] TranslateAndScaleTest.translationAndScalingNonTrivialSingeVector (0 ms)
+[ RUN      ] TranslateAndScaleTest.scalingIdentity
+[       OK ] TranslateAndScaleTest.scalingIdentity (0 ms)
+[ RUN      ] TranslateAndScaleTest.scalingNonTrivial
+[       OK ] TranslateAndScaleTest.scalingNonTrivial (0 ms)
+[ RUN      ] TranslateAndScaleTest.scalingNonTrivialSingleVector
+[       OK ] TranslateAndScaleTest.scalingNonTrivialSingleVector (0 ms)
+[ RUN      ] TranslateAndScaleTest.scalingInverseNoZero
+[       OK ] TranslateAndScaleTest.scalingInverseNoZero (0 ms)
+[ RUN      ] TranslateAndScaleTest.scalingInverseWithOneScaleDimensionZero
+[       OK ] TranslateAndScaleTest.scalingInverseWithOneScaleDimensionZero (0 ms)
+[ RUN      ] TranslateAndScaleTest.scalingInverseWithOneScaleDimensionZeroSingleVector
+[       OK ] TranslateAndScaleTest.scalingInverseWithOneScaleDimensionZeroSingleVector (0 ms)
+[----------] 11 tests from TranslateAndScaleTest (0 ms total)
+
+[----------] 3 tests from AffineTransformationTest
+[ RUN      ] AffineTransformationTest.identityTransformYieldsSameVectors
+[       OK ] AffineTransformationTest.identityTransformYieldsSameVectors (0 ms)
+[ RUN      ] AffineTransformationTest.applyTransformationToVectors
+[       OK ] AffineTransformationTest.applyTransformationToVectors (0 ms)
+[ RUN      ] AffineTransformationTest.retrieveGradient
+[       OK ] AffineTransformationTest.retrieveGradient (0 ms)
+[----------] 3 tests from AffineTransformationTest (0 ms total)
+
+[----------] 14 tests from DensitySimilarityTest
+[ RUN      ] DensitySimilarityTest.InnerProductIsCorrect
+[       OK ] DensitySimilarityTest.InnerProductIsCorrect (0 ms)
+[ RUN      ] DensitySimilarityTest.InnerProductGradientIsCorrect
+[       OK ] DensitySimilarityTest.InnerProductGradientIsCorrect (0 ms)
+[ RUN      ] DensitySimilarityTest.GradientThrowsIfDensitiesDontMatch
+[       OK ] DensitySimilarityTest.GradientThrowsIfDensitiesDontMatch (0 ms)
+[ RUN      ] DensitySimilarityTest.SimilarityThrowsIfDensitiesDontMatch
+[       OK ] DensitySimilarityTest.SimilarityThrowsIfDensitiesDontMatch (0 ms)
+[ RUN      ] DensitySimilarityTest.CopiedMeasureInnerProductIsCorrect
+[       OK ] DensitySimilarityTest.CopiedMeasureInnerProductIsCorrect (0 ms)
+[ RUN      ] DensitySimilarityTest.RelativeEntropyOfSameDensityIsZero
+[       OK ] DensitySimilarityTest.RelativeEntropyOfSameDensityIsZero (0 ms)
+[ RUN      ] DensitySimilarityTest.RelativeEntropyIsCorrect
+[       OK ] DensitySimilarityTest.RelativeEntropyIsCorrect (0 ms)
+[ RUN      ] DensitySimilarityTest.RelativeEntropyGradientIsCorrect
+[       OK ] DensitySimilarityTest.RelativeEntropyGradientIsCorrect (0 ms)
+[ RUN      ] DensitySimilarityTest.CrossCorrelationIsOne
+[       OK ] DensitySimilarityTest.CrossCorrelationIsOne (51 ms)
+[ RUN      ] DensitySimilarityTest.CrossCorrelationIsMinusOneWhenAntiCorrelated
+[       OK ] DensitySimilarityTest.CrossCorrelationIsMinusOneWhenAntiCorrelated (50 ms)
+[ RUN      ] DensitySimilarityTest.CrossCorrelationGradientIsZeroWhenCorrelated
+[       OK ] DensitySimilarityTest.CrossCorrelationGradientIsZeroWhenCorrelated (3 ms)
+[ RUN      ] DensitySimilarityTest.CrossCorrelationGradientIsCorrect
+[       OK ] DensitySimilarityTest.CrossCorrelationGradientIsCorrect (0 ms)
+[ RUN      ] DensitySimilarityTest.NormalizationCorrect
+[       OK ] DensitySimilarityTest.NormalizationCorrect (0 ms)
+[ RUN      ] DensitySimilarityTest.NormalizationAllNonPositive
+[       OK ] DensitySimilarityTest.NormalizationAllNonPositive (0 ms)
+[----------] 14 tests from DensitySimilarityTest (106 ms total)
+
+[----------] 6 tests from StructureSimilarityTest
+[ RUN      ] StructureSimilarityTest.StructureComparedToSelfHasZeroRMSD
+[       OK ] StructureSimilarityTest.StructureComparedToSelfHasZeroRMSD (0 ms)
+[ RUN      ] StructureSimilarityTest.StructureComparedToSelfHasZeroRho
+[       OK ] StructureSimilarityTest.StructureComparedToSelfHasZeroRho (0 ms)
+[ RUN      ] StructureSimilarityTest.YieldsCorrectRMSD
+[       OK ] StructureSimilarityTest.YieldsCorrectRMSD (0 ms)
+[ RUN      ] StructureSimilarityTest.YieldsCorrectRho
+[       OK ] StructureSimilarityTest.YieldsCorrectRho (0 ms)
+[ RUN      ] StructureSimilarityTest.YieldsCorrectRMSDWithIndex
+[       OK ] StructureSimilarityTest.YieldsCorrectRMSDWithIndex (0 ms)
+[ RUN      ] StructureSimilarityTest.YieldsCorrectRhoWidthIndex
+[       OK ] StructureSimilarityTest.YieldsCorrectRhoWidthIndex (0 ms)
+[----------] 6 tests from StructureSimilarityTest (0 ms total)
+
+[----------] 8 tests from ExponentialMovingAverage
+[ RUN      ] ExponentialMovingAverage.ThrowsWhenLagTimeIsZero
+[       OK ] ExponentialMovingAverage.ThrowsWhenLagTimeIsZero (0 ms)
+[ RUN      ] ExponentialMovingAverage.ThrowsWhenLagTimeIsNegative
+[       OK ] ExponentialMovingAverage.ThrowsWhenLagTimeIsNegative (0 ms)
+[ RUN      ] ExponentialMovingAverage.LagTimeOneYieldsInstantaneousValue
+[       OK ] ExponentialMovingAverage.LagTimeOneYieldsInstantaneousValue (0 ms)
+[ RUN      ] ExponentialMovingAverage.YieldsCorrectValue
+[       OK ] ExponentialMovingAverage.YieldsCorrectValue (0 ms)
+[ RUN      ] ExponentialMovingAverage.SetAverageCorrectly
+[       OK ] ExponentialMovingAverage.SetAverageCorrectly (0 ms)
+[ RUN      ] ExponentialMovingAverage.DeterminesCorrectlyIfIncreasing
+[       OK ] ExponentialMovingAverage.DeterminesCorrectlyIfIncreasing (0 ms)
+[ RUN      ] ExponentialMovingAverage.InverseLagTimeCorrect
+[       OK ] ExponentialMovingAverage.InverseLagTimeCorrect (0 ms)
+[ RUN      ] ExponentialMovingAverage.RoundTripAsKeyValueTree
+[       OK ] ExponentialMovingAverage.RoundTripAsKeyValueTree (0 ms)
+[----------] 8 tests from ExponentialMovingAverage (0 ms total)
+
+[----------] 21 tests from FunctionTest
+[ RUN      ] FunctionTest.StaticLog2
+[       OK ] FunctionTest.StaticLog2 (0 ms)
+[ RUN      ] FunctionTest.Log2I32Bit
+[       OK ] FunctionTest.Log2I32Bit (0 ms)
+[ RUN      ] FunctionTest.Log2I64Bit
+[       OK ] FunctionTest.Log2I64Bit (0 ms)
+[ RUN      ] FunctionTest.GreatestCommonDivisor
+[       OK ] FunctionTest.GreatestCommonDivisor (0 ms)
+[ RUN      ] FunctionTest.InvsqrtFloat
+[       OK ] FunctionTest.InvsqrtFloat (0 ms)
+[ RUN      ] FunctionTest.InvsqrtDouble
+[       OK ] FunctionTest.InvsqrtDouble (0 ms)
+[ RUN      ] FunctionTest.InvsqrtInteger
+[       OK ] FunctionTest.InvsqrtInteger (0 ms)
+[ RUN      ] FunctionTest.InvcbrtFloat
+[       OK ] FunctionTest.InvcbrtFloat (0 ms)
+[ RUN      ] FunctionTest.InvcbrtDouble
+[       OK ] FunctionTest.InvcbrtDouble (0 ms)
+[ RUN      ] FunctionTest.InvcbrtInteger
+[       OK ] FunctionTest.InvcbrtInteger (0 ms)
+[ RUN      ] FunctionTest.SixthrootFloat
+[       OK ] FunctionTest.SixthrootFloat (0 ms)
+[ RUN      ] FunctionTest.SixthrootDouble
+[       OK ] FunctionTest.SixthrootDouble (0 ms)
+[ RUN      ] FunctionTest.SixthrootInteger
+[       OK ] FunctionTest.SixthrootInteger (0 ms)
+[ RUN      ] FunctionTest.InvsixthrootFloat
+[       OK ] FunctionTest.InvsixthrootFloat (0 ms)
+[ RUN      ] FunctionTest.InvsixthrootDouble
+[       OK ] FunctionTest.InvsixthrootDouble (0 ms)
+[ RUN      ] FunctionTest.InvsixthrootInteger
+[       OK ] FunctionTest.InvsixthrootInteger (0 ms)
+[ RUN      ] FunctionTest.Powers
+[       OK ] FunctionTest.Powers (0 ms)
+[ RUN      ] FunctionTest.ErfInvFloat
+[       OK ] FunctionTest.ErfInvFloat (0 ms)
+[ RUN      ] FunctionTest.ErfInvDouble
+[       OK ] FunctionTest.ErfInvDouble (0 ms)
+[ RUN      ] FunctionTest.ErfAndErfInvAreInversesFloat
+[       OK ] FunctionTest.ErfAndErfInvAreInversesFloat (0 ms)
+[ RUN      ] FunctionTest.ErfAndErfInvAreInversesDouble
+[       OK ] FunctionTest.ErfAndErfInvAreInversesDouble (0 ms)
+[----------] 21 tests from FunctionTest (3 ms total)
+
+[----------] 2 tests from FunctionTestIntegerTypes/0, where TypeParam = signed char
+[ RUN      ] FunctionTestIntegerTypes/0.IsPowerOfTwo
+[       OK ] FunctionTestIntegerTypes/0.IsPowerOfTwo (0 ms)
+[ RUN      ] FunctionTestIntegerTypes/0.DivideRoundUp
+[       OK ] FunctionTestIntegerTypes/0.DivideRoundUp (0 ms)
+[----------] 2 tests from FunctionTestIntegerTypes/0 (0 ms total)
+
+[----------] 2 tests from FunctionTestIntegerTypes/1, where TypeParam = unsigned char
+[ RUN      ] FunctionTestIntegerTypes/1.IsPowerOfTwo
+[       OK ] FunctionTestIntegerTypes/1.IsPowerOfTwo (0 ms)
+[ RUN      ] FunctionTestIntegerTypes/1.DivideRoundUp
+[       OK ] FunctionTestIntegerTypes/1.DivideRoundUp (0 ms)
+[----------] 2 tests from FunctionTestIntegerTypes/1 (0 ms total)
+
+[----------] 2 tests from FunctionTestIntegerTypes/2, where TypeParam = short
+[ RUN      ] FunctionTestIntegerTypes/2.IsPowerOfTwo
+[       OK ] FunctionTestIntegerTypes/2.IsPowerOfTwo (0 ms)
+[ RUN      ] FunctionTestIntegerTypes/2.DivideRoundUp
+[       OK ] FunctionTestIntegerTypes/2.DivideRoundUp (0 ms)
+[----------] 2 tests from FunctionTestIntegerTypes/2 (0 ms total)
+
+[----------] 2 tests from FunctionTestIntegerTypes/3, where TypeParam = unsigned short
+[ RUN      ] FunctionTestIntegerTypes/3.IsPowerOfTwo
+[       OK ] FunctionTestIntegerTypes/3.IsPowerOfTwo (0 ms)
+[ RUN      ] FunctionTestIntegerTypes/3.DivideRoundUp
+[       OK ] FunctionTestIntegerTypes/3.DivideRoundUp (0 ms)
+[----------] 2 tests from FunctionTestIntegerTypes/3 (0 ms total)
+
+[----------] 2 tests from FunctionTestIntegerTypes/4, where TypeParam = int
+[ RUN      ] FunctionTestIntegerTypes/4.IsPowerOfTwo
+[       OK ] FunctionTestIntegerTypes/4.IsPowerOfTwo (0 ms)
+[ RUN      ] FunctionTestIntegerTypes/4.DivideRoundUp
+[       OK ] FunctionTestIntegerTypes/4.DivideRoundUp (0 ms)
+[----------] 2 tests from FunctionTestIntegerTypes/4 (0 ms total)
+
+[----------] 2 tests from FunctionTestIntegerTypes/5, where TypeParam = unsigned int
+[ RUN      ] FunctionTestIntegerTypes/5.IsPowerOfTwo
+[       OK ] FunctionTestIntegerTypes/5.IsPowerOfTwo (0 ms)
+[ RUN      ] FunctionTestIntegerTypes/5.DivideRoundUp
+[       OK ] FunctionTestIntegerTypes/5.DivideRoundUp (0 ms)
+[----------] 2 tests from FunctionTestIntegerTypes/5 (0 ms total)
+
+[----------] 2 tests from FunctionTestIntegerTypes/6, where TypeParam = long
+[ RUN      ] FunctionTestIntegerTypes/6.IsPowerOfTwo
+[       OK ] FunctionTestIntegerTypes/6.IsPowerOfTwo (0 ms)
+[ RUN      ] FunctionTestIntegerTypes/6.DivideRoundUp
+[       OK ] FunctionTestIntegerTypes/6.DivideRoundUp (0 ms)
+[----------] 2 tests from FunctionTestIntegerTypes/6 (0 ms total)
+
+[----------] 2 tests from FunctionTestIntegerTypes/7, where TypeParam = unsigned long
+[ RUN      ] FunctionTestIntegerTypes/7.IsPowerOfTwo
+[       OK ] FunctionTestIntegerTypes/7.IsPowerOfTwo (0 ms)
+[ RUN      ] FunctionTestIntegerTypes/7.DivideRoundUp
+[       OK ] FunctionTestIntegerTypes/7.DivideRoundUp (0 ms)
+[----------] 2 tests from FunctionTestIntegerTypes/7 (0 ms total)
+
+[----------] 4 tests from GaussianOn1DLattice
+[ RUN      ] GaussianOn1DLattice.sumsCloseToOne
+[       OK ] GaussianOn1DLattice.sumsCloseToOne (0 ms)
+[ RUN      ] GaussianOn1DLattice.isCorrect
+[       OK ] GaussianOn1DLattice.isCorrect (0 ms)
+[ RUN      ] GaussianOn1DLattice.complementaryAmplitudesSumToZero
+[       OK ] GaussianOn1DLattice.complementaryAmplitudesSumToZero (0 ms)
+[ RUN      ] GaussianOn1DLattice.doesNotOverflowForLargeRange
+[       OK ] GaussianOn1DLattice.doesNotOverflowForLargeRange (0 ms)
+[----------] 4 tests from GaussianOn1DLattice (0 ms total)
+
+[----------] 9 tests from GaussTransformTest
+[ RUN      ] GaussTransformTest.isZeroUponConstruction
+[       OK ] GaussTransformTest.isZeroUponConstruction (0 ms)
+[ RUN      ] GaussTransformTest.isZeroAddingZeroAmplitudeGauss
+[       OK ] GaussTransformTest.isZeroAddingZeroAmplitudeGauss (0 ms)
+[ RUN      ] GaussTransformTest.isZeroAfterSettingZero
+[       OK ] GaussTransformTest.isZeroAfterSettingZero (0 ms)
+[ RUN      ] GaussTransformTest.isZeroWhenOutsideRangeinX
+[       OK ] GaussTransformTest.isZeroWhenOutsideRangeinX (0 ms)
+[ RUN      ] GaussTransformTest.isZeroWhenOutsideRangeinY
+[       OK ] GaussTransformTest.isZeroWhenOutsideRangeinY (0 ms)
+[ RUN      ] GaussTransformTest.isZeroWhenOutsideRangeinZ
+[       OK ] GaussTransformTest.isZeroWhenOutsideRangeinZ (0 ms)
+[ RUN      ] GaussTransformTest.complementaryGaussAddToZero
+[       OK ] GaussTransformTest.complementaryGaussAddToZero (0 ms)
+[ RUN      ] GaussTransformTest.centerGaussianInCubeHasExpectedValues
+[       OK ] GaussTransformTest.centerGaussianInCubeHasExpectedValues (0 ms)
+[ RUN      ] GaussTransformTest.view
+[       OK ] GaussTransformTest.view (0 ms)
+[----------] 9 tests from GaussTransformTest (0 ms total)
+
+[----------] 3 tests from DensityFittingForce
+[ RUN      ] DensityFittingForce.isZeroWhenMatchingDensity
+[       OK ] DensityFittingForce.isZeroWhenMatchingDensity (0 ms)
+[ RUN      ] DensityFittingForce.isZeroWhenMismatchingSameAllDirections
+[       OK ] DensityFittingForce.isZeroWhenMismatchingSameAllDirections (0 ms)
+[ RUN      ] DensityFittingForce.pullsTowardsDerivative
+[       OK ] DensityFittingForce.pullsTowardsDerivative (0 ms)
+[----------] 3 tests from DensityFittingForce (0 ms total)
+
+[----------] 2 tests from InvertMatrixTest
+[ RUN      ] InvertMatrixTest.IdentityIsImpotent
+[       OK ] InvertMatrixTest.IdentityIsImpotent (0 ms)
+[ RUN      ] InvertMatrixTest.ComputesInverse
+[       OK ] InvertMatrixTest.ComputesInverse (0 ms)
+[----------] 2 tests from InvertMatrixTest (0 ms total)
+
+[----------] 28 tests from MatrixTest
+[ RUN      ] MatrixTest.canSetFromArray
+[       OK ] MatrixTest.canSetFromArray (0 ms)
+[ RUN      ] MatrixTest.canSetStaticallyFromList
+[       OK ] MatrixTest.canSetStaticallyFromList (0 ms)
+[ RUN      ] MatrixTest.canSetStaticallySingleValue
+[       OK ] MatrixTest.canSetStaticallySingleValue (0 ms)
+[ RUN      ] MatrixTest.canConstructAndFill
+[       OK ] MatrixTest.canConstructAndFill (0 ms)
+[ RUN      ] MatrixTest.canSetValues
+[       OK ] MatrixTest.canSetValues (0 ms)
+[ RUN      ] MatrixTest.canCopyAssign
+[       OK ] MatrixTest.canCopyAssign (0 ms)
+[ RUN      ] MatrixTest.canSwap
+[       OK ] MatrixTest.canSwap (0 ms)
+[ RUN      ] MatrixTest.staticMultiDimArrayExtent
+[       OK ] MatrixTest.staticMultiDimArrayExtent (0 ms)
+[ RUN      ] MatrixTest.canAddMatrix
+[       OK ] MatrixTest.canAddMatrix (0 ms)
+[ RUN      ] MatrixTest.canAddAssignMatrix
+[       OK ] MatrixTest.canAddAssignMatrix (0 ms)
+[ RUN      ] MatrixTest.canSubtractMatrix
+[       OK ] MatrixTest.canSubtractMatrix (0 ms)
+[ RUN      ] MatrixTest.canSubtractAssignMatrix
+[       OK ] MatrixTest.canSubtractAssignMatrix (0 ms)
+[ RUN      ] MatrixTest.canNegateMatrix
+[       OK ] MatrixTest.canNegateMatrix (0 ms)
+[ RUN      ] MatrixTest.MatrixScalarMultiplication
+[       OK ] MatrixTest.MatrixScalarMultiplication (0 ms)
+[ RUN      ] MatrixTest.MatrixScalarDivision
+[       OK ] MatrixTest.MatrixScalarDivision (0 ms)
+[ RUN      ] MatrixTest.MatrixVectorMultiplicationOperator
+[       OK ] MatrixTest.MatrixVectorMultiplicationOperator (0 ms)
+[ RUN      ] MatrixTest.MatrixMatrixInnerProduct
+[       OK ] MatrixTest.MatrixMatrixInnerProduct (0 ms)
+[ RUN      ] MatrixTest.MatrixMatrixMultiplication
+[       OK ] MatrixTest.MatrixMatrixMultiplication (0 ms)
+[ RUN      ] MatrixTest.determinantWorks
+[       OK ] MatrixTest.determinantWorks (0 ms)
+[ RUN      ] MatrixTest.noninvertableDeterminantIsZero
+[       OK ] MatrixTest.noninvertableDeterminantIsZero (0 ms)
+[ RUN      ] MatrixTest.determinantOfDiagonalMatrix
+[       OK ] MatrixTest.determinantOfDiagonalMatrix (0 ms)
+[ RUN      ] MatrixTest.traceWorks
+[       OK ] MatrixTest.traceWorks (0 ms)
+[ RUN      ] MatrixTest.transposeWorks
+[       OK ] MatrixTest.transposeWorks (0 ms)
+[ RUN      ] MatrixTest.transposeOfSymmetricMatrix
+[       OK ] MatrixTest.transposeOfSymmetricMatrix (0 ms)
+[ RUN      ] MatrixTest.canCreateFromLegacyMatrix
+[       OK ] MatrixTest.canCreateFromLegacyMatrix (0 ms)
+[ RUN      ] MatrixTest.canFillLegacyMatrix
+[       OK ] MatrixTest.canFillLegacyMatrix (0 ms)
+[ RUN      ] MatrixTest.IdentityMatrix
+[       OK ] MatrixTest.IdentityMatrix (0 ms)
+[ RUN      ] MatrixTest.DiagonalMatrix
+[       OK ] MatrixTest.DiagonalMatrix (0 ms)
+[----------] 28 tests from MatrixTest (0 ms total)
+
+[----------] 25 tests from MultiDimArrayTest
+[ RUN      ] MultiDimArrayTest.canConstructAndFillStatic
+[       OK ] MultiDimArrayTest.canConstructAndFillStatic (0 ms)
+[ RUN      ] MultiDimArrayTest.canConstructAndFillDynamic
+[       OK ] MultiDimArrayTest.canConstructAndFillDynamic (0 ms)
+[ RUN      ] MultiDimArrayTest.canSetValuesInStatic
+[       OK ] MultiDimArrayTest.canSetValuesInStatic (0 ms)
+[ RUN      ] MultiDimArrayTest.canSetValuesInDynamic
+[       OK ] MultiDimArrayTest.canSetValuesInDynamic (0 ms)
+[ RUN      ] MultiDimArrayTest.canMoveConstructStatic
+[       OK ] MultiDimArrayTest.canMoveConstructStatic (0 ms)
+[ RUN      ] MultiDimArrayTest.canMoveConstructDynamic
+[       OK ] MultiDimArrayTest.canMoveConstructDynamic (0 ms)
+[ RUN      ] MultiDimArrayTest.canMoveAssignStatic
+[       OK ] MultiDimArrayTest.canMoveAssignStatic (0 ms)
+[ RUN      ] MultiDimArrayTest.canMoveAssignDynamic
+[       OK ] MultiDimArrayTest.canMoveAssignDynamic (0 ms)
+[ RUN      ] MultiDimArrayTest.canCopyConstructStatic
+[       OK ] MultiDimArrayTest.canCopyConstructStatic (0 ms)
+[ RUN      ] MultiDimArrayTest.canCopyConstructDynamic
+[       OK ] MultiDimArrayTest.canCopyConstructDynamic (0 ms)
+[ RUN      ] MultiDimArrayTest.canCopyAssignStatic
+[       OK ] MultiDimArrayTest.canCopyAssignStatic (0 ms)
+[ RUN      ] MultiDimArrayTest.canCopyAssignDynamic
+[       OK ] MultiDimArrayTest.canCopyAssignDynamic (0 ms)
+[ RUN      ] MultiDimArrayTest.canSwapStatic
+[       OK ] MultiDimArrayTest.canSwapStatic (0 ms)
+[ RUN      ] MultiDimArrayTest.canSwapDynamic
+[       OK ] MultiDimArrayTest.canSwapDynamic (0 ms)
+[ RUN      ] MultiDimArrayTest.staticMultiDimArrayExtent
+[       OK ] MultiDimArrayTest.staticMultiDimArrayExtent (0 ms)
+[ RUN      ] MultiDimArrayTest.dynamicMultiDimArrayExtent
+[       OK ] MultiDimArrayTest.dynamicMultiDimArrayExtent (0 ms)
+[ RUN      ] MultiDimArrayTest.dynamicMultiDimArrayResizesToCorrectExtent
+[       OK ] MultiDimArrayTest.dynamicMultiDimArrayResizesToCorrectExtent (0 ms)
+[ RUN      ] MultiDimArrayTest.dynamicMultiDimArrayResizeAndSetValue
+[       OK ] MultiDimArrayTest.dynamicMultiDimArrayResizeAndSetValue (0 ms)
+[ RUN      ] MultiDimArrayTest.staticMultiDimArrayFromArray
+[       OK ] MultiDimArrayTest.staticMultiDimArrayFromArray (0 ms)
+[ RUN      ] MultiDimArrayTest.conversionToView
+[       OK ] MultiDimArrayTest.conversionToView (0 ms)
+[ RUN      ] MultiDimArrayTest.conversionToConstView
+[       OK ] MultiDimArrayTest.conversionToConstView (0 ms)
+[ RUN      ] MultiDimArrayTest.viewBegin
+[       OK ] MultiDimArrayTest.viewBegin (0 ms)
+[ RUN      ] MultiDimArrayTest.viewEnd
+[       OK ] MultiDimArrayTest.viewEnd (0 ms)
+[ RUN      ] MultiDimArrayTest.constViewConstBegin
+[       OK ] MultiDimArrayTest.constViewConstBegin (0 ms)
+[ RUN      ] MultiDimArrayTest.constViewConstEnd
+[       OK ] MultiDimArrayTest.constViewConstEnd (0 ms)
+[----------] 25 tests from MultiDimArrayTest (0 ms total)
+
+[----------] 4 tests from MultiDimArrayToMdSpanTest
+[ RUN      ] MultiDimArrayToMdSpanTest.convertsToMdSpan
+[       OK ] MultiDimArrayToMdSpanTest.convertsToMdSpan (0 ms)
+[ RUN      ] MultiDimArrayToMdSpanTest.constArrayToMdSpan
+[       OK ] MultiDimArrayToMdSpanTest.constArrayToMdSpan (0 ms)
+[ RUN      ] MultiDimArrayToMdSpanTest.nonConstArrayToConstMdSpan
+[       OK ] MultiDimArrayToMdSpanTest.nonConstArrayToConstMdSpan (0 ms)
+[ RUN      ] MultiDimArrayToMdSpanTest.implicitConversionToMdSpan
+[       OK ] MultiDimArrayToMdSpanTest.implicitConversionToMdSpan (0 ms)
+[----------] 4 tests from MultiDimArrayToMdSpanTest (0 ms total)
+
+[----------] 9 tests from NelderMeadSimplexTest
+[ RUN      ] NelderMeadSimplexTest.BestVertex
+[       OK ] NelderMeadSimplexTest.BestVertex (0 ms)
+[ RUN      ] NelderMeadSimplexTest.WorstVertex
+[       OK ] NelderMeadSimplexTest.WorstVertex (0 ms)
+[ RUN      ] NelderMeadSimplexTest.SecondWorstValue
+[       OK ] NelderMeadSimplexTest.SecondWorstValue (0 ms)
+[ RUN      ] NelderMeadSimplexTest.ReflectionPoint
+[       OK ] NelderMeadSimplexTest.ReflectionPoint (0 ms)
+[ RUN      ] NelderMeadSimplexTest.EvaluateExpansionPoint
+[       OK ] NelderMeadSimplexTest.EvaluateExpansionPoint (0 ms)
+[ RUN      ] NelderMeadSimplexTest.EvaluateContractionPoint
+[       OK ] NelderMeadSimplexTest.EvaluateContractionPoint (0 ms)
+[ RUN      ] NelderMeadSimplexTest.SwapOutWorst
+[       OK ] NelderMeadSimplexTest.SwapOutWorst (0 ms)
+[ RUN      ] NelderMeadSimplexTest.ShrinkSimplexPointsExceptBest
+[       OK ] NelderMeadSimplexTest.ShrinkSimplexPointsExceptBest (0 ms)
+[ RUN      ] NelderMeadSimplexTest.OrientedLength
+[       OK ] NelderMeadSimplexTest.OrientedLength (0 ms)
+[----------] 9 tests from NelderMeadSimplexTest (0 ms total)
+
+[----------] 2 tests from NelderMead
+[ RUN      ] NelderMead.Optimizes2DFunctionCorrectly
+[       OK ] NelderMead.Optimizes2DFunctionCorrectly (71 ms)
+[ RUN      ] NelderMead.Optimizes3DFunctorCorrectly
+[       OK ] NelderMead.Optimizes3DFunctorCorrectly (0 ms)
+[----------] 2 tests from NelderMead (72 ms total)
+
+[----------] 11 tests from PaddedVectorTest/0, where TypeParam = std::allocator<int>
+[ RUN      ] PaddedVectorTest/0.DefaultConstructorWorks
+[       OK ] PaddedVectorTest/0.DefaultConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/0.ResizeWorks
+[       OK ] PaddedVectorTest/0.ResizeWorks (0 ms)
+[ RUN      ] PaddedVectorTest/0.ReserveWorks
+[       OK ] PaddedVectorTest/0.ReserveWorks (0 ms)
+[ RUN      ] PaddedVectorTest/0.ReserveWorksTheSameAsNoReserve
+[       OK ] PaddedVectorTest/0.ReserveWorksTheSameAsNoReserve (0 ms)
+[ RUN      ] PaddedVectorTest/0.MoveConstructorWorks
+[       OK ] PaddedVectorTest/0.MoveConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/0.MoveConstructorWithAllocatorWorks
+[       OK ] PaddedVectorTest/0.MoveConstructorWithAllocatorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/0.MoveAssignmentWorks
+[       OK ] PaddedVectorTest/0.MoveAssignmentWorks (0 ms)
+[ RUN      ] PaddedVectorTest/0.ArrayRefConversionsAreIdentical
+[       OK ] PaddedVectorTest/0.ArrayRefConversionsAreIdentical (0 ms)
+[ RUN      ] PaddedVectorTest/0.CanCopyAssign
+[       OK ] PaddedVectorTest/0.CanCopyAssign (0 ms)
+[ RUN      ] PaddedVectorTest/0.CanMoveAssign
+[       OK ] PaddedVectorTest/0.CanMoveAssign (0 ms)
+[ RUN      ] PaddedVectorTest/0.CanSwap
+[       OK ] PaddedVectorTest/0.CanSwap (0 ms)
+[----------] 11 tests from PaddedVectorTest/0 (0 ms total)
+
+[----------] 11 tests from PaddedVectorTest/1, where TypeParam = std::allocator<float>
+[ RUN      ] PaddedVectorTest/1.DefaultConstructorWorks
+[       OK ] PaddedVectorTest/1.DefaultConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/1.ResizeWorks
+[       OK ] PaddedVectorTest/1.ResizeWorks (0 ms)
+[ RUN      ] PaddedVectorTest/1.ReserveWorks
+[       OK ] PaddedVectorTest/1.ReserveWorks (0 ms)
+[ RUN      ] PaddedVectorTest/1.ReserveWorksTheSameAsNoReserve
+[       OK ] PaddedVectorTest/1.ReserveWorksTheSameAsNoReserve (0 ms)
+[ RUN      ] PaddedVectorTest/1.MoveConstructorWorks
+[       OK ] PaddedVectorTest/1.MoveConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/1.MoveConstructorWithAllocatorWorks
+[       OK ] PaddedVectorTest/1.MoveConstructorWithAllocatorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/1.MoveAssignmentWorks
+[       OK ] PaddedVectorTest/1.MoveAssignmentWorks (0 ms)
+[ RUN      ] PaddedVectorTest/1.ArrayRefConversionsAreIdentical
+[       OK ] PaddedVectorTest/1.ArrayRefConversionsAreIdentical (0 ms)
+[ RUN      ] PaddedVectorTest/1.CanCopyAssign
+[       OK ] PaddedVectorTest/1.CanCopyAssign (0 ms)
+[ RUN      ] PaddedVectorTest/1.CanMoveAssign
+[       OK ] PaddedVectorTest/1.CanMoveAssign (0 ms)
+[ RUN      ] PaddedVectorTest/1.CanSwap
+[       OK ] PaddedVectorTest/1.CanSwap (0 ms)
+[----------] 11 tests from PaddedVectorTest/1 (0 ms total)
+
+[----------] 11 tests from PaddedVectorTest/2, where TypeParam = std::allocator<double>
+[ RUN      ] PaddedVectorTest/2.DefaultConstructorWorks
+[       OK ] PaddedVectorTest/2.DefaultConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/2.ResizeWorks
+[       OK ] PaddedVectorTest/2.ResizeWorks (0 ms)
+[ RUN      ] PaddedVectorTest/2.ReserveWorks
+[       OK ] PaddedVectorTest/2.ReserveWorks (0 ms)
+[ RUN      ] PaddedVectorTest/2.ReserveWorksTheSameAsNoReserve
+[       OK ] PaddedVectorTest/2.ReserveWorksTheSameAsNoReserve (0 ms)
+[ RUN      ] PaddedVectorTest/2.MoveConstructorWorks
+[       OK ] PaddedVectorTest/2.MoveConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/2.MoveConstructorWithAllocatorWorks
+[       OK ] PaddedVectorTest/2.MoveConstructorWithAllocatorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/2.MoveAssignmentWorks
+[       OK ] PaddedVectorTest/2.MoveAssignmentWorks (0 ms)
+[ RUN      ] PaddedVectorTest/2.ArrayRefConversionsAreIdentical
+[       OK ] PaddedVectorTest/2.ArrayRefConversionsAreIdentical (0 ms)
+[ RUN      ] PaddedVectorTest/2.CanCopyAssign
+[       OK ] PaddedVectorTest/2.CanCopyAssign (0 ms)
+[ RUN      ] PaddedVectorTest/2.CanMoveAssign
+[       OK ] PaddedVectorTest/2.CanMoveAssign (0 ms)
+[ RUN      ] PaddedVectorTest/2.CanSwap
+[       OK ] PaddedVectorTest/2.CanSwap (0 ms)
+[----------] 11 tests from PaddedVectorTest/2 (0 ms total)
+
+[----------] 11 tests from PaddedVectorTest/3, where TypeParam = std::allocator<gmx::BasicVector<float> >
+[ RUN      ] PaddedVectorTest/3.DefaultConstructorWorks
+[       OK ] PaddedVectorTest/3.DefaultConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/3.ResizeWorks
+[       OK ] PaddedVectorTest/3.ResizeWorks (0 ms)
+[ RUN      ] PaddedVectorTest/3.ReserveWorks
+[       OK ] PaddedVectorTest/3.ReserveWorks (0 ms)
+[ RUN      ] PaddedVectorTest/3.ReserveWorksTheSameAsNoReserve
+[       OK ] PaddedVectorTest/3.ReserveWorksTheSameAsNoReserve (0 ms)
+[ RUN      ] PaddedVectorTest/3.MoveConstructorWorks
+[       OK ] PaddedVectorTest/3.MoveConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/3.MoveConstructorWithAllocatorWorks
+[       OK ] PaddedVectorTest/3.MoveConstructorWithAllocatorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/3.MoveAssignmentWorks
+[       OK ] PaddedVectorTest/3.MoveAssignmentWorks (0 ms)
+[ RUN      ] PaddedVectorTest/3.ArrayRefConversionsAreIdentical
+[       OK ] PaddedVectorTest/3.ArrayRefConversionsAreIdentical (0 ms)
+[ RUN      ] PaddedVectorTest/3.CanCopyAssign
+[       OK ] PaddedVectorTest/3.CanCopyAssign (0 ms)
+[ RUN      ] PaddedVectorTest/3.CanMoveAssign
+[       OK ] PaddedVectorTest/3.CanMoveAssign (0 ms)
+[ RUN      ] PaddedVectorTest/3.CanSwap
+[       OK ] PaddedVectorTest/3.CanSwap (0 ms)
+[----------] 11 tests from PaddedVectorTest/3 (0 ms total)
+
+[----------] 11 tests from PaddedVectorTest/4, where TypeParam = std::allocator<gmx::BasicVector<double> >
+[ RUN      ] PaddedVectorTest/4.DefaultConstructorWorks
+[       OK ] PaddedVectorTest/4.DefaultConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/4.ResizeWorks
+[       OK ] PaddedVectorTest/4.ResizeWorks (0 ms)
+[ RUN      ] PaddedVectorTest/4.ReserveWorks
+[       OK ] PaddedVectorTest/4.ReserveWorks (0 ms)
+[ RUN      ] PaddedVectorTest/4.ReserveWorksTheSameAsNoReserve
+[       OK ] PaddedVectorTest/4.ReserveWorksTheSameAsNoReserve (0 ms)
+[ RUN      ] PaddedVectorTest/4.MoveConstructorWorks
+[       OK ] PaddedVectorTest/4.MoveConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/4.MoveConstructorWithAllocatorWorks
+[       OK ] PaddedVectorTest/4.MoveConstructorWithAllocatorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/4.MoveAssignmentWorks
+[       OK ] PaddedVectorTest/4.MoveAssignmentWorks (0 ms)
+[ RUN      ] PaddedVectorTest/4.ArrayRefConversionsAreIdentical
+[       OK ] PaddedVectorTest/4.ArrayRefConversionsAreIdentical (0 ms)
+[ RUN      ] PaddedVectorTest/4.CanCopyAssign
+[       OK ] PaddedVectorTest/4.CanCopyAssign (0 ms)
+[ RUN      ] PaddedVectorTest/4.CanMoveAssign
+[       OK ] PaddedVectorTest/4.CanMoveAssign (0 ms)
+[ RUN      ] PaddedVectorTest/4.CanSwap
+[       OK ] PaddedVectorTest/4.CanSwap (0 ms)
+[----------] 11 tests from PaddedVectorTest/4 (0 ms total)
+
+[----------] 11 tests from PaddedVectorTest/5, where TypeParam = gmx::Allocator<int,gmx::AlignedAllocationPolicy>
+[ RUN      ] PaddedVectorTest/5.DefaultConstructorWorks
+[       OK ] PaddedVectorTest/5.DefaultConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/5.ResizeWorks
+[       OK ] PaddedVectorTest/5.ResizeWorks (0 ms)
+[ RUN      ] PaddedVectorTest/5.ReserveWorks
+[       OK ] PaddedVectorTest/5.ReserveWorks (0 ms)
+[ RUN      ] PaddedVectorTest/5.ReserveWorksTheSameAsNoReserve
+[       OK ] PaddedVectorTest/5.ReserveWorksTheSameAsNoReserve (0 ms)
+[ RUN      ] PaddedVectorTest/5.MoveConstructorWorks
+[       OK ] PaddedVectorTest/5.MoveConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/5.MoveConstructorWithAllocatorWorks
+[       OK ] PaddedVectorTest/5.MoveConstructorWithAllocatorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/5.MoveAssignmentWorks
+[       OK ] PaddedVectorTest/5.MoveAssignmentWorks (0 ms)
+[ RUN      ] PaddedVectorTest/5.ArrayRefConversionsAreIdentical
+[       OK ] PaddedVectorTest/5.ArrayRefConversionsAreIdentical (0 ms)
+[ RUN      ] PaddedVectorTest/5.CanCopyAssign
+[       OK ] PaddedVectorTest/5.CanCopyAssign (0 ms)
+[ RUN      ] PaddedVectorTest/5.CanMoveAssign
+[       OK ] PaddedVectorTest/5.CanMoveAssign (0 ms)
+[ RUN      ] PaddedVectorTest/5.CanSwap
+[       OK ] PaddedVectorTest/5.CanSwap (0 ms)
+[----------] 11 tests from PaddedVectorTest/5 (0 ms total)
+
+[----------] 11 tests from PaddedVectorTest/6, where TypeParam = gmx::Allocator<float,gmx::AlignedAllocationPolicy>
+[ RUN      ] PaddedVectorTest/6.DefaultConstructorWorks
+[       OK ] PaddedVectorTest/6.DefaultConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/6.ResizeWorks
+[       OK ] PaddedVectorTest/6.ResizeWorks (0 ms)
+[ RUN      ] PaddedVectorTest/6.ReserveWorks
+[       OK ] PaddedVectorTest/6.ReserveWorks (0 ms)
+[ RUN      ] PaddedVectorTest/6.ReserveWorksTheSameAsNoReserve
+[       OK ] PaddedVectorTest/6.ReserveWorksTheSameAsNoReserve (0 ms)
+[ RUN      ] PaddedVectorTest/6.MoveConstructorWorks
+[       OK ] PaddedVectorTest/6.MoveConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/6.MoveConstructorWithAllocatorWorks
+[       OK ] PaddedVectorTest/6.MoveConstructorWithAllocatorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/6.MoveAssignmentWorks
+[       OK ] PaddedVectorTest/6.MoveAssignmentWorks (0 ms)
+[ RUN      ] PaddedVectorTest/6.ArrayRefConversionsAreIdentical
+[       OK ] PaddedVectorTest/6.ArrayRefConversionsAreIdentical (0 ms)
+[ RUN      ] PaddedVectorTest/6.CanCopyAssign
+[       OK ] PaddedVectorTest/6.CanCopyAssign (0 ms)
+[ RUN      ] PaddedVectorTest/6.CanMoveAssign
+[       OK ] PaddedVectorTest/6.CanMoveAssign (0 ms)
+[ RUN      ] PaddedVectorTest/6.CanSwap
+[       OK ] PaddedVectorTest/6.CanSwap (0 ms)
+[----------] 11 tests from PaddedVectorTest/6 (0 ms total)
+
+[----------] 11 tests from PaddedVectorTest/7, where TypeParam = gmx::Allocator<double,gmx::AlignedAllocationPolicy>
+[ RUN      ] PaddedVectorTest/7.DefaultConstructorWorks
+[       OK ] PaddedVectorTest/7.DefaultConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/7.ResizeWorks
+[       OK ] PaddedVectorTest/7.ResizeWorks (0 ms)
+[ RUN      ] PaddedVectorTest/7.ReserveWorks
+[       OK ] PaddedVectorTest/7.ReserveWorks (0 ms)
+[ RUN      ] PaddedVectorTest/7.ReserveWorksTheSameAsNoReserve
+[       OK ] PaddedVectorTest/7.ReserveWorksTheSameAsNoReserve (0 ms)
+[ RUN      ] PaddedVectorTest/7.MoveConstructorWorks
+[       OK ] PaddedVectorTest/7.MoveConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/7.MoveConstructorWithAllocatorWorks
+[       OK ] PaddedVectorTest/7.MoveConstructorWithAllocatorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/7.MoveAssignmentWorks
+[       OK ] PaddedVectorTest/7.MoveAssignmentWorks (0 ms)
+[ RUN      ] PaddedVectorTest/7.ArrayRefConversionsAreIdentical
+[       OK ] PaddedVectorTest/7.ArrayRefConversionsAreIdentical (0 ms)
+[ RUN      ] PaddedVectorTest/7.CanCopyAssign
+[       OK ] PaddedVectorTest/7.CanCopyAssign (0 ms)
+[ RUN      ] PaddedVectorTest/7.CanMoveAssign
+[       OK ] PaddedVectorTest/7.CanMoveAssign (0 ms)
+[ RUN      ] PaddedVectorTest/7.CanSwap
+[       OK ] PaddedVectorTest/7.CanSwap (0 ms)
+[----------] 11 tests from PaddedVectorTest/7 (0 ms total)
+
+[----------] 11 tests from PaddedVectorTest/8, where TypeParam = gmx::Allocator<gmx::BasicVector<float>,gmx::AlignedAllocationPolicy>
+[ RUN      ] PaddedVectorTest/8.DefaultConstructorWorks
+[       OK ] PaddedVectorTest/8.DefaultConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/8.ResizeWorks
+[       OK ] PaddedVectorTest/8.ResizeWorks (0 ms)
+[ RUN      ] PaddedVectorTest/8.ReserveWorks
+[       OK ] PaddedVectorTest/8.ReserveWorks (0 ms)
+[ RUN      ] PaddedVectorTest/8.ReserveWorksTheSameAsNoReserve
+[       OK ] PaddedVectorTest/8.ReserveWorksTheSameAsNoReserve (0 ms)
+[ RUN      ] PaddedVectorTest/8.MoveConstructorWorks
+[       OK ] PaddedVectorTest/8.MoveConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/8.MoveConstructorWithAllocatorWorks
+[       OK ] PaddedVectorTest/8.MoveConstructorWithAllocatorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/8.MoveAssignmentWorks
+[       OK ] PaddedVectorTest/8.MoveAssignmentWorks (0 ms)
+[ RUN      ] PaddedVectorTest/8.ArrayRefConversionsAreIdentical
+[       OK ] PaddedVectorTest/8.ArrayRefConversionsAreIdentical (0 ms)
+[ RUN      ] PaddedVectorTest/8.CanCopyAssign
+[       OK ] PaddedVectorTest/8.CanCopyAssign (0 ms)
+[ RUN      ] PaddedVectorTest/8.CanMoveAssign
+[       OK ] PaddedVectorTest/8.CanMoveAssign (0 ms)
+[ RUN      ] PaddedVectorTest/8.CanSwap
+[       OK ] PaddedVectorTest/8.CanSwap (0 ms)
+[----------] 11 tests from PaddedVectorTest/8 (0 ms total)
+
+[----------] 11 tests from PaddedVectorTest/9, where TypeParam = gmx::Allocator<gmx::BasicVector<double>,gmx::AlignedAllocationPolicy>
+[ RUN      ] PaddedVectorTest/9.DefaultConstructorWorks
+[       OK ] PaddedVectorTest/9.DefaultConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/9.ResizeWorks
+[       OK ] PaddedVectorTest/9.ResizeWorks (0 ms)
+[ RUN      ] PaddedVectorTest/9.ReserveWorks
+[       OK ] PaddedVectorTest/9.ReserveWorks (0 ms)
+[ RUN      ] PaddedVectorTest/9.ReserveWorksTheSameAsNoReserve
+[       OK ] PaddedVectorTest/9.ReserveWorksTheSameAsNoReserve (0 ms)
+[ RUN      ] PaddedVectorTest/9.MoveConstructorWorks
+[       OK ] PaddedVectorTest/9.MoveConstructorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/9.MoveConstructorWithAllocatorWorks
+[       OK ] PaddedVectorTest/9.MoveConstructorWithAllocatorWorks (0 ms)
+[ RUN      ] PaddedVectorTest/9.MoveAssignmentWorks
+[       OK ] PaddedVectorTest/9.MoveAssignmentWorks (0 ms)
+[ RUN      ] PaddedVectorTest/9.ArrayRefConversionsAreIdentical
+[       OK ] PaddedVectorTest/9.ArrayRefConversionsAreIdentical (0 ms)
+[ RUN      ] PaddedVectorTest/9.CanCopyAssign
+[       OK ] PaddedVectorTest/9.CanCopyAssign (0 ms)
+[ RUN      ] PaddedVectorTest/9.CanMoveAssign
+[       OK ] PaddedVectorTest/9.CanMoveAssign (0 ms)
+[ RUN      ] PaddedVectorTest/9.CanSwap
+[       OK ] PaddedVectorTest/9.CanSwap (0 ms)
+[----------] 11 tests from PaddedVectorTest/9 (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 293 tests from 40 test suites ran. (191 ms total)
+[  PASSED  ] 293 tests.
+<end of output>
+Test time =   0.23 sec
+----------------------------------------------------------
+Test Passed.
+"MathUnitTests" end time: Oct 27 01:22 UTC
+"MathUnitTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+48/104 Testing: MdtypesUnitTest
+48/104 Test: MdtypesUnitTest
+Command: "/build/gmx/bin/mdtypes-test" "--gtest_output=xml:/build/gmx/Testing/Temporary/MdtypesUnitTest.xml"
+Directory: /build/gmx/src/gromacs/mdtypes/tests
+"MdtypesUnitTest" start time: Oct 27 01:22 UTC
+Output:
+----------------------------------------------------------
+[==========] Running 98 tests from 7 test suites.
+[----------] Global test environment set-up.
+[----------] 4 tests from ForeingLambdaTermsDhdl
+[ RUN      ] ForeingLambdaTermsDhdl.RateCheckWorks
+[       OK ] ForeingLambdaTermsDhdl.RateCheckWorks (0 ms)
+[ RUN      ] ForeingLambdaTermsDhdl.AllLinear
+[       OK ] ForeingLambdaTermsDhdl.AllLinear (0 ms)
+[ RUN      ] ForeingLambdaTermsDhdl.AllLinearNegative
+[       OK ] ForeingLambdaTermsDhdl.AllLinearNegative (0 ms)
+[ RUN      ] ForeingLambdaTermsDhdl.SeparateVdwCoul
+[       OK ] ForeingLambdaTermsDhdl.SeparateVdwCoul (0 ms)
+[----------] 4 tests from ForeingLambdaTermsDhdl (0 ms total)
+
+[----------] 4 tests from ObservablesReducerTest
+[ RUN      ] ObservablesReducerTest.CanMoveAssign
+[       OK ] ObservablesReducerTest.CanMoveAssign (0 ms)
+[ RUN      ] ObservablesReducerTest.CanMoveConstruct
+[       OK ] ObservablesReducerTest.CanMoveConstruct (0 ms)
+[ RUN      ] ObservablesReducerTest.CanBuildAndUseWithNoSubscribers
+[       OK ] ObservablesReducerTest.CanBuildAndUseWithNoSubscribers (0 ms)
+[ RUN      ] ObservablesReducerTest.CanBuildAndUseWithOneSubscriber
+[       OK ] ObservablesReducerTest.CanBuildAndUseWithOneSubscriber (0 ms)
+[----------] 4 tests from ObservablesReducerTest (0 ms total)
+
+[----------] 3 tests from CheckpointDataTest
+[ RUN      ] CheckpointDataTest.SingleDataTest
+[       OK ] CheckpointDataTest.SingleDataTest (4 ms)
+[ RUN      ] CheckpointDataTest.MultiDataTest
+[       OK ] CheckpointDataTest.MultiDataTest (21 ms)
+[ RUN      ] CheckpointDataTest.EmptyVectorTest
+[       OK ] CheckpointDataTest.EmptyVectorTest (0 ms)
+[----------] 3 tests from CheckpointDataTest (26 ms total)
+
+[----------] 7 tests from ForceBuffers
+[ RUN      ] ForceBuffers.ConstructsUnpinned
+[       OK ] ForceBuffers.ConstructsUnpinned (0 ms)
+[ RUN      ] ForceBuffers.ConstructsPinned
+[       OK ] ForceBuffers.ConstructsPinned (0 ms)
+[ RUN      ] ForceBuffers.ConstructsEmpty
+[       OK ] ForceBuffers.ConstructsEmpty (0 ms)
+[ RUN      ] ForceBuffers.ResizeWorks
+[       OK ] ForceBuffers.ResizeWorks (0 ms)
+[ RUN      ] ForceBuffers.PaddingWorks
+[       OK ] ForceBuffers.PaddingWorks (0 ms)
+[ RUN      ] ForceBuffers.CopyWorks
+[       OK ] ForceBuffers.CopyWorks (0 ms)
+[ RUN      ] ForceBuffers.CopyDoesNotPin
+[       OK ] ForceBuffers.CopyDoesNotPin (0 ms)
+[----------] 7 tests from ForceBuffers (0 ms total)
+
+[----------] 5 tests from MultipleTimeStepping
+[ RUN      ] MultipleTimeStepping.ChecksNumLevels
+[       OK ] MultipleTimeStepping.ChecksNumLevels (0 ms)
+[ RUN      ] MultipleTimeStepping.SelectsForceGroups
+[       OK ] MultipleTimeStepping.SelectsForceGroups (0 ms)
+[ RUN      ] MultipleTimeStepping.ChecksStepFactor
+[       OK ] MultipleTimeStepping.ChecksStepFactor (0 ms)
+[ RUN      ] MultipleTimeStepping.ChecksPmeIsAtLastLevel
+[       OK ] MultipleTimeStepping.ChecksPmeIsAtLastLevel (0 ms)
+[ RUN      ] MultipleTimeStepping.ChecksIntegrator
+[       OK ] MultipleTimeStepping.ChecksIntegrator (0 ms)
+[----------] 5 tests from MultipleTimeStepping (0 ms total)
+
+[----------] 60 tests from WithVariousSubscriberCounts/ObservablesReducerIntegrationTest
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers0numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers0numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers0numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers0numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers0numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers0numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers1numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers1numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers1numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers1numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers1numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers1numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers2numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers2numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers2numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers2numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers2numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers2numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers3numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers3numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers3numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers3numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers3numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseSimply/numSubscribers3numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers0numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers0numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers0numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers0numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers0numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers0numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers1numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers1numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers1numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers1numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers1numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers1numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers2numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers2numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers2numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers2numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers2numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers2numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers3numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers3numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers3numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers3numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers3numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseOverMultipleSteps/numSubscribers3numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers0numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers0numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers0numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers0numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers0numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers0numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers1numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers1numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers1numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers1numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers1numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers1numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers2numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers2numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers2numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers2numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers2numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers2numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers3numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers3numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers3numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers3numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers3numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWithoutAllNeedingReduction/numSubscribers3numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers0numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers0numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers0numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers0numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers0numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers0numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers1numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers1numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers1numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers1numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers1numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers1numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers2numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers2numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers2numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers2numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers2numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers2numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers3numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers3numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers3numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers3numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers3numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenASubscriberUsesEventually/numSubscribers3numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers0numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers0numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers0numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers0numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers0numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers0numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers1numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers1numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers1numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers1numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers1numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers1numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers2numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers2numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers2numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers2numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers2numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers2numRanks3 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers3numRanks1
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers3numRanks1 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers3numRanks2
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers3numRanks2 (0 ms)
+[ RUN      ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers3numRanks3
+[       OK ] WithVariousSubscriberCounts/ObservablesReducerIntegrationTest.CanBuildAndUseWhenAllSubscribersUseEventually/numSubscribers3numRanks3 (0 ms)
+[----------] 60 tests from WithVariousSubscriberCounts/ObservablesReducerIntegrationTest (4 ms total)
+
+[----------] 15 tests from ChecksStepInterval/MtsIntervalTest
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/0
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/0 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/1
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/1 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/2
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/2 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/3
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/3 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/4
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/4 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/5
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/5 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/6
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/6 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/7
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/7 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/8
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/8 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/9
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/9 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/10
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/10 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/11
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/11 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/12
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/12 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/13
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/13 (0 ms)
+[ RUN      ] ChecksStepInterval/MtsIntervalTest.Works/14
+[       OK ] ChecksStepInterval/MtsIntervalTest.Works/14 (0 ms)
+[----------] 15 tests from ChecksStepInterval/MtsIntervalTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 98 tests from 7 test suites ran. (32 ms total)
+[  PASSED  ] 98 tests.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"MdtypesUnitTest" end time: Oct 27 01:22 UTC
+"MdtypesUnitTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+75/104 Testing: FileIOTests
+75/104 Test: FileIOTests
+Command: "/build/gmx/bin/fileio-test" "--gtest_output=xml:/build/gmx/Testing/Temporary/FileIOTests.xml"
+Directory: /build/gmx/src/gromacs/fileio/tests
+"FileIOTests" start time: Oct 27 01:22 UTC
+Output:
+----------------------------------------------------------
+[==========] Running 432 tests from 17 test suites.
+[----------] Global test environment set-up.
+[----------] 4 tests from Checkpoint
+[ RUN      ] Checkpoint.ReadingThrowsWhenValueNotPresent
+[       OK ] Checkpoint.ReadingThrowsWhenValueNotPresent (0 ms)
+[ RUN      ] Checkpoint.ReadingDoesNotThrowWhenValuePresent
+[       OK ] Checkpoint.ReadingDoesNotThrowWhenValuePresent (0 ms)
+[ RUN      ] Checkpoint.KvtRoundTripInt64
+[       OK ] Checkpoint.KvtRoundTripInt64 (0 ms)
+[ RUN      ] Checkpoint.KvtRoundTripReal
+[       OK ] Checkpoint.KvtRoundTripReal (0 ms)
+[----------] 4 tests from Checkpoint (0 ms total)
+
+[----------] 1 test from StructureIOTest
+[ RUN      ] StructureIOTest.ReadTpsConfRetainsChainids
+[       OK ] StructureIOTest.ReadTpsConfRetainsChainids (0 ms)
+[----------] 1 test from StructureIOTest (0 ms total)
+
+[----------] 2 tests from FileMD5Test
+[ RUN      ] FileMD5Test.CanComputeMD5
+[       OK ] FileMD5Test.CanComputeMD5 (0 ms)
+[ RUN      ] FileMD5Test.ReturnsErrorIfFileModeIsWrong
+[       OK ] FileMD5Test.ReturnsErrorIfFileModeIsWrong (0 ms)
+[----------] 2 tests from FileMD5Test (1 ms total)
+
+[----------] 4 tests from FileTypeTest
+[ RUN      ] FileTypeTest.CorrectValueForEmptyString
+[       OK ] FileTypeTest.CorrectValueForEmptyString (0 ms)
+[ RUN      ] FileTypeTest.CorrectValueForNoExtension
+[       OK ] FileTypeTest.CorrectValueForNoExtension (0 ms)
+[ RUN      ] FileTypeTest.CorrectValueForEmptyExtension
+[       OK ] FileTypeTest.CorrectValueForEmptyExtension (0 ms)
+[ RUN      ] FileTypeTest.CorrectValueForLongExtensionWithStrangeCharacters
+[       OK ] FileTypeTest.CorrectValueForLongExtensionWithStrangeCharacters (0 ms)
+[----------] 4 tests from FileTypeTest (0 ms total)
+
+[----------] 4 tests from ColorMapTest
+[ RUN      ] ColorMapTest.CanReadFromFile
+[       OK ] ColorMapTest.CanReadFromFile (0 ms)
+[ RUN      ] ColorMapTest.CanWriteToFile
+[       OK ] ColorMapTest.CanWriteToFile (0 ms)
+[ RUN      ] ColorMapTest.RoundTrip
+[       OK ] ColorMapTest.RoundTrip (0 ms)
+[ RUN      ] ColorMapTest.SearchWorks
+[       OK ] ColorMapTest.SearchWorks (0 ms)
+[----------] 4 tests from ColorMapTest (1 ms total)
+
+[----------] 4 tests from MatioTest
+[ RUN      ] MatioTest.CanWriteToFile
+ 33% 66%100%[       OK ] MatioTest.CanWriteToFile (0 ms)
+[ RUN      ] MatioTest.CanConvertToExistingRealMatrix
+Converted a 4x3 matrix with 4 levels to reals
+[       OK ] MatioTest.CanConvertToExistingRealMatrix (0 ms)
+[ RUN      ] MatioTest.CanConvertToNewRealMatrix
+Converted a 4x3 matrix with 4 levels to reals
+[       OK ] MatioTest.CanConvertToNewRealMatrix (0 ms)
+[ RUN      ] MatioTest.CanReadSingleMatrixAfterWriting
+ 33% 66%100% 33% 66%100%[       OK ] MatioTest.CanReadSingleMatrixAfterWriting (8 ms)
+[----------] 4 tests from MatioTest (9 ms total)
+
+[----------] 3 tests from MrcSerializer
+[ RUN      ] MrcSerializer.DefaultHeaderValuesAreSet
+[       OK ] MrcSerializer.DefaultHeaderValuesAreSet (0 ms)
+[ RUN      ] MrcSerializer.DefaultHeaderHasRightSerialSize
+[       OK ] MrcSerializer.DefaultHeaderHasRightSerialSize (0 ms)
+[ RUN      ] MrcSerializer.DefaultHeaderIdenticalAfterRoundTrip
+[       OK ] MrcSerializer.DefaultHeaderIdenticalAfterRoundTrip (0 ms)
+[----------] 3 tests from MrcSerializer (0 ms total)
+
+[----------] 4 tests from MrcDensityMap
+[ RUN      ] MrcDensityMap.RoundTripIsIdempotent
+[       OK ] MrcDensityMap.RoundTripIsIdempotent (0 ms)
+[ RUN      ] MrcDensityMap.ThrowsFileIOErrorWhenFileNotPresent
+[       OK ] MrcDensityMap.ThrowsFileIOErrorWhenFileNotPresent (0 ms)
+[ RUN      ] MrcDensityMap.ReadsCoordinateTransformationFromFile
+[       OK ] MrcDensityMap.ReadsCoordinateTransformationFromFile (0 ms)
+[ RUN      ] MrcDensityMap.ReadsDensityDataFromFile
+[       OK ] MrcDensityMap.ReadsDensityDataFromFile (1 ms)
+[----------] 4 tests from MrcDensityMap (2 ms total)
+
+[----------] 8 tests from MrcDensityMapHeaderTest
+[ RUN      ] MrcDensityMapHeaderTest.DataSizeIsZeroForDefaultHeader
+[       OK ] MrcDensityMapHeaderTest.DataSizeIsZeroForDefaultHeader (0 ms)
+[ RUN      ] MrcDensityMapHeaderTest.DataSizeIsCorrect
+[       OK ] MrcDensityMapHeaderTest.DataSizeIsCorrect (0 ms)
+[ RUN      ] MrcDensityMapHeaderTest.DataSizeThrowsWhenInvalid
+[       OK ] MrcDensityMapHeaderTest.DataSizeThrowsWhenInvalid (0 ms)
+[ RUN      ] MrcDensityMapHeaderTest.GetsCorrectCoordinateTransformNoOriginGiven
+[       OK ] MrcDensityMapHeaderTest.GetsCorrectCoordinateTransformNoOriginGiven (0 ms)
+[ RUN      ] MrcDensityMapHeaderTest.GetsCorrectCoordinateTransformWithOriginDefined
+[       OK ] MrcDensityMapHeaderTest.GetsCorrectCoordinateTransformWithOriginDefined (0 ms)
+[ RUN      ] MrcDensityMapHeaderTest.GetsCorrectCoordinateTransformWithStartValues
+[       OK ] MrcDensityMapHeaderTest.GetsCorrectCoordinateTransformWithStartValues (0 ms)
+[ RUN      ] MrcDensityMapHeaderTest.GetsCorrectExtents
+[       OK ] MrcDensityMapHeaderTest.GetsCorrectExtents (0 ms)
+[ RUN      ] MrcDensityMapHeaderTest.IsSane
+[       OK ] MrcDensityMapHeaderTest.IsSane (0 ms)
+[----------] 8 tests from MrcDensityMapHeaderTest (0 ms total)
+
+[----------] 10 tests from ReadTest
+[ RUN      ] ReadTest.get_eint_ReadsInteger
+[       OK ] ReadTest.get_eint_ReadsInteger (0 ms)
+[ RUN      ] ReadTest.get_eint_WarnsAboutFloat
+
+ERROR 1 [file unknown]:
+  Right hand side '0.8' for parameter 'test' in parameter file is not an
+  integer value
+
+
+[       OK ] ReadTest.get_eint_WarnsAboutFloat (0 ms)
+[ RUN      ] ReadTest.get_eint_WarnsAboutString
+
+ERROR 1 [file unknown]:
+  Right hand side 'hello' for parameter 'test' in parameter file is not an
+  integer value
+
+
+[       OK ] ReadTest.get_eint_WarnsAboutString (0 ms)
+[ RUN      ] ReadTest.get_eint64_ReadsInteger
+[       OK ] ReadTest.get_eint64_ReadsInteger (0 ms)
+[ RUN      ] ReadTest.get_eint64_WarnsAboutFloat
+
+ERROR 1 [file unknown]:
+  Right hand side '0.8' for parameter 'test' in parameter file is not an
+  integer value
+
+
+[       OK ] ReadTest.get_eint64_WarnsAboutFloat (0 ms)
+[ RUN      ] ReadTest.get_eint64_WarnsAboutString
+
+ERROR 1 [file unknown]:
+  Right hand side 'hello' for parameter 'test' in parameter file is not an
+  integer value
+
+
+[       OK ] ReadTest.get_eint64_WarnsAboutString (0 ms)
+[ RUN      ] ReadTest.get_ereal_ReadsInteger
+[       OK ] ReadTest.get_ereal_ReadsInteger (0 ms)
+[ RUN      ] ReadTest.get_ereal_ReadsFloat
+[       OK ] ReadTest.get_ereal_ReadsFloat (0 ms)
+[ RUN      ] ReadTest.get_ereal_WarnsAboutString
+
+ERROR 1 [file unknown]:
+  Right hand side 'hello' for parameter 'test' in parameter file is not a
+  real value
+
+
+[       OK ] ReadTest.get_ereal_WarnsAboutString (0 ms)
+[ RUN      ] ReadTest.setStringEntry_ReturnsCorrectString
+[       OK ] ReadTest.setStringEntry_ReturnsCorrectString (0 ms)
+[----------] 10 tests from ReadTest (0 ms total)
+
+[----------] 3 tests from TimeControlTest
+[ RUN      ] TimeControlTest.UnSetHasNoValue
+[       OK ] TimeControlTest.UnSetHasNoValue (0 ms)
+[ RUN      ] TimeControlTest.CanSetValue
+[       OK ] TimeControlTest.CanSetValue (0 ms)
+[ RUN      ] TimeControlTest.CanUnsetValueAgain
+[       OK ] TimeControlTest.CanUnsetValueAgain (0 ms)
+[----------] 3 tests from TimeControlTest (0 ms total)
+
+[----------] 1 test from TngTest
+[ RUN      ] TngTest.CloseBeforeOpenIsNotFatal
+[       OK ] TngTest.CloseBeforeOpenIsNotFatal (0 ms)
+[----------] 1 test from TngTest (0 ms total)
+
+[----------] 4 tests from XvgioTest
+[ RUN      ] XvgioTest.readXvgIntWorks
+[       OK ] XvgioTest.readXvgIntWorks (0 ms)
+[ RUN      ] XvgioTest.readXvgRealWorks
+[       OK ] XvgioTest.readXvgRealWorks (0 ms)
+[ RUN      ] XvgioTest.readXvgIgnoreCommentLineWorks
+[       OK ] XvgioTest.readXvgIgnoreCommentLineWorks (0 ms)
+[ RUN      ] XvgioTest.readXvgDeprecatedWorks
+[       OK ] XvgioTest.readXvgDeprecatedWorks (0 ms)
+[----------] 4 tests from XvgioTest (1 ms total)
+
+[----------] 4 tests from WithDifferentFormats/StructureIORoundtripTest
+[ RUN      ] WithDifferentFormats/StructureIORoundtripTest.ReadWriteTpsConf/0
+[       OK ] WithDifferentFormats/StructureIORoundtripTest.ReadWriteTpsConf/0 (0 ms)
+[ RUN      ] WithDifferentFormats/StructureIORoundtripTest.ReadWriteTpsConf/1
+[       OK ] WithDifferentFormats/StructureIORoundtripTest.ReadWriteTpsConf/1 (0 ms)
+[ RUN      ] WithDifferentFormats/StructureIORoundtripTest.ReadWriteTpsConf/2
+[       OK ] WithDifferentFormats/StructureIORoundtripTest.ReadWriteTpsConf/2 (0 ms)
+[ RUN      ] WithDifferentFormats/StructureIORoundtripTest.ReadWriteTpsConf/3
+[       OK ] WithDifferentFormats/StructureIORoundtripTest.ReadWriteTpsConf/3 (0 ms)
+[----------] 4 tests from WithDifferentFormats/StructureIORoundtripTest (3 ms total)
+
+[----------] 370 tests from FileTypeMatch/FileTypeTest
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/0
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/0 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/1
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/1 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/2
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/2 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/3
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/3 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/4
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/4 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/5
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/5 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/6
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/6 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/7
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/7 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/8
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/8 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/9
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/9 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/10
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/10 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/11
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/11 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/12
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/12 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/13
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/13 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/14
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/14 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/15
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/15 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/16
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/16 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/17
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/17 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/18
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/18 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/19
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/19 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/20
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/20 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/21
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/21 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/22
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/22 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/23
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/23 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/24
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/24 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/25
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/25 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/26
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/26 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/27
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/27 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/28
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/28 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/29
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/29 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/30
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/30 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/31
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/31 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/32
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/32 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/33
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/33 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/34
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/34 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/35
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/35 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/36
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/36 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/37
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/37 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/38
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/38 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/39
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/39 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/40
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/40 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/41
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/41 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/42
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/42 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/43
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/43 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/44
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/44 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/45
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/45 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/46
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/46 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/47
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/47 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/48
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/48 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/49
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/49 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/50
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/50 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/51
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/51 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/52
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/52 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/53
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/53 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/54
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/54 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/55
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/55 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/56
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/56 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/57
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/57 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/58
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/58 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/59
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/59 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/60
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/60 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/61
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/61 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/62
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/62 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/63
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/63 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/64
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/64 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/65
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/65 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/66
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/66 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/67
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/67 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/68
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/68 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/69
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/69 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/70
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/70 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/71
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/71 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/72
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/72 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/73
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/73 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/74
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/74 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/75
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/75 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/76
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/76 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/77
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/77 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/78
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/78 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/79
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/79 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/80
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/80 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/81
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/81 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/82
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/82 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/83
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/83 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/84
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/84 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/85
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/85 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/86
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/86 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/87
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/87 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/88
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/88 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/89
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/89 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/90
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/90 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/91
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/91 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/92
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/92 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/93
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/93 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/94
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/94 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/95
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/95 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/96
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/96 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/97
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/97 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/98
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/98 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/99
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/99 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/100
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/100 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/101
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/101 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/102
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/102 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/103
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/103 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/104
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/104 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/105
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/105 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/106
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/106 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/107
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/107 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/108
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/108 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/109
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/109 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/110
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/110 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/111
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/111 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/112
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/112 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/113
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/113 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/114
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/114 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/115
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/115 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/116
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/116 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/117
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/117 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/118
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/118 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/119
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/119 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/120
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/120 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/121
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/121 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/122
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/122 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/123
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/123 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/124
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/124 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/125
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/125 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/126
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/126 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/127
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/127 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/128
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/128 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/129
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/129 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/130
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/130 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/131
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/131 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/132
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/132 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/133
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/133 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/134
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/134 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/135
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/135 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/136
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/136 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/137
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/137 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/138
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/138 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/139
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/139 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/140
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/140 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/141
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/141 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/142
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/142 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/143
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/143 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/144
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/144 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/145
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/145 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/146
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/146 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/147
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/147 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/148
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/148 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/149
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/149 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/150
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/150 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/151
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/151 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/152
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/152 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/153
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/153 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/154
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/154 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/155
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/155 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/156
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/156 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/157
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/157 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/158
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/158 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/159
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/159 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/160
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/160 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/161
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/161 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/162
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/162 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/163
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/163 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/164
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/164 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/165
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/165 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/166
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/166 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/167
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/167 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/168
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/168 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/169
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/169 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/170
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/170 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/171
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/171 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/172
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/172 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/173
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/173 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/174
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/174 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/175
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/175 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/176
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/176 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/177
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/177 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/178
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/178 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/179
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/179 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/180
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/180 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/181
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/181 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/182
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/182 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/183
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/183 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/184
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForNullptr/184 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/0
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/0 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/1
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/1 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/2
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/2 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/3
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/3 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/4
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/4 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/5
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/5 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/6
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/6 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/7
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/7 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/8
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/8 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/9
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/9 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/10
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/10 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/11
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/11 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/12
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/12 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/13
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/13 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/14
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/14 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/15
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/15 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/16
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/16 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/17
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/17 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/18
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/18 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/19
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/19 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/20
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/20 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/21
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/21 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/22
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/22 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/23
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/23 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/24
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/24 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/25
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/25 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/26
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/26 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/27
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/27 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/28
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/28 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/29
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/29 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/30
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/30 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/31
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/31 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/32
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/32 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/33
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/33 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/34
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/34 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/35
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/35 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/36
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/36 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/37
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/37 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/38
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/38 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/39
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/39 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/40
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/40 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/41
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/41 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/42
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/42 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/43
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/43 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/44
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/44 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/45
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/45 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/46
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/46 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/47
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/47 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/48
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/48 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/49
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/49 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/50
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/50 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/51
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/51 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/52
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/52 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/53
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/53 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/54
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/54 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/55
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/55 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/56
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/56 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/57
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/57 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/58
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/58 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/59
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/59 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/60
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/60 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/61
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/61 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/62
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/62 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/63
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/63 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/64
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/64 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/65
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/65 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/66
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/66 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/67
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/67 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/68
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/68 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/69
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/69 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/70
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/70 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/71
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/71 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/72
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/72 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/73
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/73 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/74
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/74 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/75
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/75 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/76
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/76 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/77
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/77 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/78
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/78 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/79
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/79 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/80
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/80 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/81
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/81 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/82
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/82 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/83
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/83 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/84
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/84 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/85
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/85 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/86
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/86 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/87
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/87 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/88
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/88 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/89
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/89 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/90
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/90 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/91
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/91 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/92
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/92 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/93
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/93 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/94
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/94 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/95
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/95 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/96
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/96 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/97
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/97 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/98
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/98 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/99
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/99 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/100
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/100 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/101
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/101 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/102
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/102 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/103
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/103 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/104
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/104 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/105
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/105 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/106
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/106 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/107
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/107 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/108
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/108 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/109
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/109 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/110
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/110 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/111
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/111 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/112
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/112 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/113
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/113 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/114
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/114 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/115
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/115 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/116
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/116 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/117
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/117 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/118
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/118 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/119
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/119 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/120
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/120 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/121
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/121 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/122
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/122 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/123
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/123 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/124
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/124 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/125
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/125 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/126
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/126 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/127
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/127 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/128
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/128 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/129
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/129 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/130
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/130 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/131
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/131 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/132
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/132 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/133
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/133 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/134
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/134 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/135
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/135 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/136
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/136 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/137
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/137 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/138
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/138 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/139
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/139 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/140
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/140 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/141
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/141 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/142
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/142 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/143
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/143 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/144
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/144 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/145
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/145 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/146
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/146 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/147
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/147 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/148
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/148 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/149
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/149 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/150
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/150 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/151
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/151 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/152
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/152 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/153
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/153 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/154
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/154 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/155
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/155 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/156
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/156 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/157
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/157 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/158
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/158 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/159
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/159 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/160
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/160 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/161
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/161 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/162
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/162 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/163
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/163 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/164
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/164 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/165
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/165 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/166
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/166 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/167
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/167 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/168
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/168 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/169
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/169 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/170
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/170 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/171
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/171 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/172
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/172 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/173
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/173 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/174
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/174 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/175
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/175 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/176
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/176 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/177
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/177 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/178
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/178 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/179
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/179 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/180
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/180 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/181
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/181 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/182
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/182 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/183
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/183 (0 ms)
+[ RUN      ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/184
+[       OK ] FileTypeMatch/FileTypeTest.CorrectValueForExtension/184 (0 ms)
+[----------] 370 tests from FileTypeMatch/FileTypeTest (7 ms total)
+
+[----------] 2 tests from InDifferentPrecisionModes/XdrSerializerTest
+[ RUN      ] InDifferentPrecisionModes/XdrSerializerTest.Works/0
+[       OK ] InDifferentPrecisionModes/XdrSerializerTest.Works/0 (0 ms)
+[ RUN      ] InDifferentPrecisionModes/XdrSerializerTest.Works/1
+[       OK ] InDifferentPrecisionModes/XdrSerializerTest.Works/1 (0 ms)
+[----------] 2 tests from InDifferentPrecisionModes/XdrSerializerTest (0 ms total)
+
+[----------] 4 tests from XvgReadTimeSeries/XvgioTest
+[ RUN      ] XvgReadTimeSeries/XvgioTest.readXvgTimeSeriesWorks/0
+[       OK ] XvgReadTimeSeries/XvgioTest.readXvgTimeSeriesWorks/0 (0 ms)
+[ RUN      ] XvgReadTimeSeries/XvgioTest.readXvgTimeSeriesWorks/1
+[       OK ] XvgReadTimeSeries/XvgioTest.readXvgTimeSeriesWorks/1 (0 ms)
+[ RUN      ] XvgReadTimeSeries/XvgioTest.readXvgTimeSeriesWorks/2
+[       OK ] XvgReadTimeSeries/XvgioTest.readXvgTimeSeriesWorks/2 (0 ms)
+[ RUN      ] XvgReadTimeSeries/XvgioTest.readXvgTimeSeriesWorks/3
+[       OK ] XvgReadTimeSeries/XvgioTest.readXvgTimeSeriesWorks/3 (0 ms)
+[----------] 4 tests from XvgReadTimeSeries/XvgioTest (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 432 tests from 17 test suites ran. (32 ms total)
+[  PASSED  ] 432 tests.
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"FileIOTests" end time: Oct 27 01:22 UTC
+"FileIOTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 27 01:22 UTC
+
+GTest =   0.48 sec*proc
+
+UnitTest =   0.48 sec*proc
+

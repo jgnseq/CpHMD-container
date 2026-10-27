@@ -1,0 +1,208 @@
+[  0%] Generating release version information
+[  0%] Built target internal_rpc_xdr
+[  0%] Built target scanner
+[  0%] Built target release-version-info
+[  3%] Built target thread_mpi
+[  3%] Built target tng_io_zlib
+[  3%] Built target lmfit_objlib
+[  4%] Built target tng_io_obj
+[  4%] Built target muparser
+[  4%] Built target fmm
+[  4%] Built target h5md
+[  4%] Building CXX object src/external/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+[  4%] Built target options
+[  6%] Built target energyanalysis
+[ 10%] Built target colvars_objlib
+[ 27%] Built target linearalgebra
+[ 27%] Built target pulling
+[ 27%] Built target taskassignment
+[ 29%] Built target modularsimulator
+[ 93%] Built target libgromacs
+[ 95%] Linking CXX shared library ../../../../lib/libgtest.so
+[ 95%] Built target gtest
+[ 95%] Building CXX object src/external/googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
+[ 95%] Linking CXX shared library ../../../../lib/libgmock.so
+[ 95%] Built target gmock
+[ 95%] Building CXX object src/testutils/CMakeFiles/testutils.dir/cmdlinetest.cpp.o
+[ 95%] Building CXX object src/testutils/CMakeFiles/testutils.dir/filematchers.cpp.o
+[ 95%] Building CXX object src/testutils/CMakeFiles/testutils.dir/conftest.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/interactivetest.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/loggertest.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/mpi_printer.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/mpitest.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/posixmemstream.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/refdata.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/refdata_xml.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/setenv.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/simulationdatabase.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/stdiohelper.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/stringtest.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/testasserts.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/testfilemanager.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/testfileredirector.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/test_device.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/test_hardware_environment.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/testinit.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/testmatchers.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/testoptions.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/textblockmatchers.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/topologyhelpers.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/tprfilegenerator.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/trajectoryreader.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/xvgtest.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/__/external/tinyxml2/tinyxml2.cpp.o
+[ 98%] Linking CXX static library ../../lib/libtestutils.a
+[ 98%] Built target testutils
+[100%] Building CXX object src/gromacs/onlinehelp/tests/CMakeFiles/onlinehelp-test-shared.dir/__/__/__/testutils/unittest_main.cpp.o
+[100%] Building CXX object src/gromacs/onlinehelp/tests/CMakeFiles/onlinehelp-test-shared.dir/mock_helptopic.cpp.o
+[100%] Linking CXX static library ../../../../lib/libonlinehelp-test-shared.a
+[100%] Built target onlinehelp-test-shared
+[100%] Building CXX object src/gromacs/commandline/tests/CMakeFiles/commandline-test.dir/cmdlinehelpwriter.cpp.o
+[100%] Building CXX object src/gromacs/commandline/tests/CMakeFiles/commandline-test.dir/cmdlinemodulemanager.cpp.o
+[100%] Building CXX object src/gromacs/commandline/tests/CMakeFiles/commandline-test.dir/cmdlinehelpmodule.cpp.o
+[100%] Building CXX object src/gromacs/commandline/tests/CMakeFiles/commandline-test.dir/cmdlinemodulemanagertest.cpp.o
+[100%] Building CXX object src/gromacs/commandline/tests/CMakeFiles/commandline-test.dir/cmdlineparser.cpp.o
+[100%] Building CXX object src/gromacs/commandline/tests/CMakeFiles/commandline-test.dir/cmdlineprogramcontext.cpp.o
+[100%] Building CXX object src/gromacs/commandline/tests/CMakeFiles/commandline-test.dir/filenm.cpp.o
+[100%] Building CXX object src/gromacs/commandline/tests/CMakeFiles/commandline-test.dir/pargs.cpp.o
+[100%] Building CXX object src/gromacs/commandline/tests/CMakeFiles/commandline-test.dir/__/__/__/testutils/unittest_main.cpp.o
+[100%] Linking CXX executable ../../../../bin/commandline-test
+[100%] Built target commandline-test
+[  0%] Generating release version information
+[  0%] Built target h5md
+[  0%] Built target scanner
+[  1%] Built target gtest
+[  1%] Built target release-version-info
+[  1%] Built target internal_rpc_xdr
+[  4%] Built target thread_mpi
+[  6%] Built target tng_io_obj
+[  6%] Built target tng_io_zlib
+[  6%] Built target lmfit_objlib
+[  6%] Built target muparser
+[  6%] Built target fmm
+[  7%] Built target energyanalysis
+[  7%] Built target options
+[ 12%] Built target colvars_objlib
+[ 12%] Built target gmock
+[ 29%] Built target linearalgebra
+[ 29%] Built target pulling
+[ 29%] Built target taskassignment
+[ 30%] Built target modularsimulator
+[ 95%] Built target libgromacs
+[ 98%] Built target testutils
+[ 98%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/filemd5.cpp.o
+[ 98%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/checkpoint.cpp.o
+[ 98%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/confio.cpp.o
+[ 98%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/filetypes.cpp.o
+[100%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/matio.cpp.o
+[100%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/mrcserializer.cpp.o
+[100%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/mrcdensitymap.cpp.o
+[100%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/mrcdensitymapheader.cpp.o
+[100%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/readinp.cpp.o
+[100%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/timecontrol.cpp.o
+[100%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/tngio.cpp.o
+[100%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/xdr_serializer.cpp.o
+[100%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/xvgio.cpp.o
+[100%] Building CXX object src/gromacs/fileio/tests/CMakeFiles/fileio-test.dir/__/__/__/testutils/unittest_main.cpp.o
+[100%] Linking CXX executable ../../../../bin/fileio-test
+[100%] Built target fileio-test
+[  0%] Generating release version information
+[  0%] Built target internal_rpc_xdr
+[  0%] Built target scanner
+[  3%] Built target thread_mpi
+[  3%] Built target release-version-info
+[  3%] Built target tng_io_zlib
+[  4%] Built target tng_io_obj
+[  4%] Built target lmfit_objlib
+[  4%] Built target muparser
+[  4%] Built target fmm
+[  4%] Built target h5md
+[  9%] Built target colvars_objlib
+[  9%] Built target options
+[ 10%] Built target energyanalysis
+[ 12%] Built target gtest
+[ 12%] Built target gmock
+[ 29%] Built target linearalgebra
+[ 29%] Built target pulling
+[ 29%] Built target taskassignment
+[ 31%] Built target modularsimulator
+[ 96%] Built target libgromacs
+[100%] Built target testutils
+[100%] Building CXX object src/gromacs/hardware/tests/CMakeFiles/hardware-test.dir/hardwaretopology.cpp.o
+[100%] Building CXX object src/gromacs/hardware/tests/CMakeFiles/hardware-test.dir/mockhardwaretopology.cpp.o
+[100%] Building CXX object src/gromacs/hardware/tests/CMakeFiles/hardware-test.dir/cpuinfo.cpp.o
+[100%] Building CXX object src/gromacs/hardware/tests/CMakeFiles/hardware-test.dir/device_management.cpp.o
+[100%] Building CXX object src/gromacs/hardware/tests/CMakeFiles/hardware-test.dir/__/__/__/testutils/unittest_main.cpp.o
+[100%] Linking CXX executable ../../../../bin/hardware-test
+[100%] Built target hardware-test
+[  0%] Generating release version information
+[  0%] Built target internal_rpc_xdr
+[  0%] Built target scanner
+[  3%] Built target thread_mpi
+[  3%] Built target release-version-info
+[  3%] Built target tng_io_zlib
+[  4%] Built target tng_io_obj
+[  4%] Built target lmfit_objlib
+[  4%] Built target muparser
+[  4%] Built target fmm
+[  4%] Built target h5md
+[  9%] Built target colvars_objlib
+[  9%] Built target options
+[ 10%] Built target energyanalysis
+[ 12%] Built target gtest
+[ 12%] Built target gmock
+[ 29%] Built target linearalgebra
+[ 29%] Built target pulling
+[ 29%] Built target taskassignment
+[ 30%] Built target modularsimulator
+[ 95%] Built target libgromacs
+[ 98%] Built target testutils
+[ 98%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/arrayrefwithpadding.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/boxmatrix.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/complex.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/coordinatetransformation.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/densityfit.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/dofit.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/exponentialmovingaverage.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/functions.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/gausstransform.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/densityfittingforce.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/invertmatrix.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/matrix.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/multidimarray.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/neldermead.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/optimization.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/paddedvector.cpp.o
+[100%] Building CXX object src/gromacs/math/tests/CMakeFiles/math-test.dir/__/__/__/testutils/unittest_main.cpp.o
+[100%] Linking CXX executable ../../../../bin/math-test
+[100%] Built target math-test
+[  0%] Generating release version information
+[  0%] Built target internal_rpc_xdr
+[  0%] Built target scanner
+[  3%] Built target thread_mpi
+[  3%] Built target release-version-info
+[  3%] Built target tng_io_zlib
+[  4%] Built target tng_io_obj
+[  4%] Built target lmfit_objlib
+[  4%] Built target muparser
+[  4%] Built target fmm
+[  4%] Built target h5md
+[  9%] Built target colvars_objlib
+[  9%] Built target options
+[ 10%] Built target energyanalysis
+[ 12%] Built target gtest
+[ 12%] Built target gmock
+[ 29%] Built target linearalgebra
+[ 29%] Built target pulling
+[ 29%] Built target taskassignment
+[ 31%] Built target modularsimulator
+[ 96%] Built target libgromacs
+[100%] Built target testutils
+[100%] Building CXX object src/gromacs/mdtypes/tests/CMakeFiles/mdtypes-test.dir/enerdata.cpp.o
+[100%] Building CXX object src/gromacs/mdtypes/tests/CMakeFiles/mdtypes-test.dir/forcebuffers.cpp.o
+[100%] Building CXX object src/gromacs/mdtypes/tests/CMakeFiles/mdtypes-test.dir/observablesreducer.cpp.o
+[100%] Building CXX object src/gromacs/mdtypes/tests/CMakeFiles/mdtypes-test.dir/checkpointdata.cpp.o
+[100%] Building CXX object src/gromacs/mdtypes/tests/CMakeFiles/mdtypes-test.dir/multipletimestepping.cpp.o
+[100%] Building CXX object src/gromacs/mdtypes/tests/CMakeFiles/mdtypes-test.dir/__/__/__/testutils/unittest_main.cpp.o
+[100%] Linking CXX executable ../../../../bin/mdtypes-test
+[100%] Built target mdtypes-test
