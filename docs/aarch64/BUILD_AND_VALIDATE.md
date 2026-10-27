@@ -6,7 +6,35 @@ The [developer guide](DEVELOPER_GUIDE.md) maps each build/validation file and
 function to its caller, outputs and place in the scientific cycle. Follow its
 commenting convention for future project-owned changes.
 
-## Current ARM image: ordinary-user acceptance after permission repair
+## Current A64FX candidate: native PB/MC execution validated
+
+Derived-image job **2150839** passed ordinary-user runtime and complete HEWL
+PB/MC in **2:39**. It replaces the incompatible inherited DelPhi 6.1 executable
+with an explicitly A64FX-targeted DelPhi 5 build from the source adjacent to the
+byte-identical working x86 solver. **1,726 other checked runtime files remained
+byte-identical.** The current experimental candidate is:
+
+```text
+/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif
+SHA256 1ee92b674c8808dd6e63d3f487fde5e2ea659c706eafefb43cede9b89070407d
+```
+
+A verified off-cluster copy is saved at
+`../artifacts/arm64/CpHMD-arm64-a64fx-pbmc-2150839.sif`. The source-context
+preparer and workstation launcher now pin this repaired bootstrap. No new full
+GROMACS/PLUMED compilation is needed just to record the milestone.
+
+The standard-profile strict energy screen remains recorded for review. With
+identical tighter PB settings, x86/ARM differences fall to **0.000950 pK** and
+**0.000301863 kBT**, passing the original limits. Independent MC replicates at
+the standard profile differ by at most **1.4885 estimated combined standard
+errors**. These establish execution and conditional numerical/statistical
+agreement, not absolute PB convergence, experimental pKa accuracy or complete
+coupled CpHMD/RT/restart acceptance. See
+[HEWL_PBMC_2026-10-27.md](HEWL_PBMC_2026-10-27.md) for the iteration-cap limitation,
+effective-parameter audit, actual source/compiler flags and preserved failures.
+
+## Earlier ordinary-user permission repair
 
 Native preparation job 2148556 showed that the original SIF's `/analysis` and
 other copied source trees retained project-only access modes. Embedded `%test`
@@ -15,7 +43,8 @@ had run as fakeroot, so build success did not prove ordinary-user usability.
 Job **2148618** derived a permission-normalized SIF without recompiling. It
 verified **1,764 runtime files byte-identical** before/after and passed native
 ordinary-user dependency/PETIT/fixgro/MD/PLUMED checks as UID 30597 (not root).
-The original SIF remains preserved. The current usable candidate is:
+The original SIF remains preserved. The permission-repaired candidate used for
+topology/solution preparation was:
 
 ```text
 /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/runtime-permissions/repair.G02c6n/CpHMD-arm64-readable.sif
@@ -30,8 +59,8 @@ are now in the full-build path as well. Logs are in
 
 HEWL topology/site verification subsequently passed on native ARM in job
 **2148669**, with matching parsed x86/ARM topology data and 21 sites; see
-[HEWL_TOPOLOGY_2026-10-27.md](HEWL_TOPOLOGY_2026-10-27.md). Scientific PB/MC,
-complete CpHMD/RT and restart validation remain pending.
+[HEWL_TOPOLOGY_2026-10-27.md](HEWL_TOPOLOGY_2026-10-27.md). PB/MC subsequently completed with the repaired solver described above.
+Complete coupled CpHMD/RT and restart validation remain pending.
 
 ARM access ends **31 October 2026**. General terminal/preparation issues are
 documented in [DEFERRED_ISSUES.md](DEFERRED_ISSUES.md) and deferred at the user's
@@ -40,9 +69,14 @@ request. The immediate priorities are ARM scientific gates and verified exports.
 Native solution job **2149846** passed `COMPLETED 0:0` in 7 minutes 54 seconds:
 solvation/ions, restrained contact minimization, 10 ps NVT and 20 ps NPT. Its
 frozen protocol, health checks and checksum-verified off-cluster snapshot are in
-[HEWL_SOLUTION_2026-10-27.md](HEWL_SOLUTION_2026-10-27.md). Fixed-coordinate
-matched-source PB/MC is now the next scientific gate. Do not rerun preparation
+[HEWL_SOLUTION_2026-10-27.md](HEWL_SOLUTION_2026-10-27.md). Fixed-coordinate matched-source PB/MC subsequently passed execution and the
+tighter-profile numerical comparison; see the PB/MC report. Do not rerun preparation
 just to record the milestone.
+
+PyMOL-ready PDB movies of the actual preparation are documented in
+[HEWL_PYMOL_2026-10-27.md](HEWL_PYMOL_2026-10-27.md). Native PB/MC, source
+provenance, convergence/sampling controls and the experimental derived image
+are documented in [HEWL_PBMC_2026-10-27.md](HEWL_PBMC_2026-10-27.md).
 
 ## Original native compilation and embedded tests: job 2147983
 
@@ -192,24 +226,59 @@ Deucalion's project directory requires supplementary-group access, which fakeroo
 - The ordinary host process stages inputs and copies artifacts/results back after fakeroot returns. The local-image build uses `--disable-cache`; no compiler downloads or OCI downloads occur in the fakeroot build.
 - The project ACLs and production directories are unchanged. Failed temporary build work is not destructively cleaned by the launcher.
 
-## 1. Record the native HEWL solution-preparation milestone locally
+## 1. Record HEWL visualization and native ARM PB/MC locally
 
-Run in the local desktop terminal, not on Deucalion:
+The solution-preparation milestone is already committed as a9ec0f1. The agent
+has not staged, committed or pushed the new work. Run in the local desktop
+terminal:
 
 ```bash
 cd '/home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container'
 git status --short --branch
 git diff --check
-
-git add -- container_build/slurm/hewl-solution.slurm tests/arm64/prepare_hewl_solution.sh tests/arm64/plan_hewl_ions.py tests/arm64/check_hewl_solution.py tests/arm64/hewl-solution tests/check_hewl_solution_helpers.py docs/aarch64
+git add -- \
+  container_build/prepare_arm64_build.py \
+  container_build/submit_deucalion_arm64.sh \
+  container_build/arm64/install-delphi-a64fx.py \
+  container_build/slurm/hewl-pbmc.slurm \
+  container_build/slurm/rebuild-delphi-a64fx.slurm \
+  container_build/slurm/repair-delphi-a64fx.slurm \
+  tests/arm64/export_hewl_pymol.sh \
+  tests/arm64/finish_hewl_pymol.py \
+  tests/arm64/run_hewl_pbmc.sh \
+  tests/arm64/compare_hewl_pbmc.py \
+  tests/arm64/hash_hewl_pb_inputs.py \
+  tests/arm64/summarize_hewl_pbmc_controls.py \
+  tests/arm64/hewl-pbmc-contract.json \
+  tests/arm64/hewl-pbmc-tight-contract.json \
+  tests/check_hewl_pbmc_helpers.py \
+  docs/aarch64
 git diff --cached --check
 git diff --cached --stat
-git diff --cached -- container_build/slurm/hewl-solution.slurm tests/arm64 tests/check_hewl_solution_helpers.py docs/aarch64/HEWL_SOLUTION_2026-10-27.md
-git commit -m 'Prepare and validate solvated HEWL snapshot on native ARM'
+git diff --cached -- container_build tests/arm64 tests/check_hewl_pbmc_helpers.py docs/aarch64/HEWL_PBMC_2026-10-27.md
+git commit -m 'Validate native HEWL PBMC and package A64FX solver candidate'
 git push origin codex/arm64-deucalion-20261026
 ```
 
-The agent has not staged, committed or pushed these changes. Raw build/scientific evidence has whitespace checking disabled through the narrow `.gitattributes` rule; source-code whitespace checking remains enabled.
+The images, trajectories and source archives remain outside the Git checkout;
+their hashes/provenance and compact scientific evidence are versioned. Raw
+scientific output retains its existing narrow whitespace-check exemption.
+
+Local checks, requiring no scheduler submission:
+
+```bash
+python3 tests/check_hewl_pbmc_helpers.py
+python3 tests/arm64/finish_hewl_pymol.py '../artifacts/hewl-4lzt/pymol-2149846'
+python3 tests/arm64/compare_hewl_pbmc.py \
+  '../artifacts/hewl-4lzt/tight-x86/pbmc/raw' \
+  '../artifacts/hewl-4lzt/pbmc-image-tight-2150979' \
+  --contract tests/arm64/hewl-pbmc-tight-contract.json \
+  --output /tmp/hewl-pbmc-image-comparison.json
+```
+
+Existing native validation jobs are complete; those checks read saved outputs.
+The next new scheduler work should be the coupled CpHMD/RT/continuation stage,
+not another topology/solution preparation or a repeat full compilation.
 
 ## 2. Prepare and submit a future candidate when code changes
 

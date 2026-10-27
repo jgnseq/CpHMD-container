@@ -67,7 +67,7 @@ test \"\$(git -C '$source_root' rev-parse HEAD)\" = '$revision'
 test -z \"\$(git -C '$source_root' status --porcelain --untracked-files=all)\"
 python3 '$source_root/container_build/prepare_arm64_build.py' \\
     --output-dir '$output' \\
-    --base-image '$task_root/images/CpHMD-aarch64-phase6-sve512.sif' \\
+    --base-image '$task_root/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif' \\
     --gromacs-source '$task_root/inputs/gromacs-$revision-$stamp.tar.gz' \\
     --simd '$simd' --jobs '$jobs'
 if [ '$submit' = 1 ]; then

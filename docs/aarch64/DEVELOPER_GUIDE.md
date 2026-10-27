@@ -127,6 +127,30 @@ The next solution stage is documented in
 and native SLURM wrapper to their callers and pass criteria. These scripts
 prepare a frozen input for PB/MC; they do not invoke the CpHMD controller.
 
+The visualization stage is mapped in
+[HEWL_PYMOL_2026-10-27.md](HEWL_PYMOL_2026-10-27.md):
+`export_hewl_pymol.sh` converts the actual saved trajectories with separate
+PBC/fit passes, and `finish_hewl_pymol.py` makes audited heavy-atom display copies,
+per-frame geometry tables and a portable PyMOL launcher. These outputs are
+strictly for viewing and never re-enter the scientific cycle.
+
+The fixed-coordinate gate is mapped in
+[HEWL_PBMC_2026-10-27.md](HEWL_PBMC_2026-10-27.md):
+`run_hewl_pbmc.sh` stages matched drivers/data and invokes the actual controller
+functions; `hewl-pbmc-contract.json` freezes settings/units/tolerances before
+execution; `compare_hewl_pbmc.py` validates complete PB matrices and PETIT states
+and populations; `hewl-pbmc.slurm` runs the native job with project storage and
+preserved failure evidence. This gate precedes coupled CpHMD/RT/continuation.
+
+The DelPhi port and uncertainty controls are mapped per file/function in the
+PB/MC report. The full builder now pins the execution-validated repaired SIF;
+`rebuild-delphi-a64fx.slurm` preserves source/compiler/dependency provenance,
+`repair-delphi-a64fx.slurm` packages an experimental candidate and requires
+ordinary-user full PB/MC, and `install-delphi-a64fx.py` proves unrelated runtime
+payload bytes unchanged. Numerical regression, convergence diagnostics and MC
+sampling uncertainty are separate acceptance questions. The 500-iteration
+focus/model cap and direct USER.pbp behavior remain documented backlog items.
+
 ## Commenting and maintenance convention
 
 For each new or changed project-owned file, keep a short header explaining its

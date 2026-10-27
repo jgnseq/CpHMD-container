@@ -1,0 +1,7 @@
+PASS: rejected missing matrix entry
+PASS: rejected NaN energy
+PASS: rejected wrong site identity
+PASS: rejected illegal final state
+PASS: rejected missing sampled site
+PASS: rejected inconsistent population
+PASS: rejected pK threshold exceeded

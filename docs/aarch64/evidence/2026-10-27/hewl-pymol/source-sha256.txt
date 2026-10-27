@@ -1,0 +1,5 @@
+1414f7149aff53938c364113bd1af05f94809f4cb5c3803728b97a82b689a971  /work/solution/nvt.xtc
+c20c18a91a4afd369a702f0dccd10506f84167208aa60ded9b0bf9f0a138ae35  /work/solution/nvt.tpr
+f2120cdaaeccd5e5792f625ecd27a7b6fcbd395f403a0b57220dcd81c96f83dc  /work/solution/npt.xtc
+f0a82fb304e8fd874dcd952f16bced8bfc25ddca56e130aab2c78425c2853d21  /work/solution/npt.tpr
+27a6928ac9f07450ff41ecfb2b09d3d09d16febfd3683c59f2ab3be2d025ff65  /work/solution/npt.gro

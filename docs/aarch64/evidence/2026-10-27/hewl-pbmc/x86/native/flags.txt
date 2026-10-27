@@ -1,0 +1,2 @@
+gcc -O2 SOURCE my_mem.c -lm
+gcc -O2 petit.c -lm

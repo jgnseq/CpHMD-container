@@ -1,0 +1,441 @@
+delphiT-retained: Warning: Going to calculate without PBC.
+delphiT-retained: Warning: Offset used inside DelphiT is 139
+Will write gro: Coordinate file in Gromos-87 format
+Reading file ../TMP_CpHMD.tpr, VERSION 2026.3 (single precision)
+Reading file ../TMP_CpHMD.tpr, VERSION 2026.3 (single precision)
+Group     0 (         System) has 27989 elements
+Group     1 (        Protein) has  2004 elements
+Group     2 (         Solute) has  2004 elements
+Group     3 (            SOL) has 25985 elements
+Group     4 (          Water) has 25950 elements
+Group     5 (           Ions) has    35 elements
+Group     6 (       Backbone) has   387 elements
+Select a group: Reading frames from gro file 'Protein in water', 2004 atoms.
+Reading frame       0 time    0.000   
+Precision of ../TMP_PBMC.gro is 0.001 (nm)
+Last frame          0 time    0.000   
+ ->  frame      0 time    0.000      
+Last written: frame      0 time    0.000
+
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+/out/pbmc/tools/delphiT-retained: line 411: 1266548 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266547 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266543 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266542 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266545 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266546 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266544 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266541 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1266615 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1266618 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266619 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266634 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266620 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1266625 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1266645 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266683 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266681 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266655 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266661 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266692 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266671 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1266715 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266720 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266747 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266766 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1266792 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1266802 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266803 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1266806 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266816 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266833 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266823 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1266828 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1266854 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266843 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266879 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266868 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266885 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266886 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266914 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1266934 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266932 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1266957 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266960 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266974 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266976 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266975 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+ File name = 'ARCDAT',    unformatted, sequential access   record = 3
+ In source file ./src/inc_epsmakmod_vwtms.f95, at line number 286
+/out/pbmc/tools/delphiT-retained: line 411: 1266981 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1266996 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267010 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267023 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267034 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267005 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267052 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267064 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267070 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267086 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267097 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267120 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267126 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267129 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267137 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267145 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267144 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267156 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267167 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267176 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267196 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267209 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267187 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267245 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267230 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267240 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267262 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267267 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267261 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267289 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267306 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+ File name = 'ARCDAT',    unformatted, sequential access   record = 1
+ In source file ./src/inc_epsmakmod_vwtms.f95, at line number 273
+/out/pbmc/tools/delphiT-retained: line 411: 1267287 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267298 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267334 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267327 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267321 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267344 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267333 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+ File name = 'ARCDAT',    unformatted, sequential access   record = 3
+ In source file ./src/inc_epsmakmod_vwtms.f95, at line number 286
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267364 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267395 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267370 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267384 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267409 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267411 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267418 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267449 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+ File name = 'ARCDAT',    unformatted, sequential access   record = 1
+ In source file ./src/inc_epsmakmod_vwtms.f95, at line number 273
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267462 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267444 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267475 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267480 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267501 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267485 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267524 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267511 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267506 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+ File name = ' File name = 'ARCDATARCDAT',    unformatted, ',    unformatted, sequential access  FIO-F-219/unformatted read/unit=1/attempt to read/write past end of record.
+sequential access   record = 1
+ File name = ' record = 1
+ In source file ./src/inc_epsmakmod_vwtms.f95,ARCDAT In source file ./src/inc_epsmakmod_vwtms.f95, at line number 273
+',    unformatted,  at line number 273
+sequential access   record = 3
+ In source file ./src/inc_epsmakmod_vwtms.f95, at line number 286
+/out/pbmc/tools/delphiT-retained: line 411: 1267569 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267547 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267533 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267568 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267607 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267589 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+ File name = ' File name = ' File name = 'ARCDATARCDATFIO-F-219/unformatted read/unit=1/attempt to read/write past end of record.
+ARCDAT',    unformatted, ',    unformatted,  File name = '',    unformatted, sequential access  sequential access  ARCDATsequential access   record = 1
+ record = 1
+',    unformatted,  record = 1
+ In source file ./src/inc_epsmakmod_vwtms.f95, In source file ./src/inc_epsmakmod_vwtms.f95,sequential access   In source file ./src/inc_epsmakmod_vwtms.f95, at line number 273
+ at line number 273
+ record = 3
+ at line number 273
+ In source file ./src/inc_epsmakmod_vwtms.f95, at line number 286
+/out/pbmc/tools/delphiT-retained: line 411: 1267638 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267594 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267624 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267583 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267635 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267642 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267688 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267664 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+ File name = ' File name = ' File name = 'ARCDATARCDATARCDAT',    unformatted, ',    unformatted, ',    unformatted, sequential access  sequential access  sequential access   record = 1
+ record = 1
+ record = 1
+ In source file ./src/inc_epsmakmod_vwtms.f95, In source file ./src/inc_epsmakmod_vwtms.f95, In source file ./src/inc_epsmakmod_vwtms.f95, at line number 273
+ at line number 273
+ at line number 273
+/out/pbmc/tools/delphiT-retained: line 411: 1267681 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267657 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267720 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267719 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267718 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267707 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267744 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267764 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267749 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+ File name = ' File name = ' File name = ' File name = ' File name = 'ARCDATARCDATARCDATARCDATARCDAT',    unformatted, ',    unformatted, ',    unformatted, ',    unformatted, ',    unformatted, sequential access  sequential access  sequential access  sequential access  sequential access   record = 1
+ record = 1
+ record = 1
+ record = 1
+ record = 1
+ In source file ./src/inc_epsmakmod_vwtms.f95, In source file ./src/inc_epsmakmod_vwtms.f95, In source file ./src/inc_epsmakmod_vwtms.f95, In source file ./src/inc_epsmakmod_vwtms.f95, In source file ./src/inc_epsmakmod_vwtms.f95, at line number 273
+ at line number 273
+ at line number 273
+ at line number 273
+ at line number 273
+/out/pbmc/tools/delphiT-retained: line 411: 1267811 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267777 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267821 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267820 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267834 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267835 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267863 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267868 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267879 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267889 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267884 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267923 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267907 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267896 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267918 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267943 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267945 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1267980 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267950 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267979 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267998 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1267991 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+FIO-F-217/unformatted read/unit=1/attempt to read past end of file.
+ File name = ' File name = ' File name = ' File name = ' File name = ' File name = 'ARCDATARCDATARCDATARCDATARCDATARCDAT',    unformatted, ',    unformatted, ',    unformatted, ',    unformatted, ',    unformatted, ',    unformatted, sequential access  sequential access  sequential access  sequential access  sequential access  sequential access   record = 1
+ record = 1
+ record = 1
+ record = 1
+ record = 1
+ record = 1
+ In source file ./src/inc_epsmakmod_vwtms.f95, In source file ./src/inc_epsmakmod_vwtms.f95, In source file ./src/inc_epsmakmod_vwtms.f95, In source file ./src/inc_epsmakmod_vwtms.f95, In source file ./src/inc_epsmakmod_vwtms.f95, In source file ./src/inc_epsmakmod_vwtms.f95, at line number 273
+ at line number 273
+ at line number 273
+ at line number 273
+ at line number 273
+ at line number 273
+/out/pbmc/tools/delphiT-retained: line 411: 1268041 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268004 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268043 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268042 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268056 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268055 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268057 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268070 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268081 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1268131 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1268136 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268134 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268137 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268143 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268146 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268169 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268164 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268182 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1268225 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268228 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1268242 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+/out/pbmc/tools/delphiT-retained: line 411: 1268249 Illegal instruction     (core dumped) ./delphi_pgf90 P_${pstate}b.prm > P_${pstate}b.out
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+/out/pbmc/tools/delphiT-retained: line 411: 1268263 Illegal instruction     (core dumped) ./delphi_pgf90 ${pstate}.prm > ${pstate}.out
+
+calc_pkg: ERROR: Can not open frc file
+awk: fatal: cannot open file `./PBMC.pkint' for reading: No such file or directory
+/out/pbmc/tools/delphiT-retained: line 442: [: -gt: unary operator expected
+delphiT-retained: Error: Contributions still not here

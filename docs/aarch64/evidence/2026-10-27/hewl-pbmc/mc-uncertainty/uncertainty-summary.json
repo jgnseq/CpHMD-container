@@ -1,0 +1,177 @@
+{
+  "method": "PETIT -t 100, three independent 100000-step chains per energy table; combined SE=sqrt(sum(chain_SE^2))/3, then quadrature across tables",
+  "MC_engine_for_both_tables": "x86 PETIT 1.6.1 compiled from the frozen common source",
+  "limitations": "Conditional on saved PB energies. Three replicates and lag cutoff 100; estimated errors do not prove stationarity or equivalence. Zero empirical error at saturated sites does not exclude unsampled rare transitions.",
+  "max_absolute_mean_difference": 0.0008633366666666725,
+  "max_standardized_difference": 1.4884641186267809,
+  "sites": [
+    {
+      "site": "LYS-1",
+      "reference_energy_mean": 0.9926199913333333,
+      "ARM_energy_mean": 0.9928533236666667,
+      "difference": 0.00023333233333333592,
+      "estimated_combined_MC_standard_error": 0.000506585105940595,
+      "difference_in_estimated_standard_errors": 0.46059848700071687
+    },
+    {
+      "site": "NTR-1",
+      "reference_energy_mean": 0.9457400043333334,
+      "ARM_energy_mean": 0.9457799993333333,
+      "difference": 3.999499999995937e-05,
+      "estimated_combined_MC_standard_error": 0.0014724834271865822,
+      "difference_in_estimated_standard_errors": 0.027161596023105188
+    },
+    {
+      "site": "GLU-7",
+      "reference_energy_mean": 0.0036866665666666666,
+      "ARM_energy_mean": 0.0037199999966666666,
+      "difference": 3.333342999999999e-05,
+      "estimated_combined_MC_standard_error": 0.0005160703300817167,
+      "difference_in_estimated_standard_errors": 0.06459086689738942
+    },
+    {
+      "site": "LYS-13",
+      "reference_energy_mean": 0.999973317,
+      "ARM_energy_mean": 0.9999900063333333,
+      "difference": 1.6689333333319567e-05,
+      "estimated_combined_MC_standard_error": 1.666606204897662e-05,
+      "difference_in_estimated_standard_errors": 1.0013963277152431
+    },
+    {
+      "site": "HIS-15",
+      "reference_energy_mean": 0.006556666613333333,
+      "ARM_energy_mean": 0.00675666658,
+      "difference": 0.00019999996666666704,
+      "estimated_combined_MC_standard_error": 0.0003636533739051692,
+      "difference_in_estimated_standard_errors": 0.5499741815095094
+    },
+    {
+      "site": "ASP-18",
+      "reference_energy_mean": 3.33333325e-06,
+      "ARM_energy_mean": 4.333333346666667e-05,
+      "difference": 4.000000021666667e-05,
+      "estimated_combined_MC_standard_error": 2.6873338575047178e-05,
+      "difference_in_estimated_standard_errors": 1.4884641186267809
+    },
+    {
+      "site": "TYR-20",
+      "reference_energy_mean": 0.999993324,
+      "ARM_energy_mean": 0.9999866683333334,
+      "difference": -6.655666666577353e-06,
+      "estimated_combined_MC_standard_error": 8.158340772446862e-06,
+      "difference_in_estimated_standard_errors": 0.8158113092132061
+    },
+    {
+      "site": "TYR-23",
+      "reference_energy_mean": 0.999996662,
+      "ARM_energy_mean": 1.0,
+      "difference": 3.33799999996387e-06,
+      "estimated_combined_MC_standard_error": 3.3256537800000002e-06,
+      "difference_in_estimated_standard_errors": 1.0037124189048536
+    },
+    {
+      "site": "LYS-33",
+      "reference_energy_mean": 0.9999099973333333,
+      "ARM_energy_mean": 0.9998233316666667,
+      "difference": -8.666566666659659e-05,
+      "estimated_combined_MC_standard_error": 7.937011360123735e-05,
+      "difference_in_estimated_standard_errors": 1.091918138129583
+    },
+    {
+      "site": "GLU-35",
+      "reference_energy_mean": 1.9999999483333333e-05,
+      "ARM_energy_mean": 3.0000000466666664e-05,
+      "difference": 1.0000000983333331e-05,
+      "estimated_combined_MC_standard_error": 3.1445377289233656e-05,
+      "difference_in_estimated_standard_errors": 0.31801179840692056
+    },
+    {
+      "site": "ASP-48",
+      "reference_energy_mean": 4.6666668e-05,
+      "ARM_energy_mean": 5.333333443333333e-05,
+      "difference": 6.66666643333333e-06,
+      "estimated_combined_MC_standard_error": 4.887353641779277e-05,
+      "difference_in_estimated_standard_errors": 0.13640646701609013
+    },
+    {
+      "site": "ASP-52",
+      "reference_energy_mean": 0.0064833331866666665,
+      "ARM_energy_mean": 0.006313333286666667,
+      "difference": -0.00016999989999999954,
+      "estimated_combined_MC_standard_error": 0.0006882126642047908,
+      "difference_in_estimated_standard_errors": 0.24701652387700446
+    },
+    {
+      "site": "TYR-53",
+      "reference_energy_mean": 1.0,
+      "ARM_energy_mean": 1.0,
+      "difference": 0.0,
+      "estimated_combined_MC_standard_error": 0.0,
+      "difference_in_estimated_standard_errors": 0
+    },
+    {
+      "site": "ASP-66",
+      "reference_energy_mean": 0.000609999988,
+      "ARM_energy_mean": 0.000506666683,
+      "difference": -0.00010333330500000002,
+      "estimated_combined_MC_standard_error": 0.0001574353543970236,
+      "difference_in_estimated_standard_errors": 0.6563538755050663
+    },
+    {
+      "site": "ASP-87",
+      "reference_energy_mean": 2.6666666e-05,
+      "ARM_energy_mean": 1.3333333e-05,
+      "difference": -1.3333333e-05,
+      "estimated_combined_MC_standard_error": 2.8283235258710682e-05,
+      "difference_in_estimated_standard_errors": 0.47142177611712915
+    },
+    {
+      "site": "LYS-96",
+      "reference_energy_mean": 0.9975066783333334,
+      "ARM_energy_mean": 0.99782,
+      "difference": 0.00031332166666664385,
+      "estimated_combined_MC_standard_error": 0.0003109485420919296,
+      "difference_in_estimated_standard_errors": 1.0076318884106963
+    },
+    {
+      "site": "LYS-97",
+      "reference_energy_mean": 0.9999600053333333,
+      "ARM_energy_mean": 0.9999000033333333,
+      "difference": -6.000200000000344e-05,
+      "estimated_combined_MC_standard_error": 6.832545713272624e-05,
+      "difference_in_estimated_standard_errors": 0.8781792690160274
+    },
+    {
+      "site": "ASP-101",
+      "reference_energy_mean": 0.10684000233333334,
+      "ARM_energy_mean": 0.10597666566666666,
+      "difference": -0.0008633366666666725,
+      "estimated_combined_MC_standard_error": 0.0024104289134415998,
+      "difference_in_estimated_standard_errors": 0.35816723814269397
+    },
+    {
+      "site": "LYS-116",
+      "reference_energy_mean": 0.9997766616666667,
+      "ARM_energy_mean": 0.999723335,
+      "difference": -5.3326666666686506e-05,
+      "estimated_combined_MC_standard_error": 9.630927345754571e-05,
+      "difference_in_estimated_standard_errors": 0.5537023045884937
+    },
+    {
+      "site": "ASP-119",
+      "reference_energy_mean": 0.019696666566666667,
+      "ARM_energy_mean": 0.0204333334,
+      "difference": 0.0007366668333333333,
+      "estimated_combined_MC_standard_error": 0.0011633859937576036,
+      "difference_in_estimated_standard_errors": 0.6332093022316555
+    },
+    {
+      "site": "CTR-129",
+      "reference_energy_mean": 0.0,
+      "ARM_energy_mean": 0.0,
+      "difference": 0.0,
+      "estimated_combined_MC_standard_error": 0.0,
+      "difference_in_estimated_standard_errors": 0
+    }
+  ]
+}

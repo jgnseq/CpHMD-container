@@ -1,0 +1,103 @@
+/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/cphmd-delphi5-matched-source.tar.gz: OK
+
+Currently Loaded Modules:
+  1) GCCcore/13.3.0                 4) numactl/2.0.18-GCCcore-13.3.0
+  2) zlib/1.3.1-GCCcore-13.3.0      5) nvidia-compilers/25.1-prof
+  3) binutils/2.42-GCCcore-13.3.0
+
+ 
+
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/qdiff4v.F
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/objvertices.F
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/distobj.F
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/timef.F
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/qinttot.F
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/elb.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/up.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/cent4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/rent4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/phintp4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/scaler4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/setbc4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/conplt.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/itit4j.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/wrteps4b.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/relfac4b.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/react2.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/clb.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/setcrg.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/setfcrg.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/nitit.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/anagrd4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/cputime.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/setrc4d.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/rdiv.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/chkcrg.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/expand4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/anasurf.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/rdlog4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/wrt4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/wrtprm.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/off4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/extrm.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/wrtatd.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/distrTOpoint.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/wrtvisual.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/extrmobjects.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/nlener.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/grdatm.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/crgarr.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/dbsfd.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/mkdbsf.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/phicon.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/wrtphi.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/wrtsit4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/encalc4.f
+NVFORTRAN-W-0103-Type conversion of subscript expression for phimap (src/encalc4.f: 114)
+NVFORTRAN-W-0103-Type conversion of subscript expression for phimap (src/encalc4.f: 114)
+  0 inform,   2 warnings,   0 severes, 0 fatal for encalc
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/wrtgcrg.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/namlen3.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/watput.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/cfind4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/rfind4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/rdhrad.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/radass4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/crgass4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/ichash4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/irhash4.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/rdhcrg.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/form2.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/getatm2.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/watpte.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/omalt.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/rforce.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/ts.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/setout.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/epsmak.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/vwtms2.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/scale.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/indver.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/sas.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/cube.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/msrf.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/mkvtl.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/ex.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/fxhl.f
+nvfortran -O2 -g -I./src/ -Mpreprocess -DLINUX -DIFC -Mcray=pointer -Mextend -tp=a64fx -Kieee -c  src/wrtsurf.f
+gcc -O2 -g -DLINUX -mcpu=a64fx -c  src/memalloc.c
+gcc -O2 -g -DLINUX -mcpu=a64fx -c  src/creapdb.c
+nvfortran -O2 -g -tp=a64fx -Kieee -o delphi qdiff4v.o objvertices.o distobj.o timef.o qinttot.o elb.o up.o cent4.o rent4.o phintp4.o scaler4.o setbc4.o conplt.o itit4j.o wrteps4b.o relfac4b.o react2.o clb.o setcrg.o setfcrg.o nitit.o anagrd4.o cputime.o setrc4d.o rdiv.o chkcrg.o expand4.o anasurf.o rdlog4.o wrt4.o wrtprm.o off4.o extrm.o wrtatd.o distrTOpoint.o wrtvisual.o extrmobjects.o nlener.o grdatm.o crgarr.o dbsfd.o mkdbsf.o phicon.o wrtphi.o wrtsit4.o encalc4.o wrtgcrg.o namlen3.o watput.o cfind4.o rfind4.o rdhrad.o radass4.o crgass4.o ichash4.o irhash4.o rdhcrg.o form2.o getatm2.o watpte.o omalt.o rforce.o ts.o setout.o epsmak.o vwtms2.o scale.o indver.o sas.o cube.o msrf.o mkvtl.o ex.o fxhl.o wrtsurf.o memalloc.o creapdb.o
+	linux-vdso.so.1 (0x0000ffffbe7b0000)
+	libnvf.so => /share/apps-arm/ohpc/easybuild/software/rocky/8.5/a64fx/software/nvidia-compilers/25.1-prof/Linux_aarch64/25.1/compilers/lib/libnvf.so (0x0000ffffbe1b0000)
+	libnvomp.so => /share/apps-arm/ohpc/easybuild/software/rocky/8.5/a64fx/software/nvidia-compilers/25.1-prof/Linux_aarch64/25.1/compilers/lib/libnvomp.so (0x0000ffffbdf90000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x0000ffffbdf50000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x0000ffffbdf10000)
+	libnvcpumath.so => /share/apps-arm/ohpc/easybuild/software/rocky/8.5/a64fx/software/nvidia-compilers/25.1-prof/Linux_aarch64/25.1/compilers/lib/libnvcpumath.so (0x0000ffffbdd80000)
+	libnvc.so => /share/apps-arm/ohpc/easybuild/software/rocky/8.5/a64fx/software/nvidia-compilers/25.1-prof/Linux_aarch64/25.1/compilers/lib/libnvc.so (0x0000ffffbdd20000)
+	librt.so.1 => /lib64/librt.so.1 (0x0000ffffbdcf0000)
+	libc.so.6 => /lib64/libc.so.6 (0x0000ffffbdb70000)
+	libm.so.6 => /lib64/libm.so.6 (0x0000ffffbdaa0000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffbe7c0000)
+	libstdc++.so.6 => /share/apps-arm/ohpc/easybuild/software/rocky/8.5/a64fx/software/GCCcore/13.3.0/lib64/libstdc++.so.6 (0x0000ffffbd840000)
+	libgcc_s.so.1 => /share/apps-arm/ohpc/easybuild/software/rocky/8.5/a64fx/software/GCCcore/13.3.0/lib64/libgcc_s.so.1 (0x0000ffffbd800000)

@@ -1,0 +1,17 @@
+Bootstrap: localimage
+From: /tmp/jsequeira-cphmd-delphi-2150839.Jp8DAF/bootstrap.sif
+
+%labels
+    cphmd.delphi-target a64fx
+    cphmd.delphi-compiler NVFORTRAN-25.1
+    cphmd.delphi-source matched-x86-973e9b99-source-e42194ba
+    validation.status experimental-candidate-PBMC-check-required-after-assembly
+
+%files
+    /tmp/jsequeira-cphmd-delphi-2150839.Jp8DAF/runtime /opt/cphmd-new-delphi
+    /tmp/jsequeira-cphmd-delphi-2150839.Jp8DAF/install-solver.py /opt/cphmd-install-solver.py
+    /tmp/jsequeira-cphmd-delphi-2150839.Jp8DAF/solver-provenance.json /opt/cphmd-solver-provenance.json
+
+%post
+    python3 /opt/cphmd-install-solver.py
+    cp /usr/share/cphmd/build/delphi-a64fx-repair.json /build-evidence/

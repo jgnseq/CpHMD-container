@@ -1,0 +1,41 @@
+delphiT-retained: Warning: Going to calculate without PBC.
+delphiT-retained: Warning: Offset used inside DelphiT is 139
+Will write gro: Coordinate file in Gromos-87 format
+Reading file ../TMP_CpHMD.tpr, VERSION 2026.3 (single precision)
+Reading file ../TMP_CpHMD.tpr, VERSION 2026.3 (single precision)
+Group     0 (         System) has 27989 elements
+Group     1 (        Protein) has  2004 elements
+Group     2 (         Solute) has  2004 elements
+Group     3 (            SOL) has 25985 elements
+Group     4 (          Water) has 25950 elements
+Group     5 (           Ions) has    35 elements
+Group     6 (       Backbone) has   387 elements
+Select a group: Reading frames from gro file 'Protein in water', 2004 atoms.
+Reading frame       0 time    0.000   
+Precision of ../TMP_PBMC.gro is 0.001 (nm)
+Last frame          0 time    0.000   
+ ->  frame      0 time    0.000      
+Last written: frame      0 time    0.000
+
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.
+makepqr: Warning: Assuming GROMACS topology version >= 3.3.

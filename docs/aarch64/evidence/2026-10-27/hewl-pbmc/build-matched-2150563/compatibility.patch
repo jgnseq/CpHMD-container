@@ -1,0 +1,13 @@
+--- pristine/src/setcrg.f
++++ build/src/setcrg.f
+@@ -266,8 +266,8 @@
+ 	   write(6,*)'Exiting'
+ 	   stop
+ 	 endif
+-	if(ico.ne.0) write(6,*) "## out of them,",ico," charged points 
+-     &are in solution ## Increased resolution is needed"
++	if(ico.ne.0) write(6,*) '## out of them,',ico,' charged points',
++     & ' are in solution ## Increased resolution is needed'
+ c
+ c make qval, fpoh term so potentials will be in kt/e
+ c 

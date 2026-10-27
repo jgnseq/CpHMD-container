@@ -1,0 +1,23 @@
+{
+  "pseudostates": 69,
+  "sites": 21,
+  "matrix_elements": 4761,
+  "max_intrinsic_pK_difference": 0.11938899999999997,
+  "max_raw_interaction_difference_kBT": 0.10656936627984281,
+  "max_converted_state_energy_difference_kBT": 0.2748998260786132,
+  "max_converted_pair_energy_difference_kBT": 0.10656936627984281,
+  "MC": {
+    "1729": {
+      "max_site_mean_occupancy_difference": 0.0019499999500000005,
+      "final_microstates_equal": false
+    },
+    "2718": {
+      "max_site_mean_occupancy_difference": 0.0020400001700000003,
+      "final_microstates_equal": true
+    },
+    "3141": {
+      "max_site_mean_occupancy_difference": 0.00161999976,
+      "final_microstates_equal": true
+    }
+  }
+}

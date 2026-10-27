@@ -1,0 +1,1356 @@
+{
+  "profile": "tight",
+  "solves": 270,
+  "parameters": [
+    {
+      "file": "P_140-Lys1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "174-Glu4C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_205-Asp1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_235-Lys3Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "152-Lys3C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_154-His1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_191-Asp4Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_240-Asp4Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_226-Asp1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "162-Tyr1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "205-Asp4N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_162-Tyr2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "192-Tyr2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "146-Glu4C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "187-Asp4N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "226-Asp4N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "174-Glu3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "152-Lys1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_236-Lys3Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_258-Asp3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_191-Asp4Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_205-Asp3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "157-Asp4C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "140-Lys3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "205-Asp2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_172-Lys1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_226-Asp1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_162-Tyr1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_240-Asp2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "140-Lys3C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "140-Lys2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "174-Glu1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_172-Lys3Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_255-Lys1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_191-Asp1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "235-Lys3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_240-Asp4Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_146-Glu1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_187-Asp3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_146-Glu4Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_187-Asp4Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "174-Glu2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_191-Asp4Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_907-Ctr3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_205-Asp4Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_172-Lys3Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_255-Lys3Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_191-Asp1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_907-Ctr4Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "191-Asp2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_154-His2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_191-Asp3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "140-Lys1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "226-Asp4C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_152-Lys3Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "279-Ntr3C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_240-Asp1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_258-Asp4Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_255-Lys3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_235-Lys3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "240-Asp4C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "236-Lys1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "279-Ntr2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "907-Ctr1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_258-Asp2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_157-Asp3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_255-Lys2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "240-Asp4N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_152-Lys3Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_159-Tyr2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_226-Asp2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_146-Glu1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_907-Ctr4Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "154-His2C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_240-Asp1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_258-Asp1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "146-Glu1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "157-Asp2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_279-Ntr2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_205-Asp2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_235-Lys1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_174-Glu2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_907-Ctr1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_236-Lys3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_172-Lys3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_187-Asp3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_172-Lys3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "255-Lys1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_255-Lys3Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_258-Asp4Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_146-Glu4Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "191-Asp3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_236-Lys2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "191-Asp4C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_146-Glu3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_187-Asp4Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_240-Asp3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_226-Asp4Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_157-Asp4Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "907-Ctr3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "258-Asp4N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_240-Asp3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "236-Lys3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "258-Asp2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_907-Ctr2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_258-Asp2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_187-Asp1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_157-Asp2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_226-Asp3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "258-Asp3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_205-Asp1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_146-Glu2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_174-Glu4Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_258-Asp3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "172-Lys3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_172-Lys2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_146-Glu2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_162-Tyr2Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "255-Lys2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "172-Lys2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_235-Lys2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_192-Tyr1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_174-Glu4Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "192-Tyr1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_162-Tyr2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "236-Lys2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "907-Ctr4N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_146-Glu4Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_157-Asp2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_907-Ctr4Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_157-Asp1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_140-Lys1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_235-Lys3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "240-Asp3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "279-Ntr3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "240-Asp1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "152-Lys3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "187-Asp4C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_140-Lys2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_154-His2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_157-Asp4Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "146-Glu3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_279-Ntr2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_157-Asp4Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_279-Ntr1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_226-Asp2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_240-Asp4Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_187-Asp1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_205-Asp3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_157-Asp1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_162-Tyr1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_152-Lys3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_255-Lys2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_157-Asp3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "146-Glu2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_235-Lys1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_191-Asp3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "187-Asp3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_152-Lys3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_235-Lys3Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_279-Ntr3Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_226-Asp4Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "172-Lys3C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_191-Asp4Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_907-Ctr2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "226-Asp2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_236-Lys3Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_152-Lys1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "235-Lys3C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "907-Ctr2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "162-Tyr2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "258-Asp4C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_140-Lys3Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_140-Lys3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_258-Asp4Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "152-Lys2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "157-Asp1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_235-Lys2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "154-His2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "191-Asp1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "235-Lys1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_205-Asp4Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "159-Tyr2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_172-Lys2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "255-Lys3C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_205-Asp2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_140-Lys3Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_187-Asp4Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_154-His2Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_191-Asp2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_140-Lys3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_226-Asp4Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_146-Glu4Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "226-Asp1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_236-Lys1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "159-Tyr2C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "157-Asp3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_172-Lys1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "192-Tyr2C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_174-Glu4Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_174-Glu1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_236-Lys1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_255-Lys1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "172-Lys1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_279-Ntr3Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_255-Lys3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_159-Tyr1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_279-Ntr3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "279-Ntr1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_226-Asp4Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_240-Asp2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "258-Asp1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "907-Ctr4C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_174-Glu3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "205-Asp4C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "191-Asp4N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_152-Lys2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "162-Tyr2C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_140-Lys2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_174-Glu1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_152-Lys2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_258-Asp1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_159-Tyr2Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_187-Asp2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_279-Ntr1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "159-Tyr1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_258-Asp4Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_154-His1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_907-Ctr4Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_192-Tyr2Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_236-Lys2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "240-Asp2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_205-Asp4Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_192-Tyr2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_157-Asp4Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_146-Glu3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "174-Glu4N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_226-Asp3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_907-Ctr1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_154-His2Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_205-Asp4Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_907-Ctr3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "157-Asp4N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "205-Asp3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_192-Tyr2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_174-Glu2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "205-Asp1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_192-Tyr1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "226-Asp3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_174-Glu3Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "235-Lys2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "187-Asp1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "236-Lys3C.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "255-Lys3N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_236-Lys3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "187-Asp2N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_174-Glu4Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_240-Asp4Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_192-Tyr2Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_187-Asp2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_187-Asp4Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "146-Glu4N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_279-Ntr3Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_191-Asp2Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_162-Tyr2Cf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_159-Tyr1Nf.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_159-Tyr2Cb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "154-His1N.prm",
+      "maxc": 0.0001,
+      "linit": 500
+    },
+    {
+      "file": "P_152-Lys1Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    },
+    {
+      "file": "P_159-Tyr2Nb.prm",
+      "maxc": 0.0001,
+      "linit": 1000
+    }
+  ]
+}

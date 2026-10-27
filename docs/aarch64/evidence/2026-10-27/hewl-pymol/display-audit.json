@@ -1,0 +1,17 @@
+{
+  "nvt": {
+    "models": 11,
+    "heavy_atoms_per_model": 1001,
+    "residues": 129
+  },
+  "npt": {
+    "models": 21,
+    "heavy_atoms_per_model": 1001,
+    "residues": 129
+  },
+  "minimized": {
+    "models": 1,
+    "heavy_atoms_per_model": 1001,
+    "residues": 129
+  }
+}

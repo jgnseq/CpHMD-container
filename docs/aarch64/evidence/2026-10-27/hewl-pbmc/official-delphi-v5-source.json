@@ -1,0 +1,11 @@
+{
+  "version": "DelPhi F77 v5.1 single precision",
+  "publisher": "Emil Alexov Lab, Clemson University",
+  "url": "https://compbio.clemson.edu/lab/media/releasefiles/DelPhi_Linux_SP_F77.tar.gz",
+  "release_index": "https://compbio.clemson.edu/lab/delphicpp_release/",
+  "sha256": "7bbe3ed3c718fdcbc2f05d28112e811a714ec086974adc8f4dad4f6fbf6c4882",
+  "published_md5": "d66b40079576d7a1a517e507c73feea8",
+  "downloaded_md5_matches": true,
+  "download_date": "2026-10-27",
+  "reason": "Inherited ARM binary/source identify DelPhi 6.1 while x86 baseline identifies DelPhi 5; use official legacy F77 source for a version-matched port."
+}

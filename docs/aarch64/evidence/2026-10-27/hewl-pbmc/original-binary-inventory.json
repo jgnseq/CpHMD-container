@@ -1,0 +1,87 @@
+[
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/test/delphi_ORI",
+    "sha256": "52148d7094ab051db9437fa4285b6a2cf939ac72d1ca8b1401734d85713e5f21",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/PGI_PB_Salt/delphi_PGF90",
+    "sha256": "812e990b7ebce09e0914fe5c8536712229f8833cdb8361395f0ed21edafa89cc",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/PGI_PB_Salt/delphi_PGF95",
+    "sha256": "812e990b7ebce09e0914fe5c8536712229f8833cdb8361395f0ed21edafa89cc",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/Delphi_Linux_DP_Linux_5.1_Palmetto_June_27_2011/delphi",
+    "sha256": "50c9b324d504d68904035999d9b2810259a8de8605b9789e48fae093b494990f",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/PGI_COMPILER/delphi_11",
+    "sha256": "c815bde8de19ac9ddf4742841fa105d237df912fd27420cb7baed8f75a094188",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/PGI_COMPILER/delphi_pgf90_0",
+    "sha256": "60fb40270d0c1c822ff93739ae17718ca7a73a948213b36cf422350467e28b33",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/PGI_COMPILER/delphi_pgcc11",
+    "sha256": "c846e3a6f9e07a8f44030f262920b13ca85173af6c4eafd08eea5560da6ebf8b",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/PGI_COMPILER/delphi",
+    "sha256": "c846e3a6f9e07a8f44030f262920b13ca85173af6c4eafd08eea5560da6ebf8b",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/PGI_COMPILER/delphi_pgf90",
+    "sha256": "973e9b99e893ffdf76f78a941920417bb7935e2507259e7f4e7acbeda7068cc6",
+    "matches_x86_reference": true
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/Delphi_Linux_SP_Linux_5.1_Palmetto_June_27_2011/delphi",
+    "sha256": "52148d7094ab051db9437fa4285b6a2cf939ac72d1ca8b1401734d85713e5f21",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/Personal_V/New/delphi_gfort_debug",
+    "sha256": "a3a6dc465c81feaf30a9b9b81e9909a07d1d6d503bb82745726dccc7fb2aa802",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/Personal_V/Delphi95-test_No_ARCDAT/delphi_gfort_O3_SP",
+    "sha256": "63b059fa67173ac3fa38e774e10692e6fb54026ab1ced8a2dfc06999f2ea744f",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/Personal_V/Delphi95-test_No_ARCDAT/delphi_gfort_noO3_SP",
+    "sha256": "0ed357b8ed9b3dfe84e7af3060f459fd008461ffdb6ec90c03a702a7b967ea10",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/Personal_V/Delphi95-test_No_ARCDAT/delphi_gfort",
+    "sha256": "2267bc991079e1a8133abfef605be87f34cfc32a6c7642e6caa9db021a64bfb1",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/Personal_V/Delphi95-test/delphi_gfort_ORI",
+    "sha256": "73c7c4f2d790f93c158f13b8d3f1a67befba2c3b30272d2db1a1f9dc7d2fe63d",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/Personal_V/Delphi95-test/delphi_gfort",
+    "sha256": "cf32e97180719b55e6d41b57ecacd8f2ec023236f19b1520abf53b07da1b6b4b",
+    "matches_x86_reference": false
+  },
+  {
+    "path": "/home/jsequeira/mini05/programs/Delphi/NEW_TESTS/Personal_V/Delphi95-test/delphi_gfort_O3",
+    "sha256": "8fb5ec19d723207f96b1a9b75f3a8da6eaec5fd8a42d83077dfa67721da17dc4",
+    "matches_x86_reference": false
+  }
+]

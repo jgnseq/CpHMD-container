@@ -1,0 +1,18 @@
+{
+  "purpose": "Fixed-coordinate architecture regression; not a physical pKa validation",
+  "temperature_K": 310,
+  "pH": 6,
+  "ionic_strength_M": 0.1,
+  "sites": 21,
+  "seeds": [1729, 2718, 3141],
+  "equilibration_MC_steps": 1000,
+  "production_MC_steps": 100000,
+  "tolerances_frozen_before_execution": {
+    "intrinsic_pK_absolute": 0.005,
+    "interaction_energy_absolute_kBT": 0.001,
+    "interaction_energy_relative": 0.0001,
+    "site_mean_occupancy_absolute": 0.02
+  },
+  "energy_conversion": "Raw .g and PETIT .dat use e^2/angstrom. Divide by (5.98435e-6 * 310) for kBT, as defined by DelphiTools/convert and petit1.6.1/petit.c.",
+  "interpretation": "Engineering thresholds chosen before the runs. Occupancy tolerance is a regression screen, not a statistical confidence interval. Final stochastic microstates need not match. Any failed threshold stays failed pending investigation; do not tune tolerances to observed results."
+}

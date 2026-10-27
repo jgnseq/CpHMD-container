@@ -1,0 +1,18 @@
+{
+  "nvt": {
+    "frames": 11,
+    "max_CA_RMSD_from_phase_first_frame_A": 0.24906496459588057,
+    "SS_distance_range_A": [
+      1.9594277225761654,
+      2.1192755837785717
+    ]
+  },
+  "npt": {
+    "frames": 21,
+    "max_CA_RMSD_from_phase_first_frame_A": 0.3073699762917341,
+    "SS_distance_range_A": [
+      1.8967229634292955,
+      2.114461397141125
+    ]
+  }
+}

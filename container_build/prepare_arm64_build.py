@@ -14,7 +14,10 @@ from pathlib import Path
 import shutil
 import subprocess
 
-BASE_SHA256 = '6d1ddca5ce97f686cff36990a9696a2d311a73dc3581d97f30bc9fe1b73d08d6'
+# Execution-validated A64FX candidate from job 2150839. Its DelPhi 5 solver
+# replaces the inherited 6.1 executable that SIGILLs on A64FX. Numerical
+# convergence/sampling evidence is recorded separately from runtime acceptance.
+BASE_SHA256 = '1ee92b674c8808dd6e63d3f487fde5e2ea659c706eafefb43cede9b89070407d'
 GROMACS_SHA256 = '1094b7bbc6a3960223827114626657110b40096cdf9598a727935fc84ebf8aa0'
 
 

@@ -103,7 +103,47 @@ benign warnings from scientific/configuration problems, preserve diagnostics,
 and add a failure regression before changing existing workflows. This issue is
 recorded for later review; the canonical controller is unchanged in this step.
 
-## Priorities before 31 October
+## Deferred: direct USER.pbp solver-parameter overrides
+
+**Suggested title:** Verify effective DelPhi parameters when applying USER.pbp overrides
+
+**Issue text:** A fixed-coordinate validation control exported `maxc=0.0001`
+and `linit=1000` from `USER.pbp`, but generated `.prm` files retained
+`maxc=0.01` and coarse `linit=100`. `delphiT` sources the override, while
+`gen_files.awk` independently parses `DELPHI.pbp`. Audit and document this
+contract, including the main controller's own working-file rewrite and the
+hardcoded focus/model iteration limits. Add a test of actual generated inputs
+before changing canonical behavior. The ARM fixture now edits only its copied
+`DELPHI.pbp` and checks every generated `.prm`; canonical drivers are unchanged.
+The invalid first control is preserved and excluded from convergence conclusions.
+
+## Deferred: effective convergence and fixed focus/model iteration caps
+
+**Suggested title:** Expose focus/model PB iteration limits and audit achieved convergence
+
+**Issue text:** `gen_files.awk` hardcodes linit=500 for focus/model solves while
+coarse linit comes from DELPHI.pbp. In the HEWL convergence control, maxc=0.0001
+and coarse linit=1000 improved x86/ARM agreement, but 162/270 x86 and 161/270 ARM
+solves hit the focus/model cap with last printed max change above the requested
+tolerance (largest 0.00048828125). Audit precision/stopping behavior and make
+limits explicit before using a requested maxc as proof of achieved convergence.
+Preserve solver diagnostics and distinguish numerical architecture agreement
+from absolute physical convergence. No canonical solver/driver change is made
+in this ARM sprint.
+
+## ARM delivery note: architecture/dependency smoke is insufficient for DelPhi
+
+Job 2150284 passed prior ELF/dependency checks but the inherited DelPhi 6.1
+solver SIGILLed during a real calculation. The recovered matching x86 source
+is DelPhi 5, and its A64FX rebuild completes PB/MC. Derived-image job 2150839
+requires ordinary-user runtime smoke plus complete 21-site PB/MC before exporting
+an experimental candidate. Future full-build/release acceptance must exercise
+DelPhi itself and inspect its version/target, not infer correctness from PETIT
+or water MD smoke alone. Numerical regression screens remain separate from
+convergence and MC sampling uncertainty; exact bitwise identity is not a
+scientific requirement.
+
+## Priorities before 31 October (updated)
 
 1. Resolve ordinary-user ARM runtime access and retain a verified usable SIF.
 2. Run native topology/PBMC/CpHMD/RT/restart gates on frozen inputs, using only

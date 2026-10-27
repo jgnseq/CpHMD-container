@@ -1,0 +1,30 @@
+[
+  {
+    "case": "missing-matrix-element",
+    "rejected": true
+  },
+  {
+    "case": "nonfinite-energy",
+    "rejected": true
+  },
+  {
+    "case": "wrong-pseudostate",
+    "rejected": true
+  },
+  {
+    "case": "illegal-final-state",
+    "rejected": true
+  },
+  {
+    "case": "missing-site",
+    "rejected": true
+  },
+  {
+    "case": "unnormalized-populations",
+    "rejected": true
+  },
+  {
+    "case": "pK-outside-frozen-tolerance",
+    "rejected": true
+  }
+]

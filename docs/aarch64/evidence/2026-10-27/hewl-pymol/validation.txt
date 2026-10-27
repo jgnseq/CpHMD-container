@@ -1,0 +1,5 @@
+Input XTC/TPR SHA256 values match original native ARM job 2149846 archive.
+PDB models: NVT 11; NPT 21; minimized 1.
+All protein display models: 1001 heavy atoms, 129 residues, identical atom identities/order.
+PyMOL global-run path handling checked with __script__ and an unrelated __file__, following official pymol.parsing.run_file behavior.
+PyMOL rendering not performed: PyMOL is not installed in this execution environment.
