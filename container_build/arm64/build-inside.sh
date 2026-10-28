@@ -24,12 +24,19 @@ readarray -t config < <(python3 - <<'PY'
 """Read only recorded candidate choices; do not infer SIMD from the login host."""
 import json
 m=json.load(open('/etc/cphmd/build.json'))
-print(m['jobs']);print(m['simd']);print(m['sve_bits'])
+print(m['jobs']);print(m['simd']);print(m['sve_bits']);print(m.get('isa_profile','a64fx-reference'))
 PY
 )
 jobs="${config[0]}"
 simd="${config[1]}"
 sve_bits="${config[2]}"
+profile="${config[3]}"
+cpu_flags=()
+if [[ $profile == portable-armv8-a ]]; then
+    [[ $simd == ARM_NEON_ASIMD && $sve_bits == 0 ]] || exit 2
+    # Explicit instruction floor, independent of the machine doing compilation.
+    cpu_flags=(-march=armv8-a -mtune=generic)
+fi
 export MAKEFLAGS="-j${jobs}"
 export OMP_NUM_THREADS=1
 export LD_LIBRARY_PATH="/opt/nvhpc/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
@@ -57,26 +64,34 @@ cp -a "$src/template" /Templates
 cp -a "$src/tutorials" /Tutorials
 cp "$src/delphi.base" /Delphi/delphi_pgf90
 chmod 755 /Delphi/delphi_pgf90
+if [[ $profile == portable-armv8-a ]]; then
+    # Rebuild entire owned native trees, so obsolete optimized variants cannot
+    # survive beside the new generic executables under another filename.
+    rm -rf /opt/nvhpc/lib /opt/plumed /programs/petit1.6.1
+    cp /usr/share/cphmd/build/delphi.sha256 /usr/share/cphmd/build/delphi-parent.sha256
+    python3 "$src/container_build/arm64/install-portable-delphi.py"
+fi
 # These helpers run before PB/MC: fixgro assembles solutes across PBC, while
 # geom_center/calc_pkg_low support DelPhi geometry and parameter preparation.
-gcc -std=c99 -O2 /CpHMD/src/fixgro.c -lm -o /CpHMD/scripts/fixgro
+gcc -std=c99 -O2 "${cpu_flags[@]}" /CpHMD/src/fixgro.c -lm -o /CpHMD/scripts/fixgro
 # The force-field tree historically contains a second copy of this helper.
 install -m755 /CpHMD/scripts/fixgro /FFs/Amber14SBpH.ff/scripts/fixgro
-gcc -O2 /Delphi/src/geom_center.c /Delphi/src/my_mem.c -lm -o /Delphi/geom_center
-gcc -O2 /Delphi/src/calc_pkg_low.c /Delphi/src/my_mem.c -lm -o /Delphi/calc_pkg_low
+gcc -O2 "${cpu_flags[@]}" /Delphi/src/geom_center.c /Delphi/src/my_mem.c -lm -o /Delphi/geom_center
+gcc -O2 "${cpu_flags[@]}" /Delphi/src/calc_pkg_low.c /Delphi/src/my_mem.c -lm -o /Delphi/calc_pkg_low
 # PETIT samples protonation states after DelPhi supplies the PB energies.
 # Avoid fast-math so this port does not silently change numerical semantics.
 rm -rf /programs/petit1.6.1
 mkdir -p /programs/petit1.6.1
 cp "$src/petit1.6.1/"{petit.c,README,LICENSE,sample.dat} /programs/petit1.6.1/
-gcc -O2 /programs/petit1.6.1/petit.c -lm -o /programs/petit1.6.1/petit
+gcc -O2 "${cpu_flags[@]}" /programs/petit1.6.1/petit.c -lm -o /programs/petit1.6.1/petit
 ln -s petit /programs/petit1.6.1/petit-gcc
 
 cd "$src/plumed"
 # Host ELF/object/library products are excluded by context preparation.
 make distclean >/dev/null 2>&1 || true
 ./configure --prefix=/opt/plumed --enable-shared --disable-mpi --disable-asmjit \
-    CXXFLAGS='-O2 -fPIC' CFLAGS='-O2 -fPIC'
+    CXXFLAGS="-O2 -fPIC ${cpu_flags[*]}" CFLAGS="-O2 -fPIC ${cpu_flags[*]}" \
+    FCFLAGS="-O2 ${cpu_flags[*]}" FFLAGS="-O2 ${cpu_flags[*]}"
 make -j"$jobs"
 make install
 cp config.log /usr/share/cphmd/build/plumed-config.log
@@ -87,6 +102,9 @@ tar -xzf "$src/gromacs-2026.3.tar.gz" -C /build
 # GROMACS advances the MD portion of each CpHMD cycle. Match the x86 reference
 # release, use the native FFTW library, and keep tests enabled in the build.
 simd_args=( "-DGMX_SIMD=$simd" )
+if [[ $profile == portable-armv8-a ]]; then
+    simd_args+=("-DCMAKE_C_FLAGS=${cpu_flags[*]}" "-DCMAKE_CXX_FLAGS=${cpu_flags[*]}")
+fi
 if [[ $simd == ARM_SVE ]]; then
     simd_args+=( "-DGMX_SIMD_ARM_SVE_LENGTH=$sve_bits" )
 fi

@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "scope": "working files",
+  "baseline_commit": "5e20356faf6fadec41938795d06229f9daad8157",
+  "checked_files": 4315,
+  "findings": [],
+  "limits": "Pattern/artifact guard only; no malware or complete-history certification."
+}

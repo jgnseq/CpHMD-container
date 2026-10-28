@@ -23,6 +23,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--allow-dirty", action="store_true")
+    parser.add_argument("--overnight", action="store_true",
+                        help="Include the bounded RT/continuation and longer-MD launchers")
     args = parser.parse_args()
     repo = Path(__file__).resolve().parent.parent
     output = args.output_dir.resolve()
@@ -41,6 +43,12 @@ def main():
         path = repo / name
         assert path.is_file() and not path.is_symlink()
         selected.add(path)
+    if args.overnight:
+        for name in ["tests/arm64/hewl_overnight.py", "container_build/slurm/hewl-overnight-rt.slurm",
+                     "container_build/slurm/hewl-overnight-md.slurm", "container_build/run_hewl_overnight_x86.sh"]:
+            path = repo / name
+            assert path.is_file() and not path.is_symlink()
+            selected.add(path)
     output.mkdir(parents=True, exist_ok=False)
     frozen = output / "source"
     frozen.mkdir()
@@ -55,7 +63,8 @@ def main():
         hashes[str(name)] = hashlib.sha256(data).hexdigest()
     metadata = {"git_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo).decode().strip(),
                 "working_tree_dirty": bool(status), "git_status": status.splitlines(),
-                "file_sha256": hashes, "purpose": "Bounded A64FX HEWL CPU scaling and coupled cost screening"}
+                "file_sha256": hashes, "overnight": args.overnight,
+                "purpose": "Bounded A64FX reference tests; portable ARM64 baseline is a separate build"}
     (frozen / "source-snapshot.json").write_text(json.dumps(metadata, indent=2) + "\n")
     (frozen / "source.sha256").write_text("".join(
         hashlib.sha256(path.read_bytes()).hexdigest() + "  " + str(path.relative_to(frozen)) + "\n"

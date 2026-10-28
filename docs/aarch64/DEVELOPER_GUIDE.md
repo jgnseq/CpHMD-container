@@ -193,6 +193,19 @@ is a diagnostic experiment; it never edits image/controller/production settings.
 Finalize the reproducible x86 2026.3 image separately from the experimental rc3
 reference. Never replace the historical optimized DelPhi baseline silently.
 
+The intended release policy is now a portable Linux ARM64 baseline, with the
+A64FX/SVE image retained as an optional hardware-specific reference. Full file,
+function and overnight job maps are in
+[ARM64_PORTABILITY_AND_OVERNIGHT_2026-10-28.md](ARM64_PORTABILITY_AND_OVERNIGHT_2026-10-28.md).
+`prepare_arm64_build.py --portable-seed` makes a guarded, hash-pinned derivation
+seed; `prepare_portable_candidate.py` adds only a recorded generic solver to a
+new context. `install-portable-delphi.py` and the portable branch of
+`build-inside.sh` replace all owned native trees with explicit baseline targets.
+A NEON GROMACS build carrying A64FX DelPhi is not a portable image. Declared
+baseline checks and native A64FX tests must remain distinct from non-SVE and
+broader hardware validation. `hewl_overnight.py` handles separate RT/continuation
+allocations and longer fixed-TPR screens without changing the titration interval.
+
 ## Commenting and maintenance convention
 
 For each new or changed project-owned file, keep a short header explaining its

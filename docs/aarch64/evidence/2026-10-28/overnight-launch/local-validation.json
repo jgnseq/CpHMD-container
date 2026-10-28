@@ -1,0 +1,10 @@
+{
+  "performance_helper_tests": 8,
+  "portable_context_tests": 4,
+  "all_passed": true,
+  "fixture_override_check": "passed; optional runtime override added exactly once and explicit guard retained",
+  "python_compile": "passed",
+  "bash_syntax": "passed",
+  "portable_seed_review": "required driver/files present, no ELF or Git directory; script bytes match reviewed working sources",
+  "limits": "Native rebuild/scientific gates and longer outputs still in progress. Generic target flags alone do not prove every-device compatibility."
+}

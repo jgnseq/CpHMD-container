@@ -1,0 +1,29 @@
+{
+  "git_commit_before_changes": "5d0932e5aab04610e0f82732b8843c8a8beed35e",
+  "working_tree_context_recorded": true,
+  "overnight_source_sha256": "06ab5e197a83984319e1783e461542b41ae8b97ea2040649a2a036fa7a2a3b99",
+  "portable_seed_sha256": "ec7148f2ee65db667f31bf8204b4ef20c7e8386491ec55ee01744db7cf9405ff",
+  "portable_seed_manifest_sha256": "0d77558f31f2cc476511384f32dd49b6a3a6a3f66aaaaead45cb46d2ce6eb07d",
+  "portable_seed_regular_files": 3362,
+  "portable_seed_ELF_files": 0,
+  "arm_validation_root": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/overnight.20261028.pveYvR",
+  "jobs": {
+    "rt": 2160556,
+    "continue": 2160557,
+    "md_array": 2160558,
+    "portable_build": 2160578
+  },
+  "dependency_policy": "rt -> afterok continue -> afterok MD array; kill invalid dependencies; no resubmission",
+  "rt_result": "COMPLETED 0:0, 9:19",
+  "continuation_result": "COMPLETED 0:0, 2:15",
+  "longer_results_status": "pending; do not infer scientific acceptance from RUNNING",
+  "portable_build_root": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/portable.20261028.MZWHAj",
+  "portable_status": "generic solver compiled; rest of stack rebuilding; non-SVE execution untested",
+  "x86_root": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/overnight.20261028.Tst8Pb",
+  "x86_timeout_pid": 185338,
+  "x86_timeout_hours": 4,
+  "x86_status": "detached timeout observed alive after SSH disconnect",
+  "workstation_needed_for_running_jobs": false,
+  "intended_default_release": "portable Linux ARM64 baseline; A64FX image remains separate opt-in/reference",
+  "scientific_settings_changed": false
+}

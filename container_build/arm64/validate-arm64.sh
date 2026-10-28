@@ -14,6 +14,22 @@ grep -q 'GROMACS version:.*2026.3' <<< "$version"
 grep -q 'GPU support:.*disabled' <<< "$version"
 expected_simd="$(python3 -c 'import json; print(json.load(open("/etc/cphmd/build.json"))["simd"])')"
 grep -q "SIMD instructions:.*${expected_simd}" <<< "$version"
+python3 - <<'PY'
+"""Audit declared portable compile targets without claiming cross-device tests."""
+from pathlib import Path
+import json
+metadata=json.loads(Path('/etc/cphmd/build.json').read_text())
+if metadata.get('isa_profile')=='portable-armv8-a':
+    assert metadata['simd']=='ARM_NEON_ASIMD' and metadata['sve_bits']==0
+    solver=json.loads(Path('/usr/share/cphmd/build/delphi-portable.json').read_text())
+    assert solver['compiler_target']=='px'
+    cache=Path('/usr/share/cphmd/build/CMakeCache.txt').read_text().splitlines()
+    for name in ('CMAKE_C_FLAGS:STRING=','CMAKE_CXX_FLAGS:STRING='):
+        rows=[line[len(name):] for line in cache if line.startswith(name)]
+        assert len(rows)==1 and '-march=armv8-a' in rows[0]
+        assert not any(value in rows[0] for value in ('a64fx','native','+sve','sve-vector'))
+    print('PASS: declared portable ARM64 targets; non-SVE execution still pending')
+PY
 mdrun_help="$(gmx mdrun -h 2>&1)"
 grep -q -- '-plumed' <<< "$mdrun_help"
 python3 - <<'PY'

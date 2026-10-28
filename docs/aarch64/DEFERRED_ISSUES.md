@@ -336,3 +336,24 @@ compiler diagnostics, exact flags and source/executable hashes. An optimization
 is accepted only when representative full-workflow performance improves and
 scientific/continuation checks pass; a faster isolated component alone is
 insufficient. This work can continue after Deucalion ARM access ends.
+
+
+## Main ARM delivery: portable baseline before hardware-specific optimization
+
+**Suggested title:** Validate and promote a portable ARM64 baseline with no SVE requirement
+
+**Suggested issue body:** The main ARM delivery must prioritize compilation
+safety across Linux ARM64 machines. Retain A64FX/SVE512 as a separately named
+opt-in/reference image. Build the baseline with NEON/ASIMD, explicit ARMv8-A
+compiler targets for native C/C++ components and a generic DelPhi target. Merely
+switching GROMACS to NEON while inheriting A64FX DelPhi is insufficient.
+
+The new generic-solver/full-stack pipeline is job 2160578. Its native gates do
+not establish non-SVE compatibility. Exercise representative DelPhi, PETIT and
+MD workloads with a non-SVE CPU model and, where available, real non-SVE
+hardware. Inspect resolved libraries and target provenance; preserve baseline
+and optimized variants independently. Validate the baseline image itself through
+coupled all-site/RT/continuation gates, then select safe release defaults. Do not
+claim every ARM processor or operating system has been tested. The overnight
+handover records roots, jobs, flags and remaining acceptance steps in
+`docs/aarch64/ARM64_PORTABILITY_AND_OVERNIGHT_2026-10-28.md`.

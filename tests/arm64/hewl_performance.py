@@ -77,16 +77,23 @@ def run_logged(command, folder, log, env=None, stdin=None):
                        stdout=stream, stderr=subprocess.STDOUT, check=True)
 
 
-def md_health(folder, expected_ids):
-    """Require atom order, four disulfides, finite energies and all 51 XTC frames."""
+def md_health(folder, expected_ids, steps=5000):
+    """Check real outputs for the frozen 1-fs, every-100-step HEWL protocol.
+
+    The default retains the original 5-ps gate. Overnight callers supply longer
+    step counts; expected duration/frame/energy counts come from that protocol,
+    never from whatever incomplete output happens to have been produced.
+    """
+    assert steps > 0 and steps % 100 == 0
+    expected_frames, duration = steps // 100 + 1, steps * 0.001
     ids, _, distances = cycle.gro(folder / "md.gro")
     assert ids == expected_ids
     run_logged(["/gromacs/bin/gmx", "check", "-f", "md.xtc"], folder, "xtc-check.log")
     check = (folder / "xtc-check.log").read_text()
     frames = re.search(r"^Time\s+(\d+)\s+", check, re.M)
     clocks = list(map(float, re.findall(r"(?:Reading|Last) frame\s+\d+\s+time\s+([-+\d.eE]+)", check)))
-    assert frames and int(frames[1]) == 51 and clocks
-    assert abs(clocks[-1] - clocks[0] - 5.0) < 1e-4
+    assert frames and int(frames[1]) == expected_frames and clocks
+    assert abs(clocks[-1] - clocks[0] - duration) < 1e-4
     run_logged(["/gromacs/bin/gmx", "check", "-e", "md.edr"], folder, "edr-check.log")
     run_logged(["/gromacs/bin/gmx", "energy", "-f", "md.edr", "-o", "energy.xvg"],
                folder, "energy-analysis.log", stdin="Potential\nTemperature\n0\n")
@@ -95,11 +102,11 @@ def md_health(folder, expected_ids):
     assert set(legends) == {"Potential", "Temperature"}
     rows = [list(map(float, line.split())) for line in text.splitlines()
             if line.strip() and not line.lstrip().startswith(("#", "@"))]
-    assert len(rows) == 51 and all(len(row) == 3 and all(math.isfinite(x) for x in row) for row in rows)
-    assert abs(rows[-1][0] - rows[0][0] - 5.0) < 1e-4
+    assert len(rows) == expected_frames and all(len(row) == 3 and all(math.isfinite(x) for x in row) for row in rows)
+    assert abs(rows[-1][0] - rows[0][0] - duration) < 1e-4
     temperature = statistics.mean(row[legends["Temperature"]] for row in rows)
     assert 290 <= temperature <= 330
-    return {"passed": True, "frames": 51, "duration_ps": 5.0,
+    return {"passed": True, "frames": expected_frames, "duration_ps": duration,
             "mean_temperature_K": temperature, "disulfide_nm": distances}
 
 

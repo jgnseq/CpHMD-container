@@ -6,6 +6,21 @@ The [developer guide](DEVELOPER_GUIDE.md) maps each build/validation file and
 function to its caller, outputs and place in the scientific cycle. Follow its
 commenting convention for future project-owned changes.
 
+## Main target: portable Linux ARM64 baseline
+
+The user has clarified that broad ARM compatibility takes priority over tuning
+for Deucalion. The intended default is ARMv8-A/ASIMD with no SVE requirement;
+A64FX optimization remains a separately named optional profile. The historical
+launcher below still creates the A64FX reference, even when GROMACS alone is
+switched to NEON: its inherited DelPhi is specialized. Do not label it portable.
+
+The new complete baseline rebuild replaces DelPhi with `-tp=px` and rebuilds
+GROMACS/PETIT/helpers/PLUMED with explicit baseline targets. See
+[ARM64_PORTABILITY_AND_OVERNIGHT_2026-10-28.md](ARM64_PORTABILITY_AND_OVERNIGHT_2026-10-28.md)
+for exact submitted jobs, source hashes, disconnect-safe execution, file map
+and tomorrow's inspection commands. Non-SVE execution and portable-image
+coupled/RT acceptance remain required before promotion to the main release.
+
 ## Current A64FX candidate: native PB/MC execution validated
 
 Derived-image job **2150839** passed ordinary-user runtime and complete HEWL
@@ -251,55 +266,49 @@ Deucalion's project directory requires supplementary-group access, which fakeroo
 - The ordinary host process stages inputs and copies artifacts/results back after fakeroot returns. The local-image build uses `--disable-cache`; no compiler downloads or OCI downloads occur in the fakeroot build.
 - The project ACLs and production directories are unchanged. Failed temporary build work is not destructively cleaned by the launcher.
 
-## 1. Record the completed batch and performance stages
+## 1. Record the portable-baseline and overnight follow-up
 
-The user committed cycle/RT/security work as `0af4139`. Batch validation and
-cross-architecture performance changes remain unstaged at this handover. The
-agent has not staged, committed or pushed them. Review and record the remaining
-two completed stages together, using an explicit path list:
+The preceding batch/performance stages and x86 tuning note were committed by
+the user. This step's builder/harness changes, handover and compact launch
+receipts remain unstaged. Running jobs use immutable remote inputs and do not
+need this commit/push to continue. The agent has not staged or committed them.
 
 ```bash
 cd '/home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container'
 git status --short --branch
-python3 tests/check_repository_safety.py
 python3 tests/check_hewl_performance_helpers.py
+python3 tests/check_arm64_portable_context.py
+python3 tests/check_repository_safety.py
 git diff --check
 git add -- \
-  container_build/prepare_hewl_batch.py \
-  container_build/slurm/hewl-batch-prepare.slurm \
-  container_build/slurm/hewl-batch-audit.slurm \
-  tests/arm64/hewl_batch.py \
+  container_build/prepare_arm64_build.py \
+  container_build/prepare_portable_candidate.py \
   container_build/prepare_hewl_performance.py \
-  container_build/run_hewl_x86_performance.sh \
-  container_build/slurm/hewl-performance.slurm \
-  container_build/slurm/hewl-solver-performance.slurm \
-  container_build/slurm/hewl-startup-probe.slurm \
+  container_build/arm64/build-inside.sh \
+  container_build/arm64/validate-arm64.sh \
+  container_build/arm64/install-portable-delphi.py \
+  container_build/slurm/build-portable-arm64.slurm \
+  container_build/slurm/hewl-overnight-rt.slurm \
+  container_build/slurm/hewl-overnight-md.slurm \
+  container_build/run_hewl_overnight_x86.sh \
   tests/arm64/hewl_performance.py \
-  tests/arm64/hewl_solver_performance.py \
-  tests/arm64/run_hewl_solver_performance.sh \
-  tests/arm64/hewl_startup_probe.py \
-  tests/arm64/compare_hewl_performance.py \
-  tests/check_hewl_performance_helpers.py \
-  docs/aarch64/HEWL_BATCH_2026-10-27.md \
-  docs/aarch64/HEWL_PERFORMANCE_2026-10-28.md \
+  tests/arm64/hewl_overnight.py \
+  tests/check_arm64_portable_context.py \
+  docs/aarch64/ARM64_PORTABILITY_AND_OVERNIGHT_2026-10-28.md \
   docs/aarch64/BUILD_AND_VALIDATE.md \
   docs/aarch64/DEVELOPER_GUIDE.md \
   docs/aarch64/DEFERRED_ISSUES.md \
-  docs/aarch64/evidence/2026-10-27/hewl-batch \
-  docs/aarch64/evidence/2026-10-28/hewl-performance
+  docs/aarch64/evidence/2026-10-28/overnight-launch
 python3 tests/check_repository_safety.py --staged
 git diff --cached --check
 git diff --cached --stat
-git commit -m 'Validate generated jobs and benchmark CpHMD on A64FX and x86'
+git commit -m 'Prepare portable ARM64 baseline and disconnect-safe validation'
 git push origin codex/arm64-deucalion-20261026
 ```
 
-Images, trajectories and archives stay outside Git. Their identities and compact
-text evidence are versioned. Raw scientific output retains its narrow existing
-whitespace exemption. Comparison-only commands requiring no new jobs appear in
-the performance report. Existing functional/scaling jobs have finished; preserve
-the evidence before another configuration experiment. Default guard transport
-must be fixed before claiming a fully validated default scheduler release.
+Images, scientific binaries, trajectories and archives stay outside Git. Exact
+roots/job IDs and read-only morning inspection commands are in the overnight
+handover. Inspect those existing jobs rather than submitting duplicates.
 
 ## 2. Prepare and submit a future candidate when code changes
 
@@ -367,6 +376,7 @@ After the build succeeds, work from a new test directory and immutable input sna
 3. Passed: continuation after finalized reduced cycle 7 through 8, including segment time/frame/state continuity. See the coupled report for its GRO/TOP/RT scope; this is not full GROMACS CPT continuation.
 4. Passed under explicit guard configuration: generated scheduler-wrapper sync, a real successor, MD/output 42, PB/MC 43 and invalid-checkpoint 42 without false DONE or unwanted resubmission. Default guard transport remains REVIEW.
 5. Passed bounded performance screen: SVE512 CPU scaling and matched mini05 x86 2026.3 experimental-reference MD/PB/MC/topology/coupled measurements. Separate startup overhead from reported integration throughput.
-6. Next: validate a startup-efficient configuration through coupled/RT gates, preserve the final recovery bundle before 31 October, and finalize the reproducible x86 2026.3 container. SVE-versus-NEON and other ARM hardware remain separate future comparisons.
+6. Passed on the A64FX reference: `-reprod` through seven RT cycles and separate allocation continuation to eight (2160556/2160557). Longer ARM/x86 timings are running.
+7. Main ARM target is now the portable baseline: generic DelPhi, NEON/baseline native components, non-SVE execution checks and portable-image coupled/RT/continuation. Preserve the final recovery bundle before 31 October. Final x86 release/tuning can follow; retain hardware-specific profiles separately.
 
 The explicit-settings profiles require adapting every `CHANGE_ME` field. Historical settings that relied on hidden defaults must be upgraded in the copied test directory; do not bypass the contract to make an old input run.

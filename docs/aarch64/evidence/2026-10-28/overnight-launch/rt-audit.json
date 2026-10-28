@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "cycles": 7,
+  "runtime_profile": "-reprod; one MPI rank/eight OpenMP threads",
+  "image_scope": "A64FX reference"
+}
