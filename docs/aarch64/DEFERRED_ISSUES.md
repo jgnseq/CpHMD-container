@@ -309,3 +309,30 @@ attribution. Compiler experiments need same-hardware controls and unchanged
 scientific acceptance thresholds; do not substitute fast-math or loosen PB
 convergence to obtain a favorable timing. See the performance report and compact
 evidence under `docs/aarch64/evidence/2026-10-28/hewl-performance/`.
+
+## After the ARM deadline: tune the x86 container's performance
+
+**Suggested title:** Profile and optimize the finalized x86 container while preserving the historical DelPhi baseline
+
+**Suggested issue body:** After producing the reproducible x86 GROMACS 2026.3
+reference, measure longer fixed-input MD and complete CpHMD runs on mini05.
+Benchmark individual components and whole-cycle cost before choosing targets.
+Separate startup, steady integration, PB preparation/solves, MC and output costs;
+retain both matched-core comparisons and practical throughput/resource costs.
+
+Evaluate GROMACS rank/thread layout, affinity, FFT planning/backend and supported
+SIMD variants; test CPU-specific compiler builds as explicitly machine-targeted
+variants alongside a portable baseline. Test PETIT/helper compiler options only
+where their absolute contribution justifies the effort. Benchmark PLUMED with
+a representative observable if that path is used; it was inactive in the HEWL
+performance screen. Changes to the MD/titration interval, PB accuracy or MC
+sampling length must not be presented as compiler/runtime optimizations.
+
+Keep the original x86 DelPhi executable and runtime as an immutable performance
+and numerical reference. Compare any solver rebuild on the same x86 hardware
+with identical parameter decks, coordinates, iteration/residual records and
+unchanged scientific acceptance criteria. Preserve raw timings, variation,
+compiler diagnostics, exact flags and source/executable hashes. An optimization
+is accepted only when representative full-workflow performance improves and
+scientific/continuation checks pass; a faster isolated component alone is
+insufficient. This work can continue after Deucalion ARM access ends.
