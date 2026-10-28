@@ -1,0 +1,266 @@
+{
+  "cases": {
+    "default-guard": {
+      "passed": true,
+      "jobs": [
+        2151814
+      ],
+      "controller_guards": [
+        "0"
+      ],
+      "checkpoint": {
+        "CPHMD_DONE_CYCLES": "2",
+        "CPHMD_LAST_SEGMENT_START": "1",
+        "CPHMD_LAST_SEGMENT_END": "2",
+        "CPHMD_SEGMENT_FINALIZED": "1",
+        "CPHMD_STATE_SOURCE": "validated_finalized_segment",
+        "CPHMD_REDUCED_TITRATION": "1",
+        "CPHMD_RT_LAST_FULL_CYCLE": "1",
+        "CPHMD_RT_ACTIVE_COUNT": "7"
+      },
+      "cycles": [
+        {
+          "cycle": 1,
+          "pseudostates": 69,
+          "topology": {
+            "applied_sites": 21,
+            "dictionary_atom_parameters_checked": 354,
+            "atoms_with_changed_type_or_charge": 19,
+            "protein_charge_e": 9.000000000000007
+          },
+          "RT": {
+            "active_sites": 7,
+            "fixed_sites": 14,
+            "independent_selection_and_merge_passed": true
+          },
+          "energy": {
+            "relax": {
+              "duration_ps": 0.1,
+              "records": 2,
+              "mean_temperature_K": 313.0941315,
+              "potential_min_kJ_mol": -372619.78125,
+              "potential_max_kJ_mol": -372458.34375
+            },
+            "effective": {
+              "duration_ps": 1.0,
+              "records": 11,
+              "mean_temperature_K": 311.0433599090909,
+              "potential_min_kJ_mol": -373714.5625,
+              "potential_max_kJ_mol": -372705.6875
+            }
+          },
+          "disulfide_nm": {
+            "6-127": 0.20397548872352317,
+            "30-115": 0.2079158483617834,
+            "64-80": 0.1992009036124087,
+            "76-94": 0.20874386218521535
+          }
+        },
+        {
+          "cycle": 2,
+          "pseudostates": 21,
+          "topology": {
+            "applied_sites": 21,
+            "dictionary_atom_parameters_checked": 354,
+            "atoms_with_changed_type_or_charge": 7,
+            "protein_charge_e": 10.000000000000007
+          },
+          "RT": {
+            "active_sites": 7,
+            "fixed_sites": 14,
+            "independent_selection_and_merge_passed": true
+          },
+          "energy": {
+            "relax": {
+              "duration_ps": 0.1,
+              "records": 2,
+              "mean_temperature_K": 310.2797395,
+              "potential_min_kJ_mol": -372960.0,
+              "potential_max_kJ_mol": -372812.46875
+            },
+            "effective": {
+              "duration_ps": 1.0,
+              "records": 11,
+              "mean_temperature_K": 308.8402377272727,
+              "potential_min_kJ_mol": -373774.59375,
+              "potential_max_kJ_mol": -372681.5625
+            }
+          },
+          "disulfide_nm": {
+            "6-127": 0.202746146695813,
+            "30-115": 0.20530952242894165,
+            "64-80": 0.1987108451997524,
+            "76-94": 0.19832044776068844
+          }
+        }
+      ],
+      "segments": [
+        {
+          "cycles": [
+            1,
+            2
+          ],
+          "times_ps": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "default_guard_contract_passed": false,
+      "review": "Host guard 1 was not transported through --cleanenv; controller observed 0"
+    },
+    "explicit-guard": {
+      "passed": true,
+      "jobs": [
+        2151815,
+        2151826
+      ],
+      "controller_guards": [
+        "1"
+      ],
+      "checkpoint": {
+        "CPHMD_DONE_CYCLES": "2",
+        "CPHMD_LAST_SEGMENT_START": "2",
+        "CPHMD_LAST_SEGMENT_END": "2",
+        "CPHMD_SEGMENT_FINALIZED": "1",
+        "CPHMD_STATE_SOURCE": "validated_finalized_segment",
+        "CPHMD_REDUCED_TITRATION": "1",
+        "CPHMD_RT_LAST_FULL_CYCLE": "1",
+        "CPHMD_RT_ACTIVE_COUNT": "7"
+      },
+      "cycles": [
+        {
+          "cycle": 1,
+          "pseudostates": 69,
+          "topology": {
+            "applied_sites": 21,
+            "dictionary_atom_parameters_checked": 354,
+            "atoms_with_changed_type_or_charge": 19,
+            "protein_charge_e": 9.000000000000007
+          },
+          "RT": {
+            "active_sites": 7,
+            "fixed_sites": 14,
+            "independent_selection_and_merge_passed": true
+          },
+          "energy": {
+            "relax": {
+              "duration_ps": 0.1,
+              "records": 2,
+              "mean_temperature_K": 313.0941315,
+              "potential_min_kJ_mol": -372619.78125,
+              "potential_max_kJ_mol": -372458.34375
+            },
+            "effective": {
+              "duration_ps": 1.0,
+              "records": 11,
+              "mean_temperature_K": 311.0433599090909,
+              "potential_min_kJ_mol": -373714.5625,
+              "potential_max_kJ_mol": -372705.6875
+            }
+          },
+          "disulfide_nm": {
+            "6-127": 0.20397548872352317,
+            "30-115": 0.2079158483617834,
+            "64-80": 0.1992009036124087,
+            "76-94": 0.20874386218521535
+          }
+        },
+        {
+          "cycle": 2,
+          "pseudostates": 21,
+          "topology": {
+            "applied_sites": 21,
+            "dictionary_atom_parameters_checked": 354,
+            "atoms_with_changed_type_or_charge": 7,
+            "protein_charge_e": 10.000000000000007
+          },
+          "RT": {
+            "active_sites": 7,
+            "fixed_sites": 14,
+            "independent_selection_and_merge_passed": true
+          },
+          "energy": {
+            "relax": {
+              "duration_ps": 0.1,
+              "records": 2,
+              "mean_temperature_K": 310.2797395,
+              "potential_min_kJ_mol": -372960.0,
+              "potential_max_kJ_mol": -372812.46875
+            },
+            "effective": {
+              "duration_ps": 1.0,
+              "records": 11,
+              "mean_temperature_K": 308.8402377272727,
+              "potential_min_kJ_mol": -373774.59375,
+              "potential_max_kJ_mol": -372681.5625
+            }
+          },
+          "disulfide_nm": {
+            "6-127": 0.202746146695813,
+            "30-115": 0.20530952242894165,
+            "64-80": 0.1987108451997524,
+            "76-94": 0.19832044776068844
+          }
+        }
+      ],
+      "segments": [
+        {
+          "cycles": [
+            1,
+            1
+          ],
+          "times_ps": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "cycles": [
+            2,
+            2
+          ],
+          "times_ps": [
+            1.0,
+            2.0
+          ]
+        }
+      ]
+    },
+    "md-failure": {
+      "passed": true,
+      "jobs": [
+        2151816
+      ],
+      "exit_code": 42,
+      "retained_scratch": "scratch/jsequeira/CpHMD/HEWL-md-failure_2151816",
+      "fault": {
+        "injected_fault": "effective MD command",
+        "returned_status": 73
+      }
+    },
+    "pb-failure": {
+      "passed": true,
+      "jobs": [
+        2151817
+      ],
+      "exit_code": 43,
+      "retained_scratch": "scratch/jsequeira/CpHMD/HEWL-pb-failure_2151817",
+      "fault": {
+        "injected_fault": "PB driver",
+        "returned_status": 73
+      }
+    },
+    "invalid-checkpoint": {
+      "passed": true,
+      "jobs": [
+        2151818
+      ],
+      "exit_code": 42,
+      "original_copy_unchanged": true
+    }
+  },
+  "explicit_configuration_and_failure_cases_passed": true,
+  "default_guard_transport_passed": false,
+  "status": "EXPLICIT_ENV_BATCH_GATE_PASSED_DEFAULT_GUARD_REVIEW_REQUIRED"
+}

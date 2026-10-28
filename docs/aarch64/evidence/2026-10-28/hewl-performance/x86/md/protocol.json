@@ -1,0 +1,33 @@
+{
+  "order": [
+    [
+      2,
+      6
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      1,
+      6
+    ],
+    [
+      1,
+      4
+    ]
+  ],
+  "steps": 5000,
+  "dt_ps": 0.001,
+  "tpr_sha256": "7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48",
+  "allowed_cpus": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "policy": "CPU controller default: -nt N -pin on, OMP_NUM_THREADS=N; fresh process each time",
+  "limits": "Two timing repeats on one A64FX node; not independent scientific replicas or a universal ARM benchmark."
+}

@@ -1,0 +1,15 @@
+Generated SLURM script:
+/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/runs/default-guard/slurm_files/HEWL-default-guard.slurm
+
+Mode      : cpu
+Partition : dev-arm
+CPUs      : 8
+Walltime  : 01:00:00
+Run       : /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/runs/default-guard
+Settings  : /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/runs/default-guard/01_CpHMD.settings
+Image     : /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif
+
+No host code is bound over /CpHMD unless CPHMD_HOST_CODE_DIR is set.
+
+Generation only. Review, then submit with:
+cd /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/runs/default-guard && sbatch /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/runs/default-guard/slurm_files/HEWL-default-guard.slurm

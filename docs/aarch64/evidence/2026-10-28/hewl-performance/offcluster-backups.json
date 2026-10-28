@@ -1,0 +1,23 @@
+[
+  {
+    "archive": "HEWL-performance-arm-2160455.tar.gz",
+    "sha256": "820af52883be4cf0565fc2ac14f832135675aeca5b488bb523ee349753eaf846",
+    "verified": true,
+    "regular_files_extracted": 1224,
+    "symlinks_not_restored": 21
+  },
+  {
+    "archive": "HEWL-performance-x86-20261028.tar.gz",
+    "sha256": "8e726f397412d0a50a87c8e8f8375e8f7d76ef306ed90667ab84dc5d20608ca9",
+    "verified": true,
+    "regular_files_extracted": 826,
+    "symlinks_not_restored": 7
+  },
+  {
+    "archive": "HEWL-startup-probe-2160496.tar.gz",
+    "sha256": "546b6b13e0a116423b43b3d70607c2581f8f22e76b84c9661815c8453b87bbf1",
+    "verified": true,
+    "regular_files_extracted": 207,
+    "symlinks_not_restored": 0
+  }
+]

@@ -1,0 +1,7 @@
+=== CpHMD SLURM job start ===
+Date            : Tue 27 Oct 15:07:46 WET 2026
+Host            : cna0007.deucalion.macc.fccn.pt
+Persistent run  : /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/runs/invalid-checkpoint
+Container image : /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif
+Execution mode  : cpu
+MISSING: /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/runs/invalid-checkpoint/segments/HEWL_CpHrun_cycles2-7.xtc

@@ -1,0 +1,6 @@
+TIMESTAMP=2026-10-27T15:07:47+00:00
+JOB_ID=2151818
+JOB_NAME=HEWL-invalid-checkpoint
+HOST=cna0007.deucalion.macc.fccn.pt
+STATUS=persistent_checkpoint_invalid
+EXIT_CODE=42

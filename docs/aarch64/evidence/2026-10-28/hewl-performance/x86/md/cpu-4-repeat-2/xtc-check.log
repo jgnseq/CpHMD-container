@@ -1,0 +1,26 @@
+                      :-) GROMACS - gmx check, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/md/cpu-4-repeat-2
+Command line:
+  gmx check -f md.xtc
+
+Reading frame       0 time    0.000   
+# Atoms  27989
+Precision 0.001 (nm)
+Reading frame       1 time    0.100   Reading frame       2 time    0.200   Reading frame       3 time    0.300   Reading frame       4 time    0.400   Reading frame       5 time    0.500   Reading frame       6 time    0.600   Reading frame       7 time    0.700   Reading frame       8 time    0.800   Reading frame       9 time    0.900   Reading frame      10 time    1.000   Reading frame      11 time    1.100   Reading frame      12 time    1.200   Reading frame      13 time    1.300   Reading frame      14 time    1.400   Reading frame      15 time    1.500   Reading frame      16 time    1.600   Reading frame      17 time    1.700   Reading frame      18 time    1.800   Reading frame      19 time    1.900   Reading frame      20 time    2.000   Reading frame      30 time    3.000   Reading frame      40 time    4.000   Reading frame      50 time    5.000   Last frame         50 time    5.000   
+
+
+Item        #frames Timestep (ps)
+Step            51    0.1
+Time            51    0.1
+Lambda           0
+Coords          51    0.1
+Velocities       0
+Forces           0
+Box             51    0.1
+
+GROMACS reminds you: "Well, I am a dilettante. It's only in England that dilettantism is considered a bad thing. In other countries it's called interdisciplinary research." (Brian Eno)
+
+Checking file md.xtc

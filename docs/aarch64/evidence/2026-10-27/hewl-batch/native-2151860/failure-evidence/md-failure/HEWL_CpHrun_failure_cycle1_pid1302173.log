@@ -1,0 +1,155 @@
+=== CpHMD failure diagnostic ===
+TIMESTAMP=2026-10-27T15:10:07+00:00
+CYCLE=1
+PID=1302173
+JOB_ID=unset
+JOB_NAME=unset
+HOST=cna0005.deucalion.macc.fccn.pt
+WORKING_DIRECTORY=/out/CpHMD-run_1302173
+
+=== Driver log: HEWL_CpHrun_MD.log ===
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+Generating 1-4 interactions: fudge = 0.5
+
+NOTE 1 [file TMP_relax.mdp]:
+  There are 2004 atoms that are fully frozen and part of COMM removal
+  group(s), removing these atoms from the COMM removal group(s)
+
+Number of degrees of freedom in T-Coupling group Protein is 0.00
+Number of degrees of freedom in T-Coupling group SOL is 52002.00
+
+There was 1 NOTE
+Generated 4278 of the 4278 non-bonded parameter combinations
+
+Generated 4278 of the 4278 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'Protein_chain_A'
+
+turning H bonds into constraints...
+
+Excluding 2 bonded neighbours molecule type 'SOL'
+
+turning H bonds into constraints...
+
+Excluding 1 bonded neighbours molecule type 'NA'
+
+turning H bonds into constraints...
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+turning H bonds into constraints...
+
+Taking velocities from 'TMP_effective.gro'
+
+The largest distance between excluded atoms is 0.444 nm between atom 1184 and 1437
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 310 K
+
+Calculated rlist for 1x1 atom pair-list as 1.039 nm, buffer size 0.039 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 64x64x64, spacing 0.115 0.115 0.115
+
+Estimate for the relative computational load of the PME mesh part: 0.35
+
+This run will generate roughly 2 Mb of data
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+                      :-) GROMACS - gmx mdrun, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/CpHMD-run_1302173
+Command line:
+  gmx mdrun -nt 8 -pin on -s TMP_relax.tpr -x TMP_relax.xtc -c TMP_relax.gro -e TMP_relax.edr -g TMP_relax.log -o TMP_relax.trr -nice 19
+
+Reading file TMP_relax.tpr, VERSION 2026.3 (single precision)
+Changing nstlist from 20 to 100, rlist from 1 to 1.109
+
+Using 1 MPI thread
+Using 8 OpenMP threads 
+
+starting mdrun 'Protein in water'
+100 steps,      0.1 ps.
+
+Writing final coordinates.
+
+               Core t (s)   Wall t (s)        (%)
+       Time:       11.512        1.440      799.6
+                 (ns/day)    (hour/ns)    (ms/step)  (Matom*steps/s) 
+Performance:        6.061        3.959       14.254            1.964 
+
+GROMACS reminds you: "Meet Me At the Coffee Shop" (Red Hot Chili Peppers)
+
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group Protein is 5008.74
+Number of degrees of freedom in T-Coupling group SOL is 52002.26
+Generated 4278 of the 4278 non-bonded parameter combinations
+
+Generated 4278 of the 4278 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'Protein_chain_A'
+
+turning H bonds into constraints...
+
+Excluding 2 bonded neighbours molecule type 'SOL'
+
+turning H bonds into constraints...
+
+Excluding 1 bonded neighbours molecule type 'NA'
+
+turning H bonds into constraints...
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+turning H bonds into constraints...
+
+Taking velocities from 'TMP_relax.gro'
+
+The largest distance between excluded atoms is 0.444 nm between atom 1184 and 1437
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 310 K
+
+Calculated rlist for 1x1 atom pair-list as 1.039 nm, buffer size 0.039 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 64x64x64, spacing 0.115 0.115 0.115
+
+Estimate for the relative computational load of the PME mesh part: 0.35
+
+This run will generate roughly 4 Mb of data
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+Controlled test fault: effective MD returns 73
+CpHMD.sh: Error: mdrun failed for the effective stage in cycle 1 (mdrun exit code 73).
+
+=== Run information: HEWL_CpHrun.info ===
+Simulation run by   @  cna0005.deucalion.macc.fccn.pt
+Initial time: Tue Oct 27 15:07:49 WET 2026
+
+Cycle = 1; time = .100 ps; Date: 10/27/26 15:08:38
+PB/MC (All) -        Cycle = 1; Date: 10/27/26 15:08:38 - 10/27/26 15:09:17
+MD relax     - Cycle = 1; Date: 10/27/26 15:09:17 - 10/27/26 15:10:05
+MD effective - Cycle = 1; Date: 10/27/26 15:10:05 - 
+=== Relevant temporary files ===
+TMP_CpHMD.tpr	1195676 bytes
+TMP_MCarlo.err	74 bytes
+TMP_MCarlo.out	4453 bytes
+TMP_convert.err	172 bytes
+TMP_delphi.err	2529 bytes
+TMP_delphi.out	9629 bytes
+TMP_effective.mdp	629 bytes
+TMP_effective.tpr	1196312 bytes
+TMP_effective_out.mdp	11174 bytes
+TMP_relax.log	27459 bytes
+TMP_relax.mdp	697 bytes
+TMP_relax.tpr	1252304 bytes
+TMP_relax_out.mdp	11172 bytes

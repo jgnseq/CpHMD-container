@@ -1,0 +1,99 @@
+{
+  "order": [
+    [
+      1,
+      48
+    ],
+    [
+      1,
+      16
+    ],
+    [
+      1,
+      24
+    ],
+    [
+      2,
+      24
+    ],
+    [
+      2,
+      48
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      1,
+      8
+    ],
+    [
+      2,
+      16
+    ],
+    [
+      2,
+      8
+    ],
+    [
+      1,
+      4
+    ]
+  ],
+  "steps": 5000,
+  "dt_ps": 0.001,
+  "tpr_sha256": "7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48",
+  "allowed_cpus": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "policy": "CPU controller default: -nt N -pin on, OMP_NUM_THREADS=N; fresh process each time",
+  "limits": "Two timing repeats on one A64FX node; not independent scientific replicas or a universal ARM benchmark."
+}

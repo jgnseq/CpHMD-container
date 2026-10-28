@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "observations": 4,
+  "counts": [
+    {
+      "cpu_count": 4,
+      "median_command_wall_seconds": 27.67838885996025,
+      "min_seconds": 27.564546595094725,
+      "max_seconds": 27.792231124825776,
+      "median_gmx_ns_per_day": 16.927,
+      "median_thread_seconds": 110.713555439841
+    },
+    {
+      "cpu_count": 6,
+      "median_command_wall_seconds": 20.414814879535697,
+      "min_seconds": 20.383659709012136,
+      "max_seconds": 20.44597005005926,
+      "median_gmx_ns_per_day": 23.995,
+      "median_thread_seconds": 122.48888927721418
+    }
+  ],
+  "fastest_observed_cpu_count": 6,
+  "allocation_note": "48 CPUs reserved for the entire exclusive job; thread-seconds are not billed allocation cost."
+}

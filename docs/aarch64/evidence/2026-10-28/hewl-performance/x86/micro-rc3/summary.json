@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "components": [
+    {
+      "component": "delphi",
+      "input": "258-Asp2N.prm",
+      "median_wall_seconds": 0.297352498,
+      "min_wall_seconds": 0.295991934,
+      "max_wall_seconds": 0.299378678
+    },
+    {
+      "component": "delphi",
+      "input": "P_258-Asp2Nb.prm",
+      "median_wall_seconds": 0.164125765,
+      "min_wall_seconds": 0.162736236,
+      "max_wall_seconds": 0.212035672
+    },
+    {
+      "component": "delphi",
+      "input": "P_258-Asp2Nf.prm",
+      "median_wall_seconds": 0.422136988,
+      "min_wall_seconds": 0.417723469,
+      "max_wall_seconds": 0.423260415
+    },
+    {
+      "component": "delphi",
+      "input": "279-Ntr1N.prm",
+      "median_wall_seconds": 0.289159264,
+      "min_wall_seconds": 0.288990507,
+      "max_wall_seconds": 0.289948632
+    },
+    {
+      "component": "delphi",
+      "input": "P_279-Ntr1Nb.prm",
+      "median_wall_seconds": 0.1664362,
+      "min_wall_seconds": 0.166415281,
+      "max_wall_seconds": 0.167651651
+    },
+    {
+      "component": "delphi",
+      "input": "P_279-Ntr1Nf.prm",
+      "median_wall_seconds": 0.45049434,
+      "min_wall_seconds": 0.447588503,
+      "max_wall_seconds": 0.452397978
+    },
+    {
+      "component": "petit",
+      "input": "PBMC.dat",
+      "median_wall_seconds": 0.141378268,
+      "min_wall_seconds": 0.138626671,
+      "max_wall_seconds": 0.143251088
+    }
+  ],
+  "input_protocol_sha256": "67beb8dd469c7640de1b402804773c233296b03fa204ae6ce5abc90d2c3f90bc",
+  "limits": "Same Bash/date launcher in both containers; three serial samples/deck. Hardware, compiler and libraries differ; not ISA-only attribution. Requested PB tolerance is not always reached."
+}

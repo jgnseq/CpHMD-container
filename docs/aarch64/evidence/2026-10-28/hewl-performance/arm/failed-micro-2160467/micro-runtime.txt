@@ -1,0 +1,15 @@
+74f5f5c6a44690bbfae4efb9e48e5861786332776925d681426b0282599b16b2  /Delphi/delphi_pgf90
+798332919331942898619384950b8b1087062734617c1847a9a2f858c9eef6e7  /programs/petit1.6.1/petit
+	linux-vdso.so.1 (0x0000ffffbe7b0000)
+	libnvf.so => /opt/nvhpc/lib/libnvf.so (0x0000ffffbe1b0000)
+	libnvomp.so => /opt/nvhpc/lib/libnvomp.so (0x0000ffffbdf90000)
+	libdl.so.2 => /lib/aarch64-linux-gnu/libdl.so.2 (0x0000ffffbdf50000)
+	libpthread.so.0 => /lib/aarch64-linux-gnu/libpthread.so.0 (0x0000ffffbdf20000)
+	libnvcpumath.so => /opt/nvhpc/lib/libnvcpumath.so (0x0000ffffbdd90000)
+	libnvc.so => /opt/nvhpc/lib/libnvc.so (0x0000ffffbdd30000)
+	librt.so.1 => /lib/aarch64-linux-gnu/librt.so.1 (0x0000ffffbdd00000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffbdb40000)
+	libm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffffbda90000)
+	libstdc++.so.6 => /opt/nvhpc/lib/libstdc++.so.6 (0x0000ffffbd830000)
+	libgcc_s.so.1 => /opt/nvhpc/lib/libgcc_s.so.1 (0x0000ffffbd7f0000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffbe7c0000)

@@ -1,0 +1,25 @@
+Warning: ieee_inexact is signaling
+FORTRAN STOP
+    
+  __________DelPhi V. 5 Release 1.0 ______________  
+ |                                                | 
+ | A program to solve the PB equation             | 
+ | in 3D, using non-linear form, incorporating    | 
+ | many dielectric regions, multisalt ionic       | 
+ | strength, different probe radii, periodic      | 
+ | and focussing boundary conditions, utilizing   | 
+ | stripped optimum successive over-relaxation    | 
+ | and an improved algorithm for mapping the      | 
+ | Mol. Surface to the finite-Difference grid     | 
+ | Recompiled on Linux and PC                     | 
+ |    August  2010,    Maintained by Delphi       | 
+ |              Development Team                  | 
+ |__________________           ___________________| 
+                    DelPhi V. 5                     
+   
+  program started on Wed Oct 28 2026
+              at 21:10:38
+ realsiz ==             4
+ parameter file fort.10
+  does not seem to                                                                 exist
+ Therefore stopping

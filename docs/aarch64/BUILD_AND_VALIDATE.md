@@ -1,6 +1,6 @@
 # Native ARM candidate: build and validation commands
 
-This branch now combines the reviewed August explicit-settings work with the ARM build support. The legacy source worktree is unchanged. `settings-import.json` identifies the imported files and their original hashes. The released x86 0.7.0 image remains the scientific comparison baseline.
+This branch now combines the reviewed August explicit-settings work with the ARM build support. The legacy source worktree is unchanged. `settings-import.json` identifies the imported files and their original hashes. Existing x86 test images provide provisional scientific comparison; a finalized, reproducibly built x86 GROMACS 2026.3 image remains a near-term deliverable.
 
 The [developer guide](DEVELOPER_GUIDE.md) maps each build/validation file and
 function to its caller, outputs and place in the scientific cycle. Follow its
@@ -44,6 +44,21 @@ Run the local credential/artifact guard before staging and against the actual
 index before committing; its scope is documented in
 [REPOSITORY_SECURITY_2026-10-27.md](REPOSITORY_SECURITY_2026-10-27.md).
 
+Generated-wrapper jobs now pass native synchronization, a real bounded
+successor and deliberate MD/PB/checkpoint failure containment **with explicit
+container guard configuration** (audit **2151860**). The default host-computed
+guard is lost across `--cleanenv` and remains REVIEW, with an issue draft and
+tested public configuration in [HEWL_BATCH_2026-10-27.md](HEWL_BATCH_2026-10-27.md).
+Do not equate a short default job's Slurm success with walltime-stop safety.
+
+Bounded cross-architecture performance measurements now pass their scientific
+checks: native ARM jobs 2160455/2160456/2160475 and mini05's experimental rc3
+x86 CPU reference. The original x86 DelPhi executable is preserved. The report
+separates serial solver/MC costs, fixed-TPR MD, process overhead and instrumented
+whole-cycle costs: [HEWL_PERFORMANCE_2026-10-28.md](HEWL_PERFORMANCE_2026-10-28.md).
+A finalized x86 build and the measured ARM startup-cost follow-up remain explicit
+deliverables; these short tests are not production pKa or universal-ISA claims.
+
 ## Earlier ordinary-user permission repair
 
 Native preparation job 2148556 showed that the original SIF's `/analysis` and
@@ -70,7 +85,7 @@ are now in the full-build path as well. Logs are in
 HEWL topology/site verification subsequently passed on native ARM in job
 **2148669**, with matching parsed x86/ARM topology data and 21 sites; see
 [HEWL_TOPOLOGY_2026-10-27.md](HEWL_TOPOLOGY_2026-10-27.md). PB/MC subsequently completed with the repaired solver described above.
-Complete coupled CpHMD/RT and restart validation remain pending.
+The completed coupled/RT/continuation evidence is described above, with its stated restart and sampling limits.
 
 ARM access ends **31 October 2026**. General terminal/preparation issues are
 documented in [DEFERRED_ISSUES.md](DEFERRED_ISSUES.md) and deferred at the user's
@@ -236,52 +251,55 @@ Deucalion's project directory requires supplementary-group access, which fakeroo
 - The ordinary host process stages inputs and copies artifacts/results back after fakeroot returns. The local-image build uses `--disable-cache`; no compiler downloads or OCI downloads occur in the fakeroot build.
 - The project ACLs and production directories are unchanged. Failed temporary build work is not destructively cleaned by the launcher.
 
-## 1. Record native coupled cycles, RT/restart and repository safeguards
+## 1. Record the completed batch and performance stages
 
-The preceding PB/MC milestone is already committed as `5e20356`. The agent has
-not staged, committed or pushed this stage. Run in the local desktop terminal:
+The user committed cycle/RT/security work as `0af4139`. Batch validation and
+cross-architecture performance changes remain unstaged at this handover. The
+agent has not staged, committed or pushed them. Review and record the remaining
+two completed stages together, using an explicit path list:
 
 ```bash
 cd '/home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container'
 git status --short --branch
 python3 tests/check_repository_safety.py
+python3 tests/check_hewl_performance_helpers.py
 git diff --check
 git add -- \
-  .gitignore \
-  container_build/prepare_hewl_cycle.py \
-  container_build/slurm/hewl-cycle.slurm \
-  tests/arm64/run_hewl_cycle.sh \
-  tests/arm64/hewl_cycle.py \
-  tests/check_hewl_cycle_helpers.py \
-  tests/check_repository_safety.py \
-  docs/aarch64
+  container_build/prepare_hewl_batch.py \
+  container_build/slurm/hewl-batch-prepare.slurm \
+  container_build/slurm/hewl-batch-audit.slurm \
+  tests/arm64/hewl_batch.py \
+  container_build/prepare_hewl_performance.py \
+  container_build/run_hewl_x86_performance.sh \
+  container_build/slurm/hewl-performance.slurm \
+  container_build/slurm/hewl-solver-performance.slurm \
+  container_build/slurm/hewl-startup-probe.slurm \
+  tests/arm64/hewl_performance.py \
+  tests/arm64/hewl_solver_performance.py \
+  tests/arm64/run_hewl_solver_performance.sh \
+  tests/arm64/hewl_startup_probe.py \
+  tests/arm64/compare_hewl_performance.py \
+  tests/check_hewl_performance_helpers.py \
+  docs/aarch64/HEWL_BATCH_2026-10-27.md \
+  docs/aarch64/HEWL_PERFORMANCE_2026-10-28.md \
+  docs/aarch64/BUILD_AND_VALIDATE.md \
+  docs/aarch64/DEVELOPER_GUIDE.md \
+  docs/aarch64/DEFERRED_ISSUES.md \
+  docs/aarch64/evidence/2026-10-27/hewl-batch \
+  docs/aarch64/evidence/2026-10-28/hewl-performance
 python3 tests/check_repository_safety.py --staged
 git diff --cached --check
 git diff --cached --stat
-git diff --cached -- .gitignore container_build/prepare_hewl_cycle.py container_build/slurm/hewl-cycle.slurm tests/arm64/hewl_cycle.py tests/arm64/run_hewl_cycle.sh
-git commit -m 'Validate native HEWL cycles, RT continuation and repository safeguards'
+git commit -m 'Validate generated jobs and benchmark CpHMD on A64FX and x86'
 git push origin codex/arm64-deucalion-20261026
 ```
 
-The images, trajectories and source archives remain outside the Git checkout;
-their hashes/provenance and compact scientific evidence are versioned. Raw
-scientific output retains its existing narrow whitespace-check exemption.
-
-Local checks, requiring no scheduler submission:
-
-```bash
-python3 tests/check_hewl_pbmc_helpers.py
-python3 tests/arm64/finish_hewl_pymol.py '../artifacts/hewl-4lzt/pymol-2149846'
-python3 tests/arm64/compare_hewl_pbmc.py \
-  '../artifacts/hewl-4lzt/tight-x86/pbmc/raw' \
-  '../artifacts/hewl-4lzt/pbmc-image-tight-2150979' \
-  --contract tests/arm64/hewl-pbmc-tight-contract.json \
-  --output /tmp/hewl-pbmc-image-comparison.json
-```
-
-Existing native validation jobs are complete; those checks read saved outputs.
-The next new scheduler work should be the coupled CpHMD/RT/continuation stage,
-not another topology/solution preparation or a repeat full compilation.
+Images, trajectories and archives stay outside Git. Their identities and compact
+text evidence are versioned. Raw scientific output retains its narrow existing
+whitespace exemption. Comparison-only commands requiring no new jobs appear in
+the performance report. Existing functional/scaling jobs have finished; preserve
+the evidence before another configuration experiment. Default guard transport
+must be fixed before claiming a fully validated default scheduler release.
 
 ## 2. Prepare and submit a future candidate when code changes
 
@@ -340,14 +358,15 @@ them executed and passed. `gromacs-test-build.log` records their compilation.
 
 The embedded test verifies AArch64 ELF payloads and dependencies, GROMACS version/SIMD, native fixgro, analytic PETIT probabilities, and a short MD/PLUMED run with readable trajectory/energy output. Scientific PB/MC validation is not included in that success marker.
 
-## 4. Next scientific gates, before performance claims
+## 4. Scientific gates and performance follow-up
 
 After the build succeeds, work from a new test directory and immutable input snapshot. Do not point this candidate at a production run directory.
 
 1. Passed: fixed-coordinate PB/MC comparison and convergence/sampling controls; physical convergence remains separate.
 2. Passed: two all-site cycles and RT interval 5 through cycle 7, full refreshes 1/6, independent active/fixed-template reconstruction and topology application.
 3. Passed: continuation after finalized reduced cycle 7 through 8, including segment time/frame/state continuity. See the coupled report for its GRO/TOP/RT scope; this is not full GROMACS CPT continuation.
-4. Next: generated scheduler-wrapper synchronization and batch continuation, then controlled output/MD exit 42 and PB/MC exit 43 without resubmission or false DONE.
-5. After functional gates, compare thread counts/affinity and SVE versus NEON on the same inputs, recording MD-only and complete CpHMD throughput.
+4. Passed under explicit guard configuration: generated scheduler-wrapper sync, a real successor, MD/output 42, PB/MC 43 and invalid-checkpoint 42 without false DONE or unwanted resubmission. Default guard transport remains REVIEW.
+5. Passed bounded performance screen: SVE512 CPU scaling and matched mini05 x86 2026.3 experimental-reference MD/PB/MC/topology/coupled measurements. Separate startup overhead from reported integration throughput.
+6. Next: validate a startup-efficient configuration through coupled/RT gates, preserve the final recovery bundle before 31 October, and finalize the reproducible x86 2026.3 container. SVE-versus-NEON and other ARM hardware remain separate future comparisons.
 
 The explicit-settings profiles require adapting every `CHANGE_ME` field. Historical settings that relied on hidden defaults must be upgraded in the copied test directory; do not bypass the contract to make an old input run.

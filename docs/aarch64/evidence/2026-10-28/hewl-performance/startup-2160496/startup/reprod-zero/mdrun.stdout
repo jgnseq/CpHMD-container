@@ -1,0 +1,31 @@
+                      :-) GROMACS - gmx mdrun, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/startup/reprod-zero
+Command line:
+  gmx mdrun -s /fixed/effective.tpr -deffnm md -nt 8 -pin on -nsteps 0 -reprod
+
+Reading file /fixed/effective.tpr, VERSION 2026.3 (single precision)
+Overriding nsteps with value passed on the command line: 0 steps, 0 ps
+Changing nstlist from 20 to 100, rlist from 1 to 1.109
+
+
+Using 1 MPI thread
+Using 8 OpenMP threads 
+
+starting mdrun 'Protein in water'
+0 steps,      0.0 ps.
+
+Writing final coordinates.
+
+NOTE: 12 % of the run time was spent in pair search,
+      you might want to increase nstlist (this has no effect on accuracy)
+
+               Core t (s)   Wall t (s)        (%)
+       Time:        1.405        0.176      796.7
+                 (ns/day)    (hour/ns)    (ms/step)  (Matom*steps/s) 
+Performance:        0.490       48.975      176.308            0.159 
+
+GROMACS reminds you: "A professor is one who talks in someone else's sleep." (W.H. Auden)
+

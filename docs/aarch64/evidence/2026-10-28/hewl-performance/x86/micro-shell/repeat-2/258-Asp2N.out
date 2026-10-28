@@ -1,0 +1,230 @@
+    
+  __________DelPhi V. 5 Release 1.0 ______________  
+ |                                                | 
+ | A program to solve the PB equation             | 
+ | in 3D, using non-linear form, incorporating    | 
+ | many dielectric regions, multisalt ionic       | 
+ | strength, different probe radii, periodic      | 
+ | and focussing boundary conditions, utilizing   | 
+ | stripped optimum successive over-relaxation    | 
+ | and an improved algorithm for mapping the      | 
+ | Mol. Surface to the finite-Difference grid     | 
+ | Recompiled on Linux and PC                     | 
+ |    August  2010,    Maintained by Delphi       | 
+ |              Development Team                  | 
+ |__________________           ___________________| 
+                    DelPhi V. 5                     
+   
+  program started on Wed Oct 28 2026
+              at 21:15:27
+ realsiz ==             4
+ opening parameter file 258-Asp2N.prm
+ in funcint,type,direc=ENERGY    
+ (s,c)                                                                                               
+ in funcint,type,direc=IN        
+ (crg,file="DataBaseT.crg")                                                                          
+ in funcint,type,direc=IN        
+ (siz,file="DataBaseT.siz")                                                                          
+ in funcint,type,direc=IN        
+ (pdb,file="258-Asp2N.pdb")                                                                          
+ in funcint,type,direc=ACENT     
+ (59.490000,73.090000,17.545000)                                                                     
+ realsiz in main=            4
+ atom radii read from file
+ DataBaseT.siz
+  
+ # of radius parameter records:          726
+  
+ atomic charges read from file
+ DataBaseT.crg
+  
+ # of charge parameter records:          726
+ assigning charges and radii...
+  
+ opening formatted file:258-Asp2N.pdb
+ You are not reading from an objectfile! assuming     having only molecules, and one dielectric medium
+ number of atoms read in =            10
+ in setrc, iatrad=  F
+ Direct mapping of epsilon: (0/1)(n/y)            1
+ time to read in and/or assign rad/chrg=    0.000000    
+ object number :               1 ,  is a molecule
+ Debye Lengths contained in the finite diff. box    1.458284    
+   
+ grid size                  :           81
+ percent of box to be filled:    29.22997    
+ scale,in grids/A :    4.000000    
+ xmin,xmax     (A):    56.85300        62.41300    
+ ymin,ymax     (A):    71.40701        74.97300    
+ zmin,zmax     (A):    15.13500        20.34700    
+ x,y,z range   (A):     5.559998        3.565994        5.211999    
+ system geometric center in (A):    59.63300        73.19000     
+    17.74100    
+  grid  box is centered in (A) :    59.49000        73.09000     
+    17.54500    
+ object centre offset (gu)  :    0.000000        0.000000        0.000000    
+ outer dielectric           :    80.00000    
+ dielectric in medium number            0  :    80.00000    
+ dielectric in medium number            1  :    2.000000    
+ first kind salt concentration (M)   :   0.1000000    
+ valences salt 1 are                    1  and            1
+ second kind salt concentration (M)  :    0.000000    
+ valences salt 2 are                    0  and            0
+ ionic strength (M)         :   0.1000000    
+ debye length (A)           :    9.705932    
+ absolute temperature (K)   :    297.3342    
+ ion exclusion radius (A)   :    2.000000    
+ probe radius facing water(A:    1.400000    
+ probe radius, internal (A) :    1.400000    
+ boundary conditions        : coulombic   
+ x,y,z periodic bc. and volt. drop flags:  F  F  F  F  F  F
+ # of linear iterations     :          500
+ convergence by rms  change :    0.000000      kt
+ convergence by max  change :   9.9999997E-05  kt
+ convergence by norm change :    0.000000      kt
+ # of non-linear iterations :            0
+ non-linear energy calculat.:  F
+ manual relaxation parameter :  F
+ ionic direct energy contribution:  F
+ concentration map output   :  F
+ spherical charge distbn.   :  F
+ INSIGHT format output      :  F
+ site potential output      :  F
+ modified atom file output  :  F
+ map file label             :
+qdiffxas: qdiffxs4 with an improved surfacing routine       
+  convergence graph turned off
+  potential listings turned off
+  
+ start vw surface at     0.000000    
+ Starting creating Van der Waals  Epsilon Map 
+ setout method 1  F  T
+ Ending creating Van der Waals  Epsilon Map 
+ fill in re-entrant regions at     0.000000    
+ here in vwtms	
+ boundary points facing continuum solvent=           891
+ total number of boundary points before elab.=           891
+ radpmax,radprb     1.400000        1.400000        1.400000    
+ # of vertices =           384  # of edges =           372
+ # of pairs =            15
+ time to find all pairs =     0.000000    
+ # pairs analyzed (atom-atom and atom-object)=            15
+ # exposed pairs (atom-atom and atom-object)=            12
+ no. arc points  =           719
+ no. surface atoms  =             6  nbur =             4
+ mkacc time =     0.000000    
+ grid for indexing accessible points =     1.400000    
+ bgp added m=           99  bgp removed  mr =          115
+ bgp added m=            5  bgp removed  mr =            8
+ bgp added m=            0  bgp removed  mr =            0
+ time to grow re-entrant surface =     0.000000    
+ no. cavity mid-points inaccessible to solvent =             0
+ after surface elaboration ibnum=           872
+     and               ibnumsurf=           872
+ scaling boundary grid points
+ time taken =     0.000000    
+            0  points had to be assigned by global comparison
+ time to turn everything in is    0.000000    
+ number of charges coming from molecules             7
+   9  HD21 AS1   258 is charged! Radius moved from zero to  1.0
+ BE CAREFUL!! A WRONG ASSIGNMENT FOR THE  RADIUS MIGHT LEAD TO INACCURATE REACTION FIELD ENERGY !!!
+   
+ number of atom coordinates read  :            10
+ total number of assigned charges    :             7
+ net assigned charge              :    2.9802322E-08
+ assigned positive charge         :     1.219000    
+ centred at (gu) :    42.82684        41.99729        40.33016    
+ assigned negative charge         :    -1.219000    
+ centred at (gu) :    39.25922        40.66198        40.03631    
+    
+ number of dielectric boundary points          872
+ no. dielectric boundary points in salt =             0
+ no. charged boundary grid points =            0
+ iepsmp to db, and charging done at    0.000000    
+ number of grid points assigned charge           52
+  
+   setting boundary conditions
+  
+  some initial phi values: 
+  midg,midg,1; midg,midg,igrid 
+  -6.7716390E-03   4.1630715E-03
+  midg,1,midg; midg,igrid,midg 
+  -1.7638430E-02   2.2423714E-02
+  1,midg,midg; igrid,midg,midg 
+  -5.7449698E-02   5.4045357E-02
+  
+gauss-seidel spectral radius is        0.9980581999
+  
+ estimated iterations to convergence          180
+   
+ setup time was (sec)    9.9999998E-03
+   
+ now iterating at: 21:15:27
+  
+  
+   rms-change     max change       #iterations
+    2.018087        186.0044      at           10  iterations
+   0.7913074        63.12164      at           20  iterations
+   0.3227979        23.42287      at           30  iterations
+   0.1215511        8.496490      at           40  iterations
+   5.0016299E-02    3.888519      at           50  iterations
+   1.8895529E-02    1.464401      at           60  iterations
+   7.5741275E-03   0.5197544      at           70  iterations
+   3.0602873E-03   0.2478638      at           80  iterations
+   1.1825497E-03   9.1720581E-02  at           90  iterations
+   4.7602793E-04   3.6140442E-02  at          100  iterations
+   1.8745112E-04   1.3336182E-02  at          110  iterations
+   7.4443611E-05   5.8131218E-03  at          120  iterations
+   2.7405014E-05   2.0751953E-03  at          130  iterations
+   1.2113413E-05   8.6212158E-04  at          140  iterations
+   4.8691613E-06   3.6621094E-04  at          150  iterations
+   2.5675163E-06   3.0517578E-04  at          160  iterations
+   1.7477057E-06   1.5258789E-04  at          170  iterations
+   1.7011606E-06   3.6621094E-04  at          180  iterations
+   1.6560040E-06   2.1362305E-04  at          190  iterations
+   1.6096030E-06   1.5258789E-04  at          200  iterations
+   1.5687169E-06   1.8310547E-04  at          210  iterations
+   1.7001771E-06   3.0517578E-04  at          220  iterations
+   1.7292253E-06   1.8310547E-04  at          230  iterations
+   1.6659993E-06   1.6784668E-04  at          240  iterations
+   1.6470367E-06   1.8310547E-04  at          250  iterations
+   1.6220919E-06   2.4414063E-04  at          260  iterations
+   1.5422870E-06   1.5258789E-04  at          270  iterations
+   1.5673202E-06   2.4414063E-04  at          280  iterations
+   1.5541578E-06   1.8310547E-04  at          290  iterations
+   1.4555450E-06   2.1362305E-04  at          300  iterations
+   1.5329558E-06   1.9836426E-04  at          310  iterations
+   1.6345614E-06   1.6403198E-04  at          320  iterations
+   1.6087419E-06   1.8310547E-04  at          330  iterations
+   1.5445717E-06   1.8310547E-04  at          340  iterations
+   1.5075072E-06   1.5258789E-04  at          350  iterations
+   1.4951444E-06   2.2888184E-04  at          360  iterations
+   1.5268807E-06   1.8310547E-04  at          370  iterations
+   1.5877310E-06   2.7465820E-04  at          380  iterations
+   1.4760651E-06   1.8310547E-04  at          390  iterations
+   1.5005558E-06   1.6784668E-04  at          400  iterations
+   1.5780245E-06   1.5258789E-04  at          410  iterations
+   1.5402321E-06   1.8310547E-04  at          420  iterations
+   1.5698969E-06   3.0517578E-04  at          430  iterations
+   1.6030373E-06   2.4414063E-04  at          440  iterations
+   1.4798443E-06   1.5258789E-04  at          450  iterations
+   1.5603354E-06   1.5258789E-04  at          460  iterations
+   1.5100429E-06   2.1362305E-04  at          470  iterations
+   1.5127770E-06   1.3732910E-04  at          480  iterations
+   1.6044553E-06   2.1362305E-04  at          490  iterations
+   1.6544961E-06   1.8310547E-04  at          500  iterations
+ finished qdiffx linear iterations
+ at                       : 21:15:27
+ total time elapsed so far:    0.2700000    
+ # loops                  :           500
+ mean,max change (kT/e)   :    1.6544961E-06   1.8310547E-04
+ self-reaction field energy :       -144.7832      kt
+ total s.charge,no epsin carrying :    0.0000
+ corrected reaction field energy:    -30.16636      kt
+ total reaction field energy :      -174.9496      kt
+ coulombic energy :                 -192.1905      kt
+ All required energy terms but grid and self_react.:   -222.3568     kt
+ energy calculations done at   0.2700000    
+   
+ total cpu time was (sec)    0.2700000    
+   
+ DelPhi exited at 21:15:27

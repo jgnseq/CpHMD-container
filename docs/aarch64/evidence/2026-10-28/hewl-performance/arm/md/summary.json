@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "observations": 10,
+  "counts": [
+    {
+      "cpu_count": 4,
+      "median_command_wall_seconds": 154.18747814709786,
+      "min_seconds": 154.18016379210167,
+      "max_seconds": 154.19479250209406,
+      "median_gmx_ns_per_day": 3.9515000000000002,
+      "median_thread_seconds": 616.7499125883915
+    },
+    {
+      "cpu_count": 8,
+      "median_command_wall_seconds": 101.61346199398395,
+      "min_seconds": 101.60583255300298,
+      "max_seconds": 101.62109143496491,
+      "median_gmx_ns_per_day": 7.609999999999999,
+      "median_thread_seconds": 812.9076959518716
+    },
+    {
+      "cpu_count": 16,
+      "median_command_wall_seconds": 76.04289771954063,
+      "min_seconds": 76.03390922304243,
+      "max_seconds": 76.05188621603884,
+      "median_gmx_ns_per_day": 13.868,
+      "median_thread_seconds": 1216.6863635126501
+    },
+    {
+      "cpu_count": 24,
+      "median_command_wall_seconds": 83.49069402250461,
+      "min_seconds": 83.38305844599381,
+      "max_seconds": 83.59832959901541,
+      "median_gmx_ns_per_day": 19.5135,
+      "median_thread_seconds": 2003.7766565401107
+    },
+    {
+      "cpu_count": 48,
+      "median_command_wall_seconds": 76.17366299999412,
+      "min_seconds": 76.02942171995528,
+      "max_seconds": 76.31790428003296,
+      "median_gmx_ns_per_day": 29.3655,
+      "median_thread_seconds": 3656.335823999718
+    }
+  ],
+  "fastest_observed_cpu_count": 16,
+  "allocation_note": "48 CPUs reserved for the entire exclusive job; thread-seconds are not billed allocation cost."
+}

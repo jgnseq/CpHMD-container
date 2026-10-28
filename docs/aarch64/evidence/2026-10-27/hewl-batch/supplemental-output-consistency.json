@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "segments": [
+    {
+      "case": "default-guard",
+      "cycles": [
+        1,
+        2
+      ],
+      "mean_records_match_capture": true,
+      "trajectory_frames": 21
+    },
+    {
+      "case": "explicit-guard",
+      "cycles": [
+        1,
+        1
+      ],
+      "mean_records_match_capture": true,
+      "trajectory_frames": 11
+    },
+    {
+      "case": "explicit-guard",
+      "cycles": [
+        2,
+        2
+      ],
+      "mean_records_match_capture": true,
+      "trajectory_frames": 11
+    }
+  ]
+}

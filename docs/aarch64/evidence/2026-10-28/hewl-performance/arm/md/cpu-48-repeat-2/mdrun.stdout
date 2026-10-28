@@ -1,0 +1,28 @@
+                      :-) GROMACS - gmx mdrun, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/md/cpu-48-repeat-2
+Command line:
+  gmx mdrun -s /fixed/effective.tpr -deffnm md -nt 48 -pin on -nsteps 5000
+
+Reading file /fixed/effective.tpr, VERSION 2026.3 (single precision)
+Overriding nsteps with value passed on the command line: 5000 steps, 5 ps
+Changing nstlist from 20 to 100, rlist from 1 to 1.109
+
+
+Using 1 MPI thread
+Using 48 OpenMP threads 
+
+starting mdrun 'Protein in water'
+5000 steps,      5.0 ps.
+
+Writing final coordinates.
+
+               Core t (s)   Wall t (s)        (%)
+       Time:      708.085       14.753     4799.7
+                 (ns/day)    (hour/ns)    (ms/step)  (Matom*steps/s) 
+Performance:       29.289        0.819        2.950            9.488 
+
+GROMACS reminds you: "The best way to obtain plausible negative examples is to run a docking program with a biophysics-based function." (Julie Bernauer)
+

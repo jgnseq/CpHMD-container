@@ -1,0 +1,4 @@
+JobID|JobName|State|ExitCode|Elapsed|AllocCPUS|NodeList|MaxRSS
+2160496|cphmd-hewl-startup|COMPLETED|0:0|00:03:43|48|cna0003|
+2160496.batch|batch|COMPLETED|0:0|00:03:43|48|cna0003|122496K
+2160496.extern|extern|COMPLETED|0:0|00:03:43|48|cna0003|0

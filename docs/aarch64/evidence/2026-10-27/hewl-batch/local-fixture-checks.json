@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "five isolated fixtures generated",
+    "original checkpoint XTC retained while only copied XTC removed",
+    "generated fixture shell syntax",
+    "settings do not override scheduler guard",
+    "actual unmodified scheduler generator produced all five local scripts",
+    "local generated script syntax",
+    "source-only archive member and credential/artifact audit"
+  ],
+  "local_simulations_submitted": false
+}

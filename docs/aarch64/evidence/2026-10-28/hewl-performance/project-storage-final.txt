@@ -1,0 +1,9 @@
+Final targeted squeue listing: no remaining benchmark jobs.
+
+Disk quotas for grp F202500250CPCAA2 (gid 60231):
+Filesystem  used   quota limit grace files quota limit grace
+/projects   9.74G  0k    0k    -     64844 0     0     -
+gid 60231 is using default block quota setting
+gid 60231 is using default file quota setting
+
+Zero fields here describe the reported default policy; they are not a remaining-capacity measurement.

@@ -1,0 +1,197 @@
+=== CpHMD SLURM job start ===
+Date            : Tue 27 Oct 15:07:46 WET 2026
+Host            : cna0004.deucalion.macc.fccn.pt
+Persistent run  : /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/runs/explicit-guard
+Container image : /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif
+Execution mode  : cpu
+Actual SLURM limit : 3600 seconds
+Clean-stop guard   : 1 seconds
+Stop buffer        : 120 seconds
+Resubmissions      : 0/1
+/home/jsequeira/.bash_profile: line 9: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8): No such file or directory
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+CpHMD.sh: Warning: Selected CPU GROMACS executable: /fixture/tools/gmx
+CpHMD.sh: Warning: CpHMD output layout: segments/, restart/, log-files/ and resub_maint/.
+CpHMD.sh: Warning: StDIR inputed by the user at /source/STs/St-Amber14SBpH
+CpHMD.sh: Warning: The #fixgro# settings block is inactive for this system configuration.
+CpHMD.sh: Warning: The #plumed# settings block is inactive because plumed=0.
+CpHMD.sh: Warning: Running CpHMD cycles from 1 until 2 with 20 ps each cycle.
+CpHMD.sh: Warning: Checkpoint restart: completed cycles = 0; starting at cycle 1 of 2.
+CpHMD.sh: Warning: CpHMD cycle-boundary walltime guard: 1 seconds.
+CpHMD.sh: Warning: CPU execution requested.
+CpHMD.sh: Warning: mdrun command: /fixture/tools/gmx mdrun -nt 8 -pin on
+CpHMD.sh: Warning: Using GROMACS 2026.3; GPU support: disabled.
+CpHMD.sh: Warning: Scheme used is verlet.
+CpHMD.sh: Warning: Reduced titration has been selected to run at intervals of 5 cycles with a threshold of 0.01 
+CpHMD.sh: Warning: Ionic strength in HEWL.mdp file was changed to 0.06022 molecules/nm^3 (which corresponds to 0.1 Molar).
+CpHMD.sh: Warning: Temperature in HEWL.mdp file was changed to 310.0.
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+Generating 1-4 interactions: fudge = 0.5
+Number of degrees of freedom in T-Coupling group Protein is 5008.74
+Number of degrees of freedom in T-Coupling group SOL is 52002.26
+Generated 4278 of the 4278 non-bonded parameter combinations
+
+Generated 4278 of the 4278 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'Protein_chain_A'
+
+turning H bonds into constraints...
+
+Excluding 2 bonded neighbours molecule type 'SOL'
+
+turning H bonds into constraints...
+
+Excluding 1 bonded neighbours molecule type 'NA'
+
+turning H bonds into constraints...
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+turning H bonds into constraints...
+
+Taking velocities from './HEWL.gro'
+
+The largest distance between excluded atoms is 0.444 nm between atom 1184 and 1437
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 310 K
+
+Calculated rlist for 1x1 atom pair-list as 1.039 nm, buffer size 0.039 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.000 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 64x64x64, spacing 0.115 0.115 0.115
+
+Estimate for the relative computational load of the PME mesh part: 0.35
+
+This run will generate roughly 4 Mb of data
+CpHMD.sh: Warning: Zero-step mdrun preflight passed before PB/MC.
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+
+Select a group for output:
+Group     0 (         System) has 27989 elements
+Group     1 (        Protein) has  2004 elements
+Group     2 (         Solute) has  2004 elements
+Group     3 (            SOL) has 25985 elements
+Group     4 (          Water) has 25950 elements
+Group     5 (           Ions) has    35 elements
+Group     6 (       Backbone) has   387 elements
+Select a group: Note that major changes are planned in future for editconf, to improve usability and utility.
+Read 27989 atoms
+Volume: 282.887 nm^3, corresponds to roughly 127200 electrons
+Velocities found
+Selected 1: 'Protein'
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+CpHMD.sh: Warning: Using automatically determined PB/MC offset: 139
+CpHMD.sh: Warning: Using Delphi database file: /source/Databases/DataBaseT_Amber14SBpH.crg
+CpHMD.sh: Warning: Using Delphi database file: /source/Databases/DataBaseT_Amber14SBpH.siz
+
+CpHMD.sh: Warning: debug time  .100 1000 0.001 1 .100 0 
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+Will write gro: Coordinate file in Gromos-87 format
+Reading file TMP_CpHMD.tpr, VERSION 2026.3 (single precision)
+Reading file TMP_CpHMD.tpr, VERSION 2026.3 (single precision)
+Group     0 (         System) has 27989 elements
+Group     1 (        Protein) has  2004 elements
+Group     2 (         Solute) has  2004 elements
+Group     3 (            SOL) has 25985 elements
+Group     4 (          Water) has 25950 elements
+Group     5 (           Ions) has    35 elements
+Group     6 (       Backbone) has   387 elements
+Select a group: Reading frames from gro file 'Protein in water', 27989 atoms.
+Reading frame       0 time    0.000   
+Precision of TMP_effective.gro is 0.001 (nm)
+Last frame          0 time    0.000   
+ ->  frame      0 time    0.000      
+Last written: frame      0 time    0.000
+
+Note that major changes are planned in future for trjconv, to improve usability and utility.
+Select group for output
+Selected 1: 'Protein'
+6.0,6.0,1 -E 0.0,0.0,1 -T 310.0 -c 2 -r 1729 -q 1000 100000
+CpHMD.sh: Warning: Validated all-site refresh PB/MC result for 21 site(s).
+CpHMD.sh: Warning: Reduced-titration refresh at cycle 1: 7/21 sites remain active.
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+Opened TMP_effective.edr as single precision energy file
+Reading energy frame      0 time    0.000         Reading energy frame      1 time    0.100         
+
+
+Enter the new start time:
+
+          File             Current start       New start
+---------------------------------------------------------
+        TMP_effective.edr        0.000             Sorting disabled.
+
+Summary of files and start times used:
+
+          File                Start time
+-----------------------------------------
+        TMP_effective.edr        0.000
+
+Opened TMP_effective.edr as single precision energy file
+Reading energy frame      0 time    0.000         
+Continue writing frames from t=0, step=0
+Writing frame time 0    Reading energy frame      1 time    0.100         Reading energy frame      2 time    0.200         Reading energy frame      3 time    0.300         Reading energy frame      4 time    0.400         Reading energy frame      5 time    0.500         Reading energy frame      6 time    0.600         Reading energy frame      7 time    0.700         Reading energy frame      8 time    0.800         Reading energy frame      9 time    0.900         Reading energy frame     10 time    1.000         Last energy frame read 10 time    1.000         
+Last frame written was at step 1000, time 1.000000
+Wrote 11 frames
+Note that major changes are planned in future for eneconv, to improve usability and utility.
+Last step written from TMP_effective.edr: t 1, step 1000
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+                      :-) GROMACS - gmx trjcat, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/CpHMD-run_2276405
+Command line:
+  gmx trjcat -f TMP_effective.xtc -o TMP_CpHMD.xtc.next.2276405.xtc -settime
+
+Reading frame       0 time    0.000   Reading frame       1 time    0.100   
+
+
+Enter the new start time (ps) for each file.
+There are two special options, both disable sorting:
+
+c (continue) - The start time is taken from the end
+of the previous file. Use it when your continuation run
+restarts with t=0.
+
+l (last) - The time in this file will be changed the
+same amount as in the previous. Use it when the time in the
+new run continues from the end of the previous one,
+since this takes possible overlap into account.
+
+          File             Current start (ps)  New start (ps)
+---------------------------------------------------------
+        TMP_effective.xtc        0.000 ps          
+Summary of files and start times used:
+
+          File                Start time       Time step
+---------------------------------------------------------
+        TMP_effective.xtc        0.000 ps        0.100 ps
+
+Reading frame       0 time    0.000   
+Continue writing frames from TMP_effective.xtc t=0 ps, frame=0      
+ ->  frame      0 time    0.000 ps     Reading frame       1 time    0.100    ->  frame      1 time    0.100 ps     Reading frame       2 time    0.200    ->  frame      2 time    0.200 ps     Reading frame       3 time    0.300    ->  frame      3 time    0.300 ps     Reading frame       4 time    0.400    ->  frame      4 time    0.400 ps     Reading frame       5 time    0.500    ->  frame      5 time    0.500 ps     Reading frame       6 time    0.600    ->  frame      6 time    0.600 ps     Reading frame       7 time    0.700    ->  frame      7 time    0.700 ps     Reading frame       8 time    0.800    ->  frame      8 time    0.800 ps     Reading frame       9 time    0.900    ->  frame      9 time    0.900 ps     Reading frame      10 time    1.000    ->  frame     10 time    1.000 ps     Last frame         10 time    1.000   
+
+Last frame written was 10, time 1.000000 ps
+
+GROMACS reminds you: "Let Me Do This" (Urban Dance Squad)
+
+Note that major changes are planned in future for trjcat, to improve usability and utility.
+
+lasttime 0
+CpHMD.sh: Warning: Finalized validated CpHMD segment 1-1.
+CpHMD.sh: Warning: Reached validated CpHMD cycle-boundary walltime guard after cycle 1/2; exiting cleanly for scheduler resubmission.
+CpHMD.sh exit code: 10
+Date: Tue 27 Oct 15:11:04 WET 2026
+Synchronizing finalized CpHMD data to persistent storage...
+Stopped cleanly at a validated CpHMD segment boundary.
+Submitting successor job from /var/spool/slurm/d/job2151815/slurm_script.
+Submitted batch job 2151826

@@ -1,0 +1,21 @@
+=== CpHMD PB/MC failure ===
+TIMESTAMP=2026-10-27T15:08:38+00:00
+CYCLE=1
+STAGE=delphi
+JOB_ID=unset
+JOB_NAME=unset
+HOST=cna0006.deucalion.macc.fccn.pt
+MESSAGE=delphiT exited with status 73 during all-site refresh PB/MC.
+
+=== TMP_delphi.out ===
+
+=== TMP_delphi.err ===
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)
+Controlled test fault: PB driver returns 73
+
+=== PB/MC file inventory ===
+PBMC.sites	678 bytes
+TMP_PBMC.gro	138390 bytes
+TMP_delphi.crg	27780 bytes
+TMP_delphi.err	118 bytes
+TMP_delphi.out	0 bytes

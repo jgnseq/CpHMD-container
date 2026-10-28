@@ -1,0 +1,28 @@
+                      :-) GROMACS - gmx mdrun, 2026.3 (-:
+
+Executable:   /gromacs/gromacs-2026.3/bin/gmx
+Data prefix:  /gromacs/gromacs-2026.3
+Working dir:  /out/startup/reprod-five-ps-1
+Command line:
+  gmx mdrun -s /fixed/effective.tpr -deffnm md -nt 8 -pin on -nsteps 5000 -reprod
+
+Reading file /fixed/effective.tpr, VERSION 2026.3 (single precision)
+Overriding nsteps with value passed on the command line: 5000 steps, 5 ps
+Changing nstlist from 20 to 100, rlist from 1 to 1.109
+
+
+Using 1 MPI thread
+Using 8 OpenMP threads 
+
+starting mdrun 'Protein in water'
+5000 steps,      5.0 ps.
+
+Writing final coordinates.
+
+               Core t (s)   Wall t (s)        (%)
+       Time:      453.356       56.670      800.0
+                 (ns/day)    (hour/ns)    (ms/step)  (Matom*steps/s) 
+Performance:        7.625        3.148       11.332            2.470 
+
+GROMACS reminds you: "The historical meaning of QM/MM: Quanto Mangi, Mamma Mia!" (Attilio Vittorio Vargiu, at BioExcel 2022 Summer School in Sardinia)
+

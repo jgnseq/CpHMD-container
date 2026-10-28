@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "archive_sha256": "262f81e43a69841621a4a3c655eb0b99fd1394ce95a36740e4ee980c7800006a",
+  "regular_files": 159,
+  "scope": "source-only archive, no Git metadata/ELF/credential pattern matches"
+}

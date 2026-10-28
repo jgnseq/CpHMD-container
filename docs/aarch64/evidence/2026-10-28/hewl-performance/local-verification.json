@@ -1,0 +1,11 @@
+{
+  "performance_helper_tests": "8 passed, including accepted native outputs and negative identity/STOP/timing controls",
+  "python_compile": "passed for all new performance Python files",
+  "bash_syntax": "passed for all new performance shell/SLURM files",
+  "canonical_controller_ff_pb_scheduler_paths_changed": [],
+  "git_index_paths": [],
+  "git_head": "0af4139838b8a8642a48a2ccd5d13c256a8ac238",
+  "evidence_files": 345,
+  "evidence_bytes": 5448605,
+  "scope": "Native science accepted; benchmark configuration remains experimental. No commit, staging or push performed by agent."
+}

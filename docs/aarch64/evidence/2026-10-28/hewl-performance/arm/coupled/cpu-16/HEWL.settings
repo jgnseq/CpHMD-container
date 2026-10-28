@@ -1,0 +1,158 @@
+###############################################################################
+# CpHMD v0.7.1 basic settings — AMBER14SB CpHMD profile
+###############################################################################
+#
+# Soluble-protein starting profile using Amber14SBpH and TIP3P water.
+# CpHMD does not load a fallback scientific-settings file. Every ordinary
+# simulation choice below is explicit and checked before GROMACS or PB/MC.
+#
+# The 1.0 nm cutoff and dispersion correction reflect the supplied references.
+# Validate the profile for the prepared system.
+#
+# Required edits are marked CHANGE_ME. Review every section even when a
+# suggested value is retained.
+#
+
+###############################################################################
+# 1. Execution and simulation identity
+###############################################################################
+export GPU=0
+export nCPU=16
+export SysName="HEWL"
+export SimTime=0.002
+export StartTime=0
+export ffID="Amber14SBpH"
+export pH=6.0
+export sites="all 1N 129C"
+export temp=310.0
+export ionicstr=0.1
+export ionicstrMD=""         # Empty=use ionicstr for the MD MDP.
+export RelaxSteps=100
+export EffectiveSteps=1000
+
+###############################################################################
+# 2. System and periodic-boundary treatment
+###############################################################################
+export memb=0
+export multiple_solutes=0
+export include_itp=0
+export MembraneCenteringProtocol="tails"  # Used only when memb=1.
+export PBMCDebugPDB=0
+
+###############################################################################
+# 3. PB/MC electrostatics and Monte Carlo
+###############################################################################
+export epsin=2.0
+export epssol=80.0
+export PBdim=0
+export cutoff=-1
+export GridSize=81
+export scaleP=1.0
+export scaleM=4.0
+export bndcon=4
+export maxc=0.0001
+export pot=0.0
+export offset=2000
+export UseInputOffset=0
+export seed=1729
+
+###############################################################################
+# 4. Reduced titration
+###############################################################################
+# Set ReduceTitration=0 to evaluate all configured sites every cycle.
+export ReduceTitration=0
+export RTThreshold=0.01
+export RTInterval=5
+export write_states="y"
+
+###############################################################################
+# 5. Optional PLUMED integration
+###############################################################################
+export plumed=0
+# These values are read only when plumed=1.
+export plumedtype="grid"
+export colvar_name="COLVAR"
+export colvar_stride=1000
+export grid_name="GRIDS"
+export hills="HILLS"
+
+###############################################################################
+# 6. Required and optional input files
+###############################################################################
+export TOPin="HEWL-start.top"
+export GROin="HEWL-start.gro"
+export NDXin="index.ndx"
+export PosRe=""              # Empty=no production position-restraint file.
+
+###############################################################################
+# 7. MDP force-field safety
+###############################################################################
+export mdpoverride=0
+
+###############################################################################
+# 8. CpHMD effective-MD block
+###############################################################################
+# CpHMD overrides tinit, nsteps, ionic strength and ref_t at runtime.
+
+###############################################################################
+# 9. Optional non-membrane fixgro block
+###############################################################################
+# Ignored unless multiple_solutes=1 or include_itp=1. Replace TOTALATOM and
+# adapt every group before activating either feature.
+#fixgro# G Protein
+#fixgro# a 1 TOTALATOM
+#fixgro#
+#fixgro# A Protein
+#fixgro# C Protein Protein Protein W W W
+#fixgro# P Protein Protein Protein
+export CpHDIR='/out/coupled/cpu-16/controller'
+export GroDIRCPU='/out/coupled/cpu-16/tools/gmx'
+export DelphiDir='/out/coupled/cpu-16/tools'
+export PetitDIR='/out/coupled/cpu-16/tools'
+export StDIR='/source/STs/St-Amber14SBpH'
+export DatabaseDIR='/source/Databases'
+export ffDIR='/out/coupled/cpu-16/ff'
+export CPHMD_GATE_WORK='/out/coupled/cpu-16'
+export CPHMD_GATE_SOURCE='/source'
+export Cycle
+export CPHMD_KEEP_RT_DEBUG=1
+export CPHMD_COMPRESS_SEGMENT_LOGS=0
+export CPHMD_COMPRESS_SEGMENT_TPR=0
+export CPHMD_COMPRESS_SEGMENT_STRUCTURES=0
+export CPHMD_MAX_SECONDS=2700
+#mdp# define =
+#mdp# integrator = md
+#mdp# dt = 0.001
+#mdp# nsteps = 1000
+#mdp# continuation = yes
+#mdp# gen-vel = no
+#mdp# ld-seed = 314159
+#mdp# cutoff-scheme = verlet
+#mdp# nstlist = 20
+#mdp# coulombtype = PME
+#mdp# rcoulomb = 1.0
+#mdp# vdwtype = Cut-Off
+#mdp# vdw-modifier = Potential-shift
+#mdp# rvdw = 1.0
+#mdp# rlist = 1.0
+#mdp# DispCorr = EnerPres
+#mdp# fourierspacing = 0.12
+#mdp# pme-order = 4
+#mdp# pbc = xyz
+#mdp# constraints = h-bonds
+#mdp# constraint-algorithm = lincs
+#mdp# lincs-order = 8
+#mdp# lincs-iter = 2
+#mdp# tcoupl = v-rescale
+#mdp# tc-grps = Protein SOL
+#mdp# tau_t = 0.5 0.5
+#mdp# ref_t = 310 310
+#mdp# Pcoupl = no
+#mdp# energygrps = System
+#mdp# nstcalcenergy = 10
+#mdp# nstenergy = 100
+#mdp# nstlog = 100
+#mdp# nstxout-compressed = 100
+#mdp# nstxout = 0
+#mdp# nstvout = 0
+#mdp# nstfout = 0

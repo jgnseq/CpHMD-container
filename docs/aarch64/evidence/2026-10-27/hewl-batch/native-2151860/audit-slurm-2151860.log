@@ -1,0 +1,22 @@
+/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif: OK
+{
+  "status": "EXPLICIT_ENV_BATCH_GATE_PASSED_DEFAULT_GUARD_REVIEW_REQUIRED",
+  "jobs": {
+    "default-guard": [
+      2151814
+    ],
+    "explicit-guard": [
+      2151815,
+      2151826
+    ],
+    "md-failure": [
+      2151816
+    ],
+    "pb-failure": [
+      2151817
+    ],
+    "invalid-checkpoint": [
+      2151818
+    ]
+  }
+}

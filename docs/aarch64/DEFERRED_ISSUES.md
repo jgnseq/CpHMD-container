@@ -160,6 +160,49 @@ from physical-method acceptance. Evidence is under
 `observed-charge-warnings.txt`. No method/force-field change is included in the
 ARM sprint.
 
+## Deferred: scheduler walltime guard is lost through cleanenv
+
+**Suggested title:** Explicitly forward the scheduler's computed cycle-boundary guard into cleanenv containers
+
+**Suggested issue body:** Native generated-wrapper testing on Deucalion shows
+that `CPHMD_MAX_SECONDS_OVERRIDE=1` prints a 1-second host guard, but the actual
+CpHMD process records `CPHMD_MAX_SECONDS=0`. The generator exports the computed
+guard and `CPHMD_WALL_START_EPOCH` only on the host, then uses `exec --cleanenv`
+without explicitly forwarding them. CpHMD consequently defaults to a disabled
+cycle-boundary guard. This is a general scheduler/environment contract defect,
+not an ARM solver or MD failure; do not infer walltime safety from a completed
+short simulation.
+
+The separate native explicit-configuration case uses the supported scheduler
+array `CPHMD_CONTAINER_ENV+=("CPHMD_MAX_SECONDS=1")`, without changing the
+canonical generator, and does reach controller code 10 and a bounded real
+successor. This is a test workaround, not a repair of dynamic guard calculation.
+
+Follow-up: explicitly pass the computed guard and start epoch across the
+container boundary while retaining cleanenv; define precedence against user
+overrides; test the real runtime environment, cycle-boundary finalization,
+automatic successor and failure behavior. Include a small real-runtime or
+faithful cleanenv regression so an inherited host variable cannot mask the bug.
+Keep actual Slurm limits, worst-case cycle time and sync buffer in the policy.
+Evidence and exact reproduction are in `HEWL_BATCH_2026-10-27.md` and
+`evidence/2026-10-27/hewl-batch/`. The canonical generator remains unchanged
+during the ARM sprint as requested; the default guard contract remains REVIEW.
+
+## Deferred: batch-container locale warning
+
+**Suggested title:** Make the generated batch environment select an installed and reproducible locale
+
+**Suggested issue body:** Native generated-wrapper logs include
+`setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)`. The standalone cycle
+fixture explicitly selected C, whereas the generated wrapper enters through
+`bash -lc`; the origin of the unavailable locale (image environment or startup
+configuration) has not been attributed. Preserve the warning, inspect the
+installed locales and startup environment, and consistently select a supported
+locale for reproducible text processing. The native scientific/file/status
+checks passed despite this warning; it was not the cause of the deliberate
+42/43 failures. Do not change the frozen evidence or canonical image/generator
+during this ARM validation step.
+
 ## Deferred: direct USER.pbp solver-parameter overrides
 
 **Suggested title:** Verify effective DelPhi parameters when applying USER.pbp overrides
@@ -210,3 +253,59 @@ scientific requirement.
    Deucalion before access ends. Confirm copies against hashes.
 5. Generalize preparation safeguards, terminal fixes and broader force-field
    testing after the ARM evidence is secured.
+
+## Near term: finalize a reproducible x86 GROMACS 2026.3 container
+
+**Suggested title:** Build and validate the finalized x86 GROMACS 2026.3 reference container
+
+**Suggested issue body:** A finalized, reproducibly built x86 GROMACS 2026.3
+container is still required. The current comparison uses an experimental rc3
+artifact from `tests/gpu-output-contract/build/artifacts/`, image SHA256
+`195139e9bf25cd6cf24b13fae50e1c7cb5b504688d35ede1f24581940684bd0a`.
+Its CPU launcher reports 2026.3/AVX2_256 and was useful as an explicitly
+provisional mini05 performance reference. This does not establish release
+readiness or replace the requested reproducible build.
+
+Freeze the source/definition, compiler/library versions and build options;
+produce named CPU and any intended GPU variants with clear launchers; verify
+ordinary-user runtime, GROMACS/PLUMED, PETIT, fixed PB/MC and coupled/RT/restart
+acceptance. Repeat component/whole-cycle performance on the same x86 machine
+and frozen inputs before replacing a reference. Record license/redistribution
+requirements and complete image/source hashes.
+
+Preserve the original optimized x86 DelPhi binary unchanged, SHA256
+`973e9b99e893ffdf76f78a941920417bb7935e2507259e7f4e7acbeda7068cc6`.
+Its historical compiler build has been difficult to reproduce. Any rebuilt
+solver must be a separate, named candidate with numerical/convergence and
+same-hardware timing comparisons; do not overwrite the baseline or infer
+performance equivalence from a successful compile. Benchmark evidence and
+limitations are in `docs/aarch64/HEWL_PERFORMANCE_2026-10-28.md`.
+
+## ARM performance follow-up: process startup and component costs
+
+**Suggested title:** Validate lower-startup-cost ARM MD settings and preserve matched DelPhi performance controls
+
+**Suggested issue body:** Bounded A64FX HEWL measurements show approximately
+45 seconds outside GROMACS's reported integration time per process at 4–16
+threads, and 61 seconds at 24–48. This dominates short relaxation/effective MD
+cycles. The 2026.3 source maps reproducible FFT setup to FFTW_ESTIMATE; a bounded
+default/reproducible startup diagnostic passed as job 2160496: zero-step time
+fell from 45.49 to 16.28 seconds, and 5-ps command time from 101.61 to 72.77
+seconds with nearly unchanged integration time and passing health checks.
+About 16 seconds of additional process overhead remain unattributed. Treat any
+resulting configuration as an experiment until coupled/RT/continuation gates
+and a longer representative workload pass. Keep the original candidate and
+baseline results unchanged, and separate startup, integration and retained-I/O
+costs. Do not silently change the scientific protocol or promote a single
+short-run timing optimum to a general production default.
+
+The original x86 DelPhi takes less serial time on mini05 than the NVFORTRAN 25.1
+A64FX rebuild: representative model ratios ARM/x86 are about 1.3, and protein
+coarse/focus ratios about 2.5–2.8. One coarse solve has different last printed
+iteration counts. Preserve parameter decks, structures, residuals, cap status,
+energy output and executable/runtime hashes beside timings. Different CPU
+hardware, clocks, storage and compilers prevent an ISA-only or compiler-only
+attribution. Compiler experiments need same-hardware controls and unchanged
+scientific acceptance thresholds; do not substitute fast-math or loosen PB
+convergence to obtain a favorable timing. See the performance report and compact
+evidence under `docs/aarch64/evidence/2026-10-28/hewl-performance/`.

@@ -168,6 +168,31 @@ payloads and permits only unchanged inherited binaries from the recorded
 baseline. Scope and limits are in
 [REPOSITORY_SECURITY_2026-10-27.md](REPOSITORY_SECURITY_2026-10-27.md).
 
+The generated scheduler-wrapper gate is mapped in
+[HEWL_BATCH_2026-10-27.md](HEWL_BATCH_2026-10-27.md).
+`prepare_hewl_batch.py` freezes guarded source-only inputs;
+`hewl-batch-prepare.slurm` creates isolated fixtures and invokes the real
+generator without submitting simulations; `hewl_batch.py` records runtime guard
+transport, checks real successor/sync behavior and verifies failure containment;
+`hewl-batch-audit.slurm` reads the completed native outputs independently.
+Default guard transport remains a separately reported general defect; explicit
+container-environment configuration must not be mistaken for a default-path fix.
+MD/PB/checkpoint fault cases intentionally remain FAILED in Slurm accounting.
+
+The performance stage and full function map are in
+[HEWL_PERFORMANCE_2026-10-28.md](HEWL_PERFORMANCE_2026-10-28.md).
+`prepare_hewl_performance.py` freezes explicit scientific text and harness inputs;
+`hewl-performance.slurm` and `run_hewl_x86_performance.sh` run bounded native and
+provisional-x86 reference tests. `hewl_performance.py` separates reported engine
+integration time from command/cycle clocks and reuses the independent cycle
+health checks. The identical Bash solver launcher preserves the original x86
+DelPhi binary; `hewl_solver_performance.py` audits actual energies, iteration
+records and PETIT distributions. `compare_hewl_performance.py` rejects mismatched
+source/TPR/protocol provenance before computing comparisons. The startup probe
+is a diagnostic experiment; it never edits image/controller/production settings.
+Finalize the reproducible x86 2026.3 image separately from the experimental rc3
+reference. Never replace the historical optimized DelPhi baseline silently.
+
 ## Commenting and maintenance convention
 
 For each new or changed project-owned file, keep a short header explaining its

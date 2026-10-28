@@ -1,0 +1,102 @@
+{
+  "passed": true,
+  "observations": [
+    {
+      "cpu_count": 16,
+      "passed": true,
+      "cycles": 2,
+      "controller_wall_seconds": 316.906383123016,
+      "stages_seconds": {
+        "pb": 52.446217626100406,
+        "mc": 1.4743245341815054,
+        "topology": 0.31679812213405967,
+        "relax_md": 90.97914171800949,
+        "effective_md": 101.81809242488816,
+        "other_controller_and_io": 69.87180869770236
+      },
+      "first_pb_seconds": 26.281540745170787,
+      "effective_md": [
+        {
+          "gmx_core_seconds": 103.138,
+          "gmx_wall_seconds": 6.447,
+          "ns_per_day": 13.414,
+          "mpi_ranks": 1,
+          "omp_threads": 16
+        },
+        {
+          "gmx_core_seconds": 100.579,
+          "gmx_wall_seconds": 6.287,
+          "ns_per_day": 13.756,
+          "mpi_ranks": 1,
+          "omp_threads": 16
+        }
+      ],
+      "initial_gro_sha256": "27a6928ac9f07450ff41ecfb2b09d3d09d16febfd3683c59f2ab3be2d025ff65"
+    },
+    {
+      "cpu_count": 4,
+      "passed": true,
+      "cycles": 2,
+      "controller_wall_seconds": 434.93391040409915,
+      "stages_seconds": {
+        "pb": 134.74214332201518,
+        "mc": 1.5041281569283456,
+        "topology": 0.3146765069104731,
+        "relax_md": 94.90172142302617,
+        "effective_md": 133.78575287596323,
+        "other_controller_and_io": 69.68548811925575
+      },
+      "first_pb_seconds": 67.37232068902813,
+      "effective_md": [
+        {
+          "gmx_core_seconds": 88.479,
+          "gmx_wall_seconds": 22.121,
+          "ns_per_day": 3.91,
+          "mpi_ranks": 1,
+          "omp_threads": 4
+        },
+        {
+          "gmx_core_seconds": 88.457,
+          "gmx_wall_seconds": 22.115,
+          "ns_per_day": 3.911,
+          "mpi_ranks": 1,
+          "omp_threads": 4
+        }
+      ],
+      "initial_gro_sha256": "27a6928ac9f07450ff41ecfb2b09d3d09d16febfd3683c59f2ab3be2d025ff65"
+    },
+    {
+      "cpu_count": 8,
+      "passed": true,
+      "cycles": 2,
+      "controller_wall_seconds": 354.61269440478645,
+      "stages_seconds": {
+        "pb": 76.61691289604641,
+        "mc": 1.5027621670160443,
+        "topology": 0.31737018725834787,
+        "relax_md": 93.095629906049,
+        "effective_md": 113.44432358723134,
+        "other_controller_and_io": 69.63569566118531
+      },
+      "first_pb_seconds": 38.20222714589909,
+      "effective_md": [
+        {
+          "gmx_core_seconds": 91.425,
+          "gmx_wall_seconds": 11.429,
+          "ns_per_day": 7.567,
+          "mpi_ranks": 1,
+          "omp_threads": 8
+        },
+        {
+          "gmx_core_seconds": 93.773,
+          "gmx_wall_seconds": 11.722,
+          "ns_per_day": 7.378,
+          "mpi_ranks": 1,
+          "omp_threads": 8
+        }
+      ],
+      "initial_gro_sha256": "27a6928ac9f07450ff41ecfb2b09d3d09d16febfd3683c59f2ab3be2d025ff65"
+    }
+  ],
+  "limits": "One two-cycle observation/count, with diagnostic retention; screening only. Later structures diverge across counts. First PB starts from identical coordinates."
+}

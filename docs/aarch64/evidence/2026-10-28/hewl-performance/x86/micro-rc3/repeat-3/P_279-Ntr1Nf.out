@@ -1,0 +1,3655 @@
+    
+  __________DelPhi V. 5 Release 1.0 ______________  
+ |                                                | 
+ | A program to solve the PB equation             | 
+ | in 3D, using non-linear form, incorporating    | 
+ | many dielectric regions, multisalt ionic       | 
+ | strength, different probe radii, periodic      | 
+ | and focussing boundary conditions, utilizing   | 
+ | stripped optimum successive over-relaxation    | 
+ | and an improved algorithm for mapping the      | 
+ | Mol. Surface to the finite-Difference grid     | 
+ | Recompiled on Linux and PC                     | 
+ |    August  2010,    Maintained by Delphi       | 
+ |              Development Team                  | 
+ |__________________           ___________________| 
+                    DelPhi V. 5                     
+   
+  program started on Wed Oct 28 2026
+              at 21:21:49
+ realsiz ==             4
+ opening parameter file P_279-Ntr1Nf.prm
+ in funcint,type,direc=ENERGY    
+ (s,c)                                                                                               
+ in funcint,type,direc=IN        
+ (siz,file="DataBaseT.siz")                                                                          
+ in funcint,type,direc=IN        
+ (crg,file="P_279-Ntr1N.crg")                                                                        
+ in funcint,type,direc=IN        
+ (pdb,file="P_279-Ntr1N.pdb")                                                                        
+ in funcint,type,direc=IN        
+ (phi,file="P_279-Ntr1N.phi")                                                                        
+ in funcint,type,direc=IN        
+ (frc,file="P_279-Ntr1N.pdb")                                                                        
+ in funcint,type,direc=SITE      
+ (a,q,p)                                                                                             
+ in funcint,type,direc=OUT       
+ (frc,file="P_279-Ntr1Nf.frc")                                                                       
+ in funcint,type,direc=ACENT     
+ (59.210000,46.545000,15.400000)                                                                     
+ realsiz in main=            4
+ atom radii read from file
+ DataBaseT.siz
+  
+ # of radius parameter records:          726
+  
+ atomic charges read from file
+ P_279-Ntr1N.crg
+  
+ !crg file created by gen_files.awk                          
+ # of charge parameter records:          734
+ assigning charges and radii...
+  
+ opening formatted file:P_279-Ntr1N.pdb
+ You are not reading from an objectfile! assuming     having only molecules, and one dielectric medium
+ number of atoms read in =          2004
+ in setrc, iatrad=  F
+!!! WARNING: NT0  279 has a net charge of  -0.0430
+!!! WARNING: NT0  279 has a net charge of   0.0430
+ Direct mapping of epsilon: (0/1)(n/y)            1
+ time to read in and/or assign rad/chrg=    0.000000    
+ object number :               1 ,  is a molecule
+ Debye Lengths contained in the finite diff. box   -4.613673    
+   
+ grid size                  :           81
+ percent of box to be filled:    323.9000    
+ scale,in grids/A :    4.000000    
+ xmin,xmax     (A):    41.13300        74.08300    
+ ymin,ymax     (A):    34.72100        75.42700    
+ zmin,zmax     (A):  -0.5500000        47.79000    
+ x,y,z range   (A):     32.95000        40.70600        48.34000    
+ system geometric center in (A):    57.60800        55.07400     
+    23.62000    
+  grid  box is centered in (A) :    59.21000        46.54500     
+    15.40000    
+ object centre offset (gu)  :    0.000000        0.000000        0.000000    
+ outer dielectric           :    80.00000    
+ dielectric in medium number            0  :    80.00000    
+ dielectric in medium number            1  :    2.000000    
+ first kind salt concentration (M)   :   0.1000000    
+ valences salt 1 are                    1  and            1
+ second kind salt concentration (M)  :    0.000000    
+ valences salt 2 are                    0  and            0
+ ionic strength (M)         :   0.1000000    
+ debye length (A)           :    9.705932    
+ absolute temperature (K)   :    297.3342    
+ ion exclusion radius (A)   :    2.000000    
+ probe radius facing water(A:    1.400000    
+ probe radius, internal (A) :    1.400000    
+ boundary conditions        : focussing   
+ x,y,z periodic bc. and volt. drop flags:  F  F  F  F  F  F
+ # of linear iterations     :          500
+ convergence by rms  change :    0.000000      kt
+ convergence by max  change :   9.9999997E-05  kt
+ convergence by norm change :    0.000000      kt
+ # of non-linear iterations :            0
+ non-linear energy calculat.:  F
+ manual relaxation parameter :  F
+ ionic direct energy contribution:  F
+ concentration map output   :  F
+ spherical charge distbn.   :  F
+ INSIGHT format output      :  F
+ site potential output      :  T
+ modified atom file output  :  F
+ map file label             :
+qdiffxas: qdiffxs4 with an improved surfacing routine       
+  convergence graph turned off
+  potential listings turned off
+  
+ !!! WARNING: part of system outside the box!
+ start vw surface at     0.000000    
+ Starting creating Van der Waals  Epsilon Map 
+ setout method 1  F  T
+ Ending creating Van der Waals  Epsilon Map 
+ fill in re-entrant regions at    2.0000000E-02
+ here in vwtms	
+ boundary points facing continuum solvent=         27416
+ total number of boundary points before elab.=         27416
+ radpmax,radprb     1.400000        1.400000        1.400000    
+ # of vertices =           384  # of edges =           372
+ # of pairs =         45047
+ time to find all pairs =     0.000000    
+ # pairs analyzed (atom-atom and atom-object)=         45047
+ # exposed pairs (atom-atom and atom-object)=          3035
+ no. arc points  =         70283
+ no. surface atoms  =           985  nbur =          1019
+ mkacc time =    2.9999999E-02
+ grid for indexing accessible points =     1.400000    
+ bgp added m=        20370  bgp removed  mr =        21259
+ bgp added m=        12961  bgp removed  mr =        17292
+ bgp added m=         6243  bgp removed  mr =        11074
+ bgp added m=         2218  bgp removed  mr =         5159
+ bgp added m=          602  bgp removed  mr =         1755
+ bgp added m=          136  bgp removed  mr =          444
+ bgp added m=           25  bgp removed  mr =           96
+ bgp added m=            1  bgp removed  mr =           10
+ bgp added m=            0  bgp removed  mr =            0
+ time to grow re-entrant surface =    4.9999997E-02
+ no. cavity mid-points inaccessible to solvent =             0
+ after surface elaboration ibnum=         12883
+     and               ibnumsurf=         12883
+ scaling boundary grid points
+ time taken =    9.9999998E-03
+            0  points had to be assigned by global comparison
+ time to turn everything in is   0.1200000    
+ number of charges coming from molecules             7
+   
+ number of atom coordinates read  :          2004
+ total number of assigned charges    :             7
+ net assigned charge              :     0.000000    
+ assigned positive charge         :     1.613000    
+ centred at (gu) :    41.53288        41.31613        42.69347    
+ assigned negative charge         :    -1.613000    
+ centred at (gu) :    40.70958        41.06092        44.00097    
+    
+ number of dielectric boundary points        12883
+ no. dielectric boundary points in salt =             0
+ no. charged boundary grid points =            0
+ iepsmp to db, and charging done at   0.1200000    
+ number of grid points assigned charge           56
+  
+   setting boundary conditions
+  
+  
+ focussing boundary condition 
+ read from file
+ P_279-Ntr1N.phi
+  
+  
+  focussing potential map:
+qdiffxas: qdiffxs4 with an improved surfacing routine       
+ original scale (grids/A)      :     1.000000    
+ object centre at (A) :     59.21000        46.54500        15.40000    
+  
+ pulling boundary values out of old potential map...
+  some initial phi values: 
+  midg,midg,1; midg,midg,igrid 
+   5.3548247E-02  -0.5075241    
+  midg,1,midg; midg,igrid,midg 
+  -5.2503828E-02  -0.6830845    
+  1,midg,midg; igrid,midg,midg 
+  -4.1003980E-02   7.6475523E-02
+  
+gauss-seidel spectral radius is        0.9978541732
+  
+ estimated iterations to convergence          172
+   
+ setup time was (sec)    0.1300000    
+   
+ now iterating at: 21:21:49
+  
+  
+   rms-change     max change       #iterations
+    2.352099        175.4754      at           10  iterations
+   0.9110327        35.33961      at           20  iterations
+   0.3555986        9.912359      at           30  iterations
+   0.1390275        4.489801      at           40  iterations
+   5.4441512E-02   0.9198832      at           50  iterations
+   2.1386055E-02   0.3208000      at           60  iterations
+   8.3896024E-03   0.1832880      at           70  iterations
+   3.3200905E-03   5.2150130E-02  at           80  iterations
+   1.3371783E-03   1.7754972E-02  at           90  iterations
+   5.8907864E-04   7.7753067E-03  at          100  iterations
+   3.2269550E-04   3.8990974E-03  at          110  iterations
+   2.2158648E-04   2.3808479E-03  at          120  iterations
+   1.7012998E-04   1.6066432E-03  at          130  iterations
+   1.3563017E-04   1.2822747E-03  at          140  iterations
+   1.0943430E-04   1.0308623E-03  at          150  iterations
+   8.8369787E-05   8.3392859E-04  at          160  iterations
+   7.1438109E-05   6.7240000E-04  at          170  iterations
+   5.7753932E-05   5.4317713E-04  at          180  iterations
+   4.6689827E-05   4.8828125E-04  at          190  iterations
+   3.7762198E-05   4.8828125E-04  at          200  iterations
+   3.0535055E-05   3.0517578E-04  at          210  iterations
+   2.4709641E-05   2.3204088E-04  at          220  iterations
+   2.0027919E-05   4.8828125E-04  at          230  iterations
+   1.6269662E-05   3.0517578E-04  at          240  iterations
+   1.3193600E-05   2.4414063E-04  at          250  iterations
+   1.0783118E-05   2.4414063E-04  at          260  iterations
+   8.7659619E-06   1.8310547E-04  at          270  iterations
+   7.2479233E-06   3.0517578E-04  at          280  iterations
+   6.0970197E-06   3.0517578E-04  at          290  iterations
+   5.1067877E-06   4.2724609E-04  at          300  iterations
+   4.3697378E-06   3.0517578E-04  at          310  iterations
+   3.7703455E-06   2.7465820E-04  at          320  iterations
+   3.3225003E-06   3.6621094E-04  at          330  iterations
+   3.0229542E-06   2.7465820E-04  at          340  iterations
+   2.8131471E-06   3.0517578E-04  at          350  iterations
+   2.5590377E-06   2.4414063E-04  at          360  iterations
+   2.7007907E-06   2.4414063E-04  at          370  iterations
+   2.4624751E-06   2.4414063E-04  at          380  iterations
+   2.4106760E-06   2.4414063E-04  at          390  iterations
+   2.3687467E-06   3.3569336E-04  at          400  iterations
+   2.4459741E-06   2.4414063E-04  at          410  iterations
+   2.5018264E-06   3.0517578E-04  at          420  iterations
+   2.4721649E-06   2.4414063E-04  at          430  iterations
+   2.2633369E-06   2.4414063E-04  at          440  iterations
+   2.5258673E-06   2.4414063E-04  at          450  iterations
+   2.3125831E-06   2.4414063E-04  at          460  iterations
+   2.2710374E-06   2.4414063E-04  at          470  iterations
+   2.2831173E-06   4.8828125E-04  at          480  iterations
+   2.5729439E-06   4.8828125E-04  at          490  iterations
+   2.3206890E-06   2.4414063E-04  at          500  iterations
+ finished qdiffx linear iterations
+ at                       : 21:21:49
+ total time elapsed so far:    0.4000000    
+ # loops                  :           500
+ mean,max change (kT/e)   :    2.3206890E-06   2.4414063E-04
+ self-reaction field energy :       -298.8724      kt
+ total s.charge,no epsin carrying :   -0.0056
+ corrected reaction field energy:    -13.22808      kt
+ total reaction field energy :      -312.1005      kt
+ coulombic energy :                 -292.6172      kt
+ All required energy terms but grid and self_react.:   -305.8453     kt
+ energy calculations done at   0.4000000    
+   
+ writing potentials at given sites...
+   
+ coordinates, etc for potential output read from   file
+ P_279-Ntr1N.pdb
+   
+ unexpected end of pdb file!
+ assuming formatted file!
+ potentials written to file
+ P_279-Ntr1Nf.frc
+   
+ Pay attention, point out of the cube!!
+ i=            2 Value:    85.46001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    85.94000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.30000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    89.46001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.02000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.90001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.02000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    101.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    106.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    111.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    111.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.30000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.82001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.82001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    94.18001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    97.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.34001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    97.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.42001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    89.50000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.30000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    84.74001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    84.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.82001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.42001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    83.38000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    84.38000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    84.18001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    83.70001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    89.06001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    89.74001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.66000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    94.34001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    97.70001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.34001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.62001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.94000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.82001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    89.70001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    89.46001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.160004     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    88.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    85.54001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.160004     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.50000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.319992     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.119995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -3.9993286E-02 Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.199997     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.399994     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.479996     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.8399963     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    82.62001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -8.0001831E-02 Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.8799896     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    88.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.98001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    85.30000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    82.30000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    83.46001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    89.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    83.98001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    82.54001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    85.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.839996     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.399994     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.199997     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.319992     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.03999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.919998     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.959991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.199997     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.51999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.48000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -12.80000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -11.56000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.399994     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.80000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -21.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -16.56000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.75999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -11.03999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.67999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -23.03999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.75999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -22.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.31999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.59999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -21.87999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -21.87999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.48000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.56000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.199997     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.759995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -11.75999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.399994     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.000000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.759995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.599991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -21.28000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -25.87999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.51999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.80000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -21.75999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.67999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.199997     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -11.51999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -12.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -11.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.08000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.56000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.80000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.80000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -21.28000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -20.51999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -23.28000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -26.51999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -24.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -20.39999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.80000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -12.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.599991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -11.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.399994     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.399994     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.319992     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.080002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.360001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.8800049     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.30000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.8399963     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.8399963     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.519989     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.679993     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.759995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.599991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.360001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.000000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.03999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -12.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.879990     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.720001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.599991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.559998     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.119995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.160004     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.759995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.119995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.279999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -12.31999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.959991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.919998     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -12.39999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.919998     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -16.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -23.03999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -25.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -23.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.80000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.39999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.59999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.319992     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -20.31999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -22.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -22.39999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -26.39999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -21.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -25.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.48000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -11.31999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -11.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.800003     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -12.87999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.039993     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -16.51999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -20.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.72000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -11.39999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.08000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.51999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -22.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -24.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -24.59999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -20.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.28000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.31999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -20.59999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -16.75999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -11.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.720001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -12.56000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.479996     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.479996     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.319992     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.239990     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.119995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    121.9400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    125.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    115.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    119.4600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    119.4600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    121.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    119.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    121.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    117.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    115.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    115.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.8799896     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    121.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.1600037     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    125.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    127.9400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    124.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -8.0001831E-02 Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    130.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    133.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    130.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    131.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    133.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.4600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.3200073     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.34001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    101.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.1200104     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.9400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.4400024     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    111.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    119.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    115.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.9400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    117.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    122.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    124.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    125.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    123.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    129.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    106.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    105.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.74001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.90001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.62001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    106.8200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.78001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    101.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    94.62001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.94000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.94000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.74001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.50000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    97.74001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.54001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    105.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.46001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.66000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.26001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.94000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    101.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    101.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.70001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.18001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    106.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.8200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    111.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    101.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.54001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.66000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.50000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.82001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    94.70001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.42001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.78001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    88.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    88.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.26001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    83.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.78001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.18001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    85.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    83.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    88.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.54001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    88.74001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    85.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    94.26001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    97.18001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    94.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.62001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.50000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.66000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.34001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.62001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.26001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    97.54001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    89.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.02000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    85.90001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.94000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    84.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.90001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.94000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.02000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.02000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.50000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.54001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    97.46001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    106.4600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.4600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    86.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    84.50000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    83.54001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    85.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    81.32000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    84.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    83.48000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    84.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.94000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    85.94000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    82.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    94.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    95.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    92.40000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    86.30000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.66000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.18001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    86.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    88.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    88.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    86.18001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    88.38000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    81.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    82.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    88.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    89.72000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    88.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    92.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    85.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    87.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    87.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    81.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    86.08000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    82.60000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    90.76000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    87.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    95.80000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    97.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    99.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    97.52000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    99.52000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    101.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    95.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    103.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    106.6400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    106.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    109.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    107.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    105.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    102.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    110.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    112.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    109.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    113.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    107.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    105.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    101.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    106.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    105.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    109.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    103.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    102.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    96.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    93.56001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    94.72000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    89.72000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    94.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    97.68000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    91.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    114.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    113.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    118.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    119.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    123.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    121.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    125.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    127.9200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    120.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    117.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    119.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    122.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    116.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    127.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    128.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    130.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    81.64001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    82.76001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    83.72000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    88.48001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    90.56000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    92.28000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    91.67999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    91.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    96.48001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    87.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    90.32001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    140.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    143.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    140.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    136.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    144.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    148.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    145.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    144.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    149.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    140.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    136.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    133.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    137.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    141.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    142.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    139.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    144.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    147.9200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    140.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    138.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    139.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    142.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    138.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    134.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    132.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    133.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    134.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    129.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    129.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    131.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    135.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    128.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    129.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    132.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    124.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    123.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    120.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    121.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    114.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    114.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    112.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    113.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    106.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.6400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    114.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    117.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    112.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    113.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    108.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    107.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    105.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    107.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    102.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    102.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    109.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    113.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    114.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    115.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    109.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    111.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    107.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    100.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    97.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    98.56001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    101.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    94.04000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    91.88000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    96.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    92.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    98.76000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    98.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    95.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    91.56001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    98.80000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    96.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    107.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    110.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    107.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    111.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    106.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    89.56001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    90.60000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    84.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    83.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    81.04000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    83.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    82.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    84.52000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    88.04000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    85.76000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    82.32000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    82.24000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    86.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.66000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.30000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    88.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    92.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    89.08000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    85.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    93.52000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    93.24000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    93.56001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    97.24000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    93.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    89.24000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    89.48000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    85.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    89.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    92.32000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    86.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    84.40000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    86.80000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    98.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    103.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    98.76000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    95.72000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    103.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    105.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    101.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    99.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    105.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    108.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    108.9200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    97.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    95.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    100.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    95.04000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    97.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    91.76000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    93.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    107.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    105.9200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    112.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    113.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    116.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    114.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    120.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    123.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    118.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    124.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    128.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    122.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    119.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    125.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    119.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    120.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    119.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    118.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    122.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    120.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    121.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    116.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    122.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    123.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    128.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    130.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    130.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    129.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    136.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    138.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    138.9200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    137.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    137.6400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    145.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    146.6400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    146.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    147.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    152.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    146.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    147.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    145.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    149.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    152.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    154.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    154.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    147.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    144.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    148.6400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    137.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    140.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    135.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    133.9200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    137.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    140.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    137.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    136.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    134.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    143.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    146.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    146.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    150.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    153.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    149.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    152.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    156.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    150.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    152.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    145.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    144.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    142.6400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    139.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    144.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    132.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    133.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    127.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    123.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    124.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    118.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    115.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    117.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    121.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    122.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    120.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    124.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    125.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    125.9200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    128.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    129.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    128.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    130.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.5200043     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    123.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    121.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    123.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    120.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    120.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    119.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    119.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    116.6400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    115.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    110.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    109.9200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    108.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    109.9200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    120.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    123.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    119.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    117.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    122.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    124.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    120.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.9200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    129.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    125.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    122.9200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    118.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    114.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    120.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    123.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    117.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    113.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    116.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    114.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    115.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    121.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    129.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    121.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    123.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    119.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    120.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    118.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    125.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    128.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    131.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    132.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:   0.2600098     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    132.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    131.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    133.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    136.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    128.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    129.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    126.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    125.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    124.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:  -0.5000000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:   0.9800110     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:   -2.579987     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:   0.3400116     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    117.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    115.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    116.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    119.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    121.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    118.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    114.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    112.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    114.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    136.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    139.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    136.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    134.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    138.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    139.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    135.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    135.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    138.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    135.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    141.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    139.6400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    130.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    128.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    144.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    144.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    149.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    149.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    148.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    147.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    155.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    156.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    156.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    157.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    158.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    162.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    154.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    155.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    154.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    151.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    158.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    161.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    159.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    159.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    162.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    154.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    155.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    150.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    150.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    146.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    142.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    143.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    145.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    144.0400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    138.3600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    136.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    148.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    150.9200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    145.6400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    144.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    146.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    149.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    147.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    148.6400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    144.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    151.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    150.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    155.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    153.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    154.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    149.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    157.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    158.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    160.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    159.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    156.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    162.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    164.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    164.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    166.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    141.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.8800049     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    136.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    136.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    131.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    128.4000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    131.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.5200043     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    132.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.9600067     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    122.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.279999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.679993     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.080002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.1999969     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.800003     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.7200012     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    132.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.319992     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.080002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.8399963     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.959991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    130.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    138.9600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    139.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    139.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    136.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.8399963     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    143.6400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.959991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.679993     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.8799896     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.959991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.720001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.08000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.239990     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.3200073     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.639999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.559998     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.399994     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.119995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    112.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    112.5200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.519989     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.72000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.599991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.080002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.440002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -16.51999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -16.56000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -16.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -23.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -25.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -24.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.559998     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.599991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.399994     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.639999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.759995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.080002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.2399902     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.519989     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.559998     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.800003     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    103.7200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    105.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -8.0001831E-02 Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    98.76000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    99.48000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    95.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.8000031     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    108.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    110.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    106.1200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.1600037     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.039993     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.479996     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    99.56001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    96.68000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    97.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    102.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    100.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    105.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    105.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    109.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    102.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    98.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    107.8400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    101.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    101.6000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.5600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    102.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    105.2000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    110.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    95.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    92.88000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    94.32000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    97.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    88.88000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    87.76000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    88.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    91.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    84.76000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    90.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    92.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    85.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    86.68000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    90.48000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    83.24000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    86.56001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    83.52000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    88.68000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    89.04000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    81.08000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    84.08000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    87.52000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    82.52000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    87.88000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    86.68000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    89.76000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    92.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    93.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    96.68000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    99.52000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    98.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    95.32000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    89.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    92.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    87.60000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    87.40000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    82.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    82.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    85.76000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    83.08000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    83.96000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.000000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.279999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.1199951     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.519989     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.639999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.080002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.279999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.7200012     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.9199982     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.639999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.879990     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.519989     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.51999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -16.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.28000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.000000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.559998     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.879990     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.160004     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.360001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.839996     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.519989     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.6000061     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    84.88000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.239990     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    82.48000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    87.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    81.28000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    85.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    82.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    86.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.6000061     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.000000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.959991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.279999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.639999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.199997     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -11.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.4400024     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.959991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.239990     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.039993     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.639999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.599991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.72000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.59999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.87999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -16.28000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.67999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -21.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.080002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.28000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.519989     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.679993     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.5199890     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.519989     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    100.1600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    96.60000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.7600098     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    106.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    100.2800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.6400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    96.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    92.60000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    96.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    99.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    90.72000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.02000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    89.56001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    87.76000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    97.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    84.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.479996     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.839996     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.239990     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.559998     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.03999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -16.31999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.67999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.48000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -22.39999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -19.31999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.80000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -24.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -26.48000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -26.48000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -23.87999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.759995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.399994     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.080002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.919998     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.759995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.160004     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -12.84000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.239990     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.39999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.67999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.03999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.67999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -20.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -21.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -20.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -24.64000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -28.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -25.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -23.87999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.800003     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.519989     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.6799927     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.6399994     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    115.6800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    119.4400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    112.2400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    108.0000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    82.46001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    82.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    86.38000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    82.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    113.0800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    113.3200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    116.4800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    108.8000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    104.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    108.8800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    109.7600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    85.18001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.06001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.8000031     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.2399902     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:  -0.7200012     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.06001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.759995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.519989     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.199997     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.479996     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.879990     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.440002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.70001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.959991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.279999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.800003     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.399994     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.03999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -18.59999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -22.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -20.20000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.75999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.00000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.28000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.599991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -9.279999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -13.16000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.720001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.519989     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.119995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.48000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -15.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -16.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -17.44000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -8.759995     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.72000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.279999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.239990     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.959991     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.160004     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -7.559998     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.080002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.360001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -6.879990     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    101.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.34001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.34001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.70001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    97.54001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.78001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.34001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.30000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    86.78001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    111.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.4600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    106.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.9400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    106.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    111.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    111.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    122.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    121.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    125.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    101.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.62001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    101.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.94000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.50000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.38000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.02000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.02000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.38000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.70001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.78001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.90001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.70001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.46001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    82.90001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    96.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    96.32000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    82.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    81.46001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            3 Value:    96.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    85.26001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    84.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    89.82001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.78001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.74001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    94.78001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.54001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.62001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    89.74001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.38000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.70001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.66000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    89.82001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.78001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.26001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    89.26001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    87.18001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    91.66000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    86.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.98001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    92.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.34001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.4600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    94.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.30000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.70001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.9400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    106.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.90001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    106.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    105.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    111.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    117.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    119.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    119.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    123.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    126.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    124.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    127.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    121.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    115.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    119.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.8200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    117.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    117.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    105.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    101.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    101.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.10001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    123.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    115.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    111.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    111.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    106.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    121.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    117.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    105.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    111.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    81.12000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    81.36002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    97.22000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    84.23999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    84.67999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    85.08002     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:    86.56000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    119.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.9400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    119.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    117.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    121.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    122.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.8200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    117.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    126.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    129.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    126.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    122.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    130.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    130.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    129.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    129.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    125.4600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    133.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    131.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    137.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    133.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    134.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    129.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    137.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    136.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    141.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    137.9400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    134.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    140.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    139.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    136.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    136.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    140.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    139.9400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    145.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    147.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    148.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    146.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    151.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    142.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    138.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    142.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    146.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    137.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    138.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    136.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    135.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    132.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    139.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    133.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    132.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    143.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    142.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    144.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    145.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    144.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    146.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    146.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    144.4600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    150.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    147.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    146.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    143.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    148.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    147.4600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    149.8200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    145.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    138.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    135.4600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    136.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    138.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    130.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    127.8200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    129.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    125.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    129.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    127.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    126.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    132.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    132.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    136.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    132.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    130.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    130.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    125.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    134.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    138.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    134.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    131.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    140.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    143.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    141.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    139.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    137.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    138.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    145.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    148.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    145.8200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    142.4600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    149.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    132.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    130.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    133.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    135.8200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    131.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    133.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    133.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    132.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    137.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    131.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    125.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    122.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    122.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    124.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    115.8200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    121.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    112.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    105.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    105.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    111.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.5000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    122.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    117.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.7800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    117.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    116.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    113.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    123.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    126.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    124.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    123.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    124.6600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    126.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    119.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    124.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    126.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    128.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    130.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    131.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    129.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    133.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    135.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    138.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    133.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    139.5800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    142.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    137.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    143.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    145.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    144.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    143.1400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    141.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    145.0600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    146.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    148.1000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    147.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    124.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    120.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    125.8200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    129.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    122.7400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    121.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    125.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    117.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    115.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    117.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.9000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.8200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    107.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    105.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    108.5400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.6200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   0.9199982     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    97.82001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    102.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    105.4200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.3800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    97.86000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    94.82001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.50000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    95.58000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    94.34001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    96.06001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.74001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    98.26001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    93.94000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    90.74001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    94.14001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    103.3400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    99.78001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -1.919998     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.199997     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -4.360001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.199997     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -2.360001     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -5.039993     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -3.479996     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    110.0200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    109.2600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.9400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    114.8600     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    118.3000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    115.1800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.7000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.2200     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    104.9400     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            2 Value:    100.9800     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -10.36000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -12.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -14.92000     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -12.75999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -12.95999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -11.03999     Igrid:           81
+ Pay attention, point out of the cube!!
+ i=            1 Value:   -16.75999     Igrid:           81
+    
+ number of atom coordinates read  :          2004
+    
+ frc stuff now done at   0.4100000    
+   
+ total cpu time was (sec)    0.4100000    
+   
+ DelPhi exited at 21:21:49

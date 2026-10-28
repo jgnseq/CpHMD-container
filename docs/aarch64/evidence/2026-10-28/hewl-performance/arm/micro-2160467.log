@@ -1,0 +1,13 @@
+/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif: OK
+Traceback (most recent call last):
+  File "/source/tests/arm64/hewl_solver_performance.py", line 124, in <module>
+    main()
+  File "/source/tests/arm64/hewl_solver_performance.py", line 120, in main
+    run(args.inputs.resolve(), args.output.resolve())
+  File "/source/tests/arm64/hewl_solver_performance.py", line 84, in run
+    record = solver_record((work / (name + ".out")).read_text())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/source/tests/arm64/hewl_solver_performance.py", line 38, in solver_record
+    assert len(energy) == 1 and "energy calculations done" in text
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

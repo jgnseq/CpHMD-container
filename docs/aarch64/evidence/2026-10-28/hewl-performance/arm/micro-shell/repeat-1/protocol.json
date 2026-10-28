@@ -1,0 +1,29 @@
+{
+  "decks_in_execution_order": [
+    "258-Asp2N.prm",
+    "P_258-Asp2Nb.prm",
+    "P_258-Asp2Nf.prm",
+    "279-Ntr1N.prm",
+    "P_279-Ntr1Nb.prm",
+    "P_279-Ntr1Nf.prm"
+  ],
+  "file_sha256": {
+    "P_279-Ntr1Nf.prm": "fd9801601d631c95f392318224a20fa09d59f62dd2e98a3f7c0c507fbb72662a",
+    "DataBaseT.crg": "3c7f8cbc0f9b53bf14f05d35168336f5795d654cdd910db0cd8b48c352622a90",
+    "258-Asp2N.prm": "8aeba5f93607beb86f58986ac9eab00ec0258415f32feb6b323e6d95063f310e",
+    "P_279-Ntr1N.pdb": "df886507f3cb87387163f05968576e3f647f762440cef488c13a0ba677b42e85",
+    "P_279-Ntr1Nb.prm": "68c3e9913e2bc87989ee36047c2ee0398a0685c5b6fd415cc552d5be75b2f8c5",
+    "P_258-Asp2N.crg": "8c6d007d33056c2384685aa5a624c5c6c9504efe8d0ee8335427f5d10b83f7a2",
+    "P_258-Asp2N.pdb": "a510dc510f5166095cf6222c87dec2c47ab62e864561244a1f259138cf418088",
+    "P_279-Ntr1N.crg": "c25598c74ed7dbffa26f207fc4b6d8d98214191053f9a490b97d99f3893f02ea",
+    "258-Asp2N.pdb": "918c991405b24288c407a03dd49a8e1769dbe10a1fbd4e4b3adfff04432c387a",
+    "PBMC.dat": "ed4e6abcf9a285e4f31acec59cb977cc053c5828c9807ea72b30b6f72578a539",
+    "P_258-Asp2Nb.prm": "234949e7bf751dd61e776257676e7d863dd8965b0dbc356392d63687c4ad52e3",
+    "279-Ntr1N.prm": "d12dbf9a04aa46cf85b1f075be97a48be90eccaacc210c80a85c666a58bab12c",
+    "P_258-Asp2Nf.prm": "788c678b33f157be8edefd352a2516d0a540ed4110f2612dd0c5073249c88292",
+    "279-Ntr1N.pdb": "2fa4f35aa7412372852387a3c6d10c54eb3271db5006b1e7d7d45771c2018b0a",
+    "DataBaseT.siz": "183916cd6cecfd669f09eba29f3ebb67d6f3ddbbb3289bd6666b523a6c91c532"
+  },
+  "origin": "/tmp/cphmd-hewl-pbmc-tight-verified.TIkWWl/pbmc",
+  "profile": "maxc .0001; model/focus linit500, protein coarse1000; 81 grid points. Earlier full-grid convergence limitations remain."
+}

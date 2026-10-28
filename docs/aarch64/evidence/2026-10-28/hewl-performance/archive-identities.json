@@ -1,0 +1,11 @@
+{
+  "source_initial_arm": "a3320919dfcccb0e3c2556ac59879ce68ebc6912b7c375c9693618d45e6dde4b",
+  "source_paired": "2b4e3454be733f1d464fdf41a4e1eca3db55899c9aac83a00cc30405f81d8af3",
+  "source_startup": "34aa04cd25eadc7c909ed4c23e49654c21f9ff81f29ca0225f79f86c84ccd75f",
+  "paired_micro_inputs": "259048c2e9a13a1d6f6fe77e64ed4cc861bfaab8c14d30615dd7abc6aa0bcec8",
+  "arm_text_archive": "634a577c28971fd983b7e2b9a4d96240ee46c34086082c197159cd8eac181f26",
+  "x86_text_archive": "fff700310a63bcb112b0ae988045af1326a1965526eab2ac42d461be1bced03c",
+  "arm_full_archive": "820af52883be4cf0565fc2ac14f832135675aeca5b488bb523ee349753eaf846",
+  "x86_full_archive": "8e726f397412d0a50a87c8e8f8375e8f7d76ef306ed90667ab84dc5d20608ca9",
+  "startup_full_archive": "546b6b13e0a116423b43b3d70607c2581f8f22e76b84c9661815c8453b87bbf1"
+}

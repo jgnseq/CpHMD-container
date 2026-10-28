@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "job": 2160496,
+  "default_zero_seconds": 45.491620210930705,
+  "reprod_zero_seconds": 16.2808743910864,
+  "original_default_five_ps_command_seconds": 101.61346199398395,
+  "reprod_five_ps_median_command_seconds": 72.77014122495893,
+  "original_default_five_ps_gmx_seconds": 56.7795,
+  "reprod_five_ps_median_gmx_seconds": 56.6605,
+  "command_time_reduction_fraction": 0.28385334190003964,
+  "all_longer_probe_health_checks_passed": true,
+  "production_setting_promoted": false,
+  "interpretation": "Consistent with FFT-planning contribution, supported by the checksum-pinned source path. -reprod also changes other optimization choices. About 16 seconds remain outside reported GROMACS integration time; follow up with coupled/RT checks before promotion."
+}

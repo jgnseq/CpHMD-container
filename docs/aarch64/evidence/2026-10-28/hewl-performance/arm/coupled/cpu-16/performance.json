@@ -1,0 +1,32 @@
+{
+  "cpu_count": 16,
+  "passed": true,
+  "cycles": 2,
+  "controller_wall_seconds": 316.906383123016,
+  "stages_seconds": {
+    "pb": 52.446217626100406,
+    "mc": 1.4743245341815054,
+    "topology": 0.31679812213405967,
+    "relax_md": 90.97914171800949,
+    "effective_md": 101.81809242488816,
+    "other_controller_and_io": 69.87180869770236
+  },
+  "first_pb_seconds": 26.281540745170787,
+  "effective_md": [
+    {
+      "gmx_core_seconds": 103.138,
+      "gmx_wall_seconds": 6.447,
+      "ns_per_day": 13.414,
+      "mpi_ranks": 1,
+      "omp_threads": 16
+    },
+    {
+      "gmx_core_seconds": 100.579,
+      "gmx_wall_seconds": 6.287,
+      "ns_per_day": 13.756,
+      "mpi_ranks": 1,
+      "omp_threads": 16
+    }
+  ],
+  "initial_gro_sha256": "27a6928ac9f07450ff41ecfb2b09d3d09d16febfd3683c59f2ab3be2d025ff65"
+}

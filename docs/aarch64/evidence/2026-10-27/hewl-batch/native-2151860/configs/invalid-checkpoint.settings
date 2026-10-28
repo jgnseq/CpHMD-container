@@ -1,0 +1,24 @@
+#!/bin/bash
+# Fixture scheduler inputs; generated script is canonical, unmodified.
+CPHMD_RUN_DIR=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/runs/invalid-checkpoint
+CPHMD_SETTINGS_FILE=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/runs/invalid-checkpoint/01_CpHMD.settings
+CPHMD_IMAGE=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif
+CPHMD_ACCOUNT=f202500250cpcaa2a
+CPHMD_CPU_PARTITION=dev-arm
+CPHMD_CPUS=8
+CPHMD_MEMORY=8G
+CPHMD_WALLTIME=01:00:00
+CPHMD_SIGNAL_SECONDS=30
+CPHMD_STOP_BUFFER_SECONDS=120
+CPHMD_MAX_SECONDS_OVERRIDE=1
+CPHMD_MAX_RESUB=1
+CPHMD_SCRATCH_ROOT=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/scratch
+CPHMD_SCRATCH_POLICY=allow-network
+CPHMD_JOB_NAME=HEWL-invalid-checkpoint
+CPHMD_HOST_CODE_DIR=''
+CPHMD_SUBMIT=0
+CPHMD_BIND_PATHS=(/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/source:/source:ro /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solution.P4IU4M/solution/snapshot:/input:ro /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/fixtures/invalid-checkpoint:/fixture:ro /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/captures/invalid-checkpoint:/capture /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/tmp:/test-tmp)
+CPHMD_CONTAINER_ENV=(TMPDIR=/test-tmp GMX_MAXBACKUP=-1 OMP_NUM_THREADS=8)
+CPHMD_COMMON_SBATCH_DIRECTIVES=(--export=ALL,TMPDIR=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/tmp,SINGULARITY_TMPDIR=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/tmp,APPTAINER_TMPDIR=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/tmp)
+CPHMD_CPU_SBATCH_DIRECTIVES=()
+CPHMD_GPU_SBATCH_DIRECTIVES=()

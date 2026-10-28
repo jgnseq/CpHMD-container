@@ -1,0 +1,7 @@
+TIMESTAMP=2026-10-27T15:08:38+00:00
+JOB_ID=2151817
+JOB_NAME=HEWL-pb-failure
+HOST=cna0006.deucalion.macc.fccn.pt
+STATUS=failed
+EXIT_CODE=43
+SCRATCH_DIR=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.wrapper.1ETCjX/scratch/jsequeira/CpHMD/HEWL-pb-failure_2151817

@@ -1,0 +1,22 @@
+=== CpHMD failure diagnostic ===
+TIMESTAMP=2026-10-27T15:08:38+00:00
+CYCLE=1
+PID=1310185
+JOB_ID=unset
+JOB_NAME=unset
+HOST=cna0006.deucalion.macc.fccn.pt
+WORKING_DIRECTORY=/out/CpHMD-run_1310185
+
+=== Run information: HEWL_CpHrun.info ===
+Simulation run by   @  cna0006.deucalion.macc.fccn.pt
+Initial time: Tue Oct 27 15:07:48 WET 2026
+
+Cycle = 1; time = .100 ps; Date: 10/27/26 15:08:38
+PB/MC (All) -        Cycle = 1; Date: 10/27/26 15:08:38 - 
+=== Relevant temporary files ===
+TMP_CpHMD.tpr	1195676 bytes
+TMP_delphi.err	118 bytes
+TMP_delphi.out	0 bytes
+TMP_effective.mdp	629 bytes
+TMP_effective_out.mdp	11168 bytes
+TMP_relax.mdp	697 bytes
