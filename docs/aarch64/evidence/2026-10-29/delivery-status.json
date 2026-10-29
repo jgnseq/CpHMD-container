@@ -1,0 +1,40 @@
+{
+  "captured_utc": "2026-10-29T09:00:04.337501+00:00",
+  "core_candidate_recovery_sha256": {
+    "CpHMD-portable-seed-20261028.tar.gz": "ec7148f2ee65db667f31bf8204b4ef20c7e8386491ec55ee01744db7cf9405ff",
+    "cphmd-delphi5-matched-source.tar.gz": "e42194bac9255b658c5637da32a8f7a7203dccc78ac087d3f15c118fc8a97026",
+    "portable-2160578/CpHMD-arm64.sif": "dd7872704d2a8780ea52b4e3003c5a0519d8bbc20d179069df740a010b2ce479",
+    "portable-2160578/recovery-runtime-and-recipe.tar.gz": "8e2ebed1e9137d88d6864b85e528574abb56d1ebad8daef69e28d93c6ecb1637"
+  },
+  "native_gates_passed": [
+    "build/unit/smoke/ordinary-user",
+    "fixed-coordinate tight PBMC",
+    "all-site cycles",
+    "7 RT cycles and finalized stop/resume",
+    "separate-allocation reduced cycle 7 to 8"
+  ],
+  "non_sve_emulation_passed": true,
+  "physical_non_sve_ARM_hardware_tested": false,
+  "benchmarks": {
+    "2160989_1": "deliberately canceled incomplete four-core case; no accepted timing",
+    "2160989_3": "16 threads, running",
+    "2160989_5": "48 threads, running",
+    "2161053_0-3": "four threads; split observations, all four required"
+  },
+  "split_root": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/portable-validation.20261029.split4.haW4Gw",
+  "split_source_archive_sha256": "be0af039036420b410734ebdcea5180d429d0aa70f493d5c2b40b8d9bd19524d",
+  "project_quota_reported": {
+    "usage": "18.39G",
+    "limit": "2.93T",
+    "files": 82568,
+    "file_count_limit": null
+  },
+  "pending": [
+    "portable performance aggregation",
+    "portable generated-wrapper confirmation under explicit guard",
+    "full raw/build recovery completion",
+    "candidate promotion/final handover"
+  ],
+  "local_validation": "8 performance helper tests and 4 portable context tests passed; Python/Bash syntax and diff checks passed; no canonical scientific/runtime source edits",
+  "git": "Agent has not staged, committed or pushed."
+}

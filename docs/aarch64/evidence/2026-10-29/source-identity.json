@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "identical_scientific_text_files": 147,
+  "sources": [
+    "portable_initial",
+    "portable_split",
+    "reference_arm",
+    "x86"
+  ],
+  "manifest_sha256": {
+    "portable_initial": "1cc7adf28bf7fb6b963810732fc1fdcfefc54ec15b9ca03b9f5d501795a87c31",
+    "portable_split": "196f7613ad1c146b77b56831b823c05578784f37523d10c40155b94381c11405",
+    "reference_arm": "df4fcdfe6a9044e417dbfa5c643d1bb70ad734313c48f11e922130491cd278ee",
+    "x86": "b8dc48da5fa23fbdf538c94c42b0d4a8a1cc4c0d768c0c798e7ee8aecbf22d9b"
+  },
+  "fixed_tpr_sha256": "7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48",
+  "limits": "Runtime harness/launchers differ by stage. This verifies shared scientific text and the fixed TPR, not a claim of identical hardware or coupled trajectories."
+}

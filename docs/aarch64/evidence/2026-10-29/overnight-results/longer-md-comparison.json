@@ -1,0 +1,252 @@
+{
+  "passed": true,
+  "observations": 32,
+  "records": [
+    {
+      "architecture": "arm",
+      "cpu_count": 4,
+      "profile": "default",
+      "duration_ps": 50.0,
+      "repeats": 2,
+      "median_command_seconds": 1134.540926528396,
+      "median_gmx_seconds": 1089.6570000000002,
+      "median_ns_per_day": 3.965,
+      "command_seconds_range": [
+        1134.538663386833,
+        1134.5431896699592
+      ],
+      "median_outside_gmx_seconds": 44.883926528396046
+    },
+    {
+      "architecture": "arm",
+      "cpu_count": 4,
+      "profile": "default",
+      "duration_ps": 200.0,
+      "repeats": 2,
+      "median_command_seconds": 4402.7297945139,
+      "median_gmx_seconds": 4357.7265,
+      "median_ns_per_day": 3.9655,
+      "command_seconds_range": [
+        4402.444040153874,
+        4403.015548873926
+      ],
+      "median_outside_gmx_seconds": 45.00329451390007
+    },
+    {
+      "architecture": "arm",
+      "cpu_count": 4,
+      "profile": "reprod",
+      "duration_ps": 50.0,
+      "repeats": 2,
+      "median_command_seconds": 1106.8368372259429,
+      "median_gmx_seconds": 1090.7185,
+      "median_ns_per_day": 3.961,
+      "command_seconds_range": [
+        1106.7893629560713,
+        1106.8843114958145
+      ],
+      "median_outside_gmx_seconds": 16.118337225942923
+    },
+    {
+      "architecture": "arm",
+      "cpu_count": 4,
+      "profile": "reprod",
+      "duration_ps": 200.0,
+      "repeats": 2,
+      "median_command_seconds": 4377.34355446347,
+      "median_gmx_seconds": 4361.0255,
+      "median_ns_per_day": 3.9625,
+      "command_seconds_range": [
+        4376.096567373024,
+        4378.590541553916
+      ],
+      "median_outside_gmx_seconds": 16.318054463470162
+    },
+    {
+      "architecture": "arm",
+      "cpu_count": 16,
+      "profile": "default",
+      "duration_ps": 50.0,
+      "repeats": 2,
+      "median_command_seconds": 357.27643371152226,
+      "median_gmx_seconds": 312.4445,
+      "median_ns_per_day": 13.8265,
+      "command_seconds_range": [
+        356.664341225056,
+        357.88852619798854
+      ],
+      "median_outside_gmx_seconds": 44.831933711522254
+    },
+    {
+      "architecture": "arm",
+      "cpu_count": 16,
+      "profile": "default",
+      "duration_ps": 200.0,
+      "repeats": 2,
+      "median_command_seconds": 1293.55053365801,
+      "median_gmx_seconds": 1248.5349999999999,
+      "median_ns_per_day": 13.840499999999999,
+      "command_seconds_range": [
+        1293.315038141096,
+        1293.786029174924
+      ],
+      "median_outside_gmx_seconds": 45.015533658009986
+    },
+    {
+      "architecture": "arm",
+      "cpu_count": 16,
+      "profile": "reprod",
+      "duration_ps": 50.0,
+      "repeats": 2,
+      "median_command_seconds": 326.6184234479442,
+      "median_gmx_seconds": 310.495,
+      "median_ns_per_day": 13.913499999999999,
+      "command_seconds_range": [
+        326.52914284705184,
+        326.7077040488366
+      ],
+      "median_outside_gmx_seconds": 16.12342344794422
+    },
+    {
+      "architecture": "arm",
+      "cpu_count": 16,
+      "profile": "reprod",
+      "duration_ps": 200.0,
+      "repeats": 2,
+      "median_command_seconds": 1258.2860783825163,
+      "median_gmx_seconds": 1242.0005,
+      "median_ns_per_day": 13.913499999999999,
+      "command_seconds_range": [
+        1258.1650059761014,
+        1258.4071507889312
+      ],
+      "median_outside_gmx_seconds": 16.28557838251629
+    },
+    {
+      "architecture": "arm",
+      "cpu_count": 48,
+      "profile": "default",
+      "duration_ps": 50.0,
+      "repeats": 2,
+      "median_command_seconds": 207.64500279794447,
+      "median_gmx_seconds": 146.262,
+      "median_ns_per_day": 29.541,
+      "command_seconds_range": [
+        205.9000308578834,
+        209.38997473800555
+      ],
+      "median_outside_gmx_seconds": 61.38300279794447
+    },
+    {
+      "architecture": "arm",
+      "cpu_count": 48,
+      "profile": "default",
+      "duration_ps": 200.0,
+      "repeats": 2,
+      "median_command_seconds": 639.3085767729208,
+      "median_gmx_seconds": 577.7915,
+      "median_ns_per_day": 29.9085,
+      "command_seconds_range": [
+        635.5600749349687,
+        643.0570786108728
+      ],
+      "median_outside_gmx_seconds": 61.5170767729208
+    },
+    {
+      "architecture": "arm",
+      "cpu_count": 48,
+      "profile": "reprod",
+      "duration_ps": 50.0,
+      "repeats": 2,
+      "median_command_seconds": 163.15577934798785,
+      "median_gmx_seconds": 146.977,
+      "median_ns_per_day": 29.394,
+      "command_seconds_range": [
+        162.28473538602702,
+        164.02682330994867
+      ],
+      "median_outside_gmx_seconds": 16.17877934798784
+    },
+    {
+      "architecture": "arm",
+      "cpu_count": 48,
+      "profile": "reprod",
+      "duration_ps": 200.0,
+      "repeats": 2,
+      "median_command_seconds": 604.1392725540791,
+      "median_gmx_seconds": 587.7860000000001,
+      "median_ns_per_day": 29.3985,
+      "command_seconds_range": [
+        603.731170661049,
+        604.5473744471092
+      ],
+      "median_outside_gmx_seconds": 16.35327255407907
+    },
+    {
+      "architecture": "x86",
+      "cpu_count": 4,
+      "profile": "default",
+      "duration_ps": 50.0,
+      "repeats": 2,
+      "median_command_seconds": 260.1259103184566,
+      "median_gmx_seconds": 257.977,
+      "median_ns_per_day": 16.746000000000002,
+      "command_seconds_range": [
+        259.69111504685134,
+        260.56070559006184
+      ],
+      "median_outside_gmx_seconds": 2.1489103184565863
+    },
+    {
+      "architecture": "x86",
+      "cpu_count": 4,
+      "profile": "default",
+      "duration_ps": 200.0,
+      "repeats": 2,
+      "median_command_seconds": 1030.3536383755272,
+      "median_gmx_seconds": 1028.1219999999998,
+      "median_ns_per_day": 16.807499999999997,
+      "command_seconds_range": [
+        1025.616454744013,
+        1035.0908220070414
+      ],
+      "median_outside_gmx_seconds": 2.231638375527268
+    },
+    {
+      "architecture": "x86",
+      "cpu_count": 4,
+      "profile": "reprod",
+      "duration_ps": 50.0,
+      "repeats": 2,
+      "median_command_seconds": 260.09849711798597,
+      "median_gmx_seconds": 258.2815,
+      "median_ns_per_day": 16.7265,
+      "command_seconds_range": [
+        259.7087308350019,
+        260.48826340097
+      ],
+      "median_outside_gmx_seconds": 1.8169971179859772
+    },
+    {
+      "architecture": "x86",
+      "cpu_count": 4,
+      "profile": "reprod",
+      "duration_ps": 200.0,
+      "repeats": 2,
+      "median_command_seconds": 1032.8817100189626,
+      "median_gmx_seconds": 1030.9755,
+      "median_ns_per_day": 16.761,
+      "command_seconds_range": [
+        1032.4137765918858,
+        1033.3496434460394
+      ],
+      "median_outside_gmx_seconds": 1.9062100189626108
+    }
+  ],
+  "limits": [
+    "ARM measurements use A64FX/SVE512 reference, not portable candidate.",
+    "Different machines, clock speeds and memory systems; not an isolated ISA/compiler comparison.",
+    "Two repeats per case; engineering timing/health screen, not equilibrium sampling.",
+    "ARM exclusive reservation is 48 cores even when fewer threads are tested."
+  ]
+}

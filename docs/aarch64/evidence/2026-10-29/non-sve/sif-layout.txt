@@ -1,0 +1,1 @@
+Verified remote singularity sif list: partition ID 4, ARM64 SquashFS, offset 65536; SIF SHA256 dd7872704d2a8780ea52b4e3003c5a0519d8bbc20d179069df740a010b2ce479.

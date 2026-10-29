@@ -1,0 +1,32 @@
+{
+  "cpu_count": 4,
+  "profile": "reprod",
+  "order": [
+    [
+      200000,
+      2
+    ],
+    [
+      200000,
+      1
+    ],
+    [
+      50000,
+      2
+    ],
+    [
+      50000,
+      1
+    ]
+  ],
+  "tpr_sha256": "7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48",
+  "dt_ps": 0.001,
+  "saved_interval_steps": 100,
+  "allowed_cpus": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "limits": "Fixed-protonation MD timing/health screen. Does not change or validate a longer CpHMD titration interval."
+}

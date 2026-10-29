@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "cycles": 8,
+  "separate_allocation_continuation": true,
+  "limits": "Controller GRO/TOP/RT restart, not GROMACS CPT bitwise continuation."
+}

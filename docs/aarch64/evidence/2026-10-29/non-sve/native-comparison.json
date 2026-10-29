@@ -1,0 +1,37 @@
+{
+  "reported_PB_comparison": [
+    {
+      "deck": "258-Asp2N.prm",
+      "reported_energy_difference_kT": 0.0,
+      "same_last_iteration_count": true
+    },
+    {
+      "deck": "P_258-Asp2Nb.prm",
+      "reported_energy_difference_kT": 0.0,
+      "same_last_iteration_count": true
+    },
+    {
+      "deck": "P_258-Asp2Nf.prm",
+      "reported_energy_difference_kT": 0.0,
+      "same_last_iteration_count": true
+    },
+    {
+      "deck": "279-Ntr1N.prm",
+      "reported_energy_difference_kT": 0.0,
+      "same_last_iteration_count": true
+    },
+    {
+      "deck": "P_279-Ntr1Nb.prm",
+      "reported_energy_difference_kT": 0.0,
+      "same_last_iteration_count": true
+    },
+    {
+      "deck": "P_279-Ntr1Nf.prm",
+      "reported_energy_difference_kT": 0.0,
+      "same_last_iteration_count": true
+    }
+  ],
+  "MC_means_equal": true,
+  "MC_final_states_equal": true,
+  "limits": "Observed equality/differences on six scalar PB reports and one frozen-table MC seed; no full emulated PB matrix comparison or physical ARM hardware test."
+}

@@ -2,6 +2,9 @@
 
 Read this map before changing the ARM build or interpreting its validation.
 Commands and acceptance gates are in [BUILD_AND_VALIDATE.md](BUILD_AND_VALIDATE.md).
+The [29 October follow-up](ARM64_RESULTS_AND_NEXT_GATES_2026-10-29.md) maps the
+portable integration/RT/component launchers and non-SVE executed-path gate,
+including their functions, immutable inputs and current acceptance limits.
 The build produces a candidate image; the controller later uses that image to
 execute a scientific simulation. Keep those two stages distinct in code and logs.
 

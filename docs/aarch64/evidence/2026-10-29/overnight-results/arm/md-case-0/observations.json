@@ -1,0 +1,154 @@
+[
+  {
+    "gmx_core_seconds": 17429.139,
+    "gmx_wall_seconds": 4357.285,
+    "ns_per_day": 3.966,
+    "mpi_ranks": 1,
+    "omp_threads": 4,
+    "cpu_count": 4,
+    "profile": "default",
+    "steps": 200000,
+    "repeat": 2,
+    "command_wall_seconds": 4402.444040153874,
+    "command": [
+      "/gromacs/bin/gmx",
+      "mdrun",
+      "-s",
+      "/fixed/effective.tpr",
+      "-deffnm",
+      "md",
+      "-nt",
+      "4",
+      "-pin",
+      "on",
+      "-nsteps",
+      "200000"
+    ],
+    "health": {
+      "passed": true,
+      "frames": 2001,
+      "duration_ps": 200.0,
+      "mean_temperature_K": 309.94583828835584,
+      "disulfide_nm": {
+        "6-127": 0.19932636554154068,
+        "30-115": 0.20523644900455695,
+        "64-80": 0.1996872554771588,
+        "76-94": 0.20950894968950612
+      }
+    }
+  },
+  {
+    "gmx_core_seconds": 17432.668,
+    "gmx_wall_seconds": 4358.168,
+    "ns_per_day": 3.965,
+    "mpi_ranks": 1,
+    "omp_threads": 4,
+    "cpu_count": 4,
+    "profile": "default",
+    "steps": 200000,
+    "repeat": 1,
+    "command_wall_seconds": 4403.015548873926,
+    "command": [
+      "/gromacs/bin/gmx",
+      "mdrun",
+      "-s",
+      "/fixed/effective.tpr",
+      "-deffnm",
+      "md",
+      "-nt",
+      "4",
+      "-pin",
+      "on",
+      "-nsteps",
+      "200000"
+    ],
+    "health": {
+      "passed": true,
+      "frames": 2001,
+      "duration_ps": 200.0,
+      "mean_temperature_K": 309.94583828835584,
+      "disulfide_nm": {
+        "6-127": 0.19932636554154068,
+        "30-115": 0.20523644900455695,
+        "64-80": 0.1996872554771588,
+        "76-94": 0.20950894968950612
+      }
+    }
+  },
+  {
+    "gmx_core_seconds": 4358.523,
+    "gmx_wall_seconds": 1089.631,
+    "ns_per_day": 3.965,
+    "mpi_ranks": 1,
+    "omp_threads": 4,
+    "cpu_count": 4,
+    "profile": "default",
+    "steps": 50000,
+    "repeat": 2,
+    "command_wall_seconds": 1134.538663386833,
+    "command": [
+      "/gromacs/bin/gmx",
+      "mdrun",
+      "-s",
+      "/fixed/effective.tpr",
+      "-deffnm",
+      "md",
+      "-nt",
+      "4",
+      "-pin",
+      "on",
+      "-nsteps",
+      "50000"
+    ],
+    "health": {
+      "passed": true,
+      "frames": 501,
+      "duration_ps": 50.0,
+      "mean_temperature_K": 309.20105498602794,
+      "disulfide_nm": {
+        "6-127": 0.20233882474700682,
+        "30-115": 0.2035927307150234,
+        "64-80": 0.20492193635626207,
+        "76-94": 0.20233141130333687
+      }
+    }
+  },
+  {
+    "gmx_core_seconds": 4358.728,
+    "gmx_wall_seconds": 1089.683,
+    "ns_per_day": 3.965,
+    "mpi_ranks": 1,
+    "omp_threads": 4,
+    "cpu_count": 4,
+    "profile": "default",
+    "steps": 50000,
+    "repeat": 1,
+    "command_wall_seconds": 1134.5431896699592,
+    "command": [
+      "/gromacs/bin/gmx",
+      "mdrun",
+      "-s",
+      "/fixed/effective.tpr",
+      "-deffnm",
+      "md",
+      "-nt",
+      "4",
+      "-pin",
+      "on",
+      "-nsteps",
+      "50000"
+    ],
+    "health": {
+      "passed": true,
+      "frames": 501,
+      "duration_ps": 50.0,
+      "mean_temperature_K": 309.20105498602794,
+      "disulfide_nm": {
+        "6-127": 0.20233882474700682,
+        "30-115": 0.2035927307150234,
+        "64-80": 0.20492193635626207,
+        "76-94": 0.20233141130333687
+      }
+    }
+  }
+]

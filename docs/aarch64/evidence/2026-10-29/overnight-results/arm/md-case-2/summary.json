@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "cpu_count": 16,
+  "profile": "default",
+  "observations": 4,
+  "durations": [
+    {
+      "duration_ps": 50.0,
+      "median_command_seconds": 357.27643371152226,
+      "median_gmx_seconds": 312.4445
+    },
+    {
+      "duration_ps": 200.0,
+      "median_command_seconds": 1293.55053365801,
+      "median_gmx_seconds": 1248.5349999999999
+    }
+  ]
+}

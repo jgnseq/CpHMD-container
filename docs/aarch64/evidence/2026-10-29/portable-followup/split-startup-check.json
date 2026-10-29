@@ -1,0 +1,28 @@
+{
+  "startup_configuration_passed": true,
+  "observations": [
+    {
+      "index": 0,
+      "order": [
+        [
+          200000,
+          2
+        ]
+      ],
+      "observed_threads": 4,
+      "runtime_option": "-reprod"
+    },
+    {
+      "index": 1,
+      "order": [
+        [
+          200000,
+          1
+        ]
+      ],
+      "observed_threads": 4,
+      "runtime_option": "-reprod"
+    }
+  ],
+  "limits": "Running startup/configuration check only; completion, health and timing acceptance still pending."
+}

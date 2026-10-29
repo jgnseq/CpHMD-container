@@ -45,7 +45,8 @@ def main():
         selected.add(path)
     if args.overnight:
         for name in ["tests/arm64/hewl_overnight.py", "container_build/slurm/hewl-overnight-rt.slurm",
-                     "container_build/slurm/hewl-overnight-md.slurm", "container_build/run_hewl_overnight_x86.sh"]:
+                     "container_build/slurm/hewl-overnight-md.slurm", "container_build/run_hewl_overnight_x86.sh",
+                     "container_build/slurm/hewl-portable-validation.slurm"]:
             path = repo / name
             assert path.is_file() and not path.is_symlink()
             selected.add(path)
@@ -64,7 +65,7 @@ def main():
     metadata = {"git_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo).decode().strip(),
                 "working_tree_dirty": bool(status), "git_status": status.splitlines(),
                 "file_sha256": hashes, "overnight": args.overnight,
-                "purpose": "Bounded A64FX reference tests; portable ARM64 baseline is a separate build"}
+                "purpose": "Bounded image-pinned performance/integration gates; launcher selects reference or portable candidate"}
     (frozen / "source-snapshot.json").write_text(json.dumps(metadata, indent=2) + "\n")
     (frozen / "source.sha256").write_text("".join(
         hashlib.sha256(path.read_bytes()).hexdigest() + "  " + str(path.relative_to(frozen)) + "\n"

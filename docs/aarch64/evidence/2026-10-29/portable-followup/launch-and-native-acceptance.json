@@ -1,0 +1,24 @@
+{
+  "captured_utc": "2026-10-29T08:45:19.162554+00:00",
+  "base_commit": "592ce86e09713fdce463189845100ac91e3ff47b",
+  "portable_image_sha256": "dd7872704d2a8780ea52b4e3003c5a0519d8bbc20d179069df740a010b2ce479",
+  "root": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/portable-validation.20261029.gj2COz",
+  "jobs": {
+    "all": 2160986,
+    "rt": 2160987,
+    "continue": 2160988,
+    "md_array": 2160989,
+    "components": 2160991
+  },
+  "passed_native_integration": [
+    "all",
+    "rt",
+    "continue",
+    "components"
+  ],
+  "md_array_status": "tasks 1/3 running, task 5 pending array concurrency limit",
+  "source_archive_sha256": "b247bc525d9ee8240d5a173d6d4f19f9fdc43596f05efad401ad6a56ffb1cd25",
+  "components_launcher_sha256": "6fb79af5f09a4db4d917097ca5fc2c648d698bf7aa5f108ad3cae7c689c76867",
+  "non_sve_driver_sha256": "bb4efbb528f8ef275953c2464c1e3b206f861fe5e1524a91c07c3d19c3cf71ee",
+  "limits": "Portable MD and non-SVE gate pending at capture; physical non-SVE ARM hardware untested. No automatic resubmission."
+}

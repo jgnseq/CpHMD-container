@@ -1,0 +1,299 @@
+{
+  "passed": true,
+  "mode": "rt",
+  "cycles": [
+    {
+      "cycle": 1,
+      "PB_sites": 21,
+      "PB_pseudostates": 69,
+      "topology_mapping": {
+        "applied_sites": 21,
+        "dictionary_atom_parameters_checked": 354,
+        "atoms_with_changed_type_or_charge": 19,
+        "protein_charge_e": 9.000000000000007
+      },
+      "disulfide_nm": {
+        "6-127": 0.20397548872352317,
+        "30-115": 0.2079158483617834,
+        "64-80": 0.1992009036124087,
+        "76-94": 0.20874386218521535
+      },
+      "energy_health": {
+        "relax": {
+          "duration_ps": 0.1,
+          "records": 2,
+          "mean_temperature_K": 313.0941315,
+          "potential_min_kJ_mol": -372619.78125,
+          "potential_max_kJ_mol": -372458.34375
+        },
+        "effective": {
+          "duration_ps": 1.0,
+          "records": 11,
+          "mean_temperature_K": 311.0433599090909,
+          "potential_min_kJ_mol": -373714.5625,
+          "potential_max_kJ_mol": -372705.6875
+        }
+      },
+      "reduced_titration": {
+        "active_sites": 7,
+        "fixed_sites": 14,
+        "independent_selection_and_merge_passed": true
+      }
+    },
+    {
+      "cycle": 2,
+      "PB_sites": 7,
+      "PB_pseudostates": 21,
+      "topology_mapping": {
+        "applied_sites": 21,
+        "dictionary_atom_parameters_checked": 354,
+        "atoms_with_changed_type_or_charge": 7,
+        "protein_charge_e": 10.000000000000007
+      },
+      "disulfide_nm": {
+        "6-127": 0.202746146695813,
+        "30-115": 0.20530952242894165,
+        "64-80": 0.1987108451997524,
+        "76-94": 0.19832044776068844
+      },
+      "energy_health": {
+        "relax": {
+          "duration_ps": 0.1,
+          "records": 2,
+          "mean_temperature_K": 310.2797395,
+          "potential_min_kJ_mol": -372960.0,
+          "potential_max_kJ_mol": -372812.46875
+        },
+        "effective": {
+          "duration_ps": 1.0,
+          "records": 11,
+          "mean_temperature_K": 308.8402377272727,
+          "potential_min_kJ_mol": -373774.59375,
+          "potential_max_kJ_mol": -372681.5625
+        }
+      },
+      "reduced_titration": {
+        "active_sites": 7,
+        "fixed_sites": 14,
+        "independent_selection_and_merge_passed": true
+      }
+    },
+    {
+      "cycle": 3,
+      "PB_sites": 7,
+      "PB_pseudostates": 21,
+      "topology_mapping": {
+        "applied_sites": 21,
+        "dictionary_atom_parameters_checked": 354,
+        "atoms_with_changed_type_or_charge": 20,
+        "protein_charge_e": 7.000000000000007
+      },
+      "disulfide_nm": {
+        "6-127": 0.2080480713681335,
+        "30-115": 0.2023314113033367,
+        "64-80": 0.20836506425022383,
+        "76-94": 0.20604368468846654
+      },
+      "energy_health": {
+        "relax": {
+          "duration_ps": 0.1,
+          "records": 2,
+          "mean_temperature_K": 309.4969635,
+          "potential_min_kJ_mol": -372142.6875,
+          "potential_max_kJ_mol": -372059.9375
+        },
+        "effective": {
+          "duration_ps": 1.0,
+          "records": 11,
+          "mean_temperature_K": 309.8600435454545,
+          "potential_min_kJ_mol": -373621.9375,
+          "potential_max_kJ_mol": -372657.53125
+        }
+      },
+      "reduced_titration": {
+        "active_sites": 7,
+        "fixed_sites": 14,
+        "independent_selection_and_merge_passed": true
+      }
+    },
+    {
+      "cycle": 4,
+      "PB_sites": 7,
+      "PB_pseudostates": 21,
+      "topology_mapping": {
+        "applied_sites": 21,
+        "dictionary_atom_parameters_checked": 354,
+        "atoms_with_changed_type_or_charge": 6,
+        "protein_charge_e": 8.000000000000007
+      },
+      "disulfide_nm": {
+        "6-127": 0.20972601173912625,
+        "30-115": 0.2048340791958214,
+        "64-80": 0.2103663471185449,
+        "76-94": 0.2079374906071532
+      },
+      "energy_health": {
+        "relax": {
+          "duration_ps": 0.1,
+          "records": 2,
+          "mean_temperature_K": 311.5875395,
+          "potential_min_kJ_mol": -373838.09375,
+          "potential_max_kJ_mol": -373440.75
+        },
+        "effective": {
+          "duration_ps": 1.0,
+          "records": 11,
+          "mean_temperature_K": 308.910195,
+          "potential_min_kJ_mol": -374827.3125,
+          "potential_max_kJ_mol": -372994.40625
+        }
+      },
+      "reduced_titration": {
+        "active_sites": 7,
+        "fixed_sites": 14,
+        "independent_selection_and_merge_passed": true
+      }
+    },
+    {
+      "cycle": 5,
+      "PB_sites": 7,
+      "PB_pseudostates": 21,
+      "topology_mapping": {
+        "applied_sites": 21,
+        "dictionary_atom_parameters_checked": 354,
+        "atoms_with_changed_type_or_charge": 0,
+        "protein_charge_e": 8.000000000000007
+      },
+      "disulfide_nm": {
+        "6-127": 0.20444559178422028,
+        "30-115": 0.20288173895153827,
+        "64-80": 0.2109526013112898,
+        "76-94": 0.20087309426600686
+      },
+      "energy_health": {
+        "relax": {
+          "duration_ps": 0.1,
+          "records": 2,
+          "mean_temperature_K": 311.821045,
+          "potential_min_kJ_mol": -374425.84375,
+          "potential_max_kJ_mol": -373797.28125
+        },
+        "effective": {
+          "duration_ps": 1.0,
+          "records": 11,
+          "mean_temperature_K": 308.7601762727273,
+          "potential_min_kJ_mol": -375420.09375,
+          "potential_max_kJ_mol": -373893.0625
+        }
+      },
+      "reduced_titration": {
+        "active_sites": 7,
+        "fixed_sites": 14,
+        "independent_selection_and_merge_passed": true
+      }
+    },
+    {
+      "cycle": 6,
+      "PB_sites": 21,
+      "PB_pseudostates": 69,
+      "topology_mapping": {
+        "applied_sites": 21,
+        "dictionary_atom_parameters_checked": 354,
+        "atoms_with_changed_type_or_charge": 0,
+        "protein_charge_e": 8.000000000000007
+      },
+      "disulfide_nm": {
+        "6-127": 0.20614072862973967,
+        "30-115": 0.20310834547108098,
+        "64-80": 0.20291377479116562,
+        "76-94": 0.20867199141235973
+      },
+      "energy_health": {
+        "relax": {
+          "duration_ps": 0.1,
+          "records": 2,
+          "mean_temperature_K": 308.185898,
+          "potential_min_kJ_mol": -374253.75,
+          "potential_max_kJ_mol": -373547.03125
+        },
+        "effective": {
+          "duration_ps": 1.0,
+          "records": 11,
+          "mean_temperature_K": 308.0976422727272,
+          "potential_min_kJ_mol": -375067.9375,
+          "potential_max_kJ_mol": -373669.28125
+        }
+      },
+      "reduced_titration": {
+        "active_sites": 5,
+        "fixed_sites": 16,
+        "independent_selection_and_merge_passed": true
+      }
+    },
+    {
+      "cycle": 7,
+      "PB_sites": 5,
+      "PB_pseudostates": 14,
+      "topology_mapping": {
+        "applied_sites": 21,
+        "dictionary_atom_parameters_checked": 354,
+        "atoms_with_changed_type_or_charge": 0,
+        "protein_charge_e": 8.000000000000007
+      },
+      "disulfide_nm": {
+        "6-127": 0.2079374906071535,
+        "30-115": 0.2094612135933525,
+        "64-80": 0.19673586353280878,
+        "76-94": 0.20894496883150862
+      },
+      "energy_health": {
+        "relax": {
+          "duration_ps": 0.1,
+          "records": 2,
+          "mean_temperature_K": 310.49262999999996,
+          "potential_min_kJ_mol": -374984.3125,
+          "potential_max_kJ_mol": -374124.03125
+        },
+        "effective": {
+          "duration_ps": 1.0,
+          "records": 11,
+          "mean_temperature_K": 307.98043,
+          "potential_min_kJ_mol": -374893.78125,
+          "potential_max_kJ_mol": -373979.40625
+        }
+      },
+      "reduced_titration": {
+        "active_sites": 5,
+        "fixed_sites": 16,
+        "independent_selection_and_merge_passed": true
+      }
+    }
+  ],
+  "checkpoint": {
+    "CPHMD_DONE_CYCLES": "7",
+    "CPHMD_LAST_SEGMENT_START": "2",
+    "CPHMD_LAST_SEGMENT_END": "7",
+    "CPHMD_SEGMENT_FINALIZED": "1",
+    "CPHMD_STATE_SOURCE": "validated_finalized_segment",
+    "CPHMD_REDUCED_TITRATION": "1",
+    "CPHMD_RT_LAST_FULL_CYCLE": "6",
+    "CPHMD_RT_ACTIVE_COUNT": "5"
+  },
+  "segments": [
+    {
+      "start_cycle": 1,
+      "end_cycle": 1,
+      "first_time_ps": 0.0,
+      "last_time_ps": 1.0,
+      "frames": 11
+    },
+    {
+      "start_cycle": 2,
+      "end_cycle": 7,
+      "first_time_ps": 1.0,
+      "last_time_ps": 7.0,
+      "frames": 61
+    }
+  ],
+  "limits": "Short integration gate; restart is controller GRO/TOP/RT state, not bitwise GROMACS CPT continuation."
+}

@@ -1,0 +1,151 @@
+{
+  "input_identity_and_independent_component_audits_passed": true,
+  "input_protocol_sha256": "67beb8dd469c7640de1b402804773c233296b03fa204ae6ce5abc90d2c3f90bc",
+  "comparisons": [
+    {
+      "component": "delphi",
+      "input": "258-Asp2N.prm",
+      "x86_median_seconds": 0.297352498,
+      "arm_median_seconds": 0.832514643,
+      "arm_over_x86_seconds": 2.799756681378207,
+      "x86_range_seconds": [
+        0.295991934,
+        0.299378678
+      ],
+      "arm_range_seconds": [
+        0.817679626,
+        0.951804485
+      ],
+      "energy_difference_kT": 0.0,
+      "x86_iterations": 500,
+      "arm_iterations": 500,
+      "x86_last_max_residual": 0.00018310547,
+      "arm_last_max_residual": 0.00024414063,
+      "both_requested_tolerances_met": false
+    },
+    {
+      "component": "delphi",
+      "input": "P_258-Asp2Nb.prm",
+      "x86_median_seconds": 0.164125765,
+      "arm_median_seconds": 0.495606935,
+      "arm_over_x86_seconds": 3.019677836688225,
+      "x86_range_seconds": [
+        0.162736236,
+        0.212035672
+      ],
+      "arm_range_seconds": [
+        0.494124819,
+        0.506498949
+      ],
+      "energy_difference_kT": 0.0,
+      "x86_iterations": 90,
+      "arm_iterations": 100,
+      "x86_last_max_residual": 9.5367432e-05,
+      "arm_last_max_residual": 3.0517578e-05,
+      "both_requested_tolerances_met": true
+    },
+    {
+      "component": "delphi",
+      "input": "P_258-Asp2Nf.prm",
+      "x86_median_seconds": 0.422136988,
+      "arm_median_seconds": 1.509590784,
+      "arm_over_x86_seconds": 3.5760684965137433,
+      "x86_range_seconds": [
+        0.417723469,
+        0.423260415
+      ],
+      "arm_range_seconds": [
+        1.468756764,
+        1.513105559
+      ],
+      "energy_difference_kT": 0.0,
+      "x86_iterations": 500,
+      "arm_iterations": 500,
+      "x86_last_max_residual": 0.00024414063,
+      "arm_last_max_residual": 0.00018310547,
+      "both_requested_tolerances_met": false
+    },
+    {
+      "component": "delphi",
+      "input": "279-Ntr1N.prm",
+      "x86_median_seconds": 0.289159264,
+      "arm_median_seconds": 0.818999421,
+      "arm_over_x86_seconds": 2.832347162842412,
+      "x86_range_seconds": [
+        0.288990507,
+        0.289948632
+      ],
+      "arm_range_seconds": [
+        0.775840548,
+        1.021041123
+      ],
+      "energy_difference_kT": 0.0,
+      "x86_iterations": 500,
+      "arm_iterations": 500,
+      "x86_last_max_residual": 0.0002746582,
+      "arm_last_max_residual": 0.00025939941,
+      "both_requested_tolerances_met": false
+    },
+    {
+      "component": "delphi",
+      "input": "P_279-Ntr1Nb.prm",
+      "x86_median_seconds": 0.1664362,
+      "arm_median_seconds": 0.489396329,
+      "arm_over_x86_seconds": 2.9404440199908435,
+      "x86_range_seconds": [
+        0.166415281,
+        0.167651651
+      ],
+      "arm_range_seconds": [
+        0.482032513,
+        0.502186053
+      ],
+      "energy_difference_kT": 0.0,
+      "x86_iterations": 100,
+      "arm_iterations": 100,
+      "x86_last_max_residual": 5.9068203e-05,
+      "arm_last_max_residual": 5.8084726e-05,
+      "both_requested_tolerances_met": true
+    },
+    {
+      "component": "delphi",
+      "input": "P_279-Ntr1Nf.prm",
+      "x86_median_seconds": 0.45049434,
+      "arm_median_seconds": 1.728400171,
+      "arm_over_x86_seconds": 3.836674554002166,
+      "x86_range_seconds": [
+        0.447588503,
+        0.452397978
+      ],
+      "arm_range_seconds": [
+        1.694291943,
+        1.736405065
+      ],
+      "energy_difference_kT": 0.0,
+      "x86_iterations": 500,
+      "arm_iterations": 500,
+      "x86_last_max_residual": 0.00024414063,
+      "arm_last_max_residual": 0.00030517578,
+      "both_requested_tolerances_met": false
+    },
+    {
+      "component": "petit",
+      "input": "PBMC.dat",
+      "x86_median_seconds": 0.141378268,
+      "arm_median_seconds": 0.751259977,
+      "arm_over_x86_seconds": 5.313829258397762,
+      "x86_range_seconds": [
+        0.138626671,
+        0.143251088
+      ],
+      "arm_range_seconds": [
+        0.750264809,
+        0.751820125
+      ],
+      "max_site_mean_occupancy_difference": 0.001340001999999993,
+      "final_states_equal": false
+    }
+  ],
+  "ratio_definition": "ARM wall seconds / x86 wall seconds; above 1 means ARM took longer on these named systems.",
+  "limits": "Three serial repeats of six representative PB decks plus one fixed PETIT table. No compiler-only/ISA-only attribution, no full PB convergence claim, and no end-to-end throughput claim."
+}

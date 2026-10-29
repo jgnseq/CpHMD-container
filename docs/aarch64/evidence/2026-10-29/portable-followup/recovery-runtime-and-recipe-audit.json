@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "archive_sha256": "8e2ebed1e9137d88d6864b85e528574abb56d1ebad8daef69e28d93c6ecb1637",
+  "files": 40,
+  "all_regular_members_match_independent_remote_hashes": true,
+  "all_solver_runtime_members_match_pre_build_provenance": true,
+  "transfer_exit_status": 1,
+  "transfer_metadata_warning": "GNU tar reported file changed as we read it for two runtime files. Archive completion/CRC and every regular member were independently verified before acceptance; warnings retained, no source-content mismatch found."
+}

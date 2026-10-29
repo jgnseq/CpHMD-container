@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "pseudostates": 69,
+  "sites": 21,
+  "matrix_elements": 4761,
+  "max_intrinsic_pK_difference": 0.0006859999999999644,
+  "max_raw_interaction_difference_kBT": 0.00024256818254754107,
+  "max_converted_state_energy_difference_kBT": 0.0015799274289898734,
+  "max_converted_pair_energy_difference_kBT": 0.00024256818254754107,
+  "MC": {
+    "1729": {
+      "max_site_mean_occupancy_difference": 3.999500000007039e-05,
+      "final_microstates_equal": true
+    },
+    "2718": {
+      "max_site_mean_occupancy_difference": 5.000099999999397e-05,
+      "final_microstates_equal": true
+    },
+    "3141": {
+      "max_site_mean_occupancy_difference": 0.00012999800000002004,
+      "final_microstates_equal": true
+    }
+  },
+  "failures": [],
+  "contract": {
+    "purpose": "Fixed-coordinate architecture regression; not a physical pKa validation",
+    "temperature_K": 310,
+    "pH": 6,
+    "ionic_strength_M": 0.1,
+    "sites": 21,
+    "seeds": [
+      1729,
+      2718,
+      3141
+    ],
+    "equilibration_MC_steps": 1000,
+    "production_MC_steps": 100000,
+    "tolerances_frozen_before_execution": {
+      "intrinsic_pK_absolute": 0.005,
+      "interaction_energy_absolute_kBT": 0.001,
+      "interaction_energy_relative": 0.0001,
+      "site_mean_occupancy_absolute": 0.02
+    },
+    "energy_conversion": "Raw .g and PETIT .dat use e^2/angstrom. Divide by (5.98435e-6 * 310) for kBT, as defined by DelphiTools/convert and petit1.6.1/petit.c.",
+    "interpretation": "Engineering thresholds chosen before the runs. Occupancy tolerance is a regression screen, not a statistical confidence interval. Final stochastic microstates need not match. Any failed threshold stays failed pending investigation; do not tune tolerances to observed results. This separate convergence-control protocol was defined before executing either tight-profile run. Original-profile failures are retained; acceptance tolerances are unchanged. Focus/model iteration limits are fixed at 500 by the existing gen_files.awk.",
+    "profile_name": "tight-convergence-v1",
+    "PB_solver_control": {
+      "maxc": 0.0001,
+      "coarse_linit": 1000,
+      "focus_model_linit": 500,
+      "grid_size": 81,
+      "coarse_scale_per_A": 1,
+      "focus_model_scale_per_A": 4
+    }
+  }
+}
