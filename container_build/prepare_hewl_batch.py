@@ -36,6 +36,7 @@ def main():
     selected = set(source_files(repo))
     for name in ["tests/arm64/hewl_batch.py", "container_build/slurm/hewl-batch-prepare.slurm",
                  "container_build/slurm/hewl-batch-audit.slurm",
+                 "container_build/slurm/hewl-batch-dispatch-audit.slurm",
                  "template/slurm/generate_CpHMD_slurm.sh", "template/slurm/CpHMD-slurm.settings"]:
         path = repo / name
         if path.is_symlink() or not path.is_file():

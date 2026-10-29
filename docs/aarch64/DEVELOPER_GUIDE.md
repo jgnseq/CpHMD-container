@@ -5,6 +5,9 @@ Commands and acceptance gates are in [BUILD_AND_VALIDATE.md](BUILD_AND_VALIDATE.
 The [29 October follow-up](ARM64_RESULTS_AND_NEXT_GATES_2026-10-29.md) maps the
 portable integration/RT/component launchers and non-SVE executed-path gate,
 including their functions, immutable inputs and current acceptance limits.
+The [night follow-up](PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md) adds completed
+portable timings, profile-pinned generated-wrapper validation, the successor-aware
+audit dispatcher and direct mini05 recovery; its final table maps each new file.
 The build produces a candidate image; the controller later uses that image to
 execute a scientific simulation. Keep those two stages distinct in code and logs.
 

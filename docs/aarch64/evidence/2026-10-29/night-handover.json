@@ -1,0 +1,23 @@
+{
+  "captured_utc": "2026-10-29T23:05:30.631552+00:00",
+  "base_commit": "d6607de5e96d774a95904f5672d58db3f058602c",
+  "portable_MD_accepted_observations": 12,
+  "four_core_split_case_complete": true,
+  "portable_batch_independent_audit_job": 2165834,
+  "portable_batch_explicit_configuration_and_failure_cases_passed": true,
+  "default_guard_transport_passed": false,
+  "new_recovery_pack_jobs": [
+    2165795,
+    2165845
+  ],
+  "off_cluster_archives_verified": 5,
+  "portable_image_verified_on_mini05": true,
+  "workstation_shutdown_safe": true,
+  "local_transfer_status": "Deliberately interrupted rsync with status 20; resumable partials retained. No active workstation transfer required.",
+  "remaining": [
+    "Portable ARM build/release profile as normal default, separate A64FX opt-in",
+    "Clean native build/check after packaging changes",
+    "Back up final release evidence and complete Git/reproduction handover"
+  ],
+  "not_done_tonight": "No optimization sweep or final build-profile promotion. Agent did not stage, commit or push."
+}

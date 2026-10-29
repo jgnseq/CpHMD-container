@@ -1,5 +1,9 @@
 # Overnight results and portable-image follow-up — 29 October 2026
 
+The [night follow-up](PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md) records completed
+portable benchmarks, the portable generated-wrapper audit and direct off-cluster
+recovery. The pending statuses below describe the earlier morning snapshot.
+
 ## What the completed jobs establish
 
 Every overnight Deucalion allocation completed with `0:0`, and every expected

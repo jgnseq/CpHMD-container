@@ -269,10 +269,10 @@ Deucalion's project directory requires supplementary-group access, which fakeroo
 - The ordinary host process stages inputs and copies artifacts/results back after fakeroot returns. The local-image build uses `--disable-cache`; no compiler downloads or OCI downloads occur in the fakeroot build.
 - The project ACLs and production directories are unchanged. Failed temporary build work is not destructively cleaned by the launcher.
 
-## 1. Record the overnight results and portable-image gates
+## 1. Record the portable performance and batch follow-up
 
-The user committed the portable-baseline/overnight preparation as `592ce86`.
-This step's follow-up harness, result report and compact evidence remain
+The user committed and pushed the earlier portable-image gates as `d6607de`.
+Tonight's batch/recovery harness, result report and compact evidence remain
 unstaged. Running jobs use immutable remote inputs and do not need this
 commit/push to continue. The agent has not staged or committed them.
 
@@ -284,11 +284,12 @@ python3 tests/check_arm64_portable_context.py
 python3 tests/check_repository_safety.py
 git diff --check
 git add -- \
-  container_build/prepare_hewl_performance.py \
-  container_build/slurm/hewl-portable-validation.slurm \
-  container_build/slurm/hewl-portable-components.slurm \
-  tests/arm64/hewl_overnight.py \
-  tests/arm64/check_non_sve_runtime.py \
+  container_build/prepare_hewl_batch.py \
+  container_build/slurm/hewl-batch-prepare.slurm \
+  container_build/slurm/hewl-batch-audit.slurm \
+  container_build/slurm/hewl-batch-dispatch-audit.slurm \
+  container_build/pull_arm_recovery_on_mini05.sh \
+  docs/aarch64/PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md \
   docs/aarch64/ARM64_RESULTS_AND_NEXT_GATES_2026-10-29.md \
   docs/aarch64/BUILD_AND_VALIDATE.md \
   docs/aarch64/DEVELOPER_GUIDE.md \
@@ -296,13 +297,14 @@ git add -- \
 python3 tests/check_repository_safety.py --staged
 git diff --cached --check
 git diff --cached --stat
-git commit -m 'Record overnight benchmarks and validate portable ARM64 runtime'
+git commit -m 'Record portable ARM64 performance and production-wrapper validation'
 git push origin codex/arm64-deucalion-20261026
 ```
 
 Images, scientific binaries, trajectories and archives stay outside Git. Exact
 roots/job IDs and read-only inspection commands are in the 29 October report.
-Inspect those existing jobs rather than submitting duplicates.
+Inspect those existing jobs rather than submitting duplicates. Use explicit
+paths: a pre-existing untracked local file was left untouched and excluded.
 
 ## 2. Prepare and submit a future candidate when code changes
 
@@ -376,7 +378,13 @@ After the build succeeds, work from a new test directory and immutable input sna
 The generic candidate build 2160578 passed native unit/smoke/ordinary-user and
 tight PB/MC gates. Portable all-site/RT/separate-continuation gates
 2160986/2160987/2160988 and the separate non-SVE emulation gate passed. Portable
-MD is running in 2160989 (16/48 threads) and 2161053 (split four-thread
-observations); inspect all required receipts before promoting the candidate.
+MD completed in 2160989 (16/48 threads) and 2161053 (split four-thread
+observations): all twelve observations passed. The portable generated-wrapper
+follow-up and night recovery are documented in
+[PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md](PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md).
+Its native wrapper auditor 2165834 passed the explicit guard, actual successor
+and failure containment gates; default guard forwarding stays REVIEW. All
+current archives and the SIF are verified off-cluster on mini05. Final release
+packaging and a clean native verification of those packaging changes remain.
 
 The explicit-settings profiles require adapting every `CHANGE_ME` field. Historical settings that relied on hidden defaults must be upgraded in the copied test directory; do not bypass the contract to make an old input run.

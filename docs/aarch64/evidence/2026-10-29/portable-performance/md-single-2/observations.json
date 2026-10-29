@@ -1,0 +1,41 @@
+[
+  {
+    "gmx_core_seconds": 7751.487,
+    "gmx_wall_seconds": 1937.872,
+    "ns_per_day": 2.229,
+    "mpi_ranks": 1,
+    "omp_threads": 4,
+    "cpu_count": 4,
+    "profile": "reprod",
+    "steps": 50000,
+    "repeat": 2,
+    "command_wall_seconds": 1954.2464541371446,
+    "command": [
+      "/gromacs/bin/gmx",
+      "mdrun",
+      "-s",
+      "/fixed/effective.tpr",
+      "-deffnm",
+      "md",
+      "-nt",
+      "4",
+      "-pin",
+      "on",
+      "-nsteps",
+      "50000",
+      "-reprod"
+    ],
+    "health": {
+      "passed": true,
+      "frames": 501,
+      "duration_ps": 50.0,
+      "mean_temperature_K": 309.1929410219561,
+      "disulfide_nm": {
+        "6-127": 0.1962880536354671,
+        "30-115": 0.2056866548903938,
+        "64-80": 0.20122375605280807,
+        "76-94": 0.2031698796573943
+      }
+    }
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "captured_utc": "2026-10-29T23:01:19.019141+00:00",
+  "host": "mini05",
+  "folders": {
+    "core": {
+      "root": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu",
+      "pull_exit": "0",
+      "sha256_verified": true,
+      "archives": [
+        {
+          "archive": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu/build-and-reference/HEWL-overnight-arm-2160558.tar.gz",
+          "bytes": 3598102143,
+          "sha256": "42b2de42732f1b2d90da227c6ae920487ef004d90464aa7a3b7afece1028c43b",
+          "source_regular_files": 3877
+        },
+        {
+          "archive": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu/build-and-reference/HEWL-portable-build-2160578.tar.gz",
+          "bytes": 484375209,
+          "sha256": "a848b98991b46e5855711c8aa72fad021e724c6cacc3ed62cd7a1a6f67aa0797",
+          "source_regular_files": 8259
+        },
+        {
+          "archive": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu/portable-validation/HEWL-portable-md4-2161053.tar.gz",
+          "bytes": 515858872,
+          "sha256": "b73cf36e2689992e297988e8024898d35979458e7b6403ae3711cc9709cc46a8",
+          "source_regular_files": 262
+        },
+        {
+          "archive": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu/portable-validation/HEWL-portable-validation-2160986.tar.gz",
+          "bytes": 1576916886,
+          "sha256": "0dbd57d7874cfeb7b1a4372c2c47956c04474e3838a36c032138a763c7e020a6",
+          "source_regular_files": 3925
+        }
+      ]
+    },
+    "batch": {
+      "root": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.batch.pxF5Co",
+      "pull_exit": "0",
+      "sha256_verified": true,
+      "archives": [
+        {
+          "archive": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.batch.pxF5Co/portable-batch/HEWL-portable-batch-2165793.tar.gz",
+          "bytes": 245953072,
+          "sha256": "62e5c392af8ee1ad117a6fd60823f631f9c96e12bad3fb8133800b8e2bbb7562",
+          "source_regular_files": 2162
+        }
+      ]
+    }
+  },
+  "portable_image": {
+    "path": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu/CpHMD-arm64-portable.sif",
+    "sha256": "dd7872704d2a8780ea52b4e3003c5a0519d8bbc20d179069df740a010b2ce479",
+    "verified_exit": 0
+  },
+  "limits": "SHA256 checks completed by the recorded transfer scripts before their zero statuses. Core results are off Deucalion; batch is accepted only if its own pull_exit is zero. No SSH authentication material was copied."
+}

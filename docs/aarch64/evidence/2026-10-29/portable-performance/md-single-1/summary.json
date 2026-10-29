@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "cpu_count": 4,
+  "profile": "reprod",
+  "observations": 1,
+  "durations": [
+    {
+      "duration_ps": 200.0,
+      "median_command_seconds": 7766.198526137043,
+      "median_gmx_seconds": 7749.852
+    }
+  ],
+  "complete_case": false,
+  "observation_index": 1
+}

@@ -1,0 +1,124 @@
+{
+  "passed": true,
+  "accepted_portable_observations": 12,
+  "split_four_core_case_complete": true,
+  "fixed_tpr_sha256": "7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48",
+  "runtime_profile": "-reprod",
+  "rows": [
+    {
+      "cpu_count": 4,
+      "duration_ps": 50.0,
+      "repeats": 2,
+      "portable_command_seconds": 1954.9309495140333,
+      "portable_gmx_seconds": 1938.558,
+      "portable_ns_per_day": 2.2285000000000004,
+      "command_range_seconds": [
+        1954.2464541371446,
+        1955.615444890922
+      ],
+      "a64fx_command_seconds": 1106.8368372259429,
+      "a64fx_gmx_seconds": 1090.7185,
+      "portable_over_a64fx_command_seconds": 1.7662322790174407,
+      "portable_over_a64fx_gmx_seconds": 1.7773220129666822,
+      "x86_four_core_command_seconds": 260.09849711798597,
+      "portable_over_x86_four_core_command_seconds": 7.516117821423769
+    },
+    {
+      "cpu_count": 4,
+      "duration_ps": 200.0,
+      "repeats": 2,
+      "portable_command_seconds": 7770.951934971497,
+      "portable_gmx_seconds": 7754.609,
+      "portable_ns_per_day": 2.2285,
+      "command_range_seconds": [
+        7766.198526137043,
+        7775.705343805952
+      ],
+      "a64fx_command_seconds": 4377.34355446347,
+      "a64fx_gmx_seconds": 4361.0255,
+      "portable_over_a64fx_command_seconds": 1.7752666287862298,
+      "portable_over_a64fx_gmx_seconds": 1.7781618107942732,
+      "x86_four_core_command_seconds": 1032.8817100189626,
+      "portable_over_x86_four_core_command_seconds": 7.523564276134612
+    },
+    {
+      "cpu_count": 16,
+      "duration_ps": 50.0,
+      "repeats": 2,
+      "portable_command_seconds": 546.8912562174955,
+      "portable_gmx_seconds": 530.825,
+      "portable_ns_per_day": 8.1385,
+      "command_range_seconds": [
+        546.8131671580486,
+        546.9693452769425
+      ],
+      "a64fx_command_seconds": 326.6184234479442,
+      "a64fx_gmx_seconds": 310.495,
+      "portable_over_a64fx_command_seconds": 1.6744041883621974,
+      "portable_over_a64fx_gmx_seconds": 1.7096088503840643,
+      "x86_four_core_command_seconds": 260.09849711798597,
+      "portable_over_x86_four_core_command_seconds": 2.1026313580328555
+    },
+    {
+      "cpu_count": 16,
+      "duration_ps": 200.0,
+      "repeats": 2,
+      "portable_command_seconds": 2137.8366100254934,
+      "portable_gmx_seconds": 2121.639,
+      "portable_ns_per_day": 8.1445,
+      "command_range_seconds": [
+        2137.2562866969965,
+        2138.4169333539903
+      ],
+      "a64fx_command_seconds": 1258.2860783825163,
+      "a64fx_gmx_seconds": 1242.0005,
+      "portable_over_a64fx_command_seconds": 1.6990068051723255,
+      "portable_over_a64fx_gmx_seconds": 1.7082432736540767,
+      "x86_four_core_command_seconds": 1032.8817100189626,
+      "portable_over_x86_four_core_command_seconds": 2.0697787455121506
+    },
+    {
+      "cpu_count": 48,
+      "duration_ps": 50.0,
+      "repeats": 2,
+      "portable_command_seconds": 234.92409940552898,
+      "portable_gmx_seconds": 218.8245,
+      "portable_ns_per_day": 19.7425,
+      "command_range_seconds": [
+        233.86560522206128,
+        235.98259358899668
+      ],
+      "a64fx_command_seconds": 163.15577934798785,
+      "a64fx_gmx_seconds": 146.977,
+      "portable_over_a64fx_command_seconds": 1.4398760518588165,
+      "portable_over_a64fx_gmx_seconds": 1.4888349877872047,
+      "x86_four_core_command_seconds": 260.09849711798597,
+      "portable_over_x86_four_core_command_seconds": 0.9032120600795422
+    },
+    {
+      "cpu_count": 48,
+      "duration_ps": 200.0,
+      "repeats": 2,
+      "portable_command_seconds": 892.9792078989558,
+      "portable_gmx_seconds": 876.7365,
+      "portable_ns_per_day": 19.7095,
+      "command_range_seconds": [
+        892.3785001670476,
+        893.579915630864
+      ],
+      "a64fx_command_seconds": 604.1392725540791,
+      "a64fx_gmx_seconds": 587.7860000000001,
+      "portable_over_a64fx_command_seconds": 1.478101571056236,
+      "portable_over_a64fx_gmx_seconds": 1.4915913274559107,
+      "x86_four_core_command_seconds": 1032.8817100189626,
+      "portable_over_x86_four_core_command_seconds": 0.8645512833048052
+    }
+  ],
+  "limits": [
+    "Two repeats/duration/CPU count; timing and basic dynamics health screen, not equilibrium or physical pKa validation.",
+    "Four-thread portable measurements are separate exclusive allocations; higher-core cases group four observations per job.",
+    "Every ARM timing allocation reserves 48 cores for isolation. x86 uses four physical cores on mini05.",
+    "Same Deucalion A64FX hardware compares delivered NEON/generic and SVE512/specialized images; CPUs, clocks and memory differ in comparisons with mini05.",
+    "Longer fixed-protonation MD does not change the CpHMD titration interval."
+  ]
+}

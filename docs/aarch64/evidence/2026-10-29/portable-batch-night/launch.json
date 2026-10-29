@@ -1,0 +1,15 @@
+{
+  "initial_jobs": {
+    "default-guard": 2165802,
+    "explicit-guard": 2165803,
+    "md-failure": 2165804,
+    "pb-failure": 2165805,
+    "invalid-checkpoint": 2165806
+  },
+  "preparation_job": 2165793,
+  "audit_dispatch_job": 2165807,
+  "root": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.portable.20261029.uS0Q9t",
+  "source_archive_sha256": "bef4d3dd1fd6e9ffab10ba46238315ec1d340f49fd821d2fae69e0c884e62d82",
+  "dispatcher_sha256": "24ccdd8602add014bd9813c6158e2a80a883183b3fc902cabda4462e244ba249",
+  "scope": "Portable-image generated-wrapper validation; intentional failures 42/43; existing default guard defect stays REVIEW. Final audit must finish before acceptance."
+}

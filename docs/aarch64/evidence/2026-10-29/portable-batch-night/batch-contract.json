@@ -1,0 +1,20 @@
+{
+  "cases": [
+    "default-guard",
+    "explicit-guard",
+    "md-failure",
+    "pb-failure",
+    "invalid-checkpoint"
+  ],
+  "host_root": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.portable.20261029.uS0Q9t",
+  "cycles": 2,
+  "effective_ps_per_cycle": 1,
+  "max_successors": 1,
+  "original_generator_sha256": "ae8d988bc14c16bd62ec52f25b6284db7b39a41db02f69ce74c57552dc7bb600",
+  "default_guard_expected": "host guard 1 must reach controller; cap 0 prevents accidental successor",
+  "explicit_guard_expected": "cycle 1 exit 10, one real successor, cycle 2 exit 0, DONE",
+  "md_failure_expected": 42,
+  "pb_failure_expected": 43,
+  "invalid_checkpoint_expected": 42,
+  "scientific_scope": "Same short HEWL protocol; wrapper/state transaction test, not physical pKa validation"
+}
