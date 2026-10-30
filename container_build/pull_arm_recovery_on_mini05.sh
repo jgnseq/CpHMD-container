@@ -7,6 +7,10 @@ set -Eeuo pipefail
 root="$(realpath "${1:?Supply the mini05 recovery-pull directory}")"
 case "$root" in /home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.*) ;; *) exit 2 ;; esac
 [[ $# == 1 || $# == 3 ]] || { echo 'Use ROOT [REMOTE_RECOVERY_ROOT LABEL]' >&2; exit 2; }
+wait_attempts="${CPHMD_RECOVERY_WAIT_ATTEMPTS:-120}"
+[[ $wait_attempts =~ ^[0-9]+$ ]] || exit 2
+wait_attempts="$((10#$wait_attempts))"
+(( wait_attempts >= 1 && wait_attempts <= 840 )) || exit 2
 if [[ $# == 3 ]]; then
     # The source enters an SSH command: accept only this project's simple
     # recovery-folder names, never shell metacharacters or traversal paths.
@@ -30,11 +34,12 @@ connection=(ssh -o BatchMode=yes -o ConnectTimeout=15 -o ForwardX11=no
 rsync_connection='ssh -o BatchMode=yes -o ConnectTimeout=15 -o ForwardX11=no -o ForwardAgent=no -o ControlMaster=no -o StrictHostKeyChecking=yes'
 
 wait_and_copy () {
-    # Wait at most one hour for the existing archive creator. Nonzero status or
+    # Wait one hour by default; an explicit build-pipeline caller may allow up
+    # to seven hours (840 checks). Nonzero status or
     # SSH failures stop this pull; there is no automatic job/transfer retry.
     # Every rsync partial stays on mini05 and can be reused by a later rerun.
     local source="$1" label="$2" status attempt ready=0
-    for attempt in {1..120}; do
+    for ((attempt=1; attempt<=wait_attempts; attempt++)); do
         status="$("${connection[@]}" deucalion "if test -f '$source/pack.exit'; then cat '$source/pack.exit'; else printf '%s\\n' PENDING; fi")"
         case "$status" in
             0) ready=1; break ;;

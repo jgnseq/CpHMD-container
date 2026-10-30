@@ -9,12 +9,18 @@ work="$(mktemp -d "${TMPDIR:-/tmp}/cphmd-arm-support.XXXXXX")"
 trap 'rm -rf "$work"' EXIT
 for script in container_build/arm64/*.sh container_build/slurm/*.slurm \
     container_build/run_arm64_build.sh container_build/submit_deucalion_arm64.sh \
+    container_build/pull_arm_recovery_on_mini05.sh \
+    container_build/verify_arm64_candidate_on_mini05.sh \
     container_build/create_source_bundle.sh tests/check_source_bundle.sh \
     tests/check_gromacs_test_gate.sh \
     tests/arm64/md_smoke.sh; do
     bash -n "$script"
 done
 python3 container_build/prepare_arm64_build.py --help >/dev/null
+python3 tests/check_arm64_profiles.py
+python3 tests/check_arm64_launcher.py
+python3 tests/check_arm64_reconstruction.py
+python3 tests/check_arm64_portable_context.py
 bash tests/check_source_bundle.sh
 gcc -std=c99 -O2 CpHMD/src/fixgro.c -lm -o "$work/fixgro"
 python3 tests/arm64/check_fixgro.py --binary "$work/fixgro"

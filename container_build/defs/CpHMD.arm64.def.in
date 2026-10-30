@@ -10,6 +10,9 @@ From: @BASE_IMAGE@
     architecture arm64
     gromacs 2026.3
     simd @SIMD@
+    cpu.profile @ISA_PROFILE@
+    cpu.baseline @CPU_BASELINE@
+    cphmd.delphi-target @DELPHI_TARGET@
     base.sha256 @BASE_SHA256@
     source.manifest.sha256 @MANIFEST_SHA256@
     validation.status development-candidate-not-scientifically-validated
@@ -39,8 +42,9 @@ From: @BASE_IMAGE@
     /bin/bash /usr/local/libexec/cphmd/validate-arm64.sh
 
 %help
-    Native ARM GROMACS 2026.3 CPU development candidate. The exact pre-existing
-    ARM base image supplies the legacy DelPhi solver and its NVHPC libraries.
+    Native ARM GROMACS 2026.3 CPU development candidate. The selected profile
+    pins both the base image and solver target. Portable is ARMv8-A/ASIMD with
+    verified generic DelPhi; the A64FX profile is hardware-specific and opt-in.
     CpHMD, PLUMED, PETIT, fixgro and the PB helpers use the frozen source context.
     Build/dependency checks are distinct from scientific PB/MC validation.
     GPU=0 is required. GROMACS uses OpenMP and thread-MPI, not external MPI.

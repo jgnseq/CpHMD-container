@@ -1,0 +1,21 @@
+{
+  "captured_utc": "2026-10-30T00:12:04.740484+00:00",
+  "deucalion": {
+    "accounting": "2165989|COMPLETED|0:0|00:25:10\n2165989.batch|COMPLETED|0:0|00:25:10\n2165989.extern|COMPLETED|0:0|00:25:10\n2165990|RUNNING|0:0|00:02:26\n2165990.batch|RUNNING|0:0|00:02:26\n2165990.extern|RUNNING|0:0|00:02:26\n2166011|PENDING|0:0|00:00:00\n",
+    "receipts": {
+      "build-result.txt": "BUILD_AND_SMOKE_TESTS_PASSED\n",
+      "exit-2165989.txt": "0\n",
+      "CpHMD-arm64.sif.sha256": "d4d4278861eb1e9917db8b0ca74b32304fca69674a109f9813574807b85fb5f4  CpHMD-arm64.sif\n",
+      "acceptance-result.txt": null,
+      "acceptance-exit-2165990.txt": null,
+      "acceptance/acceptance.json": null
+    }
+  },
+  "mini05": {
+    "process": "    PID     ELAPSED COMMAND\n 189313       20:08 timeout --signal=TERM --kill-after=60s 8h bash /home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.default-portable.20261029.Hl8Yxh/verify_arm64_candidate_on_mini05.sh /home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.default-portable.20261029.Hl8Yxh /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/recovery.default-portable.20261029.NkWg6R\n",
+    "receipts": {
+      "verification.exit": "RUNNING\n",
+      "verification.json": null
+    }
+  }
+}

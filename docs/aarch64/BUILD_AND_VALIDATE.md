@@ -8,11 +8,12 @@ commenting convention for future project-owned changes.
 
 ## Main target: portable Linux ARM64 baseline
 
-The user has clarified that broad ARM compatibility takes priority over tuning
-for Deucalion. The intended default is ARMv8-A/ASIMD with no SVE requirement;
-A64FX optimization remains a separately named optional profile. The historical
-launcher below still creates the A64FX reference, even when GROMACS alone is
-switched to NEON: its inherited DelPhi is specialized. Do not label it portable.
+Broad ARM compatibility takes priority over tuning for Deucalion. The launcher
+and context preparer now default to the portable ARMv8-A/ASIMD profile with
+generic DelPhi. SVE requires explicit `--profile a64fx`. NEON selected inside
+that explicit A64FX profile still carries a specialized solver and is not
+portable. See [the profile/build handover](PORTABLE_DEFAULT_BUILD_2026-10-29.md)
+for current source policy, pending candidate-specific gates and job IDs.
 
 The new complete baseline rebuild replaces DelPhi with `-tp=px` and rebuilds
 GROMACS/PETIT/helpers/PLUMED with explicit baseline targets. See
@@ -24,7 +25,7 @@ coupled/RT acceptance have now passed in the separate
 non-SVE executed-path emulation check. Physical non-SVE ARM coverage and final
 portable performance/recovery remain separate delivery considerations.
 
-## Current A64FX candidate: native PB/MC execution validated
+## Optional A64FX reference: native PB/MC execution validated
 
 Derived-image job **2150839** passed ordinary-user runtime and complete HEWL
 PB/MC in **2:39**. It replaces the incompatible inherited DelPhi 6.1 executable
@@ -39,8 +40,8 @@ SHA256 1ee92b674c8808dd6e63d3f487fde5e2ea659c706eafefb43cede9b89070407d
 
 A verified off-cluster copy is saved at
 `../artifacts/arm64/CpHMD-arm64-a64fx-pbmc-2150839.sif`. The source-context
-preparer and workstation launcher now pin this repaired bootstrap. No new full
-GROMACS/PLUMED compilation is needed just to record the milestone.
+preparer and workstation launcher's explicit A64FX profile pin this repaired
+bootstrap. The portable default uses the separately verified generic image.
 
 The standard-profile strict energy screen remains recorded for review. With
 identical tighter PB settings, x86/ARM differences fall to **0.000950 pK** and
@@ -269,35 +270,49 @@ Deucalion's project directory requires supplementary-group access, which fakeroo
 - The ordinary host process stages inputs and copies artifacts/results back after fakeroot returns. The local-image build uses `--disable-cache`; no compiler downloads or OCI downloads occur in the fakeroot build.
 - The project ACLs and production directories are unchanged. Failed temporary build work is not destructively cleaned by the launcher.
 
-## 1. Record the portable performance and batch follow-up
+## 1. Record the portable-default packaging changes
 
-The user committed and pushed the earlier portable-image gates as `d6607de`.
-Tonight's batch/recovery harness, result report and compact evidence remain
-unstaged. Running jobs use immutable remote inputs and do not need this
-commit/push to continue. The agent has not staged or committed them.
+The user committed the preceding performance/wrapper stage as `e53734f`.
+The profile/default/fresh-build changes below remain unstaged. The running
+development candidate records its actual earlier working-tree snapshot; the
+normal submission CLI requires reviewed committed source. Existing remote
+jobs do not need this commit/push to continue. The agent has not staged or
+committed user work.
 
 ```bash
 cd '/home/jsequeira/Documents/ChatGPT/CpHMD Container — ARM64 & Publication/CpHMD-container'
 git status --short --branch
-python3 tests/check_hewl_performance_helpers.py
+python3 tests/check_arm64_profiles.py
+python3 tests/check_arm64_launcher.py
+python3 tests/check_arm64_reconstruction.py
 python3 tests/check_arm64_portable_context.py
 python3 tests/check_repository_safety.py
 git diff --check
 git add -- \
-  container_build/prepare_hewl_batch.py \
-  container_build/slurm/hewl-batch-prepare.slurm \
-  container_build/slurm/hewl-batch-audit.slurm \
-  container_build/slurm/hewl-batch-dispatch-audit.slurm \
+  container_build/arm64/profiles.py \
+  container_build/arm64/stage-bootstrap-delphi.py \
+  container_build/arm64/install-portable-delphi.py \
+  container_build/arm64/build-inside.sh \
+  container_build/defs/CpHMD.arm64.def.in \
+  container_build/prepare_arm64_build.py \
+  container_build/prepare_portable_candidate.py \
+  container_build/reconstruct_arm64_context.py \
+  container_build/submit_deucalion_arm64.sh \
+  container_build/slurm/verify-arm64-candidate.slurm \
   container_build/pull_arm_recovery_on_mini05.sh \
-  docs/aarch64/PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md \
-  docs/aarch64/ARM64_RESULTS_AND_NEXT_GATES_2026-10-29.md \
+  container_build/verify_arm64_candidate_on_mini05.sh \
+  tests/check_arm64_profiles.py \
+  tests/check_arm64_launcher.py \
+  tests/check_arm64_reconstruction.py \
+  tests/check_arm64_build_support.sh \
+  docs/aarch64/PORTABLE_DEFAULT_BUILD_2026-10-29.md \
   docs/aarch64/BUILD_AND_VALIDATE.md \
   docs/aarch64/DEVELOPER_GUIDE.md \
-  docs/aarch64/evidence/2026-10-29
-python3 tests/check_repository_safety.py --staged
-git diff --cached --check
-git diff --cached --stat
-git commit -m 'Record portable ARM64 performance and production-wrapper validation'
+  docs/aarch64/evidence/2026-10-29/portable-default-build
+python3 tests/check_repository_safety.py --staged && \
+git diff --cached --check && \
+git diff --cached --stat && \
+git commit -m 'Make portable ARM64 the default build profile and gate fresh candidates' && \
 git push origin codex/arm64-deucalion-20261026
 ```
 
@@ -308,9 +323,10 @@ paths: a pre-existing untracked local file was left untouched and excluded.
 
 ## 2. Prepare and submit a future candidate when code changes
 
-Job `2147983` already produced the candidate for scientific validation. The
-commands below document the build workflow for a later implementation change;
-do not submit another build just to record the successful milestone.
+The currently submitted fresh candidate is build **2165989**, followed by
+native acceptance **2165990** and recovery **2166011**. Inspect those existing
+jobs; do not duplicate them. The commands in this section document the build
+workflow for a future reviewed commit after code changes.
 
 From the same local terminal:
 
@@ -318,7 +334,11 @@ From the same local terminal:
 bash container_build/submit_deucalion_arm64.sh --submit
 ```
 
-The helper refuses a dirty checkout. It verifies the GROMACS source archive's pinned SHA-256, creates a Git bundle of the committed development branch, transfers that bundle and the archive to the project, and clones the source bundle there. GitHub private keys, tokens and credential configuration are not copied to Deucalion.
+The helper requires committed, clean tracked source and committed required
+build files; unrelated untracked notes stay local. It scans safety before
+upload, verifies the GROMACS archive SHA256, creates and independently checks
+a bundle of the current committed branch, and clones it in the project.
+GitHub private keys, tokens and credential configuration are not copied.
 
 On Deucalion it freezes a new build context, renders the definition including the canonical helper-app interface, records metadata/hashes, and submits a four-hour `dev-arm` job using `f202500250cpcaa2a`. It prints the SLURM job ID and exact prepared-output directory. Save that output.
 
@@ -330,10 +350,10 @@ bash container_build/submit_deucalion_arm64.sh
 
 This prints the exact `ssh ... sbatch ...` command for that context. Review its `build.json` and `CpHMD.arm64.def`, then run the printed command. Do not submit both workflows for the same intended candidate.
 
-For a separate NEON comparison candidate later:
+For a separate optimized A64FX candidate later:
 
 ```bash
-bash container_build/submit_deucalion_arm64.sh --simd ARM_NEON_ASIMD --submit
+bash container_build/submit_deucalion_arm64.sh --profile a64fx --submit
 ```
 
 This is a comparison on the tested ARM environment, not a claim of portability to every AArch64 CPU. The carried solver/runtime must also be checked on any additional hardware.

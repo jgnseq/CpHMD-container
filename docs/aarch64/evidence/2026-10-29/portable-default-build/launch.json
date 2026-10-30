@@ -1,0 +1,32 @@
+{
+  "captured_utc": "2026-10-29T23:57:47.710712+00:00",
+  "run_root": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/builds/portable-default.20261029.Q6nWxw",
+  "candidate_root": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/builds/portable-default.20261029.Q6nWxw/candidate",
+  "jobs": {
+    "build": 2165989,
+    "native_acceptance": 2165990,
+    "recovery": 2166011
+  },
+  "mini05_root": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.default-portable.20261029.Hl8Yxh",
+  "mini05_timeout_pid": 189313,
+  "manifest_sha256": "0e40c2cb38ae22cbda5437dd250d19168c975b31ff1a48e5dfb8da0bb4eadfac",
+  "definition_sha256": "644f235e31881e6f9cfa007e67046d685cb33d050dda55f39c1225044fccfdd1",
+  "base_sha256": "dd7872704d2a8780ea52b4e3003c5a0519d8bbc20d179069df740a010b2ce479",
+  "source_commit": "d6607de5e96d774a95904f5672d58db3f058602c",
+  "source_dirty": true,
+  "build_profile": "portable",
+  "isa_profile": "portable-armv8-a",
+  "simd": "ARM_NEON_ASIMD",
+  "sve_bits": 0,
+  "runtime_preflight": "Passed native byte-verified retention from pinned portable bootstrap",
+  "validation_status": "Fresh build and smoke passed; native scientific acceptance running; verified recovery and candidate-specific non-SVE gate pending.",
+  "local_tests": {
+    "policy": 6,
+    "launcher": 6,
+    "reconstruction": 4,
+    "legacy_portable_derivation": 4,
+    "support_gate": "Passed with all twenty unit tests, source-bundle connectivity, native helper and analytic PETIT checks."
+  },
+  "safety": "No stage/commit/push by agent; source snapshot uploads contain no Git credentials or inherited ELF.",
+  "latest_status_receipt": "pipeline-status.json"
+}

@@ -49,7 +49,7 @@ def main():
     shutil.copyfile(str(solver / 'provenance.json'), str(stage / 'provenance.json'))
     for name, expected in provenance['runtime_sha256'].items():
         assert Path(name).name == name and digest(stage / 'runtime' / name) == expected
-    metadata.update(isa_profile='portable-armv8-a', sve_bits=0,
+    metadata.update(isa_profile='portable-armv8-a', build_profile='portable', candidate_solver_target='px', sve_bits=0,
         portability_note='Generic ARM64 Linux target; native A64FX validation does not establish all-device support.',
         cross_hardware_validation='non-SVE execution pending', solver_provenance=provenance,
         parent_seed_manifest_sha256=digest(seed / 'manifest.sha256'))
@@ -60,7 +60,13 @@ def main():
     recipe = (seed / 'CpHMD.arm64.def').read_text()
     recipe = re.sub(r'(?m)^    source.manifest.sha256 .*$',
                     '    source.manifest.sha256 ' + metadata['manifest_sha256'], recipe)
-    recipe = recipe.replace('%labels\n', '%labels\n    cpu.baseline armv8-a+asimd\n    cphmd.delphi-target px\n    portability.status non-SVE-execution-pending\n', 1)
+    for key, value in [('cpu.profile', 'portable-armv8-a'), ('cpu.baseline', 'armv8-a+asimd'),
+                       ('cphmd.delphi-target', 'px'), ('portability.status', 'non-SVE-execution-pending')]:
+        pattern = r'(?m)^    ' + re.escape(key) + r' .*$'
+        if re.search(pattern, recipe):
+            recipe = re.sub(pattern, '    ' + key + ' ' + value, recipe)
+        else:
+            recipe = recipe.replace('%labels\n', '%labels\n    ' + key + ' ' + value + '\n', 1)
     (output / 'CpHMD.arm64.def').write_text(recipe)
     metadata['definition_sha256'] = digest(output / 'CpHMD.arm64.def')
     (output / 'build.json').write_text(json.dumps(metadata, indent=2) + '\n')

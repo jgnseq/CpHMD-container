@@ -14,11 +14,10 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+from arm64.profiles import PROFILES, select_profile
 
-# Execution-validated A64FX candidate from job 2150839. Its DelPhi 5 solver
-# replaces the inherited 6.1 executable that SIGILLs on A64FX. Numerical
-# convergence/sampling evidence is recorded separately from runtime acceptance.
-BASE_SHA256 = '1ee92b674c8808dd6e63d3f487fde5e2ea659c706eafefb43cede9b89070407d'
+# Defaults come from one shared policy; A64FX now requires explicit selection.
+BASE_SHA256 = PROFILES['portable']['base_sha256']
 GROMACS_SHA256 = '1094b7bbc6a3960223827114626657110b40096cdf9598a727935fc84ebf8aa0'
 
 
@@ -43,15 +42,22 @@ def main():
     parser.add_argument('--recipe-base-image', type=Path,
                         help='Absolute execution-host path for the same checksum-pinned base')
     parser.add_argument('--gromacs-source', required=True, type=Path)
-    parser.add_argument('--simd', choices=['ARM_SVE', 'ARM_NEON_ASIMD'], default='ARM_SVE')
+    parser.add_argument('--profile', choices=sorted(PROFILES), default='portable')
+    parser.add_argument('--simd', choices=['ARM_SVE', 'ARM_NEON_ASIMD'],
+                        help='Default follows profile; portable rejects SVE')
     parser.add_argument('--jobs', type=int, choices=range(1, 9), default=4)
     parser.add_argument('--allow-dirty', action='store_true')
     parser.add_argument('--portable-seed', action='store_true',
                         help='Freeze the generic-solver derivation job; seed itself is not portable')
     parser.add_argument('--pbmc-reference', type=Path)
     args = parser.parse_args()
-    if args.portable_seed and (args.simd != 'ARM_NEON_ASIMD' or args.pbmc_reference is None):
-        parser.error('Portable seed needs NEON and the accepted tight-profile x86 PBMC reference')
+    try:
+        profile = select_profile(args.profile, args.simd)
+    except ValueError as error:
+        parser.error(str(error))
+    args.simd = profile['simd']
+    if args.portable_seed and (args.profile != 'a64fx' or args.simd != 'ARM_NEON_ASIMD' or args.pbmc_reference is None):
+        parser.error('Legacy portable seed requires --profile a64fx --simd ARM_NEON_ASIMD and --pbmc-reference')
     repo = Path(__file__).resolve().parent.parent
     base = args.base_image.resolve()
     archive = args.gromacs_source.resolve()
@@ -59,8 +65,8 @@ def main():
     recipe_base = args.recipe_base_image if args.recipe_base_image is not None else base
     if not recipe_base.is_absolute() or any(c.isspace() for c in str(recipe_base)):
         parser.error('Use a base-image path without whitespace for the SIF header')
-    if digest(base) != BASE_SHA256:
-        parser.error('Bootstrap image differs from the audited ARM base SHA-256')
+    if digest(base) != profile['base_sha256']:
+        parser.error('Bootstrap image differs from the selected ' + args.profile + ' profile SHA-256')
     if digest(archive) != GROMACS_SHA256:
         parser.error('GROMACS source SHA-256 mismatch')
     def git(*argv):
@@ -81,6 +87,8 @@ def main():
     # remote build. Permit tracked input plus these explicit new owned gates.
     allowed_files = set(subprocess.check_output(['git', '-C', str(repo), 'ls-files', '-z']).decode().split('\0'))
     allowed_files.update(('container_build/arm64/install-portable-delphi.py',
+                          'container_build/arm64/profiles.py',
+                          'container_build/arm64/stage-bootstrap-delphi.py',
                           'tests/arm64/hewl_overnight.py'))
     allowed_dirs = set()
     for name in allowed_files:
@@ -129,12 +137,17 @@ def main():
         shutil.copytree(str(repo / name), str(dest), ignore=ignore)
     shutil.copy2(str(repo / 'container_build/run_arm64_build.sh'),
                  str(context / 'run_arm64_build.sh'))
+    gate = repo / 'container_build/slurm/verify-arm64-candidate.slurm'
+    if gate.is_symlink() or not gate.is_file():
+        parser.error('Expected regular candidate acceptance launcher')
+    shutil.copy2(str(gate), str(context / gate.name))
     if args.portable_seed:
         for name in ('prepare_portable_candidate.py', 'slurm/build-portable-arm64.slurm'):
             path = repo / 'container_build' / name
             if path.is_symlink() or not path.is_file():
                 parser.error('Expected regular portable driver: ' + name)
             shutil.copy2(str(path), str(context / path.name))
+    if args.pbmc_reference is not None:
         reference = context / 'portable-reference'
         reference.mkdir()
         for name in ('PBMC.pkcrg', 'PBMC.g', 'PBMC.dat', 'petit-1729.out', 'petit-2718.out', 'petit-3141.out'):
@@ -152,7 +165,10 @@ def main():
     manifest_hash = digest(out / 'manifest.sha256')
     template = (repo / 'container_build/defs/CpHMD.arm64.def.in').read_text()
     for key, value in {'BASE_IMAGE': str(recipe_base), 'SIMD': args.simd,
-                       'BASE_SHA256': BASE_SHA256,
+                       'BASE_SHA256': profile['base_sha256'],
+                       'ISA_PROFILE': profile['isa_profile'],
+                       'CPU_BASELINE': profile['cpu_baseline'],
+                       'DELPHI_TARGET': profile['delphi_target'],
                        'MANIFEST_SHA256': manifest_hash}.items():
         template = template.replace('@' + key + '@', value)
     # Preserve the canonical user-facing app interface in the rendered recipe.
@@ -164,7 +180,8 @@ def main():
         'source_commit': git('rev-parse', 'HEAD'),
         'source_branch': git('branch', '--show-current'),
         'source_dirty': bool(dirty), 'source_status': dirty.splitlines(),
-        'base_image': str(recipe_base), 'base_sha256': BASE_SHA256,
+        'base_image': str(recipe_base), 'base_sha256': profile['base_sha256'],
+        'build_profile': args.profile, 'base_profile': args.profile,
         'base_checked_local': str(base),
         'gromacs_version': '2026.3', 'gromacs_sha256': GROMACS_SHA256,
         'simd': args.simd, 'sve_bits': 512 if args.simd == 'ARM_SVE' else 0,
@@ -172,9 +189,11 @@ def main():
         'definition_sha256': digest(out / 'CpHMD.arm64.def'),
         'excluded_host_products': omissions,
         'validation_status': 'prepared; build and scientific validation pending',
-        'isa_profile': 'a64fx-reference',
+        'isa_profile': profile['isa_profile'],
         'portable_derivation_seed': args.portable_seed,
-        'portability_note': 'NEON alone does not remove the inherited A64FX DelPhi; portable assembly must replace it explicitly.',
+        'portability_note': profile['portability_note'],
+        'candidate_solver_target': profile['delphi_target'],
+        'cross_hardware_validation': 'pending for this newly built candidate',
     }
     (out / 'build.json').write_text(json.dumps(metadata, indent=2) + '\n')
     # Supplement the exact commit with any explicitly permitted development

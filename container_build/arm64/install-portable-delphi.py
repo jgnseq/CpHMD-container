@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import shutil
 import struct
+from profiles import validate_generic_solver
 
 
 def main():
@@ -20,9 +21,7 @@ def main():
     assert os.getuid() == 0
     stage = Path('/opt/cphmd-build/portable-delphi')
     provenance = json.loads((stage / 'provenance.json').read_text())
-    assert provenance['target'] == 'px'
-    assert '-tp=px' in provenance['fortran_flags'].split()
-    assert not any(flag in provenance['fortran_flags'] for flag in ('a64fx', '-fast', '-tp=host', '-tp=native'))
+    validate_generic_solver(provenance)
     installed = {}
     for name, expected in provenance['runtime_sha256'].items():
         assert Path(name).name == name
@@ -40,6 +39,8 @@ def main():
               'installed_sha256': installed, 'provenance': provenance,
               'cross_hardware_validation': 'pending; native A64FX execution alone cannot certify every ARM CPU'}
     Path('/usr/share/cphmd/build/delphi-portable.json').write_text(json.dumps(report, indent=2) + '\n')
+    if (stage / 'bootstrap-origin.json').is_file():
+        shutil.copyfile(stage / 'bootstrap-origin.json', '/usr/share/cphmd/build/delphi-bootstrap-origin.json')
     Path('/usr/share/cphmd/build/delphi.sha256').write_text(installed['/Delphi/delphi_pgf90'] + '  /Delphi/delphi_pgf90\n')
 
 

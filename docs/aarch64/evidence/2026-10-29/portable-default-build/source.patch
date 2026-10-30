@@ -1,0 +1,2845 @@
+diff --git a/container_build/arm64/build-inside.sh b/container_build/arm64/build-inside.sh
+index 1865efa..9baba10 100644
+--- a/container_build/arm64/build-inside.sh
++++ b/container_build/arm64/build-inside.sh
+@@ -40,7 +40,21 @@ fi
+ export MAKEFLAGS="-j${jobs}"
+ export OMP_NUM_THREADS=1
+ export LD_LIBRARY_PATH="/opt/nvhpc/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
++# The portable bootstrap's provenance/libraries must be staged before clearing
++# inherited payloads/evidence. Explicit legacy derivations supply their own
++# staged solver and are still checked by the same installer below.
++if [[ $profile == portable-armv8-a ]]; then
++    python3 "$src/container_build/arm64/stage-bootstrap-delphi.py"
++elif [[ -f /usr/share/cphmd/build/delphi-a64fx-repair.json ]]; then
++    cp /usr/share/cphmd/build/delphi-a64fx-repair.json "$src/delphi-bootstrap-provenance.json"
++fi
++# Fresh compiler/test evidence prevents inherited passes being mistaken for
++# this candidate's results. Original evidence remains in the immutable base.
++rm -rf /usr/share/cphmd/build /usr/share/cphmd/tests
+ mkdir -p /etc/cphmd /usr/share/cphmd/build /usr/local/libexec/cphmd
++if [[ -f $src/delphi-bootstrap-provenance.json ]]; then
++    cp "$src/delphi-bootstrap-provenance.json" /usr/share/cphmd/build/
++fi
+ test -x /Delphi/delphi_pgf90
+ # Preserve the solver before replacing its directory. Fixed-coordinate PB/MC
+ # comparison is a separate acceptance gate for this inherited native binary.
+diff --git a/container_build/arm64/install-portable-delphi.py b/container_build/arm64/install-portable-delphi.py
+index 8659e97..6cdeaaf 100644
+--- a/container_build/arm64/install-portable-delphi.py
++++ b/container_build/arm64/install-portable-delphi.py
+@@ -13,6 +13,7 @@ import os
+ from pathlib import Path
+ import shutil
+ import struct
++from profiles import validate_generic_solver
+ 
+ 
+ def main():
+@@ -20,9 +21,7 @@ def main():
+     assert os.getuid() == 0
+     stage = Path('/opt/cphmd-build/portable-delphi')
+     provenance = json.loads((stage / 'provenance.json').read_text())
+-    assert provenance['target'] == 'px'
+-    assert '-tp=px' in provenance['fortran_flags'].split()
+-    assert not any(flag in provenance['fortran_flags'] for flag in ('a64fx', '-fast', '-tp=host', '-tp=native'))
++    validate_generic_solver(provenance)
+     installed = {}
+     for name, expected in provenance['runtime_sha256'].items():
+         assert Path(name).name == name
+@@ -40,6 +39,8 @@ def main():
+               'installed_sha256': installed, 'provenance': provenance,
+               'cross_hardware_validation': 'pending; native A64FX execution alone cannot certify every ARM CPU'}
+     Path('/usr/share/cphmd/build/delphi-portable.json').write_text(json.dumps(report, indent=2) + '\n')
++    if (stage / 'bootstrap-origin.json').is_file():
++        shutil.copyfile(stage / 'bootstrap-origin.json', '/usr/share/cphmd/build/delphi-bootstrap-origin.json')
+     Path('/usr/share/cphmd/build/delphi.sha256').write_text(installed['/Delphi/delphi_pgf90'] + '  /Delphi/delphi_pgf90\n')
+ 
+ 
+diff --git a/container_build/defs/CpHMD.arm64.def.in b/container_build/defs/CpHMD.arm64.def.in
+index 9fc4349..1cacae5 100644
+--- a/container_build/defs/CpHMD.arm64.def.in
++++ b/container_build/defs/CpHMD.arm64.def.in
+@@ -10,6 +10,9 @@ From: @BASE_IMAGE@
+     architecture arm64
+     gromacs 2026.3
+     simd @SIMD@
++    cpu.profile @ISA_PROFILE@
++    cpu.baseline @CPU_BASELINE@
++    cphmd.delphi-target @DELPHI_TARGET@
+     base.sha256 @BASE_SHA256@
+     source.manifest.sha256 @MANIFEST_SHA256@
+     validation.status development-candidate-not-scientifically-validated
+@@ -39,8 +42,9 @@ From: @BASE_IMAGE@
+     /bin/bash /usr/local/libexec/cphmd/validate-arm64.sh
+ 
+ %help
+-    Native ARM GROMACS 2026.3 CPU development candidate. The exact pre-existing
+-    ARM base image supplies the legacy DelPhi solver and its NVHPC libraries.
++    Native ARM GROMACS 2026.3 CPU development candidate. The selected profile
++    pins both the base image and solver target. Portable is ARMv8-A/ASIMD with
++    verified generic DelPhi; the A64FX profile is hardware-specific and opt-in.
+     CpHMD, PLUMED, PETIT, fixgro and the PB helpers use the frozen source context.
+     Build/dependency checks are distinct from scientific PB/MC validation.
+     GPU=0 is required. GROMACS uses OpenMP and thread-MPI, not external MPI.
+diff --git a/container_build/prepare_arm64_build.py b/container_build/prepare_arm64_build.py
+index 171a314..e849b42 100644
+--- a/container_build/prepare_arm64_build.py
++++ b/container_build/prepare_arm64_build.py
+@@ -14,11 +14,10 @@ from pathlib import Path
+ import shutil
+ import subprocess
+ import sys
++from arm64.profiles import PROFILES, select_profile
+ 
+-# Execution-validated A64FX candidate from job 2150839. Its DelPhi 5 solver
+-# replaces the inherited 6.1 executable that SIGILLs on A64FX. Numerical
+-# convergence/sampling evidence is recorded separately from runtime acceptance.
+-BASE_SHA256 = '1ee92b674c8808dd6e63d3f487fde5e2ea659c706eafefb43cede9b89070407d'
++# Defaults come from one shared policy; A64FX now requires explicit selection.
++BASE_SHA256 = PROFILES['portable']['base_sha256']
+ GROMACS_SHA256 = '1094b7bbc6a3960223827114626657110b40096cdf9598a727935fc84ebf8aa0'
+ 
+ 
+@@ -43,15 +42,22 @@ def main():
+     parser.add_argument('--recipe-base-image', type=Path,
+                         help='Absolute execution-host path for the same checksum-pinned base')
+     parser.add_argument('--gromacs-source', required=True, type=Path)
+-    parser.add_argument('--simd', choices=['ARM_SVE', 'ARM_NEON_ASIMD'], default='ARM_SVE')
++    parser.add_argument('--profile', choices=sorted(PROFILES), default='portable')
++    parser.add_argument('--simd', choices=['ARM_SVE', 'ARM_NEON_ASIMD'],
++                        help='Default follows profile; portable rejects SVE')
+     parser.add_argument('--jobs', type=int, choices=range(1, 9), default=4)
+     parser.add_argument('--allow-dirty', action='store_true')
+     parser.add_argument('--portable-seed', action='store_true',
+                         help='Freeze the generic-solver derivation job; seed itself is not portable')
+     parser.add_argument('--pbmc-reference', type=Path)
+     args = parser.parse_args()
+-    if args.portable_seed and (args.simd != 'ARM_NEON_ASIMD' or args.pbmc_reference is None):
+-        parser.error('Portable seed needs NEON and the accepted tight-profile x86 PBMC reference')
++    try:
++        profile = select_profile(args.profile, args.simd)
++    except ValueError as error:
++        parser.error(str(error))
++    args.simd = profile['simd']
++    if args.portable_seed and (args.profile != 'a64fx' or args.simd != 'ARM_NEON_ASIMD' or args.pbmc_reference is None):
++        parser.error('Legacy portable seed requires --profile a64fx --simd ARM_NEON_ASIMD and --pbmc-reference')
+     repo = Path(__file__).resolve().parent.parent
+     base = args.base_image.resolve()
+     archive = args.gromacs_source.resolve()
+@@ -59,8 +65,8 @@ def main():
+     recipe_base = args.recipe_base_image if args.recipe_base_image is not None else base
+     if not recipe_base.is_absolute() or any(c.isspace() for c in str(recipe_base)):
+         parser.error('Use a base-image path without whitespace for the SIF header')
+-    if digest(base) != BASE_SHA256:
+-        parser.error('Bootstrap image differs from the audited ARM base SHA-256')
++    if digest(base) != profile['base_sha256']:
++        parser.error('Bootstrap image differs from the selected ' + args.profile + ' profile SHA-256')
+     if digest(archive) != GROMACS_SHA256:
+         parser.error('GROMACS source SHA-256 mismatch')
+     def git(*argv):
+@@ -81,6 +87,8 @@ def main():
+     # remote build. Permit tracked input plus these explicit new owned gates.
+     allowed_files = set(subprocess.check_output(['git', '-C', str(repo), 'ls-files', '-z']).decode().split('\0'))
+     allowed_files.update(('container_build/arm64/install-portable-delphi.py',
++                          'container_build/arm64/profiles.py',
++                          'container_build/arm64/stage-bootstrap-delphi.py',
+                           'tests/arm64/hewl_overnight.py'))
+     allowed_dirs = set()
+     for name in allowed_files:
+@@ -129,12 +137,17 @@ def main():
+         shutil.copytree(str(repo / name), str(dest), ignore=ignore)
+     shutil.copy2(str(repo / 'container_build/run_arm64_build.sh'),
+                  str(context / 'run_arm64_build.sh'))
++    gate = repo / 'container_build/slurm/verify-arm64-candidate.slurm'
++    if gate.is_symlink() or not gate.is_file():
++        parser.error('Expected regular candidate acceptance launcher')
++    shutil.copy2(str(gate), str(context / gate.name))
+     if args.portable_seed:
+         for name in ('prepare_portable_candidate.py', 'slurm/build-portable-arm64.slurm'):
+             path = repo / 'container_build' / name
+             if path.is_symlink() or not path.is_file():
+                 parser.error('Expected regular portable driver: ' + name)
+             shutil.copy2(str(path), str(context / path.name))
++    if args.pbmc_reference is not None:
+         reference = context / 'portable-reference'
+         reference.mkdir()
+         for name in ('PBMC.pkcrg', 'PBMC.g', 'PBMC.dat', 'petit-1729.out', 'petit-2718.out', 'petit-3141.out'):
+@@ -152,7 +165,10 @@ def main():
+     manifest_hash = digest(out / 'manifest.sha256')
+     template = (repo / 'container_build/defs/CpHMD.arm64.def.in').read_text()
+     for key, value in {'BASE_IMAGE': str(recipe_base), 'SIMD': args.simd,
+-                       'BASE_SHA256': BASE_SHA256,
++                       'BASE_SHA256': profile['base_sha256'],
++                       'ISA_PROFILE': profile['isa_profile'],
++                       'CPU_BASELINE': profile['cpu_baseline'],
++                       'DELPHI_TARGET': profile['delphi_target'],
+                        'MANIFEST_SHA256': manifest_hash}.items():
+         template = template.replace('@' + key + '@', value)
+     # Preserve the canonical user-facing app interface in the rendered recipe.
+@@ -164,7 +180,8 @@ def main():
+         'source_commit': git('rev-parse', 'HEAD'),
+         'source_branch': git('branch', '--show-current'),
+         'source_dirty': bool(dirty), 'source_status': dirty.splitlines(),
+-        'base_image': str(recipe_base), 'base_sha256': BASE_SHA256,
++        'base_image': str(recipe_base), 'base_sha256': profile['base_sha256'],
++        'build_profile': args.profile, 'base_profile': args.profile,
+         'base_checked_local': str(base),
+         'gromacs_version': '2026.3', 'gromacs_sha256': GROMACS_SHA256,
+         'simd': args.simd, 'sve_bits': 512 if args.simd == 'ARM_SVE' else 0,
+@@ -172,9 +189,11 @@ def main():
+         'definition_sha256': digest(out / 'CpHMD.arm64.def'),
+         'excluded_host_products': omissions,
+         'validation_status': 'prepared; build and scientific validation pending',
+-        'isa_profile': 'a64fx-reference',
++        'isa_profile': profile['isa_profile'],
+         'portable_derivation_seed': args.portable_seed,
+-        'portability_note': 'NEON alone does not remove the inherited A64FX DelPhi; portable assembly must replace it explicitly.',
++        'portability_note': profile['portability_note'],
++        'candidate_solver_target': profile['delphi_target'],
++        'cross_hardware_validation': 'pending for this newly built candidate',
+     }
+     (out / 'build.json').write_text(json.dumps(metadata, indent=2) + '\n')
+     # Supplement the exact commit with any explicitly permitted development
+diff --git a/container_build/prepare_hewl_batch.py b/container_build/prepare_hewl_batch.py
+index da532b3..c25b03a 100644
+--- a/container_build/prepare_hewl_batch.py
++++ b/container_build/prepare_hewl_batch.py
+@@ -36,6 +36,7 @@ def main():
+     selected = set(source_files(repo))
+     for name in ["tests/arm64/hewl_batch.py", "container_build/slurm/hewl-batch-prepare.slurm",
+                  "container_build/slurm/hewl-batch-audit.slurm",
++                 "container_build/slurm/hewl-batch-dispatch-audit.slurm",
+                  "template/slurm/generate_CpHMD_slurm.sh", "template/slurm/CpHMD-slurm.settings"]:
+         path = repo / name
+         if path.is_symlink() or not path.is_file():
+diff --git a/container_build/prepare_portable_candidate.py b/container_build/prepare_portable_candidate.py
+index 421df9d..6ba55e5 100644
+--- a/container_build/prepare_portable_candidate.py
++++ b/container_build/prepare_portable_candidate.py
+@@ -49,7 +49,7 @@ def main():
+     shutil.copyfile(str(solver / 'provenance.json'), str(stage / 'provenance.json'))
+     for name, expected in provenance['runtime_sha256'].items():
+         assert Path(name).name == name and digest(stage / 'runtime' / name) == expected
+-    metadata.update(isa_profile='portable-armv8-a', sve_bits=0,
++    metadata.update(isa_profile='portable-armv8-a', build_profile='portable', candidate_solver_target='px', sve_bits=0,
+         portability_note='Generic ARM64 Linux target; native A64FX validation does not establish all-device support.',
+         cross_hardware_validation='non-SVE execution pending', solver_provenance=provenance,
+         parent_seed_manifest_sha256=digest(seed / 'manifest.sha256'))
+@@ -60,7 +60,13 @@ def main():
+     recipe = (seed / 'CpHMD.arm64.def').read_text()
+     recipe = re.sub(r'(?m)^    source.manifest.sha256 .*$',
+                     '    source.manifest.sha256 ' + metadata['manifest_sha256'], recipe)
+-    recipe = recipe.replace('%labels\n', '%labels\n    cpu.baseline armv8-a+asimd\n    cphmd.delphi-target px\n    portability.status non-SVE-execution-pending\n', 1)
++    for key, value in [('cpu.profile', 'portable-armv8-a'), ('cpu.baseline', 'armv8-a+asimd'),
++                       ('cphmd.delphi-target', 'px'), ('portability.status', 'non-SVE-execution-pending')]:
++        pattern = r'(?m)^    ' + re.escape(key) + r' .*$'
++        if re.search(pattern, recipe):
++            recipe = re.sub(pattern, '    ' + key + ' ' + value, recipe)
++        else:
++            recipe = recipe.replace('%labels\n', '%labels\n    ' + key + ' ' + value + '\n', 1)
+     (output / 'CpHMD.arm64.def').write_text(recipe)
+     metadata['definition_sha256'] = digest(output / 'CpHMD.arm64.def')
+     (output / 'build.json').write_text(json.dumps(metadata, indent=2) + '\n')
+diff --git a/container_build/pull_arm_recovery_on_mini05.sh b/container_build/pull_arm_recovery_on_mini05.sh
+new file mode 100644
+index 0000000..0612c83
+--- /dev/null
++++ b/container_build/pull_arm_recovery_on_mini05.sh
+@@ -0,0 +1,62 @@
++#!/bin/bash
++# Pull verified Deucalion recovery archives directly onto mini05, independently
++# of the workstation. Uses mini05's existing SSH authentication/known hosts;
++# never copies keys or enables agent forwarding. Run under a detached bounded
++# timeout on mini05. No submissions, source edits or destructive cleanup occur.
++set -Eeuo pipefail
++root="$(realpath "${1:?Supply the mini05 recovery-pull directory}")"
++case "$root" in /home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.*) ;; *) exit 2 ;; esac
++[[ $# == 1 || $# == 3 ]] || { echo 'Use ROOT [REMOTE_RECOVERY_ROOT LABEL]' >&2; exit 2; }
++if [[ $# == 3 ]]; then
++    # The source enters an SSH command: accept only this project's simple
++    # recovery-folder names, never shell metacharacters or traversal paths.
++    [[ $2 =~ ^/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/recovery\.[A-Za-z0-9._-]+$ ]] || exit 2
++    [[ $3 =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ && $3 != *..* ]] || exit 2
++fi
++# A second invocation must not race an active transfer or its status markers.
++exec 9>"$root/pull.lock"
++flock -n 9 || { echo 'Recovery pull already active' >&2; exit 3; }
++preserve_status () {
++    status=$?
++    printf '%s\n' "$status" > "$root/pull.exit"
++    exit "$status"
++}
++trap preserve_status EXIT
++printf '%s\n' RUNNING > "$root/pull.exit"
++mkdir -p "$root/tmp"
++export TMPDIR="$root/tmp"
++connection=(ssh -o BatchMode=yes -o ConnectTimeout=15 -o ForwardX11=no
++    -o ForwardAgent=no -o ControlMaster=no -o StrictHostKeyChecking=yes)
++rsync_connection='ssh -o BatchMode=yes -o ConnectTimeout=15 -o ForwardX11=no -o ForwardAgent=no -o ControlMaster=no -o StrictHostKeyChecking=yes'
++
++wait_and_copy () {
++    # Wait at most one hour for the existing archive creator. Nonzero status or
++    # SSH failures stop this pull; there is no automatic job/transfer retry.
++    # Every rsync partial stays on mini05 and can be reused by a later rerun.
++    local source="$1" label="$2" status attempt ready=0
++    for attempt in {1..120}; do
++        status="$("${connection[@]}" deucalion "if test -f '$source/pack.exit'; then cat '$source/pack.exit'; else printf '%s\\n' PENDING; fi")"
++        case "$status" in
++            0) ready=1; break ;;
++            PENDING) sleep 30 ;;
++            *) echo "Archive preparation failed or has unexpected status: $status" >&2; return 1 ;;
++        esac
++    done
++    [[ $ready == 1 ]] || { echo 'Archive preparation wait expired' >&2; return 1; }
++    mkdir -p "$root/$label"
++    rsync --archive --no-owner --no-group --checksum --partial --partial-dir=.rsync-partial --info=progress2 \
++        -e "$rsync_connection" --include='*.tar.gz' --include='*.tar.gz.sha256' \
++        --include='*.tar.gz.manifest.json' --exclude='*' \
++        "deucalion:$source/" "$root/$label/"
++    (cd "$root/$label" && sha256sum -c ./*.tar.gz.sha256)
++    printf 'RECOVERY_FOLDER_SHA256_VERIFIED %s\n' "$label"
++}
++
++base=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026
++if [[ $# == 3 ]]; then
++    wait_and_copy "$2" "$3"
++else
++    wait_and_copy "$base/recovery.20261029.YOLhIH" build-and-reference
++    wait_and_copy "$base/recovery.portable-final.20261029.WZ0lBZ" portable-validation
++fi
++echo OFF_CLUSTER_RECOVERY_ON_MINI05_PASSED
+diff --git a/container_build/slurm/hewl-batch-audit.slurm b/container_build/slurm/hewl-batch-audit.slurm
+index df9b38a..17904f2 100644
+--- a/container_build/slurm/hewl-batch-audit.slurm
++++ b/container_build/slurm/hewl-batch-audit.slurm
+@@ -9,6 +9,7 @@
+ #SBATCH --time=00:15:00
+ # Independently audit completed generated jobs. Expected scientific failures
+ # remain failures in sacct; this audit evaluates whether containment worked.
++# Pass the same optional portable/a64fx profile used for fixture preparation.
+ set -Eeuo pipefail
+ root="$(realpath "${1:?Supply the prepared batch validation root}")"
+ case "$root" in /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.*) ;; *) exit 2 ;; esac
+@@ -20,9 +21,21 @@ preserve_status () {
+     exit "$status"
+ }
+ trap preserve_status EXIT
+-image=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif
++profile="${2:-a64fx}"
++task=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026
++case "$profile" in
++    a64fx)
++        image="$task/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif"
++        image_sha=1ee92b674c8808dd6e63d3f487fde5e2ea659c706eafefb43cede9b89070407d ;;
++    portable)
++        image="$task/portable.20261028.MZWHAj/candidate/CpHMD-arm64.sif"
++        image_sha=dd7872704d2a8780ea52b4e3003c5a0519d8bbc20d179069df740a010b2ce479 ;;
++    *) echo 'Use a64fx or portable image profile' >&2; exit 2 ;;
++esac
++[[ $(cat "$root/image-profile.txt") == "$profile" ]]
+ input=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solution.P4IU4M/solution/snapshot
+-echo "1ee92b674c8808dd6e63d3f487fde5e2ea659c706eafefb43cede9b89070407d  $image" | sha256sum -c -
++echo "$image_sha  $image" | sha256sum -c -
++sha256sum -c "$root/image-pin.sha256"
+ (cd "$root/source" && sha256sum -c source.sha256 > "$root/audit-source-verification.log")
+ cp "${BASH_SOURCE[0]}" "$root/executed-audit.sh"
+ singularity exec --cleanenv --bind "$root/source:/source:ro,$input:/input:ro,$root:/out,$root:$root" \
+diff --git a/container_build/slurm/hewl-batch-dispatch-audit.slurm b/container_build/slurm/hewl-batch-dispatch-audit.slurm
+new file mode 100644
+index 0000000..669bd9f
+--- /dev/null
++++ b/container_build/slurm/hewl-batch-dispatch-audit.slurm
+@@ -0,0 +1,54 @@
++#!/bin/bash
++#SBATCH --job-name=cphmd-batch-audit-dispatch
++#SBATCH --account=f202500250cpcaa2a
++#SBATCH --partition=dev-arm
++#SBATCH --nodes=1
++#SBATCH --ntasks=1
++#SBATCH --cpus-per-task=1
++#SBATCH --mem=2G
++#SBATCH --time=00:05:00
++# Submit this with afterany dependencies on all five initial generated cases.
++# Expected failure cases must not block the independent auditor. The explicit
++# guard case may submit one successor after its initial job: read that real ID
++# from its completed log and give the auditor an afterany dependency on it.
++# This removes the workstation from the completion path, without polling or
++# retries. A successful dispatcher means AUDIT SUBMITTED, never science passed.
++set -Eeuo pipefail
++root="$(realpath "${1:?Supply prepared batch root}")"
++case "$root" in /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.*) ;; *) exit 2 ;; esac
++export TMPDIR="$root/tmp"
++exec > >(tee "$root/audit-dispatch-${SLURM_JOB_ID}.log") 2>&1
++preserve_status () {
++    status=$?
++    printf '%s\n' "$status" > "$root/audit-dispatch-exit-${SLURM_JOB_ID}.txt"
++    exit "$status"
++}
++trap preserve_status EXIT
++profile="$(cat "$root/image-profile.txt")"
++case "$profile" in a64fx|portable) ;; *) exit 2 ;; esac
++(cd "$root/source" && sha256sum --quiet -c source.sha256)
++cp "${BASH_SOURCE[0]}" "$root/executed-audit-dispatch.slurm"
++# The initial explicit job is terminal before this dispatcher runs, so any
++# actual successor has been submitted and logged already. Missing successor
++# evidence is left for the scientific auditor to reject, rather than waiting
++# forever. Multiple successors are an orchestration error and stop dispatch.
++child="$(python3 - "$root" <<'PY'
++from pathlib import Path
++import re,sys
++folder=Path(sys.argv[1])/'runs/explicit-guard/slurm_files'
++ids=set()
++for path in folder.glob('HEWL-*.log'):
++    ids.update(re.findall(r'Submitted batch job (\d+)',path.read_text()))
++assert len(ids)<=1, 'More than one successor: inspect the bounded wrapper contract'
++print(next(iter(ids)) if ids else '')
++PY
++)"
++dependencies=()
++if [[ -n $child ]]; then
++    [[ $child =~ ^[0-9]+$ ]] || exit 2
++    dependencies=(--dependency="afterany:$child")
++fi
++job="$(sbatch --parsable "${dependencies[@]}" --output="$root/slurm-%j.log" \
++    "$root/source/container_build/slurm/hewl-batch-audit.slurm" "$root" "$profile")"
++printf 'audit\t%s\n' "$job" | tee "$root/audit-submission.tsv"
++echo INDEPENDENT_AUDIT_SUBMITTED_NOT_YET_ACCEPTED
+diff --git a/container_build/slurm/hewl-batch-prepare.slurm b/container_build/slurm/hewl-batch-prepare.slurm
+index bd04d56..5ef5c0d 100644
+--- a/container_build/slurm/hewl-batch-prepare.slurm
++++ b/container_build/slurm/hewl-batch-prepare.slurm
+@@ -9,6 +9,8 @@
+ #SBATCH --time=00:15:00
+ # Generate real scheduler cases after native Python fixture preparation. This
+ # setup job never submits simulation jobs; each generated script is reviewable.
++# Optional second argument selects the separately pinned portable candidate;
++# the historical A64FX reference remains the default for older reproduction.
+ set -Eeuo pipefail
+ root="$(realpath "${1:?Supply a new project batch validation directory}")"
+ case "$root" in /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.*) ;; *) exit 2 ;; esac
+@@ -22,10 +24,24 @@ preserve_status () {
+     exit "$status"
+ }
+ trap preserve_status EXIT
+-image=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif
++profile="${2:-a64fx}"
++task=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026
++case "$profile" in
++    a64fx)
++        image="$task/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif"
++        image_sha=1ee92b674c8808dd6e63d3f487fde5e2ea659c706eafefb43cede9b89070407d
++        prior="$task/validation/hewl-4lzt/cycle.rt.XNDQa2/coupled"
++        ;;
++    portable)
++        image="$task/portable.20261028.MZWHAj/candidate/CpHMD-arm64.sif"
++        image_sha=dd7872704d2a8780ea52b4e3003c5a0519d8bbc20d179069df740a010b2ce479
++        prior="$task/validation/hewl-4lzt/portable-validation.20261029.gj2COz/rt"
++        ;;
++    *) echo 'Use a64fx or portable image profile' >&2; exit 2 ;;
++esac
+ input=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/solution.P4IU4M/solution/snapshot
+-prior=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/cycle.rt.XNDQa2/coupled
+-echo "1ee92b674c8808dd6e63d3f487fde5e2ea659c706eafefb43cede9b89070407d  $image" | sha256sum -c -
++printf '%s\n' "$profile" > "$root/image-profile.txt"
++echo "$image_sha  $image" | tee "$root/image-pin.sha256" | sha256sum -c -
+ (cd "$root/source" && sha256sum -c source.sha256 > "$root/source-verification.log")
+ cp "${BASH_SOURCE[0]}" "$root/executed-prepare.sh"
+ singularity exec --cleanenv --bind "$root/source:/source:ro,$input:/input:ro,$prior:/prior:ro,$root:/out" \
+diff --git a/container_build/submit_deucalion_arm64.sh b/container_build/submit_deucalion_arm64.sh
+index 0162a23..33434ec 100644
+--- a/container_build/submit_deucalion_arm64.sh
++++ b/container_build/submit_deucalion_arm64.sh
+@@ -5,22 +5,40 @@
+ # See docs/aarch64/DEVELOPER_GUIDE.md for the file/function and cycle map.
+ set -Eeuo pipefail
+ submit=0
+-simd=ARM_SVE
++verify_hewl=0
++profile=portable
++simd=
+ jobs=4
++usage () {
++    # Show the safe default and the explicit hardware-specific alternative.
++    echo 'Usage: bash container_build/submit_deucalion_arm64.sh [--submit] [--verify-hewl] [--profile portable|a64fx] [--simd ARM_NEON_ASIMD|ARM_SVE] [--jobs 1..8]'
++    echo 'Default: portable ARMv8-A/ASIMD with generic DelPhi. --verify-hewl requires --submit.'
++}
+ while (( $# )); do
+     case "$1" in
+         --submit) submit=1; shift ;;
++        --verify-hewl) verify_hewl=1; shift ;;
++        --profile) profile="${2:?}"; shift 2 ;;
+         --simd) simd="${2:?}"; shift 2 ;;
+         --jobs) jobs="${2:?}"; shift 2 ;;
+-        *) echo 'Usage: bash container_build/submit_deucalion_arm64.sh [--submit] [--simd ARM_SVE|ARM_NEON_ASIMD] [--jobs 1..8]' >&2; exit 2 ;;
++        --help|-h) usage; exit 0 ;;
++        *) usage >&2; exit 2 ;;
+     esac
+ done
+-case "$simd" in ARM_SVE|ARM_NEON_ASIMD) ;; *) exit 2 ;; esac
+ [[ $jobs =~ ^[1-8]$ ]] || exit 2
++(( verify_hewl == 0 || submit == 1 )) || { echo 'Use --submit with --verify-hewl' >&2; exit 2; }
+ repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ cd "$repo"
+-branch=codex/arm64-deucalion-20261026
+-[[ $(git branch --show-current) == "$branch" ]] || { echo "Switch to $branch first" >&2; exit 2; }
++selection=(--profile "$profile")
++[[ -z $simd ]] || selection+=(--simd "$simd")
++# Read fixed policy values as data, never evaluate generated shell commands.
++selected="$(python3 "$repo/container_build/arm64/profiles.py" "${selection[@]}")"
++readarray -t chosen <<< "$selected"
++profile="${chosen[0]}"; simd="${chosen[1]}"; base_relative="${chosen[2]}"
++branch="$(git branch --show-current)"
++[[ $branch =~ ^[A-Za-z0-9][A-Za-z0-9._/-]*$ ]] || {
++    echo 'Use a named Git branch with letters, digits, dot, underscore, slash or hyphen.' >&2; exit 2;
++}
+ [[ -z $(git status --porcelain --untracked-files=all) ]] || {
+     echo 'Review, validate and commit the source before transfer.' >&2; exit 2;
+ }
+@@ -34,7 +52,7 @@ fi
+ stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+ task_root=/projects/F202500250CPCAA2/cphmd-container/arm64-20261026
+ source_root="$task_root/sources/$revision"
+-output="$task_root/builds/$revision-$simd-$stamp"
++output="$task_root/builds/$revision-$profile-$simd-$stamp"
+ archive="${CPHMD_GROMACS_SOURCE:-/tmp/cphmd-gromacs-2026.3.tar.gz}"
+ expected=1094b7bbc6a3960223827114626657110b40096cdf9598a727935fc84ebf8aa0
+ if [[ ! -e $archive ]]; then
+@@ -51,6 +69,10 @@ ssh "${ssh_opts[@]}" deucalion "mkdir -p '$task_root/inputs' '$task_root/sources
+ # Incoming files use unique names; existing scientific/build results are retained.
+ scp "${ssh_opts[@]}" "$bundle_dir/source.bundle" "deucalion:$task_root/inputs/source-$revision-$stamp.bundle"
+ scp "${ssh_opts[@]}" "$archive" "deucalion:$task_root/inputs/gromacs-$revision-$stamp.tar.gz"
++reference_args=
++if (( verify_hewl )); then
++    reference_args="--pbmc-reference '$task_root/portable.20261028.MZWHAj/seed/context/portable-reference'"
++fi
+ ssh "${ssh_opts[@]}" deucalion "set -eu
+ if [ ! -e '$source_root' ]; then
+     # Publish the checkout only after both clone and connectivity checks pass.
+@@ -67,14 +89,22 @@ test \"\$(git -C '$source_root' rev-parse HEAD)\" = '$revision'
+ test -z \"\$(git -C '$source_root' status --porcelain --untracked-files=all)\"
+ python3 '$source_root/container_build/prepare_arm64_build.py' \\
+     --output-dir '$output' \\
+-    --base-image '$task_root/validation/hewl-4lzt/solver-image.fDpShj/CpHMD-arm64-a64fx-pbmc-candidate.sif' \\
++    --base-image '$task_root/$base_relative' \\
+     --gromacs-source '$task_root/inputs/gromacs-$revision-$stamp.tar.gz' \\
+-    --simd '$simd' --jobs '$jobs'
++    --profile '$profile' --simd '$simd' --jobs '$jobs' $reference_args
+ if [ '$submit' = 1 ]; then
+-    sbatch --parsable --cpus-per-task='$jobs' --output='$output/slurm-%j.log' \\
+-        '$source_root/container_build/slurm/build-arm64.slurm' '$output'
++    build_job=\$(sbatch --parsable --cpus-per-task='$jobs' --output='$output/slurm-%j.log' \\
++        '$source_root/container_build/slurm/build-arm64.slurm' '$output')
++    printf 'build\\t%s\\n' \"\$build_job\" | tee '$output/submissions.tsv'
++    if [ '$verify_hewl' = 1 ]; then
++        gate_job=\$(sbatch --parsable --kill-on-invalid-dep=yes --dependency=\"afterok:\$build_job\" \\
++            --output='$output/acceptance-%j.log' \\
++            '$output/context/verify-arm64-candidate.slurm' '$output')
++        printf 'acceptance\\t%s\\n' \"\$gate_job\" | tee -a '$output/submissions.tsv'
++    fi
+ fi
+ "
++printf 'Selected profile: %s (%s)\n' "$profile" "$simd"
+ printf 'Prepared output: %s\n' "$output"
+ if (( submit == 0 )); then
+     printf "Submit after inspection:\nssh deucalion sbatch --cpus-per-task=%s --output=%s/slurm-%%j.log %s/container_build/slurm/build-arm64.slurm %s\n" \
+diff --git a/docs/aarch64/ARM64_RESULTS_AND_NEXT_GATES_2026-10-29.md b/docs/aarch64/ARM64_RESULTS_AND_NEXT_GATES_2026-10-29.md
+index ad43367..a04f172 100644
+--- a/docs/aarch64/ARM64_RESULTS_AND_NEXT_GATES_2026-10-29.md
++++ b/docs/aarch64/ARM64_RESULTS_AND_NEXT_GATES_2026-10-29.md
+@@ -1,5 +1,9 @@
+ # Overnight results and portable-image follow-up — 29 October 2026
+ 
++The [night follow-up](PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md) records completed
++portable benchmarks, the portable generated-wrapper audit and direct off-cluster
++recovery. The pending statuses below describe the earlier morning snapshot.
++
+ ## What the completed jobs establish
+ 
+ Every overnight Deucalion allocation completed with `0:0`, and every expected
+diff --git a/docs/aarch64/BUILD_AND_VALIDATE.md b/docs/aarch64/BUILD_AND_VALIDATE.md
+index 1e0dba3..f24e33d 100644
+--- a/docs/aarch64/BUILD_AND_VALIDATE.md
++++ b/docs/aarch64/BUILD_AND_VALIDATE.md
+@@ -269,10 +269,10 @@ Deucalion's project directory requires supplementary-group access, which fakeroo
+ - The ordinary host process stages inputs and copies artifacts/results back after fakeroot returns. The local-image build uses `--disable-cache`; no compiler downloads or OCI downloads occur in the fakeroot build.
+ - The project ACLs and production directories are unchanged. Failed temporary build work is not destructively cleaned by the launcher.
+ 
+-## 1. Record the overnight results and portable-image gates
++## 1. Record the portable performance and batch follow-up
+ 
+-The user committed the portable-baseline/overnight preparation as `592ce86`.
+-This step's follow-up harness, result report and compact evidence remain
++The user committed and pushed the earlier portable-image gates as `d6607de`.
++Tonight's batch/recovery harness, result report and compact evidence remain
+ unstaged. Running jobs use immutable remote inputs and do not need this
+ commit/push to continue. The agent has not staged or committed them.
+ 
+@@ -284,11 +284,12 @@ python3 tests/check_arm64_portable_context.py
+ python3 tests/check_repository_safety.py
+ git diff --check
+ git add -- \
+-  container_build/prepare_hewl_performance.py \
+-  container_build/slurm/hewl-portable-validation.slurm \
+-  container_build/slurm/hewl-portable-components.slurm \
+-  tests/arm64/hewl_overnight.py \
+-  tests/arm64/check_non_sve_runtime.py \
++  container_build/prepare_hewl_batch.py \
++  container_build/slurm/hewl-batch-prepare.slurm \
++  container_build/slurm/hewl-batch-audit.slurm \
++  container_build/slurm/hewl-batch-dispatch-audit.slurm \
++  container_build/pull_arm_recovery_on_mini05.sh \
++  docs/aarch64/PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md \
+   docs/aarch64/ARM64_RESULTS_AND_NEXT_GATES_2026-10-29.md \
+   docs/aarch64/BUILD_AND_VALIDATE.md \
+   docs/aarch64/DEVELOPER_GUIDE.md \
+@@ -296,13 +297,14 @@ git add -- \
+ python3 tests/check_repository_safety.py --staged
+ git diff --cached --check
+ git diff --cached --stat
+-git commit -m 'Record overnight benchmarks and validate portable ARM64 runtime'
++git commit -m 'Record portable ARM64 performance and production-wrapper validation'
+ git push origin codex/arm64-deucalion-20261026
+ ```
+ 
+ Images, scientific binaries, trajectories and archives stay outside Git. Exact
+ roots/job IDs and read-only inspection commands are in the 29 October report.
+-Inspect those existing jobs rather than submitting duplicates.
++Inspect those existing jobs rather than submitting duplicates. Use explicit
++paths: a pre-existing untracked local file was left untouched and excluded.
+ 
+ ## 2. Prepare and submit a future candidate when code changes
+ 
+@@ -376,7 +378,13 @@ After the build succeeds, work from a new test directory and immutable input sna
+ The generic candidate build 2160578 passed native unit/smoke/ordinary-user and
+ tight PB/MC gates. Portable all-site/RT/separate-continuation gates
+ 2160986/2160987/2160988 and the separate non-SVE emulation gate passed. Portable
+-MD is running in 2160989 (16/48 threads) and 2161053 (split four-thread
+-observations); inspect all required receipts before promoting the candidate.
++MD completed in 2160989 (16/48 threads) and 2161053 (split four-thread
++observations): all twelve observations passed. The portable generated-wrapper
++follow-up and night recovery are documented in
++[PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md](PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md).
++Its native wrapper auditor 2165834 passed the explicit guard, actual successor
++and failure containment gates; default guard forwarding stays REVIEW. All
++current archives and the SIF are verified off-cluster on mini05. Final release
++packaging and a clean native verification of those packaging changes remain.
+ 
+ The explicit-settings profiles require adapting every `CHANGE_ME` field. Historical settings that relied on hidden defaults must be upgraded in the copied test directory; do not bypass the contract to make an old input run.
+diff --git a/docs/aarch64/DEVELOPER_GUIDE.md b/docs/aarch64/DEVELOPER_GUIDE.md
+index 1bdede3..2540f05 100644
+--- a/docs/aarch64/DEVELOPER_GUIDE.md
++++ b/docs/aarch64/DEVELOPER_GUIDE.md
+@@ -5,6 +5,9 @@ Commands and acceptance gates are in [BUILD_AND_VALIDATE.md](BUILD_AND_VALIDATE.
+ The [29 October follow-up](ARM64_RESULTS_AND_NEXT_GATES_2026-10-29.md) maps the
+ portable integration/RT/component launchers and non-SVE executed-path gate,
+ including their functions, immutable inputs and current acceptance limits.
++The [night follow-up](PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md) adds completed
++portable timings, profile-pinned generated-wrapper validation, the successor-aware
++audit dispatcher and direct mini05 recovery; its final table maps each new file.
+ The build produces a candidate image; the controller later uses that image to
+ execute a scientific simulation. Keep those two stages distinct in code and logs.
+ 
+diff --git a/docs/aarch64/PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md b/docs/aarch64/PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md
+new file mode 100644
+index 0000000..bff57d9
+--- /dev/null
++++ b/docs/aarch64/PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md
+@@ -0,0 +1,202 @@
++# Portable ARM64: completed benchmarks and night handover — 29 October 2026
++
++## Completed and independently checked
++
++All twelve planned portable MD observations completed with passed health
++screens: two repeats of 50 and 200 ps at 4, 16 and 48 threads. The four-thread
++case combines all four single-observation jobs; no partial canceled run enters
++the comparison. The accepted `(steps, repeat)` set is exactly
++`(50000,1/2)` and `(200000,1/2)` at every thread count.
++
++| Allocation | Result |
++|---|---|
++| 2160989_3, sixteen threads | Completed `0:0`, 1:30:02 |
++| 2160989_5, forty-eight threads | Completed `0:0`, 38:08 |
++| 2161053_0/1, four-thread 200-ps repeats | Completed `0:0`, 2:09:52 / 2:09:42 |
++| 2161053_2/3, four-thread 50-ps repeats | Completed `0:0`, 32:45 / 32:44 |
++| 2160989_1, superseded four-thread grouping | Deliberately canceled; no accepted timing |
++
++The independent receipt audit required the fixed TPR SHA256
++`7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48`,
++portable image scope, CPU/profile/command identity, both repeats, finite positive
++timings, and passed trajectory/energy/atom-order/disulfide health checks.
++For split jobs it also required the four distinct observation indices and their
++one-observation summaries. Data and the normalized comparison are in
++`evidence/2026-10-29/portable-performance/`.
++
++Native build/unit/smoke/ordinary-user, fixed-coordinate tight PB/MC, two all-site
++cycles, seven RT cycles with finalized stop/resume, separate-allocation reduced
++cycle 7 → 8, and non-SVE QEMU executed-path gates had already passed. Those
++results are retained in the earlier 29 October report. They do not establish
++physical pKa accuracy, complete PB convergence or every ARM hardware path.
++
++## What performance means for the portable target
++
++These are two-repeat medians for **200 ps of fixed-protonation MD**, all using
++`-reprod`, the same TPR and output schedule. Command time includes startup;
++ns/day is GROMACS's reported integration rate, not complete CpHMD throughput.
++
++| Image / machine | Threads | Command minutes | Reported ns/day |
++|---|---:|---:|---:|
++| x86 experimental 2026.3 rc3 / mini05 | 4 physical cores | 17.2 | 16.76 |
++| Portable NEON / Deucalion | 4 | 129.5 | 2.23 |
++| A64FX SVE512 reference / Deucalion | 4 | 73.0 | 3.96 |
++| Portable NEON / Deucalion | 16 | 35.6 | 8.15 |
++| A64FX SVE512 reference / Deucalion | 16 | 21.0 | 13.91 |
++| Portable NEON / Deucalion | 48 | 14.9 | 19.71 |
++| A64FX SVE512 reference / Deucalion | 48 | 10.1 | 29.40 |
++
++On the same Deucalion hardware, portable command time is 1.78/1.70/1.48 times
++the optimized reference time at 4/16/48 threads. The corresponding integration
++time ratios are about 1.78/1.71/1.49. Most of this difference is sustained MD
++work, rather than a new startup delay: portable startup remains about sixteen
++seconds with the tested profile. Preserve both images and their identities.
++The measured cost does not justify silently introducing SVE into the portable
++baseline. Performance on other ARM processors remains unmeasured.
++
++At equal four-core counts, portable ARM command time is about 7.52 times the
++mini05 x86 time. Using 48 ARM threads finishes this MD-only case in about 86.5%
++of the four-core x86 command time, with twelve times as many cores. Hardware,
++clock and memory differences prevent attributing the cross-machine ratio to
++instruction set or compiler alone. Each ARM measurement reserved an exclusive
++48-core node even when fewer threads were used. Two repeats are an engineering
++screen, not a statistical performance study. The generic solver's previously
++measured cost and PB/MC stage costs remain separate from this MD table.
++
++## Portable generated-wrapper gate launched tonight
++
++Preparation job **2165793** passed in eight seconds. It generated the actual
++unmodified scheduler scripts against the portable image SHA256
++`dd7872704d2a8780ea52b4e3003c5a0519d8bbc20d179069df740a010b2ce479`.
++All script/source/image pins and shell syntax were checked before submission.
++
++| Case | Initial job | Required behavior |
++|---|---|---|
++| Default guard characterization | 2165802 | Run/synchronize; preserve the known default guard defect as REVIEW |
++| Explicit guard | 2165803 → 2165821 | Both completed `0:0`; finalized cycle 1 and continued through cycle 2 |
++| Controlled MD command failure | 2165804 | Expected Slurm `FAILED 42:0`; no false DONE/successor |
++| Controlled PB driver failure | 2165805 | Expected Slurm `FAILED 43:0`; no false DONE/successor |
++| Damaged checkpoint copy | 2165806 | Expected `FAILED 42:0` before simulation; original checkpoint untouched |
++| Audit dispatcher | 2165807 | Completed `0:0`; submitted the successor-dependent auditor |
++| Independent audit | 2165834 | Completed `0:0`, 18 seconds; explicit configuration/successor/containment passed |
++
++Root:
++
++```text
++/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.portable.20261029.uS0Q9t
++```
++
++The dispatcher uses `afterany` so deliberate failures do not block inspection.
++It reads the one real successor ID from the completed initial explicit-case
++log and assigns that dependency to the scientific auditor. It does not poll,
++retry or certify science itself. Missing successor evidence goes to the auditor
++for rejection; more than one successor stops dispatch. Acceptance requires the
++final `batch-audit.json` and its Slurm/exit receipts, not initial job colors.
++Those receipts have now been copied locally and independently checked. The
++accepted marker is
++`EXPLICIT_ENV_BATCH_GATE_PASSED_DEFAULT_GUARD_REVIEW_REQUIRED`.
++Explicit guard 1 reached the actual controller; the default case still observed
++guard 0 and remains REVIEW. Evidence is in
++`evidence/2026-10-29/portable-batch-night/`.
++
++The known default transport problem remains deferred. Do not turn its review
++into a pass or use the artificial one-second test guard for production. The
++supported explicit container guard is tested separately. No canonical CpHMD,
++force-field, PB/MC numerical or scheduler-generator source was edited tonight.
++
++Frozen source SHA256:
++`bef4d3dd1fd6e9ffab10ba46238315ec1d340f49fd821d2fae69e0c884e62d82`.
++The separately uploaded dispatcher SHA256 is
++`24ccdd8602add014bd9813c6158e2a80a883183b3fc902cabda4462e244ba249`.
++Changing or committing this working checkout does not change submitted inputs.
++
++## Recovery and shutdown boundary
++
++Recovery job **2161141** completed `0:0`, verifying the full build/reference
++archives on the cluster. The x86 archive on mini05 was also content-verified.
++Job **2165795** completed `0:0`, archiving the newly finished portable
++validation and split-MD roots under:
++
++```text
++/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/recovery.portable-final.20261029.WZ0lBZ
++```
++
++The workstation connection was slow for multi-gigabyte data. Read-only discovery
++confirmed existing mini05 → Deucalion SSH access. A direct, detached, eight-hour
++bounded recovery pull completed on mini05, with `pull.exit=0` and the final
++`OFF_CLUSTER_RECOVERY_ON_MINI05_PASSED` marker (timeout PID was **189077**):
++
++```text
++/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu
++```
++
++It used the existing SSH authentication and strict known-host checks, with agent
++forwarding disabled. No private keys or authentication configuration were copied.
++Each folder requires the archive creator's zero exit, then copies final archives,
++manifests and checksums using resumable rsync and verifies SHA256 after receipt.
++Project ownership is not imposed on mini05. A lock prevents duplicate pulls.
++The final `pull.exit` must be `0`; a live PID or an existing archive alone is not
++acceptance. All four archives passed the copied SHA256 checks. A separate
++direct copy of the portable SIF also passed its expected SHA256 on mini05, giving
++the image independent copies there and on the workstation. Source/content
++manifests, not metadata-warning suppression, establish
++the server-side archive checks.
++
++The redundant local rsync was interrupted deliberately with status 20; its
++partial data remain resumable. The local verified SIF, runtime/recipe, source
++seed, solver source and compact evidence are already safe. Full archives are
++now off-cluster verified on mini05. Latest production-wrapper raw output is a
++separate recovery: archive job **2165845** and a bounded mini05 pull with timeout
++PID **189137**, both now completed with zero status and SHA256-verified copy, under:
++
++```text
++Cluster: /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/recovery.portable-batch.20261029.RMt8j8
++mini05: /home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.batch.pxF5Co
++```
++
++That separate run reached `pack.exit=0`, `pull.exit=0` and a copied archive
++SHA256 pass. Its full raw recovery is accepted; the compact audit is also safe
++locally. Summary receipts are in `evidence/2026-10-29/recovery-night/`.
++The helper's optional `ROOT REMOTE_RECOVERY_ROOT LABEL`
++mode validates the remote path/label before use in SSH and allows this one-folder
++pull without repeating the earlier archives.
++
++The workstation may shut down. Every job launched in this stage and both direct
++pulls have finished; no local transfer remains active. The local recovery-fetch
++script has been updated to read the verified mini05 mirrors, so later raw-data
++downloads do not require Deucalion access. mini05 must be reachable for those
++later downloads. When the user asks to stop development, save the
++latest IDs/status/handover and start no further work. Existing authorized remote
++jobs can continue unless the user asks to cancel them. No Git commit is required
++to keep submitted work running; the agent does not stage, commit or push.
++
++## Remaining work before access ends
++
++Treat **30 October** as the working deadline:
++
++1. Finalize the normal ARM build/release path around the validated portable
++   profile. Keep the A64FX profile separately named and explicitly selected.
++2. After those packaging changes, perform one clean native build and appropriate
++   final checks; pin the selected image, source/runtime/recipe and exact settings.
++3. Repeat recovery for that final image/evidence and commit/push reviewed code,
++   documentation and compact evidence. Publish a clear handover with hardware/convergence/guard
++   limits and commands that still work after Deucalion access ends.
++
++Further compiler tuning, the finalized x86 release, physical non-SVE hardware
++coverage and the deferred preparation/termini fixes can follow later. Avoid
++starting a broad optimization experiment tonight. The useful stop point is the
++completed wrapper/audit chain and verified recovery, with final packaging reserved
++for tomorrow.
++
++## Changed file/function map
++
++| File / function | Role |
++|---|---|
++| `hewl-batch-prepare.slurm` | Select/pin portable or historical A64FX image and its passed prior checkpoint; generate disposable fixtures/scripts without submitting simulations. |
++| `hewl-batch-audit.slurm` | Require the same profile/pin used in preparation, then run the independent existing science/status auditor. |
++| `hewl-batch-dispatch-audit.slurm` | Submit one auditor after initial cases and their real bounded successor, independently of the workstation. |
++| `prepare_hewl_batch.py` | Include the owned dispatcher in future allowlisted contexts; retain source hashes and dirty-tree provenance. |
++| `pull_arm_recovery_on_mini05.sh`: `wait_and_copy` | Wait for bounded archive preparation, pull only final payloads, retain rsync partials and verify SHA256 on mini05. |
++
++Use explicit Git paths when committing. The pre-existing untracked local file
++was left untouched and was not included in the allowlisted upload.
+diff --git a/docs/aarch64/evidence/2026-10-29/night-handover.json b/docs/aarch64/evidence/2026-10-29/night-handover.json
+new file mode 100644
+index 0000000..92dd7cc
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/night-handover.json
+@@ -0,0 +1,23 @@
++{
++  "captured_utc": "2026-10-29T23:05:30.631552+00:00",
++  "base_commit": "d6607de5e96d774a95904f5672d58db3f058602c",
++  "portable_MD_accepted_observations": 12,
++  "four_core_split_case_complete": true,
++  "portable_batch_independent_audit_job": 2165834,
++  "portable_batch_explicit_configuration_and_failure_cases_passed": true,
++  "default_guard_transport_passed": false,
++  "new_recovery_pack_jobs": [
++    2165795,
++    2165845
++  ],
++  "off_cluster_archives_verified": 5,
++  "portable_image_verified_on_mini05": true,
++  "workstation_shutdown_safe": true,
++  "local_transfer_status": "Deliberately interrupted rsync with status 20; resumable partials retained. No active workstation transfer required.",
++  "remaining": [
++    "Portable ARM build/release profile as normal default, separate A64FX opt-in",
++    "Clean native build/check after packaging changes",
++    "Back up final release evidence and complete Git/reproduction handover"
++  ],
++  "not_done_tonight": "No optimization sweep or final build-profile promotion. Agent did not stage, commit or push."
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/accounting.tsv b/docs/aarch64/evidence/2026-10-29/portable-batch-night/accounting.tsv
+new file mode 100644
+index 0000000..2ad6828
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/accounting.tsv
+@@ -0,0 +1,31 @@
++JobID|JobName|State|ExitCode|Elapsed
++2165793|cphmd-batch-prepare|COMPLETED|0:0|00:00:08
++2165793.batch|batch|COMPLETED|0:0|00:00:08
++2165793.extern|extern|COMPLETED|0:0|00:00:08
++2165802|HEWL-default-guard|COMPLETED|0:0|00:05:59
++2165802.batch|batch|COMPLETED|0:0|00:05:59
++2165802.extern|extern|COMPLETED|0:0|00:06:00
++2165803|HEWL-explicit-guard|COMPLETED|0:0|00:03:43
++2165803.batch|batch|COMPLETED|0:0|00:03:43
++2165803.extern|extern|COMPLETED|0:0|00:03:43
++2165804|HEWL-md-failure|FAILED|42:0|00:02:36
++2165804.batch|batch|FAILED|42:0|00:02:36
++2165804.extern|extern|COMPLETED|0:0|00:02:36
++2165805|HEWL-pb-failure|FAILED|43:0|00:00:55
++2165805.batch|batch|FAILED|43:0|00:00:55
++2165805.extern|extern|COMPLETED|0:0|00:00:56
++2165806|HEWL-invalid-checkpoint|FAILED|42:0|00:00:04
++2165806.batch|batch|FAILED|42:0|00:00:04
++2165806.extern|extern|COMPLETED|0:0|00:00:04
++2165807|cphmd-batch-audit-dispatch|COMPLETED|0:0|00:00:02
++2165807.batch|batch|COMPLETED|0:0|00:00:02
++2165807.extern|extern|COMPLETED|0:0|00:00:03
++2165821|HEWL-explicit-guard|COMPLETED|0:0|00:03:14
++2165821.batch|batch|COMPLETED|0:0|00:03:14
++2165821.extern|extern|COMPLETED|0:0|00:03:14
++2165834|cphmd-batch-audit|COMPLETED|0:0|00:00:18
++2165834.batch|batch|COMPLETED|0:0|00:00:18
++2165834.extern|extern|COMPLETED|0:0|00:00:18
++2165845|cphmd-portable-batch-pack|COMPLETED|0:0|00:01:12
++2165845.batch|batch|COMPLETED|0:0|00:01:12
++2165845.extern|extern|COMPLETED|0:0|00:01:12
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/audit-exit-2165834.txt b/docs/aarch64/evidence/2026-10-29/portable-batch-night/audit-exit-2165834.txt
+new file mode 100644
+index 0000000..573541a
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/audit-exit-2165834.txt
+@@ -0,0 +1 @@
++0
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/audit-submission.tsv b/docs/aarch64/evidence/2026-10-29/portable-batch-night/audit-submission.tsv
+new file mode 100644
+index 0000000..cc51075
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/audit-submission.tsv
+@@ -0,0 +1 @@
++audit	2165834
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/batch-audit.json b/docs/aarch64/evidence/2026-10-29/portable-batch-night/batch-audit.json
+new file mode 100644
+index 0000000..2164810
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/batch-audit.json
+@@ -0,0 +1,266 @@
++{
++  "cases": {
++    "default-guard": {
++      "passed": true,
++      "jobs": [
++        2165802
++      ],
++      "controller_guards": [
++        "0"
++      ],
++      "checkpoint": {
++        "CPHMD_DONE_CYCLES": "2",
++        "CPHMD_LAST_SEGMENT_START": "1",
++        "CPHMD_LAST_SEGMENT_END": "2",
++        "CPHMD_SEGMENT_FINALIZED": "1",
++        "CPHMD_STATE_SOURCE": "validated_finalized_segment",
++        "CPHMD_REDUCED_TITRATION": "1",
++        "CPHMD_RT_LAST_FULL_CYCLE": "1",
++        "CPHMD_RT_ACTIVE_COUNT": "7"
++      },
++      "cycles": [
++        {
++          "cycle": 1,
++          "pseudostates": 69,
++          "topology": {
++            "applied_sites": 21,
++            "dictionary_atom_parameters_checked": 354,
++            "atoms_with_changed_type_or_charge": 19,
++            "protein_charge_e": 9.000000000000007
++          },
++          "RT": {
++            "active_sites": 7,
++            "fixed_sites": 14,
++            "independent_selection_and_merge_passed": true
++          },
++          "energy": {
++            "relax": {
++              "duration_ps": 0.1,
++              "records": 2,
++              "mean_temperature_K": 313.0942995,
++              "potential_min_kJ_mol": -372620.0625,
++              "potential_max_kJ_mol": -372458.28125
++            },
++            "effective": {
++              "duration_ps": 1.0,
++              "records": 11,
++              "mean_temperature_K": 311.5317605454545,
++              "potential_min_kJ_mol": -374469.28125,
++              "potential_max_kJ_mol": -372598.8125
++            }
++          },
++          "disulfide_nm": {
++            "6-127": 0.204355083127384,
++            "30-115": 0.20369585170051968,
++            "64-80": 0.19520758181996914,
++            "76-94": 0.20941107898103206
++          }
++        },
++        {
++          "cycle": 2,
++          "pseudostates": 21,
++          "topology": {
++            "applied_sites": 21,
++            "dictionary_atom_parameters_checked": 354,
++            "atoms_with_changed_type_or_charge": 19,
++            "protein_charge_e": 8.000000000000007
++          },
++          "RT": {
++            "active_sites": 7,
++            "fixed_sites": 14,
++            "independent_selection_and_merge_passed": true
++          },
++          "energy": {
++            "relax": {
++              "duration_ps": 0.1,
++              "records": 2,
++              "mean_temperature_K": 314.3284605,
++              "potential_min_kJ_mol": -374002.15625,
++              "potential_max_kJ_mol": -373795.90625
++            },
++            "effective": {
++              "duration_ps": 1.0,
++              "records": 11,
++              "mean_temperature_K": 310.1427500909091,
++              "potential_min_kJ_mol": -374535.15625,
++              "potential_max_kJ_mol": -373617.8125
++            }
++          },
++          "disulfide_nm": {
++            "6-127": 0.20126847741263448,
++            "30-115": 0.20538256985440637,
++            "64-80": 0.20623772690756612,
++            "76-94": 0.20121630152649167
++          }
++        }
++      ],
++      "segments": [
++        {
++          "cycles": [
++            1,
++            2
++          ],
++          "times_ps": [
++            0.0,
++            2.0
++          ]
++        }
++      ],
++      "default_guard_contract_passed": false,
++      "review": "Host guard 1 was not transported through --cleanenv; controller observed 0"
++    },
++    "explicit-guard": {
++      "passed": true,
++      "jobs": [
++        2165803,
++        2165821
++      ],
++      "controller_guards": [
++        "1"
++      ],
++      "checkpoint": {
++        "CPHMD_DONE_CYCLES": "2",
++        "CPHMD_LAST_SEGMENT_START": "2",
++        "CPHMD_LAST_SEGMENT_END": "2",
++        "CPHMD_SEGMENT_FINALIZED": "1",
++        "CPHMD_STATE_SOURCE": "validated_finalized_segment",
++        "CPHMD_REDUCED_TITRATION": "1",
++        "CPHMD_RT_LAST_FULL_CYCLE": "1",
++        "CPHMD_RT_ACTIVE_COUNT": "7"
++      },
++      "cycles": [
++        {
++          "cycle": 1,
++          "pseudostates": 69,
++          "topology": {
++            "applied_sites": 21,
++            "dictionary_atom_parameters_checked": 354,
++            "atoms_with_changed_type_or_charge": 19,
++            "protein_charge_e": 9.000000000000007
++          },
++          "RT": {
++            "active_sites": 7,
++            "fixed_sites": 14,
++            "independent_selection_and_merge_passed": true
++          },
++          "energy": {
++            "relax": {
++              "duration_ps": 0.1,
++              "records": 2,
++              "mean_temperature_K": 313.0942995,
++              "potential_min_kJ_mol": -372620.0625,
++              "potential_max_kJ_mol": -372458.28125
++            },
++            "effective": {
++              "duration_ps": 1.0,
++              "records": 11,
++              "mean_temperature_K": 311.5317605454545,
++              "potential_min_kJ_mol": -374469.28125,
++              "potential_max_kJ_mol": -372598.8125
++            }
++          },
++          "disulfide_nm": {
++            "6-127": 0.204355083127384,
++            "30-115": 0.20369585170051968,
++            "64-80": 0.19520758181996914,
++            "76-94": 0.20941107898103206
++          }
++        },
++        {
++          "cycle": 2,
++          "pseudostates": 21,
++          "topology": {
++            "applied_sites": 21,
++            "dictionary_atom_parameters_checked": 354,
++            "atoms_with_changed_type_or_charge": 19,
++            "protein_charge_e": 8.000000000000007
++          },
++          "RT": {
++            "active_sites": 7,
++            "fixed_sites": 14,
++            "independent_selection_and_merge_passed": true
++          },
++          "energy": {
++            "relax": {
++              "duration_ps": 0.1,
++              "records": 2,
++              "mean_temperature_K": 314.3284605,
++              "potential_min_kJ_mol": -374002.15625,
++              "potential_max_kJ_mol": -373795.90625
++            },
++            "effective": {
++              "duration_ps": 1.0,
++              "records": 11,
++              "mean_temperature_K": 310.1427500909091,
++              "potential_min_kJ_mol": -374535.15625,
++              "potential_max_kJ_mol": -373617.8125
++            }
++          },
++          "disulfide_nm": {
++            "6-127": 0.20126847741263448,
++            "30-115": 0.20538256985440637,
++            "64-80": 0.20623772690756612,
++            "76-94": 0.20121630152649167
++          }
++        }
++      ],
++      "segments": [
++        {
++          "cycles": [
++            1,
++            1
++          ],
++          "times_ps": [
++            0.0,
++            1.0
++          ]
++        },
++        {
++          "cycles": [
++            2,
++            2
++          ],
++          "times_ps": [
++            1.0,
++            2.0
++          ]
++        }
++      ]
++    },
++    "md-failure": {
++      "passed": true,
++      "jobs": [
++        2165804
++      ],
++      "exit_code": 42,
++      "retained_scratch": "scratch/jsequeira/CpHMD/HEWL-md-failure_2165804",
++      "fault": {
++        "injected_fault": "effective MD command",
++        "returned_status": 73
++      }
++    },
++    "pb-failure": {
++      "passed": true,
++      "jobs": [
++        2165805
++      ],
++      "exit_code": 43,
++      "retained_scratch": "scratch/jsequeira/CpHMD/HEWL-pb-failure_2165805",
++      "fault": {
++        "injected_fault": "PB driver",
++        "returned_status": 73
++      }
++    },
++    "invalid-checkpoint": {
++      "passed": true,
++      "jobs": [
++        2165806
++      ],
++      "exit_code": 42,
++      "original_copy_unchanged": true
++    }
++  },
++  "explicit_configuration_and_failure_cases_passed": true,
++  "default_guard_transport_passed": false,
++  "status": "EXPLICIT_ENV_BATCH_GATE_PASSED_DEFAULT_GUARD_REVIEW_REQUIRED"
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/batch-contract.json b/docs/aarch64/evidence/2026-10-29/portable-batch-night/batch-contract.json
+new file mode 100644
+index 0000000..75b489f
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/batch-contract.json
+@@ -0,0 +1,20 @@
++{
++  "cases": [
++    "default-guard",
++    "explicit-guard",
++    "md-failure",
++    "pb-failure",
++    "invalid-checkpoint"
++  ],
++  "host_root": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.portable.20261029.uS0Q9t",
++  "cycles": 2,
++  "effective_ps_per_cycle": 1,
++  "max_successors": 1,
++  "original_generator_sha256": "ae8d988bc14c16bd62ec52f25b6284db7b39a41db02f69ce74c57552dc7bb600",
++  "default_guard_expected": "host guard 1 must reach controller; cap 0 prevents accidental successor",
++  "explicit_guard_expected": "cycle 1 exit 10, one real successor, cycle 2 exit 0, DONE",
++  "md_failure_expected": 42,
++  "pb_failure_expected": 43,
++  "invalid_checkpoint_expected": 42,
++  "scientific_scope": "Same short HEWL protocol; wrapper/state transaction test, not physical pKa validation"
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/final-accounting.txt b/docs/aarch64/evidence/2026-10-29/portable-batch-night/final-accounting.txt
+new file mode 100644
+index 0000000..d0efb66
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/final-accounting.txt
+@@ -0,0 +1,35 @@
++JobID|JobName|State|ExitCode|Elapsed
++2165793|cphmd-batch-prepare|COMPLETED|0:0|00:00:08
++2165793.batch|batch|COMPLETED|0:0|00:00:08
++2165793.extern|extern|COMPLETED|0:0|00:00:08
++2165795|cphmd-portable-result-pack|COMPLETED|0:0|00:04:49
++2165795.batch|batch|COMPLETED|0:0|00:04:49
++2165795.extern|extern|COMPLETED|0:0|00:04:50
++2165802|HEWL-default-guard|COMPLETED|0:0|00:05:59
++2165802.batch|batch|COMPLETED|0:0|00:05:59
++2165802.extern|extern|COMPLETED|0:0|00:06:00
++2165803|HEWL-explicit-guard|COMPLETED|0:0|00:03:43
++2165803.batch|batch|COMPLETED|0:0|00:03:43
++2165803.extern|extern|COMPLETED|0:0|00:03:43
++2165804|HEWL-md-failure|FAILED|42:0|00:02:36
++2165804.batch|batch|FAILED|42:0|00:02:36
++2165804.extern|extern|COMPLETED|0:0|00:02:36
++2165805|HEWL-pb-failure|FAILED|43:0|00:00:55
++2165805.batch|batch|FAILED|43:0|00:00:55
++2165805.extern|extern|COMPLETED|0:0|00:00:56
++2165806|HEWL-invalid-checkpoint|FAILED|42:0|00:00:04
++2165806.batch|batch|FAILED|42:0|00:00:04
++2165806.extern|extern|COMPLETED|0:0|00:00:04
++2165807|cphmd-batch-audit-dispatch|COMPLETED|0:0|00:00:02
++2165807.batch|batch|COMPLETED|0:0|00:00:02
++2165807.extern|extern|COMPLETED|0:0|00:00:03
++2165821|HEWL-explicit-guard|COMPLETED|0:0|00:03:14
++2165821.batch|batch|COMPLETED|0:0|00:03:14
++2165821.extern|extern|COMPLETED|0:0|00:03:14
++2165834|cphmd-batch-audit|COMPLETED|0:0|00:00:18
++2165834.batch|batch|COMPLETED|0:0|00:00:18
++2165834.extern|extern|COMPLETED|0:0|00:00:18
++2165845|cphmd-portable-batch-pack|COMPLETED|0:0|00:01:12
++2165845.batch|batch|COMPLETED|0:0|00:01:12
++2165845.extern|extern|COMPLETED|0:0|00:01:12
++             JOBID                     NAME        STATE       TIME NODELIST(REASON)
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/image-pin.sha256 b/docs/aarch64/evidence/2026-10-29/portable-batch-night/image-pin.sha256
+new file mode 100644
+index 0000000..0df8661
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/image-pin.sha256
+@@ -0,0 +1 @@
++dd7872704d2a8780ea52b4e3003c5a0519d8bbc20d179069df740a010b2ce479  /projects/F202500250CPCAA2/cphmd-container/arm64-20261026/portable.20261028.MZWHAj/candidate/CpHMD-arm64.sif
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/image-profile.txt b/docs/aarch64/evidence/2026-10-29/portable-batch-night/image-profile.txt
+new file mode 100644
+index 0000000..77d5f51
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/image-profile.txt
+@@ -0,0 +1 @@
++portable
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/initial-submissions.tsv b/docs/aarch64/evidence/2026-10-29/portable-batch-night/initial-submissions.tsv
+new file mode 100644
+index 0000000..4447437
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/initial-submissions.tsv
+@@ -0,0 +1,5 @@
++default-guard	2165802
++explicit-guard	2165803
++md-failure	2165804
++pb-failure	2165805
++invalid-checkpoint	2165806
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/launch.json b/docs/aarch64/evidence/2026-10-29/portable-batch-night/launch.json
+new file mode 100644
+index 0000000..51920ae
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/launch.json
+@@ -0,0 +1,15 @@
++{
++  "initial_jobs": {
++    "default-guard": 2165802,
++    "explicit-guard": 2165803,
++    "md-failure": 2165804,
++    "pb-failure": 2165805,
++    "invalid-checkpoint": 2165806
++  },
++  "preparation_job": 2165793,
++  "audit_dispatch_job": 2165807,
++  "root": "/projects/F202500250CPCAA2/cphmd-container/arm64-20261026/validation/hewl-4lzt/batch.portable.20261029.uS0Q9t",
++  "source_archive_sha256": "bef4d3dd1fd6e9ffab10ba46238315ec1d340f49fd821d2fae69e0c884e62d82",
++  "dispatcher_sha256": "24ccdd8602add014bd9813c6158e2a80a883183b3fc902cabda4462e244ba249",
++  "scope": "Portable-image generated-wrapper validation; intentional failures 42/43; existing default guard defect stays REVIEW. Final audit must finish before acceptance."
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/result.txt b/docs/aarch64/evidence/2026-10-29/portable-batch-night/result.txt
+new file mode 100644
+index 0000000..a04b1ba
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/result.txt
+@@ -0,0 +1 @@
++EXPLICIT_ENV_BATCH_GATE_PASSED_DEFAULT_GUARD_REVIEW_REQUIRED
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/source/source-snapshot.json b/docs/aarch64/evidence/2026-10-29/portable-batch-night/source/source-snapshot.json
+new file mode 100644
+index 0000000..619fd72
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/source/source-snapshot.json
+@@ -0,0 +1,170 @@
++{
++  "git_commit": "d6607de5e96d774a95904f5672d58db3f058602c",
++  "working_tree_dirty": true,
++  "git_status": [
++    " M container_build/slurm/hewl-batch-audit.slurm",
++    " M container_build/slurm/hewl-batch-prepare.slurm",
++    "?? \"and validate portable ARM64 runtime'\""
++  ],
++  "file_sha256": {
++    "CpHMD/scripts/CpHMD.sh": "108c6eb70468df747aec7b74a39ce433363b8b7f077a9a49511d2c067152fb5f",
++    "CpHMD/scripts/functions.sh": "3715c887a686e927d9d34c16ed687058dd992399b6b5a48b0bee2e9491788f17",
++    "CpHMD/scripts/make_sites": "78314807bed912cd3e56e5595db4bd517fef5140de45bf13130f1ca4540c87b3",
++    "CpHMD/scripts/settings_contract.sh": "4bee4624b726d6e57d47a7d9a43d637b6e87938b5f95daf6a32ecca1480e3fd6",
++    "CpHMD/scripts/update-top": "173e35b0d57e2e824cd4cc74d41e5279e4a17e82b458a96ef1c60cf2c5e74a42",
++    "Databases/DataBaseT_Amber14SBpH.crg": "692f11a28ae28e05eaf3109f4d56548cc8458f8710b60eac8f18482f9f46b526",
++    "Databases/DataBaseT_Amber14SBpH.siz": "121a7e68f05a073c39cd98db1261c06f3eb197888bb2bf295bf9bc8c06edc4c0",
++    "Databases/DataBaseT_CHARMM36pH.crg": "07385fae5e96f2fa5809b4370a688511bc2123dfed1de7ac9eda44d06425ea56",
++    "Databases/DataBaseT_CHARMM36pH.siz": "2afb7bfb478b5fcf3449e1d9dd5bfa4a35c79aa5bf11d90eff5b27917f6e6a39",
++    "Databases/DataBaseT_G54a7pH.crg": "6530c79e01ea65ae18c74626ef8283566698b99f45ad667efa19f00a90758153",
++    "Databases/DataBaseT_G54a7pH.siz": "8f1eed8d06b3d1a8a53960f7707d47dbc48093df9ce679c9cbaa20e4bd3c1005",
++    "DelphiTools/CRG_FILE": "37b19335ef4ed12409aebc567c0d774708ff2aa3ce8e6f939c724547d633ccdb",
++    "DelphiTools/DELPHI_Memb.pbp": "1d41c8796ba1fa5943f39a3a8bb22b192c718141691622710063cd11987b239e",
++    "DelphiTools/DELPHI_Prot.pbp": "3a3a4b75bdb6d976e5439784ef591f1677277e8cf3416f538cfbf5d244ef0fdd",
++    "DelphiTools/README.txt": "6d89a4e4006f6be0f490c1e9dbf557189e09a7a10efd5a749df76677685a3880",
++    "DelphiTools/averaging_g.awk": "6c580ec3ec732c10eeb077b564a5338f6bcaa63eab00c3514b49620f3c057faa",
++    "DelphiTools/convert": "7615206bf1517386fbf4ebf56bbcde0b765da40eee45916f7cf9befa4f01ad58",
++    "DelphiTools/delphiT": "638695c47c08c5b4f0eaa367d7ca2aaeecd1eb5397486600f2f0465e6348fefe",
++    "DelphiTools/gen_charge.awk": "d723c22a542d88151b5e5e06dfd87ed1c5fc37345ee26bac07059b138588016b",
++    "DelphiTools/gen_files.awk": "2ec8eb1a9b8bf87c164d108c6538c5151a20dd5612c02a5615a13c1ca4a5c19d",
++    "DelphiTools/getst": "a212cd39e6b67c003a5f8c49a63c9778a1760eb5e93bdcda60477ab8ab134d50",
++    "DelphiTools/gromodels": "c57016d6a62ec42390d1b579350ab17ccfeb2b9d44cfee9d17968df367e3f744",
++    "DelphiTools/makepqr": "63d8bec93175f95171720f3b7be413a9bb12df6e361ab03bead8023fe9624a24",
++    "DelphiTools/pdbswitch": "477dacce5a8e5caa47cd9fd00f199e06ea39539252cefee61a594fb0b1f899e9",
++    "DelphiTools/slice.awk": "f4e92537255e629b645eb1f808fc440dce90f432616f48acffbc581bd4250b2c",
++    "DelphiTools/src/PROVENANCE.json": "a869b719b6a4cd29257c23572952cbb551b534469d496d92c69295f5cb94bcc1",
++    "DelphiTools/src/calc_pkg_low.c": "116f78f8ec6945adb56edccb5e9783690106381b0421792a6f9d13c72155530d",
++    "DelphiTools/src/geom_center.c": "b55d4f017e628097a6b22e13e37c63006e2241c4a6641c4171bde486230ab96c",
++    "DelphiTools/src/my_mem.c": "c0ac916d6779babe132aed2896ab216c66bde6655e04d648ce6ef09f58925ec5",
++    "DelphiTools/src/my_mem.h": "c6c5f4ef0451fc2ab78fffcee08780fab95bce358a1ace3b2134216915e84b84",
++    "DelphiTools/statepqr": "3cdc031f24afab06b24a6fd1c257c55ea6a02414e355056943c7bbe4d256373d",
++    "DelphiTools/stmodels": "522f0c58db101140f16a0d0e04af03faee7194c25ecf95255b87ac7ddeaaf7d7",
++    "STs/St-Amber14SBpH/ASPtau1.st": "8a08d2e9d09aa2eebd237ea8573b8da6dc4369f6bb7e76a9e3378334a3b86181",
++    "STs/St-Amber14SBpH/ASPtau2.st": "2e14193af838fecc2c127e4be4f14990d009edda92cd1d515cab2110e22ca16d",
++    "STs/St-Amber14SBpH/ASPtau3.st": "bfc06a17ead8ab5fed3c57eeff09bdad72353166ac7b4ca68af097222e32105f",
++    "STs/St-Amber14SBpH/ASPtau4.st": "ea91a625ece3e34fb9b5ca33995f3758e0fe7217e88cf4aa962e2908215abbe2",
++    "STs/St-Amber14SBpH/CTGLYtau1.st": "61133708a019a82d39ef770c0f0894956efa225804f48d4057a2c3ae6805b3a4",
++    "STs/St-Amber14SBpH/CTGLYtau2.st": "bbbd993be8a46284cdd75f8bc6c5645671dc673df51e85c4e337ae8f688f911e",
++    "STs/St-Amber14SBpH/CTGLYtau3.st": "4493d33ba60cafd362b4536be680504f6441a5e21c83893a7a74a75997af8d07",
++    "STs/St-Amber14SBpH/CTGLYtau4.st": "5e37e4909f650606f8ffc2abbb8d282ea0e0d3b4f97a7be307000dee4904cea9",
++    "STs/St-Amber14SBpH/CTPROtau1.st": "7a865da2b3cd0fe0d6c578fb36baf5be5b0fabb4a900190c3f66aa89fdc695dd",
++    "STs/St-Amber14SBpH/CTPROtau2.st": "d9311af21d75529c37ebaf54a111655f1e8f8ad9819ecbc149b1358f29293032",
++    "STs/St-Amber14SBpH/CTPROtau3.st": "1973a42f3f0b83e8cf1ace262d7aa78005381b5b62ad7066f2f0b386e52ace73",
++    "STs/St-Amber14SBpH/CTPROtau4.st": "95565637320f69ca739e5d38839ee93ce453b40bec4da8d3668bda6b3786ff6f",
++    "STs/St-Amber14SBpH/CTRtau1.st": "a446ea2ef085d800fb7740692904814ebeae00df131da478160be85598e78fea",
++    "STs/St-Amber14SBpH/CTRtau2.st": "eb716eb5127d6b55120b3df1aa66fd05f5b57c39c880d0a1e91bf77293d720a2",
++    "STs/St-Amber14SBpH/CTRtau3.st": "b6a4f664302c1e52e4f8889aad7026759e556a1ca9ea06c4c88cf415f8e62e23",
++    "STs/St-Amber14SBpH/CTRtau4.st": "7973154f43c4be7348efbbba0b33e9f06daf0bf29dc7d7aa7ab831e490d4ed50",
++    "STs/St-Amber14SBpH/CYStau1.st": "97cd8c08d74ec0edf3d2f8ecea3ade76a7d002adc8bea915dcb89ca730017244",
++    "STs/St-Amber14SBpH/CYStau2.st": "3c8def86158429ac1320fba23858e1a27aa77dab61ad77dc42006a3de32b5802",
++    "STs/St-Amber14SBpH/CYStau3.st": "d950a45883d77d71ae2a2e9588e62139c085e41619ee76ddc671c20a61cf730f",
++    "STs/St-Amber14SBpH/Fitted/ASPtau1.st": "8a08d2e9d09aa2eebd237ea8573b8da6dc4369f6bb7e76a9e3378334a3b86181",
++    "STs/St-Amber14SBpH/Fitted/ASPtau2.st": "2e14193af838fecc2c127e4be4f14990d009edda92cd1d515cab2110e22ca16d",
++    "STs/St-Amber14SBpH/Fitted/ASPtau3.st": "bfc06a17ead8ab5fed3c57eeff09bdad72353166ac7b4ca68af097222e32105f",
++    "STs/St-Amber14SBpH/Fitted/ASPtau4.st": "ea91a625ece3e34fb9b5ca33995f3758e0fe7217e88cf4aa962e2908215abbe2",
++    "STs/St-Amber14SBpH/Fitted/CTGLYtau1.st": "61133708a019a82d39ef770c0f0894956efa225804f48d4057a2c3ae6805b3a4",
++    "STs/St-Amber14SBpH/Fitted/CTGLYtau2.st": "bbbd993be8a46284cdd75f8bc6c5645671dc673df51e85c4e337ae8f688f911e",
++    "STs/St-Amber14SBpH/Fitted/CTGLYtau3.st": "4493d33ba60cafd362b4536be680504f6441a5e21c83893a7a74a75997af8d07",
++    "STs/St-Amber14SBpH/Fitted/CTGLYtau4.st": "5e37e4909f650606f8ffc2abbb8d282ea0e0d3b4f97a7be307000dee4904cea9",
++    "STs/St-Amber14SBpH/Fitted/CTPROtau1.st": "7a865da2b3cd0fe0d6c578fb36baf5be5b0fabb4a900190c3f66aa89fdc695dd",
++    "STs/St-Amber14SBpH/Fitted/CTPROtau2.st": "d9311af21d75529c37ebaf54a111655f1e8f8ad9819ecbc149b1358f29293032",
++    "STs/St-Amber14SBpH/Fitted/CTPROtau3.st": "1973a42f3f0b83e8cf1ace262d7aa78005381b5b62ad7066f2f0b386e52ace73",
++    "STs/St-Amber14SBpH/Fitted/CTPROtau4.st": "95565637320f69ca739e5d38839ee93ce453b40bec4da8d3668bda6b3786ff6f",
++    "STs/St-Amber14SBpH/Fitted/CTRtau1.st": "a446ea2ef085d800fb7740692904814ebeae00df131da478160be85598e78fea",
++    "STs/St-Amber14SBpH/Fitted/CTRtau2.st": "eb716eb5127d6b55120b3df1aa66fd05f5b57c39c880d0a1e91bf77293d720a2",
++    "STs/St-Amber14SBpH/Fitted/CTRtau3.st": "b6a4f664302c1e52e4f8889aad7026759e556a1ca9ea06c4c88cf415f8e62e23",
++    "STs/St-Amber14SBpH/Fitted/CTRtau4.st": "7973154f43c4be7348efbbba0b33e9f06daf0bf29dc7d7aa7ab831e490d4ed50",
++    "STs/St-Amber14SBpH/Fitted/CYStau1.st": "97cd8c08d74ec0edf3d2f8ecea3ade76a7d002adc8bea915dcb89ca730017244",
++    "STs/St-Amber14SBpH/Fitted/CYStau2.st": "3c8def86158429ac1320fba23858e1a27aa77dab61ad77dc42006a3de32b5802",
++    "STs/St-Amber14SBpH/Fitted/CYStau3.st": "d950a45883d77d71ae2a2e9588e62139c085e41619ee76ddc671c20a61cf730f",
++    "STs/St-Amber14SBpH/Fitted/GLUtau1.st": "c3eb3d96e5b1a55efcb03ece5cb673d79ffe5db928c69840c94f21cd92626988",
++    "STs/St-Amber14SBpH/Fitted/GLUtau2.st": "9e5099222ee7603cbf20bf895631a802ded2cc8a1a109831f32195b2bf86345d",
++    "STs/St-Amber14SBpH/Fitted/GLUtau3.st": "9634dc4a1c316e664facee3bfbd4798a941bd3a3256046337f440da3492f43f4",
++    "STs/St-Amber14SBpH/Fitted/GLUtau4.st": "af983f2c853e5ab9241cbc9dbad166f00427c1b490a4c2392ad6356abcc5ac31",
++    "STs/St-Amber14SBpH/Fitted/HIStau1.st": "22ac632a38fe69cfe95cdf2539c3a304160ff4544d2e111892cbfc961c416bde",
++    "STs/St-Amber14SBpH/Fitted/HIStau2.st": "18a573c50d398721b40a95ec562c70ff1740121d205d092dc6499b98a0a42427",
++    "STs/St-Amber14SBpH/Fitted/LYStau1.st": "fac8ce17d9aac23d8bebf98271535e032d9e04bae79d9522f8f9bf0862902a76",
++    "STs/St-Amber14SBpH/Fitted/LYStau2.st": "eb228ce571a5dba76ab5a25d0cf568f995634b9291a8b42102a78c2234b74fae",
++    "STs/St-Amber14SBpH/Fitted/LYStau3.st": "a60d9a738c84f9dca8ac81b33789cba63f3b83b45b3efc2085228e5b8709ad47",
++    "STs/St-Amber14SBpH/Fitted/NTGLYtau1.st": "0c03c42e3426aa7ec819a9d69b681b9c4e4501a4d96a158322dde5cd1a1d0858",
++    "STs/St-Amber14SBpH/Fitted/NTGLYtau2.st": "e329f2ece930e2b119b618ff4a57d9270a5d6d5f63adefae4e01656dffc5490f",
++    "STs/St-Amber14SBpH/Fitted/NTGLYtau3.st": "24150053ee69bd526715998e06e0ce44bc13461eccdd81d3645ad24b51b16801",
++    "STs/St-Amber14SBpH/Fitted/NTPROtau1.st": "73d4bf42925cd5c8e4b276acd45bb8fa27f7957fe63252861754d78cfad68214",
++    "STs/St-Amber14SBpH/Fitted/NTPROtau2.st": "d197fc33722f92bfdf0d305fd2c720e68cfde2d5dfecbf354e88e2e0be7cc978",
++    "STs/St-Amber14SBpH/Fitted/NTRtau1.st": "bf5e6c0564550709b3f23fe5ab3f91b31e04e525cbee47cce30d48519b935e0c",
++    "STs/St-Amber14SBpH/Fitted/NTRtau2.st": "79f1e3229ecffe239dfaed34cf9023ffdb4f010cc0a462997689358ca34e7c7e",
++    "STs/St-Amber14SBpH/Fitted/NTRtau3.st": "5ab011c82a6ae76a8a894009a5383ad3ce7c40c1f873cfed534f1d74673e0550",
++    "STs/St-Amber14SBpH/Fitted/TYRtau1.st": "6836678011af95d640edbba2845f993d7fb1c67308b362f59dea03cd7bc0c9eb",
++    "STs/St-Amber14SBpH/Fitted/TYRtau2.st": "34fa32bdc239fa09ff7e19b77b4c7163a43cbc7966ee4ceb9bc8b42fd12dc456",
++    "STs/St-Amber14SBpH/GLUtau1.st": "c3eb3d96e5b1a55efcb03ece5cb673d79ffe5db928c69840c94f21cd92626988",
++    "STs/St-Amber14SBpH/GLUtau2.st": "9e5099222ee7603cbf20bf895631a802ded2cc8a1a109831f32195b2bf86345d",
++    "STs/St-Amber14SBpH/GLUtau3.st": "9634dc4a1c316e664facee3bfbd4798a941bd3a3256046337f440da3492f43f4",
++    "STs/St-Amber14SBpH/GLUtau4.st": "af983f2c853e5ab9241cbc9dbad166f00427c1b490a4c2392ad6356abcc5ac31",
++    "STs/St-Amber14SBpH/HIStau1.st": "d06f55102012229591f4000e071d2c8c41bddf46fefcc137593abf572faa360d",
++    "STs/St-Amber14SBpH/HIStau2.st": "ece0832eb117e47baa333e88c2f70eee1e6545b57f5cc64b7a7cb3ab1d5e13f6",
++    "STs/St-Amber14SBpH/LOGBOOK": "da8a8e9f4f558916dac34bf1aff8172660d3c58b989fa3b7c24dad4f1b8898ea",
++    "STs/St-Amber14SBpH/LYStau1.st": "fac8ce17d9aac23d8bebf98271535e032d9e04bae79d9522f8f9bf0862902a76",
++    "STs/St-Amber14SBpH/LYStau2.st": "eb228ce571a5dba76ab5a25d0cf568f995634b9291a8b42102a78c2234b74fae",
++    "STs/St-Amber14SBpH/LYStau3.st": "a60d9a738c84f9dca8ac81b33789cba63f3b83b45b3efc2085228e5b8709ad47",
++    "STs/St-Amber14SBpH/NTGLYtau1.st": "0c03c42e3426aa7ec819a9d69b681b9c4e4501a4d96a158322dde5cd1a1d0858",
++    "STs/St-Amber14SBpH/NTGLYtau2.st": "e329f2ece930e2b119b618ff4a57d9270a5d6d5f63adefae4e01656dffc5490f",
++    "STs/St-Amber14SBpH/NTGLYtau3.st": "24150053ee69bd526715998e06e0ce44bc13461eccdd81d3645ad24b51b16801",
++    "STs/St-Amber14SBpH/NTPROtau1.st": "73d4bf42925cd5c8e4b276acd45bb8fa27f7957fe63252861754d78cfad68214",
++    "STs/St-Amber14SBpH/NTPROtau2.st": "d197fc33722f92bfdf0d305fd2c720e68cfde2d5dfecbf354e88e2e0be7cc978",
++    "STs/St-Amber14SBpH/NTRtau1.st": "bf5e6c0564550709b3f23fe5ab3f91b31e04e525cbee47cce30d48519b935e0c",
++    "STs/St-Amber14SBpH/NTRtau2.st": "79f1e3229ecffe239dfaed34cf9023ffdb4f010cc0a462997689358ca34e7c7e",
++    "STs/St-Amber14SBpH/NTRtau3.st": "5ab011c82a6ae76a8a894009a5383ad3ce7c40c1f873cfed534f1d74673e0550",
++    "STs/St-Amber14SBpH/TYRtau1.st": "6836678011af95d640edbba2845f993d7fb1c67308b362f59dea03cd7bc0c9eb",
++    "STs/St-Amber14SBpH/TYRtau2.st": "34fa32bdc239fa09ff7e19b77b4c7163a43cbc7966ee4ceb9bc8b42fd12dc456",
++    "STs/St-Amber14SBpH/Unfitted/ASPtau1.st": "43e3d1da28e73b3c6dca65b8ef20c164cbe2af9031a10e0bdf175c225366eac6",
++    "STs/St-Amber14SBpH/Unfitted/ASPtau2.st": "cd24f326d0240589fd8a904940a93c1f25e84411868c1e2916183262f0482e58",
++    "STs/St-Amber14SBpH/Unfitted/ASPtau3.st": "d2e69a8d563ca220cad77e6626fc1bd98a5c5b4a85ee96b47c090df078360366",
++    "STs/St-Amber14SBpH/Unfitted/ASPtau4.st": "febf15a1441229a6dc2f23c61e3f1ee4b7006a308e90dc604c59d585cb17fd8e",
++    "STs/St-Amber14SBpH/Unfitted/CTGLYtau1.st": "846577d7e8774f03e1e946409bf8809027eac30329b4a5f804fb692807883fdf",
++    "STs/St-Amber14SBpH/Unfitted/CTGLYtau2.st": "eece82fb8d655e036c3ffc58a08460e97d5e09e9991f09be7721e0bc95148e3d",
++    "STs/St-Amber14SBpH/Unfitted/CTGLYtau3.st": "182ab9b9f28c3417b42d9eb36539321f23017f2db17d150fe606ced29a2c452a",
++    "STs/St-Amber14SBpH/Unfitted/CTGLYtau4.st": "96e8e0611249b7a69672332d0c3ed345203374fe6cb3e3859381fa0519333cc8",
++    "STs/St-Amber14SBpH/Unfitted/CTPROtau1.st": "abf2e60f5cde580238d8b7312967e581c584313b6051c561fc3336f49c86140b",
++    "STs/St-Amber14SBpH/Unfitted/CTPROtau2.st": "50d5fe22c2de457d38e5f935340e9109378ad739184004352b621b8bd0c97377",
++    "STs/St-Amber14SBpH/Unfitted/CTPROtau3.st": "5e60a52b7bdb5a75aa4108295edf1d493c337811869a0560c6ac3fd9301d36a4",
++    "STs/St-Amber14SBpH/Unfitted/CTPROtau4.st": "332f4cc55616e1431e8b32d167e5021a4af2b43af24d9c8c60a8d4885613c3c2",
++    "STs/St-Amber14SBpH/Unfitted/CTRtau1.st": "592019e37f5b8f65dd6d9dfd32b58ce094e85e793e97e82da5f470ce2e60a246",
++    "STs/St-Amber14SBpH/Unfitted/CTRtau2.st": "8fede3377aff35f0e4d7a143e71bf24cdd4ac4a3c1f60e97f1a34ac8708a2aa4",
++    "STs/St-Amber14SBpH/Unfitted/CTRtau3.st": "2f32be2b056b96eac19af9db40a3d181fb995d766187647c2defb4df0b8b4da0",
++    "STs/St-Amber14SBpH/Unfitted/CTRtau4.st": "3d4439428cf2c167df17478cbf75e9c70221e25284e75c1731e51caa7cb37a68",
++    "STs/St-Amber14SBpH/Unfitted/CYStau1.st": "7ddd94ee95d3e9e79ae620c6bf694558d935ffa6f665eb14f3f1120aa988738e",
++    "STs/St-Amber14SBpH/Unfitted/CYStau2.st": "3523a10e4660f862ba8d21002032cfbf3cd907d744d165f27971d6804d983664",
++    "STs/St-Amber14SBpH/Unfitted/CYStau3.st": "a7be3d64eece471a650ce627535dbe2b98be7a330ee1c43d6256d32a858188ee",
++    "STs/St-Amber14SBpH/Unfitted/GLUtau1.st": "b751e4e215de1934137859bbe22b4ada76df11a207c9935afd13e41dc016b27f",
++    "STs/St-Amber14SBpH/Unfitted/GLUtau2.st": "7021b2ad6d19e3b6f0c644a78b7dbd9fc494fdcb049571e20006f81e46312cb7",
++    "STs/St-Amber14SBpH/Unfitted/GLUtau3.st": "e744c9cfed87919eb2b06f84babece03062d3a7635e94d029cb08a43dd39231e",
++    "STs/St-Amber14SBpH/Unfitted/GLUtau4.st": "434659a20e05d3a400a36205665398f84db324f9999ad3895c657c73d081e96f",
++    "STs/St-Amber14SBpH/Unfitted/HIStau1.st": "57f1423eb9834f4373ed33651ade64a03fb646072e5462fd664f317550e5bca2",
++    "STs/St-Amber14SBpH/Unfitted/HIStau2.st": "8471bfcd9a1f587cba524390633a87fce9c9bf584387b0625554bf30303be761",
++    "STs/St-Amber14SBpH/Unfitted/LYStau1.st": "a8cf57fc38c375484dace5ef90bb27d33c252ed5ac374a53b092a18fb96e52e3",
++    "STs/St-Amber14SBpH/Unfitted/LYStau2.st": "d2b4be820d83a43f690f4bd896ad467a09496a9c74fe0a547acfeaf10f1ef4ec",
++    "STs/St-Amber14SBpH/Unfitted/LYStau3.st": "d6380fcc197d63f83a7ba0524ca27d66df58b3381928ec80be74414340a59b8a",
++    "STs/St-Amber14SBpH/Unfitted/NTGLYtau1.st": "f0fa634865e07ed9a59fabdcfb2f91fed8009cff20534ceebafa7d0d8a4d7800",
++    "STs/St-Amber14SBpH/Unfitted/NTGLYtau2.st": "12e144d3944bea24ea06463307e3cf941ae5324a28e5e5debdf4114241fc4915",
++    "STs/St-Amber14SBpH/Unfitted/NTGLYtau3.st": "16b3982d03922077d10037b5fdd9276cb892602ce372d978d0f540140143bf64",
++    "STs/St-Amber14SBpH/Unfitted/NTPROtau1.st": "8016583ac74e031adcbe0d291929bd0ebb601f0b86c3014aff8544c56b3af478",
++    "STs/St-Amber14SBpH/Unfitted/NTPROtau2.st": "4ce36d70273b572850135efa4f7e1de5d8186a50de3f7390cd67cd74f7632baf",
++    "STs/St-Amber14SBpH/Unfitted/NTRtau1.st": "94613760f86386dccc1951b2f3239ddeff15a3b4a965f56e3a3bcd2567d9bb5b",
++    "STs/St-Amber14SBpH/Unfitted/NTRtau2.st": "e6a86c1e336f676361779dea155940dba64988330b722c2a62948d01c8aa0baf",
++    "STs/St-Amber14SBpH/Unfitted/NTRtau3.st": "9c3c2a41bf1f62572782bf5fc94f8080419a32d39ad2fee29807040a21f95555",
++    "STs/St-Amber14SBpH/Unfitted/TYRtau1.st": "01552e181fd480e9d8ca8f8cc1e185197fc04d7b60f28c4b79810adf7a7c244a",
++    "STs/St-Amber14SBpH/Unfitted/TYRtau2.st": "08e387e0459727f2bf70bd55a9705b5913a30aafccc0d346a8eb40c0cc68f994",
++    "container_build/slurm/hewl-batch-audit.slurm": "61a95544d9c0ebb5e7729fb2f4b6819af09fe7d78c659016db195627ffbcdd7c",
++    "container_build/slurm/hewl-batch-prepare.slurm": "e0e68b677a5119aa18821167b36b1adae9ad380b26316762103f89bc18deb56b",
++    "container_build/slurm/hewl-cycle.slurm": "a7f5ea80c874b144943ad4f6f49ce40e15e68fcc7cd2ed65233c5c394a60a589",
++    "template/CpHMD-basic-Amber14SBpH.settings": "ab68fd4be48cef34e25e4a3e89f1b5cffab4d8200ee88279e0e6408feecbacc1",
++    "template/slurm/CpHMD-slurm.settings": "9d0be7941c1668eb25d99a67c74a4bc6420683189f51a62755c7912e16965ba9",
++    "template/slurm/generate_CpHMD_slurm.sh": "ae8d988bc14c16bd62ec52f25b6284db7b39a41db02f69ce74c57552dc7bb600",
++    "tests/arm64/compare_hewl_pbmc.py": "beafddafab4d825759b973692a62c79f4a0198c3638a55be45f857d3f89190da",
++    "tests/arm64/hewl_batch.py": "7b5a70c161027be5ecc0eea9c99d8ae70a5fb1c6da3f5764643dc8555540bb1f",
++    "tests/arm64/hewl_cycle.py": "779549efa71afd142a1f06fdb444bc7812d73cc2f3c81cd9cdbfc21e335c7b79",
++    "tests/arm64/run_hewl_cycle.sh": "4d5ba2dfb2e7be2e544788e8f096caf639f638e57096423a3a5a9fb39fd9f019"
++  },
++  "preparer_sha256": "307814c52627f8d2289c65ac938c847fae1c7c6355f00f63a36061ebcdaa474a",
++  "purpose": "Generated native SLURM wrapper: guard transport, synchronization, continuation and failures"
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-batch-night/submissions.tsv b/docs/aarch64/evidence/2026-10-29/portable-batch-night/submissions.tsv
+new file mode 100644
+index 0000000..d1f827e
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-batch-night/submissions.tsv
+@@ -0,0 +1,2 @@
++prepare	2165793
++audit-dispatch	2165807
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/accounting.tsv b/docs/aarch64/evidence/2026-10-29/portable-performance/accounting.tsv
+new file mode 100644
+index 0000000..1227e7e
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/accounting.tsv
+@@ -0,0 +1,25 @@
++JobID|JobName|State|ExitCode|Elapsed
++2160989_1|cphmd-portable-md|CANCELLED by 30597|0:0|00:05:11
++2160989_1.batch|batch|CANCELLED|0:15|00:05:12
++2160989_1.extern|extern|COMPLETED|0:0|00:05:11
++2160989_3|cphmd-portable-md|COMPLETED|0:0|01:30:02
++2160989_3.batch|batch|COMPLETED|0:0|01:30:02
++2160989_3.extern|extern|COMPLETED|0:0|01:30:02
++2160989_5|cphmd-portable-md|COMPLETED|0:0|00:38:08
++2160989_5.batch|batch|COMPLETED|0:0|00:38:08
++2160989_5.extern|extern|COMPLETED|0:0|00:38:08
++2161053_0|cphmd-portable-md4-single|COMPLETED|0:0|02:09:52
++2161053_0.batch|batch|COMPLETED|0:0|02:09:52
++2161053_0.extern|extern|COMPLETED|0:0|02:09:52
++2161053_1|cphmd-portable-md4-single|COMPLETED|0:0|02:09:42
++2161053_1.batch|batch|COMPLETED|0:0|02:09:42
++2161053_1.extern|extern|COMPLETED|0:0|02:09:43
++2161053_2|cphmd-portable-md4-single|COMPLETED|0:0|00:32:45
++2161053_2.batch|batch|COMPLETED|0:0|00:32:45
++2161053_2.extern|extern|COMPLETED|0:0|00:32:45
++2161053_3|cphmd-portable-md4-single|COMPLETED|0:0|00:32:44
++2161053_3.batch|batch|COMPLETED|0:0|00:32:44
++2161053_3.extern|extern|COMPLETED|0:0|00:32:44
++2161141|cphmd-recovery-pack|COMPLETED|0:0|00:10:50
++2161141.batch|batch|COMPLETED|0:0|00:10:50
++2161141.extern|extern|COMPLETED|0:0|00:10:51
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/comparison.json b/docs/aarch64/evidence/2026-10-29/portable-performance/comparison.json
+new file mode 100644
+index 0000000..a4a1075
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/comparison.json
+@@ -0,0 +1,124 @@
++{
++  "passed": true,
++  "accepted_portable_observations": 12,
++  "split_four_core_case_complete": true,
++  "fixed_tpr_sha256": "7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48",
++  "runtime_profile": "-reprod",
++  "rows": [
++    {
++      "cpu_count": 4,
++      "duration_ps": 50.0,
++      "repeats": 2,
++      "portable_command_seconds": 1954.9309495140333,
++      "portable_gmx_seconds": 1938.558,
++      "portable_ns_per_day": 2.2285000000000004,
++      "command_range_seconds": [
++        1954.2464541371446,
++        1955.615444890922
++      ],
++      "a64fx_command_seconds": 1106.8368372259429,
++      "a64fx_gmx_seconds": 1090.7185,
++      "portable_over_a64fx_command_seconds": 1.7662322790174407,
++      "portable_over_a64fx_gmx_seconds": 1.7773220129666822,
++      "x86_four_core_command_seconds": 260.09849711798597,
++      "portable_over_x86_four_core_command_seconds": 7.516117821423769
++    },
++    {
++      "cpu_count": 4,
++      "duration_ps": 200.0,
++      "repeats": 2,
++      "portable_command_seconds": 7770.951934971497,
++      "portable_gmx_seconds": 7754.609,
++      "portable_ns_per_day": 2.2285,
++      "command_range_seconds": [
++        7766.198526137043,
++        7775.705343805952
++      ],
++      "a64fx_command_seconds": 4377.34355446347,
++      "a64fx_gmx_seconds": 4361.0255,
++      "portable_over_a64fx_command_seconds": 1.7752666287862298,
++      "portable_over_a64fx_gmx_seconds": 1.7781618107942732,
++      "x86_four_core_command_seconds": 1032.8817100189626,
++      "portable_over_x86_four_core_command_seconds": 7.523564276134612
++    },
++    {
++      "cpu_count": 16,
++      "duration_ps": 50.0,
++      "repeats": 2,
++      "portable_command_seconds": 546.8912562174955,
++      "portable_gmx_seconds": 530.825,
++      "portable_ns_per_day": 8.1385,
++      "command_range_seconds": [
++        546.8131671580486,
++        546.9693452769425
++      ],
++      "a64fx_command_seconds": 326.6184234479442,
++      "a64fx_gmx_seconds": 310.495,
++      "portable_over_a64fx_command_seconds": 1.6744041883621974,
++      "portable_over_a64fx_gmx_seconds": 1.7096088503840643,
++      "x86_four_core_command_seconds": 260.09849711798597,
++      "portable_over_x86_four_core_command_seconds": 2.1026313580328555
++    },
++    {
++      "cpu_count": 16,
++      "duration_ps": 200.0,
++      "repeats": 2,
++      "portable_command_seconds": 2137.8366100254934,
++      "portable_gmx_seconds": 2121.639,
++      "portable_ns_per_day": 8.1445,
++      "command_range_seconds": [
++        2137.2562866969965,
++        2138.4169333539903
++      ],
++      "a64fx_command_seconds": 1258.2860783825163,
++      "a64fx_gmx_seconds": 1242.0005,
++      "portable_over_a64fx_command_seconds": 1.6990068051723255,
++      "portable_over_a64fx_gmx_seconds": 1.7082432736540767,
++      "x86_four_core_command_seconds": 1032.8817100189626,
++      "portable_over_x86_four_core_command_seconds": 2.0697787455121506
++    },
++    {
++      "cpu_count": 48,
++      "duration_ps": 50.0,
++      "repeats": 2,
++      "portable_command_seconds": 234.92409940552898,
++      "portable_gmx_seconds": 218.8245,
++      "portable_ns_per_day": 19.7425,
++      "command_range_seconds": [
++        233.86560522206128,
++        235.98259358899668
++      ],
++      "a64fx_command_seconds": 163.15577934798785,
++      "a64fx_gmx_seconds": 146.977,
++      "portable_over_a64fx_command_seconds": 1.4398760518588165,
++      "portable_over_a64fx_gmx_seconds": 1.4888349877872047,
++      "x86_four_core_command_seconds": 260.09849711798597,
++      "portable_over_x86_four_core_command_seconds": 0.9032120600795422
++    },
++    {
++      "cpu_count": 48,
++      "duration_ps": 200.0,
++      "repeats": 2,
++      "portable_command_seconds": 892.9792078989558,
++      "portable_gmx_seconds": 876.7365,
++      "portable_ns_per_day": 19.7095,
++      "command_range_seconds": [
++        892.3785001670476,
++        893.579915630864
++      ],
++      "a64fx_command_seconds": 604.1392725540791,
++      "a64fx_gmx_seconds": 587.7860000000001,
++      "portable_over_a64fx_command_seconds": 1.478101571056236,
++      "portable_over_a64fx_gmx_seconds": 1.4915913274559107,
++      "x86_four_core_command_seconds": 1032.8817100189626,
++      "portable_over_x86_four_core_command_seconds": 0.8645512833048052
++    }
++  ],
++  "limits": [
++    "Two repeats/duration/CPU count; timing and basic dynamics health screen, not equilibrium or physical pKa validation.",
++    "Four-thread portable measurements are separate exclusive allocations; higher-core cases group four observations per job.",
++    "Every ARM timing allocation reserves 48 cores for isolation. x86 uses four physical cores on mini05.",
++    "Same Deucalion A64FX hardware compares delivered NEON/generic and SVE512/specialized images; CPUs, clocks and memory differ in comparisons with mini05.",
++    "Longer fixed-protonation MD does not change the CpHMD titration interval."
++  ]
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-3/observations.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-3/observations.json
+new file mode 100644
+index 0000000..ef727a0
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-3/observations.json
+@@ -0,0 +1,158 @@
++[
++  {
++    "gmx_core_seconds": 33953.126,
++    "gmx_wall_seconds": 2122.071,
++    "ns_per_day": 8.143,
++    "mpi_ranks": 1,
++    "omp_threads": 16,
++    "cpu_count": 16,
++    "profile": "reprod",
++    "steps": 200000,
++    "repeat": 2,
++    "command_wall_seconds": 2138.4169333539903,
++    "command": [
++      "/gromacs/bin/gmx",
++      "mdrun",
++      "-s",
++      "/fixed/effective.tpr",
++      "-deffnm",
++      "md",
++      "-nt",
++      "16",
++      "-pin",
++      "on",
++      "-nsteps",
++      "200000",
++      "-reprod"
++    ],
++    "health": {
++      "passed": true,
++      "frames": 2001,
++      "duration_ps": 200.0,
++      "mean_temperature_K": 309.9503465317341,
++      "disulfide_nm": {
++        "6-127": 0.2008830505542966,
++        "30-115": 0.20583731440144695,
++        "64-80": 0.2105184077462113,
++        "76-94": 0.20227209397245113
++      }
++    }
++  },
++  {
++    "gmx_core_seconds": 33939.305,
++    "gmx_wall_seconds": 2121.207,
++    "ns_per_day": 8.146,
++    "mpi_ranks": 1,
++    "omp_threads": 16,
++    "cpu_count": 16,
++    "profile": "reprod",
++    "steps": 200000,
++    "repeat": 1,
++    "command_wall_seconds": 2137.2562866969965,
++    "command": [
++      "/gromacs/bin/gmx",
++      "mdrun",
++      "-s",
++      "/fixed/effective.tpr",
++      "-deffnm",
++      "md",
++      "-nt",
++      "16",
++      "-pin",
++      "on",
++      "-nsteps",
++      "200000",
++      "-reprod"
++    ],
++    "health": {
++      "passed": true,
++      "frames": 2001,
++      "duration_ps": 200.0,
++      "mean_temperature_K": 309.9503465317341,
++      "disulfide_nm": {
++        "6-127": 0.2008830505542966,
++        "30-115": 0.20583731440144695,
++        "64-80": 0.2105184077462113,
++        "76-94": 0.20227209397245113
++      }
++    }
++  },
++  {
++    "gmx_core_seconds": 8491.689,
++    "gmx_wall_seconds": 530.731,
++    "ns_per_day": 8.14,
++    "mpi_ranks": 1,
++    "omp_threads": 16,
++    "cpu_count": 16,
++    "profile": "reprod",
++    "steps": 50000,
++    "repeat": 2,
++    "command_wall_seconds": 546.8131671580486,
++    "command": [
++      "/gromacs/bin/gmx",
++      "mdrun",
++      "-s",
++      "/fixed/effective.tpr",
++      "-deffnm",
++      "md",
++      "-nt",
++      "16",
++      "-pin",
++      "on",
++      "-nsteps",
++      "50000",
++      "-reprod"
++    ],
++    "health": {
++      "passed": true,
++      "frames": 501,
++      "duration_ps": 50.0,
++      "mean_temperature_K": 309.2071170179641,
++      "disulfide_nm": {
++        "6-127": 0.20936332056976936,
++        "30-115": 0.19730686759461769,
++        "64-80": 0.20718590685662,
++        "76-94": 0.2121508896988181
++      }
++    }
++  },
++  {
++    "gmx_core_seconds": 8494.687,
++    "gmx_wall_seconds": 530.919,
++    "ns_per_day": 8.137,
++    "mpi_ranks": 1,
++    "omp_threads": 16,
++    "cpu_count": 16,
++    "profile": "reprod",
++    "steps": 50000,
++    "repeat": 1,
++    "command_wall_seconds": 546.9693452769425,
++    "command": [
++      "/gromacs/bin/gmx",
++      "mdrun",
++      "-s",
++      "/fixed/effective.tpr",
++      "-deffnm",
++      "md",
++      "-nt",
++      "16",
++      "-pin",
++      "on",
++      "-nsteps",
++      "50000",
++      "-reprod"
++    ],
++    "health": {
++      "passed": true,
++      "frames": 501,
++      "duration_ps": 50.0,
++      "mean_temperature_K": 309.2071170179641,
++      "disulfide_nm": {
++        "6-127": 0.20936332056976936,
++        "30-115": 0.19730686759461769,
++        "64-80": 0.20718590685662,
++        "76-94": 0.2121508896988181
++      }
++    }
++  }
++]
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-3/protocol.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-3/protocol.json
+new file mode 100644
+index 0000000..340dc82
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-3/protocol.json
+@@ -0,0 +1,77 @@
++{
++  "cpu_count": 16,
++  "profile": "reprod",
++  "order": [
++    [
++      200000,
++      2
++    ],
++    [
++      200000,
++      1
++    ],
++    [
++      50000,
++      2
++    ],
++    [
++      50000,
++      1
++    ]
++  ],
++  "image_scope": "portable-armv8-a",
++  "tpr_sha256": "7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48",
++  "dt_ps": 0.001,
++  "saved_interval_steps": 100,
++  "allowed_cpus": [
++    0,
++    1,
++    2,
++    3,
++    4,
++    5,
++    6,
++    7,
++    8,
++    9,
++    10,
++    11,
++    12,
++    13,
++    14,
++    15,
++    16,
++    17,
++    18,
++    19,
++    20,
++    21,
++    22,
++    23,
++    24,
++    25,
++    26,
++    27,
++    28,
++    29,
++    30,
++    31,
++    32,
++    33,
++    34,
++    35,
++    36,
++    37,
++    38,
++    39,
++    40,
++    41,
++    42,
++    43,
++    44,
++    45,
++    46,
++    47
++  ],
++  "limits": "Fixed-protonation MD timing/health screen. Does not change or validate a longer CpHMD titration interval."
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-3/summary.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-3/summary.json
+new file mode 100644
+index 0000000..1a24b98
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-3/summary.json
+@@ -0,0 +1,18 @@
++{
++  "passed": true,
++  "cpu_count": 16,
++  "profile": "reprod",
++  "observations": 4,
++  "durations": [
++    {
++      "duration_ps": 50.0,
++      "median_command_seconds": 546.8912562174955,
++      "median_gmx_seconds": 530.825
++    },
++    {
++      "duration_ps": 200.0,
++      "median_command_seconds": 2137.8366100254934,
++      "median_gmx_seconds": 2121.639
++    }
++  ]
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-5/observations.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-5/observations.json
+new file mode 100644
+index 0000000..da71b18
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-5/observations.json
+@@ -0,0 +1,158 @@
++[
++  {
++    "gmx_core_seconds": 42105.225,
++    "gmx_wall_seconds": 877.193,
++    "ns_per_day": 19.699,
++    "mpi_ranks": 1,
++    "omp_threads": 48,
++    "cpu_count": 48,
++    "profile": "reprod",
++    "steps": 200000,
++    "repeat": 2,
++    "command_wall_seconds": 893.579915630864,
++    "command": [
++      "/gromacs/bin/gmx",
++      "mdrun",
++      "-s",
++      "/fixed/effective.tpr",
++      "-deffnm",
++      "md",
++      "-nt",
++      "48",
++      "-pin",
++      "on",
++      "-nsteps",
++      "200000",
++      "-reprod"
++    ],
++    "health": {
++      "passed": true,
++      "frames": 2001,
++      "duration_ps": 200.0,
++      "mean_temperature_K": 309.9507592373813,
++      "disulfide_nm": {
++        "6-127": 0.19917078098958144,
++        "30-115": 0.2037400304309391,
++        "64-80": 0.20743432695674993,
++        "76-94": 0.20455072720476958
++      }
++    }
++  },
++  {
++    "gmx_core_seconds": 42061.401,
++    "gmx_wall_seconds": 876.28,
++    "ns_per_day": 19.72,
++    "mpi_ranks": 1,
++    "omp_threads": 48,
++    "cpu_count": 48,
++    "profile": "reprod",
++    "steps": 200000,
++    "repeat": 1,
++    "command_wall_seconds": 892.3785001670476,
++    "command": [
++      "/gromacs/bin/gmx",
++      "mdrun",
++      "-s",
++      "/fixed/effective.tpr",
++      "-deffnm",
++      "md",
++      "-nt",
++      "48",
++      "-pin",
++      "on",
++      "-nsteps",
++      "200000",
++      "-reprod"
++    ],
++    "health": {
++      "passed": true,
++      "frames": 2001,
++      "duration_ps": 200.0,
++      "mean_temperature_K": 309.9507592373813,
++      "disulfide_nm": {
++        "6-127": 0.19917078098958144,
++        "30-115": 0.2037400304309391,
++        "64-80": 0.20743432695674993,
++        "76-94": 0.20455072720476958
++      }
++    }
++  },
++  {
++    "gmx_core_seconds": 10452.779,
++    "gmx_wall_seconds": 217.767,
++    "ns_per_day": 19.838,
++    "mpi_ranks": 1,
++    "omp_threads": 48,
++    "cpu_count": 48,
++    "profile": "reprod",
++    "steps": 50000,
++    "repeat": 2,
++    "command_wall_seconds": 233.86560522206128,
++    "command": [
++      "/gromacs/bin/gmx",
++      "mdrun",
++      "-s",
++      "/fixed/effective.tpr",
++      "-deffnm",
++      "md",
++      "-nt",
++      "48",
++      "-pin",
++      "on",
++      "-nsteps",
++      "50000",
++      "-reprod"
++    ],
++    "health": {
++      "passed": true,
++      "frames": 501,
++      "duration_ps": 50.0,
++      "mean_temperature_K": 309.2114132055888,
++      "disulfide_nm": {
++        "6-127": 0.2050292662036325,
++        "30-115": 0.2010920187376913,
++        "64-80": 0.2066373635139584,
++        "76-94": 0.20793749060715339
++      }
++    }
++  },
++  {
++    "gmx_core_seconds": 10554.303,
++    "gmx_wall_seconds": 219.882,
++    "ns_per_day": 19.647,
++    "mpi_ranks": 1,
++    "omp_threads": 48,
++    "cpu_count": 48,
++    "profile": "reprod",
++    "steps": 50000,
++    "repeat": 1,
++    "command_wall_seconds": 235.98259358899668,
++    "command": [
++      "/gromacs/bin/gmx",
++      "mdrun",
++      "-s",
++      "/fixed/effective.tpr",
++      "-deffnm",
++      "md",
++      "-nt",
++      "48",
++      "-pin",
++      "on",
++      "-nsteps",
++      "50000",
++      "-reprod"
++    ],
++    "health": {
++      "passed": true,
++      "frames": 501,
++      "duration_ps": 50.0,
++      "mean_temperature_K": 309.2114132055888,
++      "disulfide_nm": {
++        "6-127": 0.2050292662036325,
++        "30-115": 0.2010920187376913,
++        "64-80": 0.2066373635139584,
++        "76-94": 0.20793749060715339
++      }
++    }
++  }
++]
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-5/protocol.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-5/protocol.json
+new file mode 100644
+index 0000000..093a082
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-5/protocol.json
+@@ -0,0 +1,77 @@
++{
++  "cpu_count": 48,
++  "profile": "reprod",
++  "order": [
++    [
++      200000,
++      2
++    ],
++    [
++      200000,
++      1
++    ],
++    [
++      50000,
++      2
++    ],
++    [
++      50000,
++      1
++    ]
++  ],
++  "image_scope": "portable-armv8-a",
++  "tpr_sha256": "7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48",
++  "dt_ps": 0.001,
++  "saved_interval_steps": 100,
++  "allowed_cpus": [
++    0,
++    1,
++    2,
++    3,
++    4,
++    5,
++    6,
++    7,
++    8,
++    9,
++    10,
++    11,
++    12,
++    13,
++    14,
++    15,
++    16,
++    17,
++    18,
++    19,
++    20,
++    21,
++    22,
++    23,
++    24,
++    25,
++    26,
++    27,
++    28,
++    29,
++    30,
++    31,
++    32,
++    33,
++    34,
++    35,
++    36,
++    37,
++    38,
++    39,
++    40,
++    41,
++    42,
++    43,
++    44,
++    45,
++    46,
++    47
++  ],
++  "limits": "Fixed-protonation MD timing/health screen. Does not change or validate a longer CpHMD titration interval."
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-5/summary.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-5/summary.json
+new file mode 100644
+index 0000000..09ef206
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-case-5/summary.json
+@@ -0,0 +1,18 @@
++{
++  "passed": true,
++  "cpu_count": 48,
++  "profile": "reprod",
++  "observations": 4,
++  "durations": [
++    {
++      "duration_ps": 50.0,
++      "median_command_seconds": 234.92409940552898,
++      "median_gmx_seconds": 218.8245
++    },
++    {
++      "duration_ps": 200.0,
++      "median_command_seconds": 892.9792078989558,
++      "median_gmx_seconds": 876.7365
++    }
++  ]
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-0/observations.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-0/observations.json
+new file mode 100644
+index 0000000..56d84c2
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-0/observations.json
+@@ -0,0 +1,41 @@
++[
++  {
++    "gmx_core_seconds": 31037.462,
++    "gmx_wall_seconds": 7759.366,
++    "ns_per_day": 2.227,
++    "mpi_ranks": 1,
++    "omp_threads": 4,
++    "cpu_count": 4,
++    "profile": "reprod",
++    "steps": 200000,
++    "repeat": 2,
++    "command_wall_seconds": 7775.705343805952,
++    "command": [
++      "/gromacs/bin/gmx",
++      "mdrun",
++      "-s",
++      "/fixed/effective.tpr",
++      "-deffnm",
++      "md",
++      "-nt",
++      "4",
++      "-pin",
++      "on",
++      "-nsteps",
++      "200000",
++      "-reprod"
++    ],
++    "health": {
++      "passed": true,
++      "frames": 2001,
++      "duration_ps": 200.0,
++      "mean_temperature_K": 309.9468892298851,
++      "disulfide_nm": {
++        "6-127": 0.19971479664761982,
++        "30-115": 0.2048804529475664,
++        "64-80": 0.20404411287758337,
++        "76-94": 0.20080836635957194
++      }
++    }
++  }
++]
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-0/protocol.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-0/protocol.json
+new file mode 100644
+index 0000000..aeec396
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-0/protocol.json
+@@ -0,0 +1,66 @@
++{
++  "cpu_count": 4,
++  "profile": "reprod",
++  "order": [
++    [
++      200000,
++      2
++    ]
++  ],
++  "image_scope": "portable-armv8-a",
++  "observation_index": 0,
++  "tpr_sha256": "7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48",
++  "dt_ps": 0.001,
++  "saved_interval_steps": 100,
++  "allowed_cpus": [
++    0,
++    1,
++    2,
++    3,
++    4,
++    5,
++    6,
++    7,
++    8,
++    9,
++    10,
++    11,
++    12,
++    13,
++    14,
++    15,
++    16,
++    17,
++    18,
++    19,
++    20,
++    21,
++    22,
++    23,
++    24,
++    25,
++    26,
++    27,
++    28,
++    29,
++    30,
++    31,
++    32,
++    33,
++    34,
++    35,
++    36,
++    37,
++    38,
++    39,
++    40,
++    41,
++    42,
++    43,
++    44,
++    45,
++    46,
++    47
++  ],
++  "limits": "Fixed-protonation MD timing/health screen. Does not change or validate a longer CpHMD titration interval."
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-0/summary.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-0/summary.json
+new file mode 100644
+index 0000000..e539131
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-0/summary.json
+@@ -0,0 +1,15 @@
++{
++  "passed": true,
++  "cpu_count": 4,
++  "profile": "reprod",
++  "observations": 1,
++  "durations": [
++    {
++      "duration_ps": 200.0,
++      "median_command_seconds": 7775.705343805952,
++      "median_gmx_seconds": 7759.366
++    }
++  ],
++  "complete_case": false,
++  "observation_index": 0
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-1/observations.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-1/observations.json
+new file mode 100644
+index 0000000..1eb0dbc
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-1/observations.json
+@@ -0,0 +1,41 @@
++[
++  {
++    "gmx_core_seconds": 30999.405,
++    "gmx_wall_seconds": 7749.852,
++    "ns_per_day": 2.23,
++    "mpi_ranks": 1,
++    "omp_threads": 4,
++    "cpu_count": 4,
++    "profile": "reprod",
++    "steps": 200000,
++    "repeat": 1,
++    "command_wall_seconds": 7766.198526137043,
++    "command": [
++      "/gromacs/bin/gmx",
++      "mdrun",
++      "-s",
++      "/fixed/effective.tpr",
++      "-deffnm",
++      "md",
++      "-nt",
++      "4",
++      "-pin",
++      "on",
++      "-nsteps",
++      "200000",
++      "-reprod"
++    ],
++    "health": {
++      "passed": true,
++      "frames": 2001,
++      "duration_ps": 200.0,
++      "mean_temperature_K": 309.9468892298851,
++      "disulfide_nm": {
++        "6-127": 0.19971479664761982,
++        "30-115": 0.2048804529475664,
++        "64-80": 0.20404411287758337,
++        "76-94": 0.20080836635957194
++      }
++    }
++  }
++]
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-1/protocol.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-1/protocol.json
+new file mode 100644
+index 0000000..a351f8e
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-1/protocol.json
+@@ -0,0 +1,66 @@
++{
++  "cpu_count": 4,
++  "profile": "reprod",
++  "order": [
++    [
++      200000,
++      1
++    ]
++  ],
++  "image_scope": "portable-armv8-a",
++  "observation_index": 1,
++  "tpr_sha256": "7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48",
++  "dt_ps": 0.001,
++  "saved_interval_steps": 100,
++  "allowed_cpus": [
++    0,
++    1,
++    2,
++    3,
++    4,
++    5,
++    6,
++    7,
++    8,
++    9,
++    10,
++    11,
++    12,
++    13,
++    14,
++    15,
++    16,
++    17,
++    18,
++    19,
++    20,
++    21,
++    22,
++    23,
++    24,
++    25,
++    26,
++    27,
++    28,
++    29,
++    30,
++    31,
++    32,
++    33,
++    34,
++    35,
++    36,
++    37,
++    38,
++    39,
++    40,
++    41,
++    42,
++    43,
++    44,
++    45,
++    46,
++    47
++  ],
++  "limits": "Fixed-protonation MD timing/health screen. Does not change or validate a longer CpHMD titration interval."
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-1/summary.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-1/summary.json
+new file mode 100644
+index 0000000..011e80f
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-1/summary.json
+@@ -0,0 +1,15 @@
++{
++  "passed": true,
++  "cpu_count": 4,
++  "profile": "reprod",
++  "observations": 1,
++  "durations": [
++    {
++      "duration_ps": 200.0,
++      "median_command_seconds": 7766.198526137043,
++      "median_gmx_seconds": 7749.852
++    }
++  ],
++  "complete_case": false,
++  "observation_index": 1
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-2/observations.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-2/observations.json
+new file mode 100644
+index 0000000..1c57456
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-2/observations.json
+@@ -0,0 +1,41 @@
++[
++  {
++    "gmx_core_seconds": 7751.487,
++    "gmx_wall_seconds": 1937.872,
++    "ns_per_day": 2.229,
++    "mpi_ranks": 1,
++    "omp_threads": 4,
++    "cpu_count": 4,
++    "profile": "reprod",
++    "steps": 50000,
++    "repeat": 2,
++    "command_wall_seconds": 1954.2464541371446,
++    "command": [
++      "/gromacs/bin/gmx",
++      "mdrun",
++      "-s",
++      "/fixed/effective.tpr",
++      "-deffnm",
++      "md",
++      "-nt",
++      "4",
++      "-pin",
++      "on",
++      "-nsteps",
++      "50000",
++      "-reprod"
++    ],
++    "health": {
++      "passed": true,
++      "frames": 501,
++      "duration_ps": 50.0,
++      "mean_temperature_K": 309.1929410219561,
++      "disulfide_nm": {
++        "6-127": 0.1962880536354671,
++        "30-115": 0.2056866548903938,
++        "64-80": 0.20122375605280807,
++        "76-94": 0.2031698796573943
++      }
++    }
++  }
++]
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-2/protocol.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-2/protocol.json
+new file mode 100644
+index 0000000..61ecccf
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-2/protocol.json
+@@ -0,0 +1,66 @@
++{
++  "cpu_count": 4,
++  "profile": "reprod",
++  "order": [
++    [
++      50000,
++      2
++    ]
++  ],
++  "image_scope": "portable-armv8-a",
++  "observation_index": 2,
++  "tpr_sha256": "7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48",
++  "dt_ps": 0.001,
++  "saved_interval_steps": 100,
++  "allowed_cpus": [
++    0,
++    1,
++    2,
++    3,
++    4,
++    5,
++    6,
++    7,
++    8,
++    9,
++    10,
++    11,
++    12,
++    13,
++    14,
++    15,
++    16,
++    17,
++    18,
++    19,
++    20,
++    21,
++    22,
++    23,
++    24,
++    25,
++    26,
++    27,
++    28,
++    29,
++    30,
++    31,
++    32,
++    33,
++    34,
++    35,
++    36,
++    37,
++    38,
++    39,
++    40,
++    41,
++    42,
++    43,
++    44,
++    45,
++    46,
++    47
++  ],
++  "limits": "Fixed-protonation MD timing/health screen. Does not change or validate a longer CpHMD titration interval."
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-2/summary.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-2/summary.json
+new file mode 100644
+index 0000000..0539047
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-2/summary.json
+@@ -0,0 +1,15 @@
++{
++  "passed": true,
++  "cpu_count": 4,
++  "profile": "reprod",
++  "observations": 1,
++  "durations": [
++    {
++      "duration_ps": 50.0,
++      "median_command_seconds": 1954.2464541371446,
++      "median_gmx_seconds": 1937.872
++    }
++  ],
++  "complete_case": false,
++  "observation_index": 2
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-3/observations.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-3/observations.json
+new file mode 100644
+index 0000000..f77fc51
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-3/observations.json
+@@ -0,0 +1,41 @@
++[
++  {
++    "gmx_core_seconds": 7756.972,
++    "gmx_wall_seconds": 1939.244,
++    "ns_per_day": 2.228,
++    "mpi_ranks": 1,
++    "omp_threads": 4,
++    "cpu_count": 4,
++    "profile": "reprod",
++    "steps": 50000,
++    "repeat": 1,
++    "command_wall_seconds": 1955.615444890922,
++    "command": [
++      "/gromacs/bin/gmx",
++      "mdrun",
++      "-s",
++      "/fixed/effective.tpr",
++      "-deffnm",
++      "md",
++      "-nt",
++      "4",
++      "-pin",
++      "on",
++      "-nsteps",
++      "50000",
++      "-reprod"
++    ],
++    "health": {
++      "passed": true,
++      "frames": 501,
++      "duration_ps": 50.0,
++      "mean_temperature_K": 309.1929410219561,
++      "disulfide_nm": {
++        "6-127": 0.1962880536354671,
++        "30-115": 0.2056866548903938,
++        "64-80": 0.20122375605280807,
++        "76-94": 0.2031698796573943
++      }
++    }
++  }
++]
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-3/protocol.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-3/protocol.json
+new file mode 100644
+index 0000000..771ae69
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-3/protocol.json
+@@ -0,0 +1,66 @@
++{
++  "cpu_count": 4,
++  "profile": "reprod",
++  "order": [
++    [
++      50000,
++      1
++    ]
++  ],
++  "image_scope": "portable-armv8-a",
++  "observation_index": 3,
++  "tpr_sha256": "7276106632db360dadc02f3cc0075006ee9de10d029e143a590c2a1e02113e48",
++  "dt_ps": 0.001,
++  "saved_interval_steps": 100,
++  "allowed_cpus": [
++    0,
++    1,
++    2,
++    3,
++    4,
++    5,
++    6,
++    7,
++    8,
++    9,
++    10,
++    11,
++    12,
++    13,
++    14,
++    15,
++    16,
++    17,
++    18,
++    19,
++    20,
++    21,
++    22,
++    23,
++    24,
++    25,
++    26,
++    27,
++    28,
++    29,
++    30,
++    31,
++    32,
++    33,
++    34,
++    35,
++    36,
++    37,
++    38,
++    39,
++    40,
++    41,
++    42,
++    43,
++    44,
++    45,
++    46,
++    47
++  ],
++  "limits": "Fixed-protonation MD timing/health screen. Does not change or validate a longer CpHMD titration interval."
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-3/summary.json b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-3/summary.json
+new file mode 100644
+index 0000000..6717f2d
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/portable-performance/md-single-3/summary.json
+@@ -0,0 +1,15 @@
++{
++  "passed": true,
++  "cpu_count": 4,
++  "profile": "reprod",
++  "observations": 1,
++  "durations": [
++    {
++      "duration_ps": 50.0,
++      "median_command_seconds": 1955.615444890922,
++      "median_gmx_seconds": 1939.244
++    }
++  ],
++  "complete_case": false,
++  "observation_index": 3
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/recovery-night/off-cluster-status.json b/docs/aarch64/evidence/2026-10-29/recovery-night/off-cluster-status.json
+new file mode 100644
+index 0000000..3e76796
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/recovery-night/off-cluster-status.json
+@@ -0,0 +1,56 @@
++{
++  "captured_utc": "2026-10-29T23:01:19.019141+00:00",
++  "host": "mini05",
++  "folders": {
++    "core": {
++      "root": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu",
++      "pull_exit": "0",
++      "sha256_verified": true,
++      "archives": [
++        {
++          "archive": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu/build-and-reference/HEWL-overnight-arm-2160558.tar.gz",
++          "bytes": 3598102143,
++          "sha256": "42b2de42732f1b2d90da227c6ae920487ef004d90464aa7a3b7afece1028c43b",
++          "source_regular_files": 3877
++        },
++        {
++          "archive": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu/build-and-reference/HEWL-portable-build-2160578.tar.gz",
++          "bytes": 484375209,
++          "sha256": "a848b98991b46e5855711c8aa72fad021e724c6cacc3ed62cd7a1a6f67aa0797",
++          "source_regular_files": 8259
++        },
++        {
++          "archive": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu/portable-validation/HEWL-portable-md4-2161053.tar.gz",
++          "bytes": 515858872,
++          "sha256": "b73cf36e2689992e297988e8024898d35979458e7b6403ae3711cc9709cc46a8",
++          "source_regular_files": 262
++        },
++        {
++          "archive": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu/portable-validation/HEWL-portable-validation-2160986.tar.gz",
++          "bytes": 1576916886,
++          "sha256": "0dbd57d7874cfeb7b1a4372c2c47956c04474e3838a36c032138a763c7e020a6",
++          "source_regular_files": 3925
++        }
++      ]
++    },
++    "batch": {
++      "root": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.batch.pxF5Co",
++      "pull_exit": "0",
++      "sha256_verified": true,
++      "archives": [
++        {
++          "archive": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.batch.pxF5Co/portable-batch/HEWL-portable-batch-2165793.tar.gz",
++          "bytes": 245953072,
++          "sha256": "62e5c392af8ee1ad117a6fd60823f631f9c96e12bad3fb8133800b8e2bbb7562",
++          "source_regular_files": 2162
++        }
++      ]
++    }
++  },
++  "portable_image": {
++    "path": "/home/jsequeira/Projects/side/06_CpHMD-container/validation/recovery-pull.20261029.rT3rfu/CpHMD-arm64-portable.sif",
++    "sha256": "dd7872704d2a8780ea52b4e3003c5a0519d8bbc20d179069df740a010b2ce479",
++    "verified_exit": 0
++  },
++  "limits": "SHA256 checks completed by the recorded transfer scripts before their zero statuses. Core results are off Deucalion; batch is accepted only if its own pull_exit is zero. No SSH authentication material was copied."
++}
+diff --git a/docs/aarch64/evidence/2026-10-29/recovery-night/repository-safety-working.json b/docs/aarch64/evidence/2026-10-29/recovery-night/repository-safety-working.json
+new file mode 100644
+index 0000000..4b59059
+--- /dev/null
++++ b/docs/aarch64/evidence/2026-10-29/recovery-night/repository-safety-working.json
+@@ -0,0 +1,8 @@
++{
++  "passed": true,
++  "scope": "working files",
++  "baseline_commit": "5e20356faf6fadec41938795d06229f9daad8157",
++  "checked_files": 4421,
++  "findings": [],
++  "limits": "Pattern/artifact guard only; no malware or complete-history certification."
++}

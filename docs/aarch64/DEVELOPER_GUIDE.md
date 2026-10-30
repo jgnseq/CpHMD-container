@@ -8,6 +8,9 @@ including their functions, immutable inputs and current acceptance limits.
 The [night follow-up](PORTABLE_ARM64_NIGHT_STATUS_2026-10-29.md) adds completed
 portable timings, profile-pinned generated-wrapper validation, the successor-aware
 audit dispatcher and direct mini05 recovery; its final table maps each new file.
+The [portable-default build](PORTABLE_DEFAULT_BUILD_2026-10-29.md) centralizes
+profile policy, verifies inherited generic runtime bytes, rebuilds fresh evidence
+and chains new-candidate native/non-SVE gates with off-cluster recovery.
 The build produces a candidate image; the controller later uses that image to
 execute a scientific simulation. Keep those two stages distinct in code and logs.
 
@@ -28,7 +31,7 @@ flowchart TD
 
 | Project-owned file | Responsibility and caller | Output / next stage |
 | --- | --- | --- |
-| `container_build/submit_deucalion_arm64.sh` | Local CLI; requires a clean development branch and complete Git history. Checks GROMACS archive, exports source, transfers inputs, prepares context; `--submit` additionally queues it. | Project Git checkout, candidate directory and optional job ID. |
+| `container_build/submit_deucalion_arm64.sh` | Local CLI; requires clean tracked source, committed required build files and complete history. Untracked notes stay local. Portable is default; `--profile a64fx` opts in; `--verify-hewl` adds a dependent acceptance job. | Verified committed-source checkout, candidate context and optional job IDs. |
 | `container_build/create_source_bundle.sh` | Called before upload. `require_full_history` rejects shallow source; `create_verified_bundle` creates a v2 bundle and checks it from an empty repository and independent clone, including history connectivity and checkout. | Self-contained committed-source bundle. No network or scheduler use. |
 | `container_build/prepare_arm64_build.py` | Login-node preparation. `digest` streams SHA-256; `main` validates inputs and creates a new output directory; nested `git` reads provenance; nested `ignore` excludes host ELF/object/archive products and unsafe links. | `context/`, `manifest.sha256`, `build.json`, `source.patch`, rendered `CpHMD.arm64.def`. |
 | `container_build/defs/CpHMD.arm64.def.in` | Recipe template rendered by the preparer. `%files` stages inputs, `%post` invokes the compiler script, `%test` invokes the image validator, `%runscript` later invokes the controller. Canonical helper apps are appended from `CpHMD-suite.def`. | Candidate image definition with pinned inputs. |

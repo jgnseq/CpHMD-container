@@ -40,7 +40,21 @@ fi
 export MAKEFLAGS="-j${jobs}"
 export OMP_NUM_THREADS=1
 export LD_LIBRARY_PATH="/opt/nvhpc/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+# The portable bootstrap's provenance/libraries must be staged before clearing
+# inherited payloads/evidence. Explicit legacy derivations supply their own
+# staged solver and are still checked by the same installer below.
+if [[ $profile == portable-armv8-a ]]; then
+    python3 "$src/container_build/arm64/stage-bootstrap-delphi.py"
+elif [[ -f /usr/share/cphmd/build/delphi-a64fx-repair.json ]]; then
+    cp /usr/share/cphmd/build/delphi-a64fx-repair.json "$src/delphi-bootstrap-provenance.json"
+fi
+# Fresh compiler/test evidence prevents inherited passes being mistaken for
+# this candidate's results. Original evidence remains in the immutable base.
+rm -rf /usr/share/cphmd/build /usr/share/cphmd/tests
 mkdir -p /etc/cphmd /usr/share/cphmd/build /usr/local/libexec/cphmd
+if [[ -f $src/delphi-bootstrap-provenance.json ]]; then
+    cp "$src/delphi-bootstrap-provenance.json" /usr/share/cphmd/build/
+fi
 test -x /Delphi/delphi_pgf90
 # Preserve the solver before replacing its directory. Fixed-coordinate PB/MC
 # comparison is a separate acceptance gate for this inherited native binary.
