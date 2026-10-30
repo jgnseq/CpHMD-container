@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "isa_profile": "portable-armv8-a",
+  "image_sha256": "d4d4278861eb1e9917db8b0ca74b32304fca69674a109f9813574807b85fb5f4",
+  "source_commit": "d6607de5e96d774a95904f5672d58db3f058602c",
+  "source_dirty": true,
+  "manifest_sha256": "0e40c2cb38ae22cbda5437dd250d19168c975b31ff1a48e5dfb8da0bb4eadfac",
+  "cycles": {
+    "all": 2,
+    "rt": 7,
+    "continue": 8
+  },
+  "limits": "Native regression and controller GRO/TOP/RT continuation. Not bitwise CPT continuation, physical pKa validation or complete PB convergence. New-candidate non-SVE execution remains a separate gate."
+}

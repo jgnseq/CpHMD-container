@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "components": [
+    {
+      "component": "delphi",
+      "deck": "258-Asp2N.prm",
+      "median_wall_seconds": 0.7487051549833268,
+      "min_wall_seconds": 0.7466850271448493,
+      "max_wall_seconds": 0.8338248890358955,
+      "numerical_record": {
+        "energy_kT": -222.3568,
+        "last_reported_iterations": 500,
+        "last_reported_rms": 1.6681215e-06,
+        "last_reported_maximum": 0.00024414063,
+        "requested_tolerance_met_at_last_report": false
+      }
+    },
+    {
+      "component": "delphi",
+      "deck": "P_258-Asp2Nb.prm",
+      "median_wall_seconds": 0.4694325670134276,
+      "min_wall_seconds": 0.4671876069623977,
+      "max_wall_seconds": 0.47003151196986437,
+      "numerical_record": {
+        "energy_kT": -223.8181,
+        "last_reported_iterations": 100,
+        "last_reported_rms": 6.0518619e-07,
+        "last_reported_maximum": 3.0517578e-05,
+        "requested_tolerance_met_at_last_report": true
+      }
+    },
+    {
+      "component": "delphi",
+      "deck": "P_258-Asp2Nf.prm",
+      "median_wall_seconds": 1.4416871289722621,
+      "min_wall_seconds": 1.433693990111351,
+      "max_wall_seconds": 1.4698829618282616,
+      "numerical_record": {
+        "energy_kT": -217.9167,
+        "last_reported_iterations": 500,
+        "last_reported_rms": 1.6844406e-06,
+        "last_reported_maximum": 0.00018310547,
+        "requested_tolerance_met_at_last_report": false
+      }
+    },
+    {
+      "component": "delphi",
+      "deck": "279-Ntr1N.prm",
+      "median_wall_seconds": 0.7414863929152489,
+      "min_wall_seconds": 0.7410547679755837,
+      "max_wall_seconds": 0.7464679549448192,
+      "numerical_record": {
+        "energy_kT": -321.3616,
+        "last_reported_iterations": 500,
+        "last_reported_rms": 2.1588057e-06,
+        "last_reported_maximum": 0.00025939941,
+        "requested_tolerance_met_at_last_report": false
+      }
+    },
+    {
+      "component": "delphi",
+      "deck": "P_279-Ntr1Nb.prm",
+      "median_wall_seconds": 0.47082247911021113,
+      "min_wall_seconds": 0.4699784910771996,
+      "max_wall_seconds": 0.4717978269327432,
+      "numerical_record": {
+        "energy_kT": -309.8073,
+        "last_reported_iterations": 100,
+        "last_reported_rms": 1.5555978e-06,
+        "last_reported_maximum": 5.8084726e-05,
+        "requested_tolerance_met_at_last_report": true
+      }
+    },
+    {
+      "component": "delphi",
+      "deck": "P_279-Ntr1Nf.prm",
+      "median_wall_seconds": 1.6497159819118679,
+      "min_wall_seconds": 1.6324308838229626,
+      "max_wall_seconds": 1.6555993729270995,
+      "numerical_record": {
+        "energy_kT": -305.8453,
+        "last_reported_iterations": 500,
+        "last_reported_rms": 2.4225471e-06,
+        "last_reported_maximum": 0.00030517578,
+        "requested_tolerance_met_at_last_report": false
+      }
+    },
+    {
+      "component": "petit",
+      "median_wall_seconds": 0.7466874069068581,
+      "min_wall_seconds": 0.7450354332104325,
+      "max_wall_seconds": 0.747261003125459
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "mode": "all",
+  "cycles": [
+    {
+      "cycle": 1,
+      "PB_sites": 21,
+      "PB_pseudostates": 69,
+      "topology_mapping": {
+        "applied_sites": 21,
+        "dictionary_atom_parameters_checked": 354,
+        "atoms_with_changed_type_or_charge": 19,
+        "protein_charge_e": 9.000000000000007
+      },
+      "disulfide_nm": {
+        "6-127": 0.204355083127384,
+        "30-115": 0.20369585170051968,
+        "64-80": 0.19520758181996914,
+        "76-94": 0.20941107898103206
+      },
+      "energy_health": {
+        "relax": {
+          "duration_ps": 0.1,
+          "records": 2,
+          "mean_temperature_K": 313.0942995,
+          "potential_min_kJ_mol": -372620.0625,
+          "potential_max_kJ_mol": -372458.28125
+        },
+        "effective": {
+          "duration_ps": 1.0,
+          "records": 11,
+          "mean_temperature_K": 311.5317605454545,
+          "potential_min_kJ_mol": -374469.28125,
+          "potential_max_kJ_mol": -372598.8125
+        }
+      },
+      "reduced_titration": null
+    },
+    {
+      "cycle": 2,
+      "PB_sites": 21,
+      "PB_pseudostates": 69,
+      "topology_mapping": {
+        "applied_sites": 21,
+        "dictionary_atom_parameters_checked": 354,
+        "atoms_with_changed_type_or_charge": 28,
+        "protein_charge_e": 9.000000000000007
+      },
+      "disulfide_nm": {
+        "6-127": 0.197590485600901,
+        "30-115": 0.201886106505624,
+        "64-80": 0.20244999382563555,
+        "76-94": 0.2023165836010484
+      },
+      "energy_health": {
+        "relax": {
+          "duration_ps": 0.1,
+          "records": 2,
+          "mean_temperature_K": 314.4495085,
+          "potential_min_kJ_mol": -373466.15625,
+          "potential_max_kJ_mol": -373311.125
+        },
+        "effective": {
+          "duration_ps": 1.0,
+          "records": 11,
+          "mean_temperature_K": 310.77626445454547,
+          "potential_min_kJ_mol": -374380.96875,
+          "potential_max_kJ_mol": -373326.53125
+        }
+      },
+      "reduced_titration": null
+    }
+  ],
+  "checkpoint": {
+    "CPHMD_DONE_CYCLES": "2",
+    "CPHMD_LAST_SEGMENT_START": "1",
+    "CPHMD_LAST_SEGMENT_END": "2",
+    "CPHMD_SEGMENT_FINALIZED": "1",
+    "CPHMD_STATE_SOURCE": "validated_finalized_segment",
+    "CPHMD_REDUCED_TITRATION": "0",
+    "CPHMD_RT_LAST_FULL_CYCLE": "0",
+    "CPHMD_RT_ACTIVE_COUNT": "0"
+  },
+  "segments": [
+    {
+      "start_cycle": 1,
+      "end_cycle": 2,
+      "first_time_ps": 0.0,
+      "last_time_ps": 2.0,
+      "frames": 21
+    }
+  ],
+  "limits": "Short integration gate; restart is controller GRO/TOP/RT state, not bitwise GROMACS CPT continuation."
+}

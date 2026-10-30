@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "image_sha256": "d4d4278861eb1e9917db8b0ca74b32304fca69674a109f9813574807b85fb5f4",
+  "native_acceptance": true,
+  "non_sve_executed_path_acceptance": true,
+  "cpu_model": "cortex-a53",
+  "printed_PB_comparison": [
+    {
+      "deck": "258-Asp2N.prm",
+      "printed_energy_difference_kT": 0.0,
+      "same_last_iteration_count": true
+    },
+    {
+      "deck": "P_258-Asp2Nb.prm",
+      "printed_energy_difference_kT": 0.0,
+      "same_last_iteration_count": true
+    },
+    {
+      "deck": "P_258-Asp2Nf.prm",
+      "printed_energy_difference_kT": 0.0,
+      "same_last_iteration_count": true
+    },
+    {
+      "deck": "279-Ntr1N.prm",
+      "printed_energy_difference_kT": 0.0,
+      "same_last_iteration_count": true
+    },
+    {
+      "deck": "P_279-Ntr1Nb.prm",
+      "printed_energy_difference_kT": 0.0,
+      "same_last_iteration_count": true
+    },
+    {
+      "deck": "P_279-Ntr1Nf.prm",
+      "printed_energy_difference_kT": 0.0,
+      "same_last_iteration_count": true
+    }
+  ],
+  "MC_means_equal": true,
+  "MC_final_states_equal": true,
+  "limits": "Candidate-specific native and non-SVE emulation gates; physical other-ARM hardware, absolute PB convergence and production pKa accuracy are not established."
+}

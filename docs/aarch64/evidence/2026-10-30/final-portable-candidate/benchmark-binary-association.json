@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "benchmark_image_sha256": "dd7872704d2a8780ea52b4e3003c5a0519d8bbc20d179069df740a010b2ce479",
+  "accepted_image_sha256": "d4d4278861eb1e9917db8b0ca74b32304fca69674a109f9813574807b85fb5f4",
+  "benchmark_binaries": {
+    "gmx": "5b5e91d18596cbb29c88ad3f9fd9917a7a133c0553ca26d1cbbb371e4c79f469",
+    "delphi": "1326727ff2a2a7e64279acec6d06d1e3d4e4b894ca7c62ef205af754c187f713",
+    "petit": "798332919331942898619384950b8b1087062734617c1847a9a2f858c9eef6e7",
+    "fixgro": "6fa1c0518dcfb01c0804d182dd14b1952baffb1c3c7f25f8a668dcba24954bf5"
+  },
+  "accepted_binaries": {
+    "gmx": "5b5e91d18596cbb29c88ad3f9fd9917a7a133c0553ca26d1cbbb371e4c79f469",
+    "delphi": "1326727ff2a2a7e64279acec6d06d1e3d4e4b894ca7c62ef205af754c187f713",
+    "petit": "798332919331942898619384950b8b1087062734617c1847a9a2f858c9eef6e7",
+    "fixgro": "6fa1c0518dcfb01c0804d182dd14b1952baffb1c3c7f25f8a668dcba24954bf5"
+  },
+  "limits": "Four executable byte identities only; all libraries/settings are not compared and timings are still attributed to the originally benchmarked image."
+}

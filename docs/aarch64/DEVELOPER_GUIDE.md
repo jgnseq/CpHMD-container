@@ -215,6 +215,17 @@ baseline checks and native A64FX tests must remain distinct from non-SVE and
 broader hardware validation. `hewl_overnight.py` handles separate RT/continuation
 allocations and longer fixed-TPR screens without changing the titration interval.
 
+The final candidate's accepted gates, exact image/archive identities and
+source association are in
+[PORTABLE_ARM64_ACCEPTANCE_2026-10-30.md](PORTABLE_ARM64_ACCEPTANCE_2026-10-30.md).
+`fetch_accepted_arm64_candidate.sh` is a host-only delivery step: require the
+mini05 mirror's completed statuses, lock the artifact destination, resume the
+accepted image/archive and verify fixed hashes. It does not extract payloads
+or enter the simulation cycle. The accompanying `committed_input_audit.py`
+reads Git blobs and resolves committed symlinks to associate every frozen
+repository context member and rendered recipe with the reviewed commit;
+original dirty-snapshot provenance remains unchanged.
+
 ## Commenting and maintenance convention
 
 For each new or changed project-owned file, keep a short header explaining its

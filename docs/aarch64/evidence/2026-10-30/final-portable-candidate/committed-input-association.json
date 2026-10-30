@@ -1,0 +1,49 @@
+{
+  "captured_utc": "2026-10-30T14:49:04.055577+00:00",
+  "passed": true,
+  "reviewed_commit": "cebf3a4a017455caef8324d7763e30ec7831b357",
+  "original_source_commit": "d6607de5e96d774a95904f5672d58db3f058602c",
+  "original_source_dirty": true,
+  "manifest_sha256": "0e40c2cb38ae22cbda5437dd250d19168c975b31ff1a48e5dfb8da0bb4eadfac",
+  "matching_repository_files": 3353,
+  "external_inputs": [
+    {
+      "path": "context/gromacs-2026.3.tar.gz",
+      "sha256": "1094b7bbc6a3960223827114626657110b40096cdf9598a727935fc84ebf8aa0",
+      "source": "pinned official archive"
+    },
+    {
+      "path": "context/portable-reference/PBMC.dat",
+      "sha256": "ed4e6abcf9a285e4f31acec59cb977cc053c5828c9807ea72b30b6f72578a539",
+      "source": "frozen x86 scientific reference"
+    },
+    {
+      "path": "context/portable-reference/PBMC.g",
+      "sha256": "843ddab07d54150d6ec49ddc64beb9a99b1889072cc50e9681cb06a049c3bdb5",
+      "source": "frozen x86 scientific reference"
+    },
+    {
+      "path": "context/portable-reference/PBMC.pkcrg",
+      "sha256": "92fd32186380a8f272048d4d49d7d34007ca890198957d5e3c4c5d77e7144c4b",
+      "source": "frozen x86 scientific reference"
+    },
+    {
+      "path": "context/portable-reference/petit-1729.out",
+      "sha256": "f94a7c3ebcb2e3fc9015fc1da9175e33799e7431e24780b7166d30ce6c346496",
+      "source": "frozen x86 scientific reference"
+    },
+    {
+      "path": "context/portable-reference/petit-2718.out",
+      "sha256": "c612206f344a5f4fae59b65f96e7fb467734154dd0dc07e9f22d6e4e4fde35de",
+      "source": "frozen x86 scientific reference"
+    },
+    {
+      "path": "context/portable-reference/petit-3141.out",
+      "sha256": "693662f7c3e5778e8daed927bec3404ad272fe4a514ecbf0a6305a380b41419b",
+      "source": "frozen x86 scientific reference"
+    }
+  ],
+  "differences": [],
+  "rendered_recipe_equal": true,
+  "limits": "Byte association of frozen context and rendered recipe only. Original dirty snapshot provenance is preserved; this is not a retroactive clean-commit build or proof about excluded files."
+}

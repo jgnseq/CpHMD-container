@@ -1,5 +1,10 @@
 # Portable default: packaging and fresh-candidate verification
 
+**Final status, 30 October:** build, native HEWL acceptance, verified off-cluster
+recovery and candidate-specific non-SVE execution all passed. See the
+[acceptance and recovery handover](PORTABLE_ARM64_ACCEPTANCE_2026-10-30.md).
+The pending states below are the preserved submission-night snapshot.
+
 ## Behavior implemented
 
 `submit_deucalion_arm64.sh` and `prepare_arm64_build.py` now default to the

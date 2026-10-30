@@ -8,6 +8,13 @@ commenting convention for future project-owned changes.
 
 ## Main target: portable Linux ARM64 baseline
 
+The final portable-default candidate now has passed native scientific,
+non-SVE emulation and verified off-cluster recovery receipts. Its exact image,
+source association, limits and post-Deucalion retrieval commands are in the
+[30 October acceptance handover](PORTABLE_ARM64_ACCEPTANCE_2026-10-30.md).
+No job from that pipeline remains pending. Use that handover's Git commands
+to record the final evidence; the older commands below describe earlier stages.
+
 Broad ARM compatibility takes priority over tuning for Deucalion. The launcher
 and context preparer now default to the portable ARMv8-A/ASIMD profile with
 generic DelPhi. SVE requires explicit `--profile a64fx`. NEON selected inside

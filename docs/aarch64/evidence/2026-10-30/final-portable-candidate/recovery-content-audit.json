@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "context_members_checked": 3360,
+  "mismatches": [],
+  "image_sha256": "d4d4278861eb1e9917db8b0ca74b32304fca69674a109f9813574807b85fb5f4",
+  "limits": "Archive per-member digests are those established by the content-verifying packer; archive SHA256 was independently rechecked on mini05 today."
+}

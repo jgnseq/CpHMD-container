@@ -1,0 +1,116 @@
+{
+  "passed": true,
+  "cpu_model": "cortex-a53",
+  "sve_negative_control_status": -4,
+  "binary_sha256": {
+    "gmx": "5b5e91d18596cbb29c88ad3f9fd9917a7a133c0553ca26d1cbbb371e4c79f469",
+    "delphi": "1326727ff2a2a7e64279acec6d06d1e3d4e4b894ca7c62ef205af754c187f713",
+    "petit": "798332919331942898619384950b8b1087062734617c1847a9a2f858c9eef6e7",
+    "fixgro": "6fa1c0518dcfb01c0804d182dd14b1952baffb1c3c7f25f8a668dcba24954bf5"
+  },
+  "input_protocol_sha256": "67beb8dd469c7640de1b402804773c233296b03fa204ae6ce5abc90d2c3f90bc",
+  "PB": [
+    {
+      "deck": "258-Asp2N.prm",
+      "energy_kT": -222.3568,
+      "last_reported_iterations": 500,
+      "last_reported_rms": 1.6681215e-06,
+      "last_reported_maximum": 0.00024414063,
+      "requested_maxc": 0.0001,
+      "requested_tolerance_met_at_last_report": false
+    },
+    {
+      "deck": "P_258-Asp2Nb.prm",
+      "energy_kT": -223.8181,
+      "last_reported_iterations": 100,
+      "last_reported_rms": 6.0518619e-07,
+      "last_reported_maximum": 3.0517578e-05,
+      "requested_maxc": 0.0001,
+      "requested_tolerance_met_at_last_report": true
+    },
+    {
+      "deck": "P_258-Asp2Nf.prm",
+      "energy_kT": -217.9167,
+      "last_reported_iterations": 500,
+      "last_reported_rms": 1.6844406e-06,
+      "last_reported_maximum": 0.00018310547,
+      "requested_maxc": 0.0001,
+      "requested_tolerance_met_at_last_report": false
+    },
+    {
+      "deck": "279-Ntr1N.prm",
+      "energy_kT": -321.3616,
+      "last_reported_iterations": 500,
+      "last_reported_rms": 2.1588057e-06,
+      "last_reported_maximum": 0.00025939941,
+      "requested_maxc": 0.0001,
+      "requested_tolerance_met_at_last_report": false
+    },
+    {
+      "deck": "P_279-Ntr1Nb.prm",
+      "energy_kT": -309.8073,
+      "last_reported_iterations": 100,
+      "last_reported_rms": 1.5555978e-06,
+      "last_reported_maximum": 5.8084726e-05,
+      "requested_maxc": 0.0001,
+      "requested_tolerance_met_at_last_report": true
+    },
+    {
+      "deck": "P_279-Ntr1Nf.prm",
+      "energy_kT": -305.8453,
+      "last_reported_iterations": 500,
+      "last_reported_rms": 2.4225471e-06,
+      "last_reported_maximum": 0.00030517578,
+      "requested_maxc": 0.0001,
+      "requested_tolerance_met_at_last_report": false
+    }
+  ],
+  "MC_means": {
+    "0": 0.992340028,
+    "1": 0.947889984,
+    "2": 0.00429000007,
+    "3": 0.999979973,
+    "4": 0.00500999996,
+    "5": 9.99999975e-06,
+    "6": 0.999989986,
+    "7": 1.0,
+    "8": 0.999949992,
+    "9": 0.0,
+    "10": 0.000140000004,
+    "11": 0.00713999989,
+    "12": 1.0,
+    "13": 0.000609999988,
+    "14": 0.0,
+    "15": 0.997430027,
+    "16": 0.999880016,
+    "17": 0.107029997,
+    "18": 0.999790013,
+    "19": 0.0214600004,
+    "20": 0.0
+  },
+  "MC_final_states": [
+    3,
+    3,
+    4,
+    3,
+    1,
+    4,
+    0,
+    0,
+    3,
+    4,
+    4,
+    4,
+    0,
+    4,
+    4,
+    3,
+    3,
+    4,
+    3,
+    1,
+    4
+  ],
+  "PLUMED_records": 5,
+  "limits": "Executed-path non-SVE emulation gate; no performance measurement, no physical ARM hardware coverage, no full PB convergence claim."
+}

@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "cycles": 8,
+  "image_scope": "portable-armv8-a",
+  "separate_allocation_continuation": true,
+  "limits": "Controller GRO/TOP/RT restart, not GROMACS CPT bitwise continuation."
+}
